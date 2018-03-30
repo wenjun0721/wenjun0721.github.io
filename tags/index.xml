@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 文军的Github Page</title>
+    <link>https://wenjun0721.github.io/tags/</link>
+    <description>Recent content in Tags on 文军的Github Page</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <copyright>All rights reserved - 2017</copyright>
+    <lastBuildDate>Wed, 08 Feb 2017 22:07:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://wenjun0721.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pattern Matching</title>
+      <link>https://wenjun0721.github.io/tags/pattern-matching/</link>
+      <pubDate>Wed, 08 Feb 2017 22:07:46 +0800</pubDate>
+      
+      <guid>https://wenjun0721.github.io/tags/pattern-matching/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scala</title>
+      <link>https://wenjun0721.github.io/tags/scala/</link>
+      <pubDate>Wed, 08 Feb 2017 22:07:46 +0800</pubDate>
+      
+      <guid>https://wenjun0721.github.io/tags/scala/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>文军</title>
+      <link>https://wenjun0721.github.io/tags/%E6%96%87%E5%86%9B/</link>
+      <pubDate>Wed, 08 Feb 2017 22:07:46 +0800</pubDate>
+      
+      <guid>https://wenjun0721.github.io/tags/%E6%96%87%E5%86%9B/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
