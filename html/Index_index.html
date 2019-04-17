@@ -1,13 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>您的浪漫，由你书写！</title>
+	<title>您的浪漫，由您书写！</title>
+	<script language="javascript" src="./html/js/jquery-1.8.1.min.js"></script>
+	<script language="javascript" src="./html/js/layer.js"></script>
 </head>
+<style type="text/css">
+            #b img{
+                position: absolute;
+            }
+            #b img:first-child{
+                z-index: 99;
+            }
+        </style>
 <body>
 	<!-- <audio controls>
 		<source src="<?php echo $miuscUrl?>" />//音乐路径
 	</audio> -->
+	<div id="a" onclick="a()">
+		<img style="width: 100%" src="<?php echo $localUrl?>">
+	</div>
 	
-	<img style="width: 100%" src="<?php echo $localUrl?>">
+	<div id="b" style="display: none;">
+		<img style="width: 100%" src="<?php echo $localUrl?>">
+	</div>
+
+
+
 </body>
+
+<script type="text/javascript">
+	function a() {
+		layer.open({
+        type: 1
+        ,title: false //不显示标题栏
+        ,closeBtn: false
+        ,area: '650px;'
+        ,shade: 0.6
+        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+        ,btn: ['编译爱情', '每天100分', '浏览爱情']
+        ,btnAlign: 'c'
+        ,moveType: 1 //拖拽模式，0或者1
+        ,content: '<div style="padding: 50px; line-height: 3.5rem; background-color: #393D49; color: #fff; font-weight: 300;font-size:2.5rem">您的浪漫之旅，将由您书写！\n Are you ready? ^_^</div>'
+        ,success: function(layero){
+          var btn = layero.find('.layui-layer-btn');
+          btn.find('.layui-layer-btn0').attr({
+            href: 'http://www.layui.com/'
+          });
+          btn.find('.layui-layer-btn1').attr({
+            href: 'http://www.layui.com/'
+          });
+          btn.find('.layui-layer-btn2').attr({
+            href: 'index.php?mod=Home&fun=Look'
+          });
+          btn.find('.layui-layer-btn0').attr('style', 'font-size: 2rem !important;padding:1.5rem;');
+          btn.find('.layui-layer-btn1').attr('style', 'font-size: 2rem !important;padding:1.5rem;background-color:#FFB6C1');
+          btn.find('.layui-layer-btn2').attr('style', 'font-size: 2rem !important;padding:1.5rem;background-color:#FFFACD');
+        }
+      });
+
+
+		// $('#a').hide();
+		// $('#b').show();
+		// var t;
+  //       var index = 0;
+  //       /////自动播放
+  //       t = setInterval(play, 3000)
+
+  //       function play() {
+  //           index++;
+  //           if (index > 5) {
+  //               index = 0
+  //           }
+
+  //           // console.log(index)
+  //           $("#b img").eq(index).fadeIn(1000).siblings().fadeOut(1000);
+  //       };
+	}
+</script>
 </html>

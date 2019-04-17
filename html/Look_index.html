@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>您的浪漫，由您书写！</title>
+	<script language="javascript" src="./html/js/jquery-1.8.1.min.js"></script>
+	<script language="javascript" src="./html/js/layer.js"></script>
+</head>
+<style type="text/css">
+            #b img{
+                position: absolute;
+            }
+            #b img:first-child{
+                z-index: 99;
+            }
+        </style>
+<body>
+	<!-- <audio controls>
+		<source src="<?php echo $miuscUrl?>" />//音乐路径
+	</audio> -->
+	
+	<div id="b">
+  <?php foreach($result as $k=>$r){?>  
+		<img style="width: 100%" src="./upload/<?php echo $r['img']?>">
+  <?php }?>
+	</div>
+
+
+
+</body>
+<script type="text/javascript">
+  $(function(){
+        var t;
+        var index = 0;
+        /////自动播放
+        t = setInterval(play, 5000)
+
+        function play() {
+            index++;
+            var last = '<?php echo $count?>'
+            if (index >= last*1) {
+                index = 0
+            }
+
+            // console.log(index)
+            $("#b img").eq(index).fadeIn(1000).siblings().fadeOut(1000);
+        };
+  })
+</script>
+</html>
