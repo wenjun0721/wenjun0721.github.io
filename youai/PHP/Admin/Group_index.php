@@ -1,3 +1,0 @@
-<?php
-	$list=DBSelect("Group");
-?>
