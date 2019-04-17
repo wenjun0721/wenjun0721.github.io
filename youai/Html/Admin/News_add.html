@@ -1,0 +1,97 @@
+
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+	<div id="page-inner">
+		<!-- /. ROW  -->
+		<div class="row" style="padding:20px;">
+			<div class="panel panel-info">
+				<div class="panel-heading"> 添加标题 </div>
+				<div class="panel-body">
+					<form role="form" action="index.php?mod=Admin&fun=News&act=add" method="post" name="frm_add" enctype="multipart/form-data">
+						<div class="form-group">
+							<label>标题</label>
+							<input class="form-control" name="title" style="width:180px;" type="text">
+						</div>
+						<div class="form-group">
+							<label>来源</label>
+							<input class="form-control" name="from" style="width:180px;" type="text">
+						</div>
+						<div class="form-group">
+							<label>缩略图</label>
+							<img src="" width="100" height="" id="showimg" />
+							<input type="hidden" name="thumb" id="thumb" value="" />
+							<input type="button" class="btn btn-info" id="ajaximg" value="上传" onclick="f_upload()" />
+						</div>
+						<div class="form-group" id="picsdiv">
+							<label>细节图</label> <span id="imgadd" class="btn btn-info">+</span>
+							<p><input name="picsdfsdfwef[]" style="width:180px;" type="file" /><p>
+							
+						</div>
+						<div class="form-group">
+							<label>分类</label><Br />
+							<select name="catid">
+								<?php foreach($catlist as $ck=>$cr){?>
+								<option value="<?php echo $cr["id"];?>"><?php echo $cr["catname"];?></option>
+								<?php }?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>内容</label><Br />
+							<textarea name="content" style="width:100%;"></textarea>
+						</div>
+						
+						<button type="submit" class="btn btn-info">提交</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!-- /. PAGE INNER  --> 
+</div>
+<!-- /. PAGE WRAPPER  --> 
+<div id="aaa" style="display:none;">
+	<form action="index.php?mod=Admin&fun=Ajax&act=uploadimg" method="post" name="ssss" id="ssss">
+		<input type="file" name="cccc" id="cccc" />
+	</form>
+</div>
+
+<script src="Public/js/jquery.form.js"></script> 
+<script type="text/javascript">
+KindEditor.ready(function(K) {
+	K.create('textarea[name="content"]', {
+		cssPath : 'Public/kindeditor/plugins/code/prettify.css',
+		uploadJson : 'Public/kindeditor/php/upload_json.php',
+	});
+	//prettyPrint();
+});
+
+$(document).ready(function(){
+	$("#imgadd").click(function(){
+		str='<p><input name="pic[]" style="width:180px;" type="file" /><span class="btn btn-info" onclick="$(this).parent().remove();">-</span></p>';
+		$("#picsdiv").append(str);
+	});
+	
+	
+	$("#cccc").change(function(){
+		$("#ssss").ajaxSubmit({
+			dataType:  'text', //数据格式为json
+			success: function(data) { //成功
+				$("#showimg").attr("src",data);
+				$("#thumb").val(data);
+			},
+			error:function(xhr){ //上传失败
+				alert("上传失败");
+			}
+		});
+	});
+});
+
+
+function f_upload(){
+	//$("#files").wrap("<form id='myupload' action='ajax.php?act=imgupload'  method='post' enctype='multipart/form-data'></form>");
+	$("#cccc").click();
+	//alert(234)
+}
+
+</script>

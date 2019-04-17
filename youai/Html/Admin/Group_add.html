@@ -1,0 +1,33 @@
+
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+	<div id="page-inner">
+		<!-- /. ROW  -->
+		<div class="row" style="padding:20px;">
+			<div class="panel panel-info">
+				<div class="panel-heading"> 添加角色 </div>
+				<div class="panel-body">
+					<form role="form" action="index.php?mod=Admin&fun=Group&act=add" method="post" name="frm_add">
+						<div class="form-group">
+							<label>名称</label>
+							<input class="form-control" name="name" style="width:180px;" type="text">
+						</div>
+						<div class="form-group">
+							<label>权限设置</label><br />
+							<?php foreach($menulist as $mk=>$mr){?>
+							<strong><input type="checkbox" name="rulestr[]" value="<?php echo $mr["id"];?>" /><?php echo $mr["name"];?></strong><br />
+									<?php foreach($mr["sub"] as $mk2=>$mr2){?>
+										<span><input type="checkbox" name="rulestr[]" value="<?php echo $mr2["id"];?>" /><?php echo $mr2["name"];?></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<?php }?>
+							<?php }?>
+						</div>
+						<button type="submit" class="btn btn-info">提交</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!-- /. PAGE INNER  --> 
+</div>
+<!-- /. PAGE WRAPPER  --> 

@@ -1,0 +1,39 @@
+
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+	<div id="page-inner">
+		<!-- /. ROW  -->
+		<div class="row" style="padding:20px;">
+			<div class="panel panel-info">
+				<div class="panel-heading"> 修改管理员 </div>
+				<div class="panel-body">
+					<form role="form" action="index.php?mod=Admin&fun=Admin&act=edit" method="post" name="frm_add">
+						<div class="form-group">
+							<label>用户名</label><Br />
+							<?php echo $vo["username"];?>
+						</div>
+						<div class="form-group">
+							<label>密码</label>
+							<input class="form-control" name="password" style="width:180px;" type="password" value="" />
+						</div>
+						
+						<div class="form-group">
+							<label>真实姓名</label>
+							<input class="form-control" name="realname" style="width:180px;" type="text" value="<?php echo $vo["realname"];?>" />
+						</div>
+						<div class="form-group">
+							<label>联系电话</label>
+							<input class="form-control" name="tel" style="width:180px;" type="text" value="<?php echo $vo["tel"];?>" />
+						</div>
+						<input type="hidden" name="oldpwd" value="<?php echo $vo["password"];?>" />
+						<input type="hidden" name="id" value="<?php echo $vo["id"];?>" />
+						<button type="submit" class="btn btn-info">提交</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!-- /. PAGE INNER  --> 
+</div>
+<!-- /. PAGE WRAPPER  --> 

@@ -1,0 +1,26 @@
+
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+	<div id="page-inner">
+		<!-- /. ROW  -->
+		<div class="row" style="padding:20px;">
+			<div class="panel panel-info">
+				<div class="panel-heading"> 网站配置 </div>
+				<div class="panel-body">
+					<form role="form" action="index.php?mod=Admin&fun=Site&act=index" method="post" name="frm_add">
+						<?php foreach($con as $ck=>$cr){?>
+						<div class="form-group">
+							<label><?php echo $cr["cnname"];?></label>
+							<input class="form-control" name="<?php echo $cr["name"];?>" style="width:180px;" type="text" value="<?php echo $cr["valstr"];?>" />
+						</div>
+						<?php }?>
+						<button type="submit" class="btn btn-info">提交</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!-- /. PAGE INNER  --> 
+</div>
+<!-- /. PAGE WRAPPER  --> 

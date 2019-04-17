@@ -1,0 +1,43 @@
+
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+	<div id="page-inner">
+		<!-- /. ROW  -->
+		<div class="row" style="padding:20px;">
+			<div class="panel panel-info">
+				<div class="panel-heading"> 文章管理 </div>
+				<div class="panel-body">
+					<form role="form" action="index.php?mod=Admin&fun=Page" method="post" name="frm_add">
+						<div class="form-group">
+							<label>分类</label><Br />
+							<select name="catid" onchange="location.href='index.php?mod=Admin&fun=Page&id='+this.value">
+								<?php foreach($catlist as $ck=>$cr){?>
+								<option value="<?php echo $cr["id"];?>" <?php if($id==$cr["id"]){echo 'selected="selected"';}?>><?php echo $cr["catname"];?></option>
+								<?php }?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>内容</label><Br />
+							<textarea name="content" style="width:100%;"><?php echo $vo["content"];?></textarea>
+						</div>
+						
+						<button type="submit" class="btn btn-info">提交</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!-- /. PAGE INNER  --> 
+</div>
+<!-- /. PAGE WRAPPER  --> 
+
+<script type="text/javascript">
+KindEditor.ready(function(K) {
+	K.create('textarea[name="content"]', {
+		cssPath : 'Public/kindeditor/plugins/code/prettify.css',
+		uploadJson : 'Public/kindeditor/php/upload_json.php',
+	});
+	//prettyPrint();
+});
+</script>

@@ -1,0 +1,199 @@
+.banner{
+	width: 100%;
+	height: 400px;
+	overflow: hidden;
+}
+.banner_content{
+	width: 1920px;
+	height: 100%;
+	position: relative;
+	left: 50%;
+	margin-left: -960px;
+}
+
+
+/*********************中间样式***************/
+.middle{
+	width: 1200px;
+	margin: 0 auto;
+}
+.silbar{
+	width: 196px;
+	float: left;
+	margin-left: 70px;
+	margin-top: 148px;
+	border: 2px solid #00a8a8;
+}
+.silbar dl dt{
+	width: 100%;
+	height: 86px;
+	background: #00a8a8;
+	padding-top: 32px;
+	text-align: center;
+}
+.silbar dl dt p{
+	width: 142px;
+	height: 35px;
+	font-size: 28px;
+	border-bottom: 2px solid white;
+	margin: 0 auto;
+	padding-bottom: 2px;
+	color: white;
+}
+.silbar dl dt span{
+	font-size: 24px;
+	color: white;
+}
+.silbar dl dd{
+	width: 142px;
+	height: 65px;
+	border-bottom: 2px solid #00a8a8;
+	margin: 0 auto;
+	text-align: center;
+}
+.silbar dl dd:last-child{
+	border: none;
+}
+.silbar dl dd a{
+	display: block;
+	width: 196px;
+	height: 43px;
+	padding-top: 22px;
+	font-size: 20px;
+	margin-left: -27px;
+}
+.silbar dl dd:hover a{
+	background: #f8f8f8;
+	color: #00a8a8;
+}
+.middle_content{
+	width: 855px;
+	float: right;
+	margin-top: 50px;
+	padding-bottom: 70px;
+	overflow: hidden;
+}
+.title{
+	width: 300px;
+	height: 48px;
+	margin: 0 auto;
+}
+.middle_content h2{
+	font-weight: normal;
+	float: left;
+	font-size: 48px;
+	margin-top: -10px;
+}
+.middle_content span{
+	float: right;
+	font-size: 24px;
+	color: #999999;
+	margin-top: 18px;
+}
+.middle_content ul{
+	width: 100%;
+	height: 22px;
+	margin-top: 30px;
+	border-bottom: 2px solid #f8f8f8;
+	padding-bottom: 3px;
+}
+.middle_content ul li{
+	float: right;
+}
+.middle_content ul img{
+	float: right;
+	margin-right: 8px;
+	margin-top: 5px;
+}
+.middle_content ul li a{
+	font-size: 20px;
+	color: #999999;
+}
+.middle_content ul li span{
+	font-size: 20px;
+	color: #999999;
+	margin: 0 5px 0 5px;
+}
+.middle_content ul .on a{
+	color: #00a8a8;
+}
+.middle_content ul li:hover a{
+	color: #00a8a8;
+}
+.pro_list{
+	width: 100%;
+	margin-top: 25px;
+}
+.pro_list ol{
+	width: 885px;
+	overflow: hidden;
+}
+.pro_list ol li{
+	width: 256px;
+	height: 256px;
+	background: url(../img/pro_list02.png) no-repeat;
+	position: relative;
+	float: left;
+	margin-right: 30px;
+	margin-bottom: 44px;
+}
+.pro_list ol li img{
+	position: absolute;
+	margin-left: 3px;
+	margin-top: 3px;
+}
+.pro_list ol li p{
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	bottom: 15px;
+}
+.pro_list ol li p a{
+	font-size: 20px;
+	color: white;
+}
+.pro_list ol li .opacity{
+	display: block;
+	width: 250px;
+	height: 50px;
+	margin-left: 3px;
+	background: black;
+	opacity:0.55;
+	-webkit-opacity:0.55;/*//谷歌&苹果*/
+	-moz-opacity:0.55;/*//火狐*/
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=55); /*//ie8*/
+	position: absolute;
+	bottom: 3px;
+}
+.pro_list ol li:hover p a{
+	color: #00a8a8;
+}
+.pro_list ol li:hover{
+	background: url(../img/pro_list01.png) no-repeat;
+}
+.pro_list ul{
+	float: none;
+	border: none;
+	width: 100%;
+	height: 30px;
+	margin-top: 0;
+	padding-bottom: 0;
+	text-align: center;
+}
+.pro_list ul li{
+	float: none;
+	height: 30px;
+	display: inline-block;
+	background: #f8f8f8;
+}
+.pro_list ul li a{
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 16px;
+	font-size: 16px;
+}
+.pro_list ul li:hover a{
+	background: #00a8a8;
+	color: white;
+}

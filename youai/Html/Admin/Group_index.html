@@ -1,0 +1,41 @@
+
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+	<div id="page-inner">
+		<div class="row" style="padding:20px;">
+				 <!--    Hover Rows  -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						角色列表
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>名称</th>
+										<th width="140">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach($list as $k=>$r){?>
+									<tr>
+										<td><?php echo $r["id"];?></td>
+										<td><?php echo $r["name"];?></td>
+										<td><a href="index.php?mod=Admin&fun=Group&act=edit&id=<?php echo $r["id"];?>" class="btn btn-info">修改</a> <a href="index.php?mod=Admin&fun=Group&act=del&id=<?php echo $r["id"];?>" class="btn btn-danger">删除</a></td>
+									</tr>
+									<?php }?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- End  Hover Rows  -->
+		</div>
+		
+		
+	</div>
+	<!-- /. PAGE INNER  --> 
+</div>
+<!-- /. PAGE WRAPPER  --> 

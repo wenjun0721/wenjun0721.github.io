@@ -1,0 +1,25 @@
+
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+	<div id="page-inner">
+		<!-- /. ROW  -->
+		<div class="row" style="padding:20px;">
+			<div class="panel panel-info">
+				<div class="panel-heading"> 修改角色 </div>
+				<div class="panel-body">
+					<form role="form" action="index.php?mod=Admin&fun=Group&act=edit" method="post" name="frm_add">
+						<div class="form-group">
+							<label>名称</label><Br />
+							<input class="form-control" name="name" style="width:180px;" type="text" value="<?php echo $vo["name"];?>" />
+						</div>
+						<input type="hidden" name="id" value="<?php echo $vo["id"];?>" />
+						<button type="submit" class="btn btn-info">提交</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!-- /. PAGE INNER  --> 
+</div>
+<!-- /. PAGE WRAPPER  --> 
