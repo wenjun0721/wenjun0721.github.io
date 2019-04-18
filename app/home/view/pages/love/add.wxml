@@ -1,0 +1,8 @@
+
+
+<view>
+<input type="text" name="toUser" placeholder="您想说的话" />
+<input type="text" name="fromUser" placeholder="您想说的话" />
+<input type="text" name="text" placeholder="您想说的话" />
+<input type="button"  bt />
+</view>

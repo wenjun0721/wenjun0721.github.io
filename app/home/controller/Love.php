@@ -1,12 +1,13 @@
 <?php
 namespace app\home\controller;
-use app\home\model\Lookadd as L;
-class Lookadd extends Base
+use app\home\model\Love as L;
+class Love extends Base
 {
     public function index()
     {
     	$l = new L();
     	$res = $l->index();
+    	// $this->fetch();
     	echo(json_encode(WSTReturn('success',1,$res)));die;
     }
 
@@ -37,7 +38,7 @@ class Lookadd extends Base
 		$content .=$arr;
 		$content .= "\n"."\n"."-------".$data['fromUser'].'。';
 
-		$src = 'http://'.$_SERVER['SERVER_NAME'].'/lm2/bgb/5.jpg';
+		$src = 'http://'.$_SERVER['SERVER_NAME'].'/upload/background/1.jpg';
 		$bg = imagecreatefromjpeg($src);
 		$fontFamily = './font/zt0.ttf';//c盘windows/fonts
 		$fontSize = 30;

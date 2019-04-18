@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    time:5,
+    time:2,
     webViewUrl:"http://www.tplm.com/",
   },
   onLoad: function () {

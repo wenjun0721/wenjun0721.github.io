@@ -11,6 +11,8 @@
 	"libVersion": "1.6.6",
 	"appid": "wxdad2e8196ab76ed9",
 	"projectname": "wangyi_reading",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

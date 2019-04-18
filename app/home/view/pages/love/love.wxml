@@ -1,0 +1,5 @@
+
+
+<view class="container" wx:for="{{loves}}" wx:key="{{index}}">
+    <view class="start"><image src="{{webViewUrl}}/upload/love/{{item.img}}" /></view> 
+</view>
