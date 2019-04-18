@@ -1,0 +1,3 @@
+<view class="container">
+    <view class="start"><image src="{{webViewUrl}}/upload/index/index.jpg" /></view> 
+</view>

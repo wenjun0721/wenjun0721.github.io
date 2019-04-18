@@ -1,50 +1,29 @@
 <?php
+// +----------------------------------------------------------------------
+// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2006-2016 http://thinkphp.cn All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: liu21st <liu21st@gmail.com>
+// +----------------------------------------------------------------------
+
+// [ 应用入口文件 ]
+// 应用入口文件
 header('Content-type:text/html;charset=utf-8');
-include("conn.php");
-//http://localhost:8800/youai/index.php?fun=news&mod=index&act=index
-$mod=!empty($_GET["mod"])?$_GET["mod"]:"Home"; //设定前后台
-$fun=!empty($_GET["fun"])?$_GET["fun"]:"Index"; //设定功能
-$act=!empty($_GET["act"])?$_GET["act"]:"index"; //设定行为
 
-if($mod=="Admin"){
-	include("php/Admin/".$fun."_".$act.".php");
-	
-	if($fun=="Login"){
-		include("html/Admin/".$fun."_".$act.".html");
-	}
-	else{
-		include("html/Admin/header.html");
-		include("html/Admin/".$fun."_".$act.".html");
-		include("html/Admin/footer.html");
-	}
+// 检测PHP环境
+if(version_compare(PHP_VERSION,'5.4.0','<'))  die('require PHP > 5.4.0 !');
+//进入安装目录
+if(is_dir("install") && !file_exists("install/install.ok")){
+	header("Location:install/index.php");
+	exit();
 }
-else{
-	include("php/Home/".$fun."_".$act.".php");
-	// include("html/header.html");
-	include("html/".$fun."_".$act.".html");
-	// include("html/footer.html");
-}
-
-
-	
-
-//http://localhost:8800/youai/
-//http://localhost:8800/youai/index.php?mod=Home&fun=Index&act=index
-
-//http://localhost:8800/youai/index.php?fun=News&act=index
-
-//php/admin/news/add.php
-//php/index/news/index.php
-//php/index/news/view.php
-//html/news/index.html
-
-/*
-php/News_index.php
-html/header.html
-html/News_index.html
-html/footer.html
-
-*/
-
-
-?>
+// [ 应用入口文件 ]
+// 定义应用目录
+define('APP_PATH', __DIR__ . '/app/');
+define('APP_STATIC', __DIR__ . '/static/');
+define('CONF_PATH', __DIR__.'/app/common/');
+// 加载框架引导文件
+require __DIR__ . '/thinkphp/start.php';
