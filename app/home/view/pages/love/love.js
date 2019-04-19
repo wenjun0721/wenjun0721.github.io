@@ -1,4 +1,4 @@
-const app = getApp()
+const app =  getApp().globalData;
 
 Page({
   data: {
@@ -13,19 +13,37 @@ Page({
     setTimeout(function () {
       wx.hideToast()
     }, 500);
+
+    var that = this;
+    let userId = wx.getStorageSync('userId');
+    let obj = {
+      userId: userId, //系统的
+    }
+
+    app.util.request(app.api.Love, 'POST', obj).then((res) => {
+      
+      if (res.status && res.status == 1) {
+        console.log(res.data)
+        that.setData({
+          loves: res.data,
+        })
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
+    // wx.request({
+    //   url: 'http://www.tplm.com/home/Looklove/index',
+    //   success: function (res) {
+    //     console.log(res);
+    //     that.setData({
+    //       loves: res.data.data,
+    //     })
+    //   }
+    // })
   },
 
   onLoad: function () {
-    var that = this;
-    wx.request({
-      url: 'http://www.tplm.com/home/Looklove/index',
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          loves: res.data.data,
-        })
-      }
-    })
+    
   },
 
 

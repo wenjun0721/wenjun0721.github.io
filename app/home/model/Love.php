@@ -9,6 +9,9 @@ class Love extends Base
     	$where['userId'] = Session::get('userId');
     	$where['isok']   = 1;
     	$res = DB::name('xp')->where($where)->order(SO)->select();
+        foreach ($res as $k => $v) {
+            $res[$k]['img'] = WEBURL.'upload/love/'.$v['img'];
+        }
     	return $res;
     }
 
