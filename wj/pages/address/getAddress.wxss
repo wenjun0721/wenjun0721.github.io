@@ -1,0 +1,63 @@
+/* pages/address/getAddress.wxss */
+
+text,textarea,input,select,checkbox,image,view,navigator {
+  font-family:'PingFangSC-Regular';
+font-size:28rpx;
+box-sizing:border-box;
+color:#565656;
+
+}
+/* page{
+  padding-top: 90rpx;
+} */
+.addressLists{
+  padding:0 30rpx;
+}
+.address_grade{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+.address_list{
+  text-align: center;
+  width: 32%;
+  border:1px solid #ccc;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1; 
+}
+.address_list.middle{
+  margin:0 2%;
+}
+.address_area{
+  display: flex;
+  flex-wrap: wrap;
+}
+.modal_text{
+  text-align: center
+}
+
+.btnGetTown{
+  height: 80rpx;
+  width: 92%;
+  margin: 20rpx auto;
+  text-align: center;
+  line-height: 80rpx;
+  box-shadow:0px 0px 5px 2.5px rgba(238, 238, 238, 0.8);
+  color: #56ca6f;
+  border-radius: 10rpx;
+  color: 
+
+}
+/*wenjun 2019/2/12*/
+.btnHis{
+  margin:5%;
+  margin-bottom:3%;
+  color:#ccc;
+}

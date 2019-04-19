@@ -11,4 +11,19 @@ class Love extends Base
     	$res = DB::name('xp')->where($where)->order(SO)->select();
     	return $res;
     }
+
+
+    public function backGround()
+    {
+    	$where['userId'] = input('userId/d',0);
+    	$where['isok']   = 1;
+    	$where['ischeck']   = 1;
+    	$res = DB::name('background')->where($where)->order(SO_BACKGROUND)->select();
+        $img = [];
+        foreach ($res as $k => $v) {
+            $img[$k] = WEBURL.'upload/background/'.$v['img'];
+        }
+        $res['imgs'] = $img;
+    	return $res;
+    }
 }

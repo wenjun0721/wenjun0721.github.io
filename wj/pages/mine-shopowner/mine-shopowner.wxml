@@ -1,0 +1,52 @@
+<!--pages/mine-shopowner/mine-shopowner.wxml-->
+<view class="mine-shopowner">
+    <view class="content text-center">
+        <image src="../../static/activity298_list1.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/activity298_list2.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/activity298_list3.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/activity298_list4.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/activity298_list5.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/activity298_list6.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/activity298_list7.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/activity298_list8.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/activity298_list9.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/activity298_list10.png" style="width: 100vw" mode='widthFix'></image>
+        <view class='cat'>
+            <view class='cat-products flex flex-zLeftRight'>
+                <view class="block-card flex" wx:for="{{datas}}" wx:key="indexs">
+                    <view class='card'>
+                        <view class='card-body' style="background-image: url(../../static/cat_like_1.png)"></view>
+                        <view class='card-footer'>
+                            <button class="{{item.selected?'active':''}}" bindtap='bindChoice' data-index="{{index}}">{{item.selected?'已选择此礼包':'点击选择'}}</button>
+                            <p>{{item.title}}</p>
+
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class='form'>
+                <view class="form-group">
+                    <label>姓名:</label>
+                    <input type="text" class="form-control" id="name" placeholder="请填写你的真实姓名"/>
+                </view>
+                <view class="form-group">
+                    <label>电话号码:</label>
+                    <input type="tel" class="form-control" id="tel" placeholder="请填写您的联系方式"/>
+                </view>
+                <view class="form-group">
+                    <label>身份证号码:</label>
+                    <input type="email" class="form-control" id="cardId" placeholder="请填写正确的身份证号码 以保障账户权益"/>
+                </view>
+                <view class="form-group">
+                    <label>邀请码:</label>
+                    <input type="number" class="form-control" id="invite" placeholder="请填写您的邀请码"/>
+                </view>
+                <view class="form-group">
+                    <label>邮箱(选填):</label>
+                    <input type="email" class="form-control" id="email" placeholder="请选填您的邮箱"/>
+                </view>
+                <button type="submit" class="btn">提交信息</button>
+            </view>
+        </view>
+    </view>
+    </view>

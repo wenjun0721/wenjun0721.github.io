@@ -1,0 +1,27 @@
+  <list class="menu menu-avatar no-padding">
+    <item class="cur">
+      <avatar class="radius lg"  bindtap='goGoods'  data-id='{{orderInfo.goodlist[0].goodsId}}' style="background-image:url({{orderInfo.goodlist[0].goodsImg}});">
+      </avatar>
+      <view class='content'>
+        <view>物流状态:{{orderInfo.stateTxt}}
+        </view>
+        <view class='text-gray text-df'>
+          运单号：{{orderInfo.express.expressNo}}
+         </view>
+      </view>
+      <view class='action'>
+        <view class='text-gray text-df'>信息来源：{{orderInfo.express.expressName}}</view>
+        <tag class="round bg-red sm" bindtap="copy" data-val="{{orderInfo.express.expressNo}}">复制快递单号</tag>
+      </view>
+    </item>
+  </list>
+  <block wx:for="{{logisticInfo}}" wx:key="index">
+<timeline>
+  <time>{{item.time}}</time>
+  <item class='text-grey '>
+    <view class="text-df content bg-grey shadow-blur padding-sm">
+      {{item.context}}
+    </view>
+  </item>
+</timeline>
+  </block>

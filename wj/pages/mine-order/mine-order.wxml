@@ -1,0 +1,114 @@
+<!--pages/mine-order/mine-order.wxml-->
+
+<view class="mine-order">
+  <view class="header">
+    <scroll-view scroll-x='true' scroll-with-animation="true" scroll-left='{{scrollLeft}}' class='tab-nav scroll_content'>
+      <!-- scroll-into-view="{{toView}}" scroll-left='{{scrollLeft}}' -->
+      <!-- <ul class='tab-nav scroll_content'> -->
+      <li class="{{toView==='0'?'active':''}}" bindtap='slideMenu' data-status='0'>
+        <view>全部订单</view>
+      </li>
+      <li class="{{toView==='1'?'active':''}}" bindtap='slideMenu' data-status='1'>
+        <view>待付款</view>
+      </li>
+      <li class="{{toView==='2'?'active':''}}" bindtap='slideMenu' data-status='2'>
+        <view>拼单中</view>
+      </li>
+      <li class="{{toView==='3'?'active':''}}" bindtap='slideMenu' data-status='3'>
+        <view>待发货</view>
+      </li>
+      <li class="{{toView==='4'?'active':''}}" bindtap='slideMenu' data-status='4'>
+        <view>待收货</view>
+      </li>
+      <li class="{{toView==='7'?'active':''}}" bindtap='slideMenu' data-status='7'>
+        <view>待评价</view>
+      </li>
+      <li class="{{toView==='5'?'active':''}}" bindtap='slideMenu' data-status='5'>
+        <view>已完成</view>
+      </li>
+      <!-- </ul> -->
+    </scroll-view>
+  </view>
+  <view class="content">
+     <block wx:for="{{orderLists}}" wx:for-item="parent" wx:for-index="parentIndex" wx:key="index">
+    <view class='card'>
+      <view class='card-header' wx:if="{{abc == '1'}}">
+        <h3 bindtap='goCatStore' data-shopid="{{parent.shopId}}"> {{parent.shopName}}</h3>
+        <view class='parent-status' >
+          <text class="btn" wx:if="{{parent.group}}">{{parent.group.status_text}}</text>{{parent.status}}</view>
+        <view class="flex flex-ac flex-zBetween flex-wrap">
+          <span>订单号:{{parent.orderNo}}</span>
+          <span>{{parent.createTime}}</span>
+        </view>
+      </view>
+      <view class='card-body'>
+        <view class="card-product flex flex-ac" wx:for="{{parent.list}}" wx:key="index">
+          <block wx:if="{{parent.orderType != 4}}">
+              <image class="image" src="{{item.goodsImg}}" mode='aspectFill' bindtap='goCatDetail'  data-goodid="{{item.goodsId}}"></image>
+          </block>
+          <block wx:else>
+              <image class="image" src="{{item.goodsImg}}" mode='aspectFill'  data-goodid="{{item.goodsId}}"></image>
+          </block>
+          <view class="flex flex-zTopBottom flex-zBetween">
+
+          <block wx:if="{{parent.orderType != 4}}">
+              <p bindtap='goCatDetail'  data-goodid="{{item.goodsId}}">{{item.goodsName}}</p>
+          </block>
+          <block wx:else>
+             <p data-goodid="{{item.goodsId}}">{{item.goodsName}}</p>
+          </block>
+            
+
+
+            <h4> {{item.goodsSpecNames}}</h4>
+            <view class="flex flex-cEnd flex-zBetween">
+              <h5>¥{{item.goodsPrice}}</h5>
+              <span>x{{item.goodsNum}}</span>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <view class="card-footer flex flex-ac flex-zBetween">
+        <view class="flex flex-ac">
+          <span>合计：</span>
+          <span>¥{{parent.totalMoney}}</span>
+        </view>
+        </view>
+      <view class="card-footer flex flex-ac flex-zBetween">
+        <view class='flex flex-ac'>
+        <view class='btn'  style="background:#eeeeee;color: #999999 " bindtap='lookOrderDetail'  data-shopid='{{parent.shopId}}' data-orderid="{{parent.orderId}}">详情</view>
+          <view  class='btn' style="background:#eeeeee;color: #999999 " bindtap='cancelOrder' data-orderId="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==-2}}">取消订单</view>
+          <view  class='btn' style="background: #00abe4;color:#ffffff " bindtap='payRightNow' data-shopid='{{parent.shopId}}' data-orderid="{{parent.orderId}}" data-orderunique="{{parent.orderunique}}"  wx:if="{{parent.orderStatus==-2 && parent.orderType != 4}}">立即付款</view>
+
+             <view  class='btn' style="background:#39b54a;color: #fff " bindtap='remind' data-orderId="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==0}}">提醒发货</view>
+            <view  class='btn' style="background:#39b54a;color: #fff " bindtap='remind' data-orderId="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==3}}">提醒发货</view>
+            
+            <view class='btn' style="background:#eeeeee;color: #999999 " bindtap='saleAfter' data-orderid="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==0&& !parent.refundId}}">申请售后</view>
+  
+            <view class='btn' style="background:#eeeeee;color: #999999 " bindtap='saleAfter' data-orderid="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==1&& !parent.refundId}}">申请售后</view>
+  
+            <view class='btn' style="background:#eeeeee;color: #999999 " bindtap='saleAfter' data-orderid="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==2&& !parent.refundId}}">申请售后</view>
+
+         <view class='btn' style="background:#eeeeee;color: #999999 " bindtap='saleAfter' data-orderid="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==0 && parent.refundId}}">查看售后详情</view>
+            <view class='btn' style="background:#eeeeee;color: #999999 " bindtap='saleAfter' data-orderId="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==1&& parent.refundId}}">查看售后详情</view>
+            <view class='btn' style="background:#eeeeee;color: #999999 " bindtap='saleAfter' data-orderId="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==2&& parent.refundId}}">查看售后详情</view>
+
+
+
+            <view class='btn' style="background:#eeeeee;color: #999999 " bindtap='checkLogistics' data-orderId="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==1&&parent.deliverTypeStatus==0}}">查看物流</view>
+
+            <view class='btn' style="background:#eeeeee;color: #999999 " bindtap='checkLogistics' data-orderId="{{parent.list[0].orderId}}" wx:if="{{parent.orderStatus==2&&parent.deliverTypeStatus==0}}">查看物流</view>
+
+
+            <view bindtap='requireOrder' wx:if="{{parent.orderStatus==1&&parent.deliverTypeStatus==0}}" data-orderId="{{parent.list[0].orderId}}"  class='btn' style="background: #333 ;color:#ffffff">确认收货</view>
+
+            <view  class='btn' style="background:#eeeeee;color: #999999 "  bindtap='inviteGroup' data-groupno='{{parent.group.groupNo}}'  data-goodsid='{{parent.list[0].goodsId}}'  wx:if="{{parent.orderStatus==3}}">邀请好友拼团</view>
+             <view   class='btn' style="background:#fbbd08 ;color: #FFF "  bindtap='appraise' data-orderid="{{parent.orderId}}" wx:if="{{parent.orderStatus==2}}">评价</view>
+        </view>
+      </view>
+    </view>
+    </block>
+    <view wx:if="{{isLoading}}" style='text-align:center;padding-top:10rpx;'>{{isLoadingText}}</view>
+  </view>
+</view>

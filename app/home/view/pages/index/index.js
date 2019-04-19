@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    time:2,
+    time:1,
     webViewUrl:"http://www.tplm.com/",
   },
   onLoad: function () {
@@ -12,7 +12,7 @@ Page({
       });
       if(this.data.time == 0) {  
         wx.switchTab({
-          url:'../leader/leader',
+          url:'../love/add',
           complete:function(res) {
           }
         })

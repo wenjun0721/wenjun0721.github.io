@@ -1,0 +1,77 @@
+<!--pages/mine-order-detail/mine-order-detail.wxml-->
+
+<view class="shopping-cart mine-order-detail">
+    <view class="content mgT1">
+        <view class="block-card">
+            <view class='card'>
+                <view class='card-header'>
+                    <view class='flex flex-ac flex-zBetween flex-zLeftRight'>
+                        <h5>收货人 : {{goods.userName}}</h5>
+                        <h5>{{goods.userPhone}}</h5>
+                    </view>
+                    <view class="text-left flex flex-ac">
+                        <i class="iconfont icon-weizhi" style="color: #eeeeee"></i>
+                        <h5>收货地址：</h5>
+                          <h5 wx:if="{{goods.labels}}">[{{goods.labels}}]</h5>
+                        <h5> {{goods.pathName}}{{goods.userAddress}}</h5>
+                    </view>
+                </view>
+                <view class='card-body' wx:for="{{goods.goods}}" wx:key="index">
+                    <view class="card-product flex flex-ac">
+                        <image class="image" src="{{item.goodsImg}}" mode='aspectFill'></image>
+                        <view class="flex flex-zTopBottom flex-zBetween">
+                            <p>  {{item.goodsName}}</p>
+                            <h4>{{item.goodsSpecNames}}</h4>
+                            <view class="flex flex-cEnd flex-zBetween">
+                                <h5>¥{{item.goodsPrice}}</h5>
+                                <span>x{{item.goodsNum}}</span>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="card-express flex flex-ac flex-zBetween flex-zLeftRight">
+                        <h5>下单时间</h5>
+                        <span>{{goods.createTime}}</span>
+                    </view>
+                    <!-- <view class="card-express flex flex-ac flex-zBetween flex-zLeftRight">
+                        <h5>获得积分</h5>
+                        <span>0</span>
+                    </view> -->
+                    <view class="card-express flex flex-ac flex-zBetween flex-zLeftRight">
+                        <h5>支付信息</h5>
+                        <span>{{goods.payType==1?'在线支付':'货到付款'}}</span>
+                    </view>
+                    <view class="card-express flex flex-ac flex-zBetween flex-zLeftRight">
+                        <h5>配送信息</h5>
+                        <span>{{goods.deliverType==1?'自提':'送货上门'}}</span>
+                    </view>
+                    <!-- <view class="card-express flex flex-ac flex-zBetween flex-zLeftRight">
+                        <h5>发票信息</h5>
+                        <span>不需要</span>
+                    </view> -->
+                    <view class="card-express flex flex-ac flex-zBetween flex-zLeftRight">
+                        <h5>订单备注</h5>
+                        <span>{{goods.orderRemarks || ''}}</span>
+                    </view>
+                </view>
+                <view class="card-footer">
+                    <view class="flex flex-ac flex-zEnd">
+                        <span>商品总额:</span>
+                        <h3>¥{{goods.goodsMoney}}</h3>
+                    </view>
+                    <view class="flex flex-ac flex-zEnd">
+                        <span>运费:</span>
+                        <h3>¥{{goods.deliverMoney}}</h3>
+                    </view>
+                    <!-- <view class="flex flex-ac flex-zEnd">
+                        <span>积分抵扣金额:</span>
+                        <h3>-¥0.00</h3>
+                    </view> -->
+                    <view class="flex flex-ac flex-zEnd">
+                        <span>实付款:</span>
+                        <h3>¥{{goods.totalMoney}}</h3>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

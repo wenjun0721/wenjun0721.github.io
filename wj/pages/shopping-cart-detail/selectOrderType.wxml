@@ -1,0 +1,8 @@
+<view style='margin-top:200rpx;'>
+  <view class="list green" bindtap='wxPay'>
+    微信支付
+  </view>
+  <view class="list orange" bindtap='moneyPay'>
+    余额支付
+  </view>
+</view>

@@ -1,0 +1,39 @@
+<!--pages/mine-business/mine-business.wxml-->
+<view class="mine-business">
+    <view class="content text-center">
+        <image src="../../static/recruitmerchants_list1.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/recruitmerchants_list2.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/recruitmerchants_list3.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/recruitmerchants_list4.png" style="width: 100vw" mode='widthFix'></image>
+        <image src="../../static/recruitmerchants_list5.png" style="width: 100vw" mode='widthFix'></image>
+        <view class='form'>
+            <view class="form-group">
+                <label>姓名:</label>
+                <input type="text" class="form-control" id="name" placeholder="请填写你的真实姓名"/>
+            </view>
+            <view class="form-group">
+                <label>电话号码:</label>
+                <input type="tel" class="form-control" id="tel" placeholder="请填写您的联系方式"/>
+            </view>
+            <view class="form-group">
+                <label>微信:</label>
+                <input type="text" class="form-control" id="wechat" placeholder="请填写您的微信账号"/>
+            </view>
+            <view class="form-group">
+                <label>公司名称:</label>
+                <input type="text" class="form-control" id="company" placeholder="请填写您的公司名称"/>
+            </view>
+            <view class="form-group">
+                <label>入驻商品:</label>
+                <input type="text" class="form-control" id="goods" placeholder="请填写您的入驻商品"/>
+            </view>
+            <view class="form-group">
+                <label>咨询内容:</label>
+                 <!-- <textarea placeholder="form 中的 textarea" name="textarea"/> -->
+                <textarea adjust-position='true'  class="form-control" id="consult"></textarea>
+            </view>
+            <button type="submit" class="btn">提交信息</button>
+        </view>
+        <image src="../../static/recruitmerchants_list6.png" style="width: 100%"></image>
+    </view>
+</view>

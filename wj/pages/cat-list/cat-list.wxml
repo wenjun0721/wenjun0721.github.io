@@ -1,0 +1,81 @@
+<!--pages/cat-list/cat-list.wxml-->
+<view class="cat-list cat-list-product">
+  <view class="header">
+    <view class="search">
+     <navigator url='../search/search'>
+      <input type="text" class="flex" value='{{otherPageKeyword}}' placeholder="搜一搜" />
+      </navigator>
+    </view>
+    <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex">
+      <block wx:for="{{firstNav}}" wx:key="unique">
+        <view data-catId="{{item.catId}}" id="{{item.catId}}" class="first_nav {{item.catId==slideIndex?'active':''}}" bindtap='firstNav'>{{item.catName}} </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class='slider-banner'>
+    <swiper class='mgT4' indicator-dots="true" autoplay="true" interval="5000	" duration="1000" previous-margin="20px" next-margin="20px" circular="true">
+      <block wx:for="{{bannerLists}}" wx:key="1">
+        <swiper-item>
+          <image src="{{item.adFile}}" class="slide-image" mode='aspectFill' />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="content">
+    <view class="card"  wx:if="{{CatBelongIndex}}">
+      <view class="card-body flex nav-icon">
+        <block wx:for="{{secondNav}}" wx:key="1">
+          <view bindtap='secondNavTwo' class="second_nav" data-id="{{item.id}}" data-keyword="{{item.name}}">
+            <image class="image" src="{{item.img}}">
+            </image>
+            <span>{{item.name}}</span>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="cat-filter flex block flex-zBetween" >
+      <block wx:for="{{condiNavs}}" wx:for-item="firstItem" wx:key="index">
+      <view data-id='{{index}}' bindtap='_condiNav' class="{{condiNavIndex==index?'active':''}}">{{firstItem.text}}     
+        <i wx:if="{{index!=0}}" class="icon iconfont {{condiNavs[index].select==2?'icon-sanjiaoxia':'icon-sanjiaoxia-copy'}}"></i>
+      </view>
+      </block>
+    </view>
+    
+    <view class='cat'>
+      <view class='cat-products flex flex-zLeftRight'>
+        <block wx:for="{{shopLists}}" wx:key="index">
+          <navigator class="block-card flex" url="/pages/shopsDetail/shopsDetail?goodsId={{item.goodsId}}" data-id="{{item.goodsId}}">
+            <view class='card' bindtap='goCatDetail'>
+              <view class='card-body'>
+                <image src='{{item.goodsImg}}' mode='aspectFill'></image>
+              </view>
+              <view class='card-footer'>
+                <p>{{item.goodsName}}</p>
+                <view class="flex flex-cEnd flex-zBetween flex-warp">
+                  <view class="flex flex-cEnd">
+                    <h3>¥{{item.shopPrice}}</h3>
+                    <s class="underline">¥{{item.marketPrice}}</s>
+                  </view>
+                  <span>{{item.saleNum}}人想要</span>
+                </view>
+              </view>
+            </view>
+          </navigator>
+
+        </block>
+
+      </view>
+    </view>
+    <view class="text-center Last-hint">
+      <span>{{loadingText!=''?loadingText:'— 我是有底线的 —'}}</span>
+    </view>
+  </view>
+</view>
+
+
+
+
+<!-- 返回頂部 -->
+<view class='goTop' bindtap='goTop' hidden='{{!floorstatus}}'>
+      <image src='/static/gotop.png'></image>
+</view>

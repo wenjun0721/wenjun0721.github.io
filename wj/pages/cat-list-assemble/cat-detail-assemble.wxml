@@ -1,0 +1,403 @@
+<!--pages/cat-list-assemble/cat-detail-assemble.wxml-->
+
+
+<view wx:if="{{noGoods}}" style='text-align:center;padding-top:50rpx;'>
+  对不起你查看的商品不存在或已下架
+</view>
+<view wx:if="{{!noGoods}}" style="background-color: #05b9ec;" class="cat-detail ">
+  <view>
+    <view class="content">
+      <view id="goods" class="scroll_detail">
+        <view class="cat-detail-image">
+          <view class='slider-banner'>
+            <swiper indicator-dots="true" autoplay="true" interval="5000	" duration="1000" circular="true" style='height:20rem;'>
+              <block wx:for="{{bannerLists}}" wx:key="index">
+                <swiper-item>
+                  <image src="{{item}}" class="slide-image" mode='aspectFit'  data-src="{{item}}" data-type="head" bindtap="ImgEnlarge"/>
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>
+        </view>
+        <view class="card">
+          <view class="card-header flex flex-ac flex-zBetween">
+            <h3 style="color: #07b9ed;font-weight: 800;font-size: 0.88rem;">
+              距拼团结束还剩：
+              <em id="day_show">{{goodsTime.day}}天</em>
+              <em id="hour_show">{{goodsTime.hour}}时</em>
+              <em id="minute_show">{{goodsTime.min}}分</em>
+              <em id="second_show">{{goodsTime.second}}秒</em>
+            </h3>
+          </view>
+
+          <view class="card-body ">
+            <view class="flex flex-ac flex-zBetween flex-zLeftRight">
+              <view class="flex flex-ac" style='width:100%'>
+                <h3>¥{{groupons.grouponPrice}}</h3>
+
+                <span wx:if="{{shop.isSelf}}">自营</span>
+                <span wx:if="{{isFreeShipping}}">包邮</span>
+              </view>
+
+              <view class="flex flex-ac">
+                <button open-type='share' class='flex flex-ac btn-no' data-id="{{goods.goodsId}}" data-name="{{goods.goodsName}}">
+                <i class="icon iconfont icon-liwuhuodong"></i>
+                  <p>分享</p>
+                </button>
+              </view>
+            </view>
+            <view class="flex flex-ac" style='width:100%'>
+              <view style="font-size:0.55rem">单买价：¥{{shopsPrice}}</view>
+            </view>
+            <view>
+              <h2 style="margin-top: 0.5rem;font-size:0.65rem">
+                {{goodsName}}
+              </h2>
+            </view>
+<view style='position: relative;height:50rpx;line-height:50rpx;text-align:right;color:#666;font-size:25rpx;' bindtap="getCode">
+              <!--<h4>人气值 {{visitNum}} | 好评数 {{appraiseNum}} </h4>-->
+              二维码
+            </view>
+            <view class="flex flex-ac flex-zBetween">
+              <h4>
+                <i class="iconfont icon-weizhi"></i>{{address.name}}
+              </h4>
+
+              <h4 bindtap='showAddress'>
+                查看可配送区域
+              </h4>
+            </view>
+            <view style="display:{{isShowAddress?'block':'none'}}">
+              <h4>{{goodareaname}}
+              </h4>
+            </view>
+          </view>
+         
+         
+          <view class='card-footer' wx:if="{{!myShop}}">
+            <view class='flex flex-ac flex-zBetween' wx:if="{{abc == '1'}}">
+              <view class="flex flex-ac" bindtap='toShop' data-shopid="{{myShop.shopId}}">
+                <image src="{{myShop.shopImg}}"></image>
+                <view class="flex flex-ac">
+                  <h4>{{myShop.shopName||''}}</h4>
+                  <span wx:if="{{myShopShareRank!=''}}">{{myShopShareRank}}</span>
+                </view>
+              </view>
+              <view class="card-footer-right" id='{{myShop.shopId}}'>
+                <button bindtap="goCatStore" data-shopid='{{myShop.shopId}}'>进店看看</button>
+              </view>
+            </view>
+            <view class='flex flex-ac flex-zBetween'>
+              <h3>商品评分：{{myShop.goodsScore}}</h3>
+              <h3>时效评分：{{myShop.timeScore}}</h3>
+              <h3>服务评分：{{myShop.serviceScore}}</h3>
+            </view>
+          </view>
+
+
+          <view class='card-footer' wx:if="{{myShop}}">
+            <view class='flex flex-ac flex-zBetween' wx:if="{{abc == '1'}}">
+              <view class="flex flex-ac" bindtap='toShop' data-shopid="{{shop.shopId}}">
+                <image src="{{shop.shopImg}}"></image>
+                <view class="flex flex-ac">
+                  <h4>{{shop.shopName||''}}</h4>
+                  <span wx:if="{{shop.shareRank!=''}}">{{shop.shareRank}}</span>
+                </view>
+              </view>
+              <view class="card-footer-right" id='{{shop.shopId}}'>
+                <button bindtap="goCatStore" data-shopid='{{shop.shopId}}'>进店看看</button>
+              </view>
+            </view>
+            <view class='flex flex-ac flex-zBetween'>
+              <h3>商品评分：{{shop.goodsScore}}</h3>
+              <h3>时效评分：{{shop.timeScore}}</h3>
+              <h3>服务评分：{{shop.serviceScore}}</h3>
+            </view>
+          </view>
+
+
+
+
+        </view>
+      </view>
+      <view id="details" class="scroll_detail">
+        <view class='introduce flex flex-zBetween flex-ac'>
+          <h3>已拼{{groupons.orderNum}}件</h3>
+          <view class="flex flex-ac" bindtap='showAssembleModal' wx:if="{{groupons.grouNum!=0}}">
+            <text> {{groupons.grouNum}}人正在拼团</text>
+            <view class="icon iconfont icon-you"></view>
+          </view>
+          <view class="flex flex-ac"  wx:if="{{groupons.grouNum==='0'}}">
+            <text> {{groupons.grouNum}}人正在拼团</text>
+            <view class="icon iconfont icon-you"></view>
+          </view>
+        </view>
+        <view class='introduce way'>
+          <h3>拼团玩法</h3>
+          <view class="flex flex-ac">
+            <text>支付开团或参团</text>
+            <view class="icon iconfont icon-you"></view>
+            <text>邀请好友参团</text>
+            <view class="icon iconfont icon-you"></view>
+            <text>达到拼团人数</text>
+            <view class="icon iconfont icon-you"></view>
+            <text>组团成功等待发送</text>
+          </view>
+        </view>
+    <view class='introduce'>
+          <!-- <h3>商品好评率</h3>
+          <text>好评(100%) 中评(0%) 差评（0%）</text> -->
+        </view>
+
+        <view class='introduce' wx:if="{{goodsWiki!=''}}">
+          <view class='flex flex-ac flex-zBetween'>
+            <h3>产品百科</h3>
+            <button bindtap='copyBtn'>点击复制</button>
+          </view>
+          <text>{{goodsWiki}}</text>
+        </view>
+        <view class='middle-ad'>
+          <!--商品介绍图 start-->
+          <block wx:for="{{goodsDesc}}" wx:key="index">
+            <image src='{{item}}' mode='widthFix' style='width:100%;' class="image_detail" data-src="{{item}}" data-type="desc" bindtap="ImgEnlarge"></image>
+          </block>
+             <image mode="widthFix" style='width:100%;' src='{{wxAppPoster}}' bindtap="qRImg" data-url='{{wxAppPoster}}'></image>
+          <!--商品介绍图 end-->
+        </view>
+
+<view class='lineGoods'>
+  <h3 style="font-size: 1.2rem;text-align: center;color: #f3f2ee;">为你推荐</h3>
+  <view class='cat'>
+    <view class='cat-products flex flex-zLeftRight'>
+      <block wx:for="{{lines}}" wx:for-item="parent" wx:for-index="parentIndex" wx:key="index">
+        <navigator class="block-card flex" url="/pages/shopsDetail/shopsDetail?goodsId={{parent.goodsId}}">
+          <view class='card'>
+            <view class='card-body'>
+              <image src='{{parent.goodsImg}}' mode='aspectFill'></image>
+            </view>
+            <view class='card-footer'>
+              <p>{{parent.goodsName}}</p>
+              <view class="flex flex-cEnd flex-zBetween">
+                <view class="flex flex-cEnd">
+                  <h3>¥{{parent.shopPrice}}</h3>
+                  <text class="underline">¥{{parent.marketPrice}}</text>
+                </view>
+                <!-- <span>{{parent.saleNum}}人想要</span> -->
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+
+
+</view>
+
+
+
+    <view class="content"  wx:if="{{!myShop && shop.shopId!=myShop.shopId}}">
+          <view id="goods" class="scroll_detail">
+            <view class='card'>
+              <view class='card-footer'>
+                <view class='flex flex-ac flex-zBetween'  wx:if="{{abc == '1'}}">
+                  <view class="flex flex-ac" bindtap='toShop' data-shopid="{{shop.shopId}}">
+                    <image src="{{shop.shopImg}}"></image>
+                    <view class="flex flex-ac">
+                      <h4>{{shop.shopName||''}}</h4>
+                      <span wx:if="{{shop.shareRank!=''}}">{{shop.shareRank}}</span>
+                    </view>
+                  </view>
+                  <view class="card-footer-right" id='{{shop.shopId}}'>
+                    <button bindtap="goCatStore" data-shopid='{{shop.shopId}}'>进店看看</button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+
+      </view>
+    </view>
+    <!-- 购买弹出框  start -->
+    <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+    <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+      <view class="bottom_dialog shopping_dialog">
+        <em style="height: 3rem;background: none;width:100%;display: block;"></em>
+        <em style="display: inline-block;width:100%;background: #fff;">
+          <em class="flex flex-ac flex-zBetween" style='padding:0 1.5rem 0.5rem;'>
+            <em class="flex flex-cEnd flex-nowrap">
+              <image class="image" src="{{cartData.img}}" mode='aspectFill'> </image>
+              <em>
+                <h4>{{cartData.specStr}}</h4>
+                <h3>¥{{cartData.shopPrice}}</h3>
+              </em>
+            </em>
+            <em class="bottom_dialog_cancel" bindtap='hideModal'>
+              <i class="icon iconfont icon-shanchu3" style="color: #999"></i>
+            </em>
+          </em>
+          <scroll-view scroll-y='true' style='height:45vh;padding:0 1.5rem;width:calc(100% - 3rem);'>
+            <block wx:for="{{cartData.spec}}" wx:for-index="parentIndex" wx:key="abc">
+              <h2 style="margin: 0.5rem 0">{{item.catName}}</h2>
+              <ul class="image-list" wx:if="{{item.itemImg}}">
+                <block wx:for="{{item.list}}" wx:key="index">
+                  <li bindtap='toggleSpecImg' data-index="{{parentIndex+'-'+index}}" class="specImg {{item.select=='yes'?'active':''}}" style="background-image: url({{item.itemImg}})"></li>
+                </block>
+              </ul>
+              <ul class="txt-list" wx:else>
+                <block wx:for="{{item.list}}" wx:key="index">
+                  <li bindtap='toggleSpecText' data-index="{{parentIndex+'-'+index}}" class="{{item.select=='yes'?'active':''}}" id='{{item.id}}'>{{item.itemName}}</li>
+                </block>
+              </ul>
+            </block>
+            <view wx:if="{{!groupNo}}">
+              <h2 style="margin: 0.5rem 0">拼团</h2>
+              <ul class="txt-list">
+                <li class="{{aloneBuy?'active':''}}" bindtap='aloneBuy'>单独购买</li>
+                <block wx:for="{{groupons.son}}" wx:key="index">
+                  <li data-id="{{item.specId}}" data-index="{{index}}" data-grouponId="{{item.grouponId}}" data-num="{{item.num}}" bindtap='groupBuy' class="{{groupBuyIndex==index?'active':''}}">{{item.num}}人团</li>
+                </block>
+              </ul>
+            </view>
+
+            <h2 style="margin: 0.5rem 0">数量</h2>
+            <em class="flex flex-ac flex-zBetween" style="margin:0.5rem 0;">
+              <h2>库存：
+                <span class="number">{{cartData.stock}}</span> {{goodsUnit}}</h2>
+              <em class='flex flex-ac'>
+                <button class='btn-edit-num' bindtap='onReduce'>-</button>
+                <input id="zhi" type="number" value='{{cartNum}}' bindblur="onBlur" bindfocus='onFocus' />
+                <button class='btn-edit-num' bindtap='onAdd'>+</button>
+              </em>
+            </em>
+          </scroll-view>
+          <button bindtap="addCartOk">确定</button>
+        </em>
+      </view>
+    </view>
+    <!-- 购买弹出框 end -->
+    
+    <!--拼团弹窗 start-->
+    <view class='toast-box' hidden='{{!showAssembleModal}}'>
+      <view class='toastbg' bindtap='hideAssembleModal'></view>
+      <view class='showToast'>
+        <view class='toast-title flex flex-ac flex-zBetween'>
+          <button class='button1' bindtap='hideAssembleModal'>取消</button>
+          <text>等待成团</text>
+          <button class='button1' style='color:#fff;margin:0 1rem 0 0'>取消</button>
+        </view>
+        <view class='toast-main' style='margin-bottom:1rem;padding:0;height:44vh;border-radius:0 0 16rpx 16rpx'>
+          <scroll-view scroll-y="true" class='spellGroup_modal_bodyList'>
+            <block wx:for='{{groupLists}}' wx:key="index">
+              <view class='spellGroup_groupsInfo_list'>
+                <image class='spellGroup_groupsInfo_list_img' src='{{item.userPhoto}}'></image>
+                <view class='spellGroup_groupsInfo_list_name'>{{item.userName}}</view>
+                <view class='spellGroup_groupsInfo_list_info'>
+                  <view class='spellGroup_groupsInfo_list_info_top'>还差
+                    <text style='color:#EF1E31;'>{{item.redNum}}</text>人拼成功</view>
+                  <view class='spellGroup_groupsInfo_list_info_bottom'>剩余{{times[index].hour}}:{{times[index].min}}:{{times[index].second}}</view>
+                </view>
+                <view wx:if="{{times[index].over=='no'}}" bindtap='goSpell' data-id='{{item.groupNo}}' class='spellGroup_groupsInfo_list_goGroup'>去拼单</view>
+                <view wx:if="{{times[index].over=='yes'}}" class='spellGroup_groupsInfo_list_goGroupOver'>已结束</view>
+              </view>
+            </block>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+    <!--拼团弹窗 end-->
+    <view class="footer flex flex-ac flex-zBetween flex-zLeftRight">
+      <view class='flex flex-ac'>
+        <navigator bindtap='goIndex'>
+          <i class="icon iconfont icon-shouye" style="color:#07b9ed"></i>
+        </navigator>
+        <view id='call' bindtap='goWx' style='padding:0;'>
+          <i class="icon iconfont icon-xiaoxi2" style="color:#eeeeee"></i>
+        </view>
+        <view id='collect' class='attension' bindtap='toggleAttension' data-id="{{attensionId}}">
+          <i class="icon iconfont  {{attensionId?'icon-xingxing':'icon-star'}}" style="color:#ff3a00"></i>
+          <!-- <i class="icon iconfont icon-xingxing" style="color:#ff3a00"></i> -->
+        </view>
+      </view>
+
+      <view class="flex flex-ac" wx:if="{{whether==1}}" bindtap="buyCart">
+        <button style="background-color: #ff464f;" class="add-cart" wx:if="{{groupNo}}">加入拼团</button>
+        <button style="background-color: #ff464f;"  wx:else><text>¥{{groupons.grouponPrice}}</text>发起拼团
+        </button>
+      </view>
+
+      <view class="flex flex-ac" wx:if="{{whether==1}}" bindtap='addCart'>
+        <button style="background-color: #07b9ed;">
+          <text>¥{{shopsPrice}}</text> 单独购买
+        </button>
+      </view>
+
+      <view class="flex flex-ac">
+        <button style="background-color: #07b9ed;" class="add-cart" bindtap="showModal" wx:if="{{whether!=1}}">
+          <text>¥{{groupons.grouponPrice}}</text>发起拼团</button>
+        <button style="background-color: #ff464f;" wx:if="{{whether!=1}}">
+          <text>¥{{shopsPrice}}</text> 单独购买
+        </button>
+      </view>
+
+    </view>
+  </view>
+</view>
+
+
+
+
+<!-- 购物车 -->
+<view class='cart-box' bindtap='goCard'>
+    <image class='cart-box-icon' src='/static/cart-box.png'></image>
+</view>
+
+
+
+
+<view class="code {{ codeLayerStatus ? 'code--show' : '' }}">
+  <view class="code__mask" />
+  <view class="code__container">
+    <view style='padding:60rpx 30rpx;'>
+      <view>
+        <view class='bgImg'>
+          <image mode="aspectFit" src='{{wxAppPoster}}' bindtap="qRImg" data-url='{{wxAppPoster}}'></image>
+        </view>
+      </view>
+      <view class="code__bottom">
+        <view class='cancel' bindtap="showLayer">取消</view>
+        <view class='codeBtn' bindtap="saveWxAppPoster" data-url='{{wxAppPoster}}'>保存</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+
+
+
+
+<!--  -->
+
+<view class="wxbox {{ wxboxLayerStatus ? 'wxbox--show' : '' }}" wx:if="{{wxboxLayerStatus}}">
+  <view class="wxbox__mask" />
+  <view class="wxbox__container" style="height:{{!customQr?'250':'750'}}rpx;bottom:400rpx">
+    <view>
+      <view class='customQr' style='padding:50rpx ' wx:if="{{customQr}}">
+        <image mode="aspectFit" src='{{customQr}}'></image>
+      </view>
+      <view class="tblin_items_txt" style="line-height:{{!customQr?'150':'600'}}rpx" wx:if="{{!customQr}}" selectable="true">{{shop.shopTel?'':'店铺未设置客服'}}</view>
+      <view class="wxbox__bottom">
+        <view class='cancel' bindtap="hideLayer" data-type="wxbox">取消</view>
+        <view wx:if="{{customQr}}" bindtap="saveWxAppPoster" data-url='{{customQr}}'>保存</view>
+        <view wx:if="{{!customQr && shop.shopTel}}" class='wxboxBtn' class='wxboxBtn' bindtap='showtip' data-tel="{{shop.shopTel}}">拨打号码
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

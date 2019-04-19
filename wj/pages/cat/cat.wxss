@@ -1,0 +1,301 @@
+/* pages/cat/cat.wxss */
+
+.search input {
+  margin: 0.5rem;
+  width: 100%;
+}
+.block{
+  height: 70vh
+}
+
+.first-title {
+  font-size: 16pt;
+  color: #333;
+  font-weight: normal;
+  font-stretch: normal;
+  border-bottom: 2px solid #fff;
+  text-align: center;
+  display: block;
+}
+
+.first-title li {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: 2px;
+  color: #333;
+  margin: 0 0.5rem;
+}
+
+.first-title .active {
+  border-bottom: 2px solid #00abe4;
+}
+
+.cat-box {
+  margin: 0.5rem 0;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 2.5px rgba(238, 238, 238, 0.8);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.classifySlider {
+  padding: 0.5rem;
+  text-align: center;
+  border-right: 1px solid #eee;
+  overflow-y: scroll;
+  overflow-x: hidden; 
+  width:156rpx;
+}
+
+.classifySlider .classifySlider_nav {
+  font-size: 0.88rem;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: 0rem;
+  color: #999;
+  border-bottom: 2px solid #fff;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.classifySlider .active {
+  border-bottom: 2px solid #00abe4;
+  color: #333;
+}
+
+.advert {
+  height: 6rem;
+  margin: 0.5rem ;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.advert image{
+  border-radius: 8px;
+}
+
+.Three-title {
+  flex: 1;
+}
+
+.classifyShopLists {
+  margin: 0.5rem 0.5rem;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.classifyShopLists{
+  display: flex;
+  flex-wrap: wrap;
+}
+.classify_shopList{
+  width:33%;
+  text-align: center;
+}
+.classify_shopList image{
+  width:90%;
+  display: block;
+  margin:0 auto;
+  height: 60px;
+  border-radius: 10rpx;
+}
+.classify_shopList text{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display: block;
+  font-size: 24rpx;
+  color:#4D4D4D;
+  line-height: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.brandLists_old_box{
+  width: 33%;
+  float: left;
+  text-align:center;
+}
+.brandLists_old_box_list {
+  width:100%;
+  text-align:center;
+  line-height:320rpx;
+  height:320rpx;
+
+}
+.brandLists_old_box image {
+width:80%;
+vertical-align:middle;
+
+}
+.brandLists_old_box_text {
+font-size:26rpx;
+padding:0 20rpx;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+
+}
+
+
+
+.cat-list .card .nav-icon.card-body view {
+  margin: 0.5rem 0;
+}
+
+.cat-list .card .nav-icon.card-body {
+  padding: 0.5rem 0;
+  flex-wrap: wrap;
+}
+
+.cat-list .card .nav-icon .image {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: block;
+  margin: auto;
+  background-color: #fff;
+  border: solid 1px #ccc;
+  border-radius: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.cat-list .cat-filter {
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 2.5px rgba(238, 238, 238, 0.8);
+  border-radius: 1rem;
+  padding: 0.5rem 2rem;
+  margin: 1rem 1.5rem 0;
+}
+
+.cat-list .cat-filter a {
+  font-size: 12px;
+  color: #999;
+}
+
+.cat-list .cat-filter a:not([href]):not([tabindex]):hover,
+.cat-list .cat-filter a:not([href]):not([tabindex]):focus {
+  color: #999;
+}
+
+.cat-list .cat-filter a i {
+  font-size: 12px;
+  color: #ccc;
+  margin-left: 3px;
+}
+
+.cat-detail .content {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  background: #fff;
+}
+
+.cat-detail .card {
+  padding: 0.5rem;
+  margin-top: -1.5rem;
+}
+
+.cat-detail .card-header {
+  padding-bottom: 1rem;
+}
+
+.cat-detail .card-header h2 {
+  font-size: 14px;
+  color: #333;
+}
+
+.cat-detail .card-body h3 {
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #ff464f;
+}
+
+.cat-detail .card-body span, .cat-detail .card-footer button {
+  font-size: 8px;
+  color: #fff;
+  padding: 2px 4px;
+  background-color: #ff464f;
+  border-radius: 2px;
+  margin-left: 0.5rem;
+}
+
+.cat-detail .card-body h4 {
+  font-size: 11px;
+  color: #999;
+  margin-top: 1.5rem;
+}
+
+.cat-detail .card-body h4 i {
+  color: #999;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.cat-detail .card-body p {
+  font-size: 11px;
+  color: #ff464f;
+  margin-left: 2px;
+}
+
+.cat-detail .card-body i {
+  font-size: 1rem;
+  color: #ff464f;
+}
+
+.cat-detail .card-footer {
+  padding-top: 1rem;
+}
+
+.cat-detail .card-footer h4 {
+  font-size: 10px;
+  color: #333;
+}
+
+.cat-detail .card-footer span {
+  font-size: 6px;
+  color: #fff;
+  padding: 2px 4px;
+  background-color: #ed1b5b;
+  border-radius: 2px;
+  margin-left: 2px;
+}
+
+.cat-detail .card-footer img {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.cat-detail .footer {
+  padding: 0 1rem;
+}
+
+.cat-detail .footer i {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.cat-detail .footer button {
+  font-size: 10px;
+  margin-left: 0.5rem;
+  box-shadow: 0px 0px 5px 0.25px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  color: #fff;
+  padding: 0.3rem 1rem;
+}
+
+.cat-detail .cat-detail-image {
+  height: 20rem;
+}
+
+.cat-detail .cat-detail-image view {
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

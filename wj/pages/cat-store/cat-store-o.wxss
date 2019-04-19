@@ -1,0 +1,479 @@
+/* pages/cat-store/cat-store.wxss */
+@import "/icon.wxss";
+page{
+  /* background: red; */
+}
+/* pages/cat-store/cat-store.wxss */
+
+.picker {
+  padding: 0;
+}
+
+/* .cat-store-flagship{
+    background: #07b9ed;
+} */
+
+.cat-store-flagship .header {
+  box-shadow: none;
+}
+
+.cat-store .cat-store-name {
+  background-color: #07b9ed;
+  padding: 0 1.5rem 3rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.cat-store .cat-store-name .card {
+  width: calc(100% - 4rem);
+}
+
+.cat-store-flagship .cat-store-name .span {
+  background: #ff464f;
+  border-radius: 0.13rem;
+  font-size: 0.38rem;
+}
+
+.cat-store .cat-store-name span {
+  background-color: #ed1b5b;
+}
+
+.cat-store-flagship .card-header {
+  box-shadow: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: #ff464f;
+  padding: 0.9rem 1rem;
+}
+
+.cat-store-flagship .card-header .h3 {
+  font-family: Tensentype-XiChaoHeiJ;
+  font-size: 1.25rem;
+  letter-spacing: 0.06rem;
+  color: #fff;
+}
+
+.cat-store-flagship .card-header .p {
+  font-size: 0.56rem;
+  letter-spacing: 0.03rem;
+  color: #fff;
+}
+
+.cat-store-flagship .cat-detail-image {
+  margin: 1rem 1.5rem;
+  padding: 0;
+}
+
+.cat-store-flagship .image {
+  /* height:10rem; */
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.cat-store-flagship  .span {
+  display: block;
+  font-size: 0.69rem;
+  line-height: 1.44rem;
+  letter-spacing: 0.03rem;
+  color: #333;
+  text-align: center;
+}
+
+.cat-store-flagship .span view {
+  font-size: 0.69rem;
+  color: #333;
+  display: inline;
+}
+
+/* .cat-store-flagship .sw-bullet .li{
+    background-color: #eeeeee;
+}
+*/
+
+.active {
+  color: #333 !important;
+}
+
+.cat-store-flagship .cat-detail-image swiper {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 10rem;
+}
+
+.cat-store-flagship .card-body .flex.flex-zTopBottom.flex-zBetween {
+  width: calc(100% - 6.25rem);
+}
+
+.cat-store-flagship .search input {
+  margin: 0 1rem;
+}
+
+.cat-store-flagship video {
+  height: 11.72rem;
+  background-color: #000;
+  width: calc(100% - 3rem);
+  object-fit: cover;
+  margin-top: 0;
+}
+
+.cat-store-flagship  .h4 {
+  font-size: 0.69rem;
+  color: #ccc;
+  margin-bottom: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.cat-store-flagship .card-body {
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.cat-store-flagship  .card-product {
+  margin-top: 0;
+}
+
+.cat-store-flagship  button {
+  background-color: #ff464f;
+  border-radius: 0.5rem;
+  color: #fff;
+  border: none;
+  padding: 3px 6px;
+  font-size: 0.69rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cat-store-flagship  .h5 {
+  font-size: 1rem;
+  line-height: 0.81rem;
+  letter-spacing: 0.06rem;
+  color: #ff464f;
+  font-weight: normal;
+  font-family: PingFangSC-Regular;
+}
+
+.cat-store-flagship  .h5 text {
+  font-size: 0.69rem;
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+.cat-store-flagship .image {
+  height: 6.25rem;
+  width: 6.25rem;
+}
+
+.cat-store-flagship .lattice {
+  margin: 0 1.5rem;
+}
+
+.cat-store-flagship .lattice .card {
+  height: 11rem;
+  flex: 2;
+  margin: 0;
+  margin-right: 1rem;
+  position: relative;
+}
+
+.cat-store-flagship .lattice .card .h2 {
+  font-size: 1.25rem;
+  line-height: 1.44rem;
+  letter-spacing: 0.06rem;
+  color: #fff;
+  text-shadow: 5px 5px 5px rgba(7, 0, 2, 0.2);
+  z-index: 3;
+}
+
+.cat-store-flagship .lattice .card .h4 {
+  font-family: BENMO-Xuyuan-Regular;
+  font-size: 0.99rem;
+  line-height: 1.44rem;
+  letter-spacing: 0.05rem;
+  color: #fff;
+  text-shadow: 5px 5px 5px rgba(7, 0, 2, 0.2);
+  z-index: 3;
+}
+
+.cat-store-flagship .lattice .card .image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  border-radius: 0.5rem;
+  background-color: black;
+  filter: alpha(opacity=50); /*IE滤镜，透明度50%* ie89 支持*/
+  -moz-opacity: 0.5; /*Firefox私有，透明度50%*/
+  opacity: 0.1; /*其他，透明度50%*/
+}
+
+.cat-store-flagship .lattice view {
+  flex: 1;
+  height: 100%;
+}
+
+.cat-store-flagship .lattice view .card {
+  height: 5rem;
+  margin: 0;
+}
+
+.cat-store-flagship .lattice view .card .h2 {
+  font-size: 0.85rem;
+}
+
+.cat-store-flagship .lattice view .card .h4 {
+  font-size: 0.67rem;
+}
+
+.cat-store-flagship .lattice view .card+.card {
+  margin-top: 1rem;
+}
+
+.shop_header_info_right {
+  float: right;
+}
+
+.shop_notice {
+  height: 42rpx !important;
+  width: 42rpx !important;
+}
+
+.search input {
+  margin: 1rem;
+}
+
+.search-img {
+  height: 2rem !important;
+  width: 2rem !important;
+}
+
+.store-box {
+  position: fixed;
+  width: 100%;
+  height: 100rpx;
+  bottom: 0;
+  /* background: red; */
+  line-height: 100rpx;
+  text-align: center;
+  box-shadow: 0px 0px 5px 2.5px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.store-li {
+  float: left;
+  width: calc(33% - 2rpx);
+}
+
+.store-li-br {
+  border-right: 1rpx solid #e9e9e9;
+}
+
+
+.wxbox__mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0);
+  /* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+  display: none;
+}
+
+.wxbox__container {
+  position: fixed;
+  bottom: 150rpx;
+  width: 650rpx;
+  /* 弹窗布局宽 */
+  left:0;
+ height:750rpx;
+  /* 弹窗布局高，与下面弹出距离transform有关 */
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(300%);
+  /* 弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  /* 弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+.wxbox--show .wxbox__container {
+  transform: translateY(0);
+}
+.wxbox--show .wxbox__mask {
+  background: rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+.wxbox__bottom {
+  width: 90%;
+  position: absolute;
+  bottom: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.cancel {
+  width: 50%;
+  float: left;
+  color: #888;
+}
+
+.wxbox {
+  width: 50%;
+  float: right;
+  color: #e00a4e;
+}
+.tblin_items_txt{
+  text-align: center;
+  line-height: 600rpx;
+}
+.card-body .p{
+  font-size: 14px;
+}
+
+.customQr image{
+  height:550rpx;
+  width: 550rpx;
+  margin:  0 auto;
+}
+.cart-box{
+  height: 80rpx;
+  width: 80rpx;
+  position: fixed;
+  bottom: 140rpx;
+  right: 20rpx;
+  border-radius:50%;
+background:#07b9ed;
+}
+
+.tblin_items_txt {
+  text-align: center;
+}
+
+.card-body .p {
+  font-size: 14px;
+}
+
+.label-box {
+  margin: 1rem 1.5rem;
+  /* background-color:#FFC107; */
+  padding: 0.2rem;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-around;
+}
+
+.label-box .label-li {
+  padding: 5rpx 15rpx;
+  border-radius: 6rpx;
+  background-color: #fff;
+  color: #ff464f;
+  border: 1rpx solid #ff464f;
+  margin: 10rpx;
+  font-size: 15px;
+}
+
+.card-box {
+  width: calc(100% - 3rem);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-box-label {
+  width: 46%;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 2.5px rgba(238, 238, 238, 0.8);
+  border-radius: 0.5rem;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fff;
+}
+.card-box-label:nth-child(1){
+  background: #ff689f;
+}
+.card-box-label:nth-child(2){
+  background: #f4dd45;
+}
+.card-box-label icon{
+  font-size: 50rpx;
+}
+.translate{
+  height: 100rpx;
+  width: 100rpx;
+  position: fixed;
+  right: 0;
+  bottom: 180rpx;
+}
+.goTop{
+  box-shadow:0 2px 4px 2px rgba(255, 255, 255, 0.5)
+}
+.cat-store .cat-store-name .card i{
+  font-size: 25rpx!important;
+}
+
+
+
+
+
+.wxAppCode__mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0);
+  /* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+  display: none;
+}
+
+.wxAppCode__container {
+  position: fixed;
+  bottom: 150rpx;
+  width: 650rpx;
+  /* 弹窗布局宽 */
+  left:0;
+ height:750rpx;
+  /* 弹窗布局高，与下面弹出距离transform有关 */
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(300%);
+  /* 弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  /* 弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+.wxAppCode--show .wxAppCode__container {
+  transform: translateY(0);
+}
+.wxAppCode--show .wxAppCode__mask {
+  background: rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+.wxAppCode__bottom {
+  width: 90%;
+  position: absolute;
+  bottom: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.cancel {
+  width: 50%;
+  float: left;
+  color: #888;
+}
+
+.wxAppCode {
+  width: 50%;
+  float: right;
+  color: #e00a4e;
+}

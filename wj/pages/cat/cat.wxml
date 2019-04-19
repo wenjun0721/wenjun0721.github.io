@@ -1,0 +1,53 @@
+<view class="cat-page">
+  <view class="header" style='margin:0 1rem;width:calc(100% - 2rem)'>
+    <view class="search flex flex-ac flex-zBetween flex-zLeftRight">
+     <navigator url='../search/search' style='width:95%'>
+      <input type="text" class="flex" placeholder="搜产品" />
+      </navigator>
+    </view>
+  </view>
+  <view class="block mgT4">
+    <ul class="first-title">
+      <li class="{{classify?'active':''}}" bindtap="changeClassify" >分类</li>
+      <li class="{{classify?'':'active'}}" bindtap="changeClassify">品牌</li>
+    </ul>
+    <block wx:if="{{classify}}" >
+    <view class="cat-box flex">
+    
+    <!--  wx:for="{{goodsCats}}" wx:key="1" {{item.catName}}-->
+     <scroll-view scroll-y="true" class='classifySlider'>
+        <block wx:for='{{goodsCats}}' wx:key="index">
+          <view bindtap='classifySlider' class="classifySlider_nav {{item.catId==classifySliderIndex?'active':''}}" id='{{item.catId}}'>{{item.catName}}</view>
+        </block>
+      </scroll-view>
+      <view class="Three-title flex flex-zTopBottom">
+        <view class="advert flex">
+          <image src='{{classifyRight.catImg}}' mode='aspectFit'></image>
+        </view>
+        <view class='classifyShopLists'>
+          <block wx:for="{{classifyRight.childList}}" wx:key="index">
+            <navigator url="/pages/cat-list/cat-list?catId={{classifyRight.catId}}" data-id='{{classifyRight.catId}}' class='classify_shopList'>
+              <image src='{{item.catImg}}' mode=''></image>
+              <text>{{item.catName}}</text>
+            </navigator>
+          </block>
+          </view>
+      </view>
+    </view>
+    </block>
+    <block wx:else>
+    <view class="cat-box flex">
+       <scroll-view scroll-y="true">
+            <block wx:for="{{brandLists}}" wx:key='index'>
+            <view bindtap='brand'  data-id='{{item.brandId}}' class='brandLists_old_box'>
+              <view class='brandLists_old_box_list'>
+                <image mode='widthFix' src='{{item.brandImg}}'/>
+              </view>
+              <view class='brandLists_old_box_text'>{{item.brandName}}</view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </block>
+  </view>
+</view>

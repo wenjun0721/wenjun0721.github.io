@@ -1,0 +1,55 @@
+/* pages/cat-list-spike/cat-list-spike.wxss */
+.cat-list-spike.mine-detail .card-body h4{
+    color: #ff464f;
+    font-size: 9pt;
+}
+.cat-list-spike.mine-detail .card-body h5{
+    font-size: 11pt;
+    font-weight: bold;
+}
+.cat-list-spike.mine-detail .card-body h5 s{
+    color: #ccc;
+    font-size: 9px;
+    margin-left: 0.3rem;
+}
+.cat-list-spike.mine-detail .card-body button{
+    background-color:#ff464f ;
+    color: #fff;
+    border:none;
+}
+.cat-list-spike.mine-detail .card-body button i{
+    font-size: 14px;
+}
+.cat-list-spike .buyUp .card-body h4{
+    color: #ccc;
+}
+.cat-list-spike .buyUp .card-body button{
+    background-color: #ccc;
+}
+.mine-detail .buyUp .card-body h5{
+    color: #ccc;
+}
+.cat-list-spike .remind .card-body h4{
+    color: #00abe4;
+}
+.cat-list-spike .remind .card-body button{
+    background-color: #00abe4;
+}
+.mine-detail .remind .card-body h5{
+    color: #00abe4;
+}
+.cat-list-spike text {
+margin-left:0.3rem;
+text-decoration:line-through;
+font-size:9pt;
+color:#cccccc;
+flex-shrink:0;
+
+}
+.cat-detail .tab-nav{
+  padding: 0;
+  padding-bottom:0.5rem;
+}
+.mine-detail .header{
+  padding: 0;
+}

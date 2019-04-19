@@ -1,0 +1,45 @@
+<!--pages/mine-collect/mine-collect.wxml-->
+<view class="mine-collect mine-detail">
+  <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex">
+      <block wx:for="{{firstNav}}" wx:key="unique">
+        <view data-catId="{{item.catId}}" id="{{item.catId}}" class="first_nav {{item.catId==slideIndex?'active':''}}" bindtap='firstNav'>{{item.catName}} </view>
+      </block>
+    </scroll-view>
+
+
+
+
+
+  <view class="content  mgD4">
+      <view class="block-card goods">
+        <view class='card' wx:for="{{Lists}}" wx:key="index">
+          <view class='card-body'>
+            <view class="card-product flex flex-ac">
+              <!-- <input type="checkbox"> -->
+              <view wx:if="{{showCheckbox}}">
+                <icon wx:if="{{item.selected}}" size="20" bindtap="bindCheckbox" data-index="{{index}}" class="icon iconfont icon-dui" style='height:14pt;color:#ed1b5b' />
+                <icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}" style='height:14pt' />
+              </view>
+              <navigator  url='/pages/cat-store/cat-store?shopId={{item.shopId}}' >
+              <view class="image" style="background-image: url('{{item.shopImg}}')"></view>
+                </navigator>
+              <view class="coupon-right">
+                <view class='shopName'>{{item.shopName}} </view>
+                <view class='couponValue'>¥{{item.couponValue}}</view>
+                <view class='couponNum'>满{{item.couponNum}}可用</view>
+                <view class='endDate'>{{item.endDate}}到期</view>
+                <!-- <h4>{{item.model}}</h4> -->
+                <view class="flex flex-cEnd flex-zBetween">
+                  <view class='btn-box' bindtap='GetBtn' data-couponid="{{item.couponId}}">立即领取</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+   
+  </view>
+</view>
+<view style='margin-top:30rpx;'>
+  <view class="loading">{{loadingText}}</view>  
+</view>

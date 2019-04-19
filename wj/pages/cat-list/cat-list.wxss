@@ -1,0 +1,31 @@
+/* pages/cat-list/cat-list.wxss */
+.first_nav{
+ display:inline-block;
+height:60rpx;
+line-height:60rpx;
+text-align:center;
+margin:0 30rpx;
+font-size:1rem;
+color: #888;
+}
+.first_nav:first-child{
+  margin-left: 60rpx
+}
+.first_nav.active{
+  border-bottom: 2px solid #00abe4;
+  color:#555;
+}
+/* .goTop{
+  width: 64rpx;
+  height: 64rpx;
+  position: fixed;
+  bottom: 50rpx;
+  right: 30rpx;
+}
+.goTop image{
+  width: 64rpx;
+  height: 64rpx;
+} */
+input{
+  text-align: center;
+}

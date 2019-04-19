@@ -1,0 +1,9 @@
+<button bindtap="upfile">上传图片</button>
+
+<view style='text-align:center;padding:20rpx 0;'>
+  <image src='{{img}}' mode='widthFix' style='width:80%;'></image>
+</view>
+
+
+<button bindtap='updata'>确定</button>
+

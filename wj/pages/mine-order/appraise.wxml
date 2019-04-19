@@ -1,0 +1,18 @@
+
+<bar class="" wx:if="{{abc == '1'}}">
+  <view class='action'>{{data.shopName}}
+  </view>
+</bar>
+  <list class="menu menu-avatar no-padding">
+  <block wx:for="{{data.goods}}" wx:key="index">
+    <item class="">
+      <avatar class="radius lg" style="background-image:url({{item.goodsImg}});"></avatar>
+      <view class='content'>
+        <view>    {{item.goodsName}}</view>
+      </view>
+      <view class='action'>
+      <button class='round bg-orange button-hover'  bindtap='goAppraise' data-id="{{item.id}}" >评价</button>
+      </view>
+    </item>
+</block>
+  </list>

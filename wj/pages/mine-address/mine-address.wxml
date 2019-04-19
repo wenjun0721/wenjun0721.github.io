@@ -1,0 +1,148 @@
+<!--pages/mine-address/mine-address.wxml-->
+<view class="mine-address">
+  <!-- <view class="mine-detail-header">
+        <span>地址管理</span>
+    </view> -->
+  <view class="content mgD4">
+    <view class="block-list">
+      <view class="list flex flex-zBetween flex-ac" wx:for="{{addressLists}}" wx:key="index">
+        <view  bindtap="goBackOrder" data-item="{{item}}">
+          <h3>
+            <span>{{item.userName}}</span>
+            <span>{{item.userPhone}}</span>
+          </h3>
+          <p>
+            <span  wx:if="{{item.labels}}">[{{item.labels}}]</span>{{item.pathName}} {{item.userAddress}}</p>
+          <radio-group class="item-right radio-group" >
+            <label class="radio" bindtap='setDefaultAddress' data-id='{{item.addressId}}'>
+              <radio checked="{{item.isDefault==1?'checked':''}}" bingtap='toggleDefault' data-index='{{index}}' />设为默认
+            </label>
+          </radio-group>
+        </view>
+        <view class='box-right'>
+          <button bindtap="goEdit"  data-id='{{item.addressId}}'>
+            编辑
+          </button>
+          <button bindtap="goDel" data-id='{{item.addressId}}'>
+            删除
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="footer-flex flex flex-ac flex-zBetween flex-zLeftRight">
+    <button bindtap='showModal' >新增收货地址</button>
+  </view>
+  <!--添加弹窗 start-->
+  <view class='toast-box' hidden='{{!showModal}}'>
+    <view class='toastbg' bindtap='hideModal'></view>
+    <view class='showToast'>
+      <view class='toast-title flex flex-ac flex-zBetween'>
+          <button class='button1' bindtap='hideModal'>取消</button>
+        <text>新增地址</text>
+        <button class='button1' style='color:#fff;margin:0 1rem 0 0'>取消</button>
+      </view>
+      <view class='toast-main'>
+        <view class='toast-input'>
+          <text>收货人：</text>
+          <input type="text" placeholder="请填写收货人"  data-role="name" value="{{name}}" bindinput="listenerInput" />
+        </view>
+        <view class='toast-input'>
+          <text>联系电话：</text>
+          <input type="number" data-role="phone" value="{{phone}}" bindinput="listenerInput" placeholder="请填写联系电话"/>
+        </view>
+        <view class='toast-input'  bindtap='showSelect'>
+          <text>收货地址：</text>
+          <input type="text" placeholder="请填写收货地址" disabled='false' value='{{selectAreaText.text}}'/>
+        </view>
+        <view class='toast-input'>
+          <text>详细地址：</text>
+          <input  data-role="address" value="{{address}}" bindinput="listenerInput"  type="" placeholder='街道、楼牌号等'/>
+        </view>
+        <view class='toast-input'>
+          <text>地址类型：</text>
+          <ul class="flex flex-ac">
+            <block wx:for="{{addressTags}}" wx:key="index">
+            <li  bindtap='toggleAddressTags' class="{{addressTagsIndex==index?'active':''}}" data-index="{{index}}" >{{item.text}}</li>
+             </block>
+          </ul>
+        </view>
+      </view>
+      <view class='toast-button'>
+        <view class='button2'>
+          <button bindtap='saveAddress'>保存</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--弹窗 end-->
+
+
+
+
+    <!--修改弹窗 start-->
+  <view class='toast-box' hidden='{{!editModal}}'>
+    <view class='toastbg' bindtap='hideModal'></view>
+    <view class='showToast'>
+      <view class='toast-title flex flex-ac flex-zBetween'>
+          <button class='button1' bindtap='hideModal'>取消</button>
+        <text>新增地址</text>
+        <button class='button1' style='color:#fff;margin:0 1rem 0 0'>取消</button>
+      </view>
+      <view class='toast-main'>
+        <view class='toast-input'>
+          <text>收货人：</text>
+          <input type="text" placeholder="请填写收货人"  data-role="editname" value="{{editname}}" bindinput="listenerInput" />
+        </view>
+        <view class='toast-input'>
+          <text>联系电话：</text>
+          <input type="number" data-role="editphone" value="{{editphone}}" bindinput="listenerInput" placeholder="请填写联系电话"/>
+        </view>
+        <view class='toast-input'  bindtap='showSelect'>
+          <text>收货地址：</text>
+          <input type="text" placeholder="请填写收货地址" disabled='false' value='{{selectAreaText.text}}'/>
+        </view>
+        <view class='toast-input'>
+          <text>详细地址：</text>
+          <input  data-role="editaddress" value="{{editaddress}}" bindinput="listenerInput"  type="" placeholder='街道、楼牌号等'/>
+        </view>
+        <view class='toast-input'>
+          <text>地址类型：</text>
+          <ul class="flex flex-ac">
+            <block wx:for="{{editaddressTags}}" wx:key="index">
+            <li  bindtap='edittoggleAddressTags' class="{{editaddressTagsIndex==index?'active':''}}" data-index="{{index}}" >{{item.text}}</li>
+             </block>
+          </ul>
+        </view>
+      </view>
+      <view class='toast-button'>
+        <view class='button2'>
+          <button bindtap='editSaveAddress'>保存</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--弹窗 end-->
+
+
+
+
+
+  <!-- 选择区域 -->
+<view class='areaSelectBg' bindtap='hideSelect'  wx:if="{{isShowSelectArea}}">
+</view>
+<view class='areaSelectBody' wx:if="{{isShowSelectArea}}"> 
+  <view class='areaSelectBody_title'>收货地址</view>
+  <view class='areaSelectBody_parent'>
+    <block wx:for="{{selectAreasParent}}" wx:key="index">
+      <view bindtap='selectParentArea' class="areaSelectBody_parent_list  {{index==areaSelectIndex-1?'redText':''}}" data-index="{{index}}" data-id="{{item.id}}">{{item.text}}</view>
+    </block>
+  </view>
+  <scroll-view scroll-y class='areaSelectBody_selectArea'>
+    <block wx:for="{{areaLists}}" wx:key="index"> 
+      <view data-value="{{item.areaName}}" bindtap='selectArea' data-selfId="{{item.areaId}}" data-parentId="{{item.parentId}}" class='areaSelectBody_selectArea_list'>{{item.areaName}}</view>
+    </block>
+  </scroll-view>
+</view>
+<!-- 选择区域 -->
+</view>

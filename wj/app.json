@@ -1,0 +1,103 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cat-list-assemble/cat-detail-assemble",
+    "pages/cat-store/cat-store",
+    "pages/me/me",
+    "pages/mine-order/saleAfter_Detail",
+    "pages/mine-order/saleAfter",
+    "pages/mine-order/express",
+    "pages/mine-order/appraise",
+    "pages/mine-order/appraiseDetail",
+    "pages/login",
+    "pages/index/web",
+    "pages/cat/cat",
+    "pages/index/imgAd",
+    "pages/cat-store/cat-store-c",
+    "pages/cat-store/cat-store-o",
+    "pages/search/search",
+    "pages/cat-list/cat-list",
+    "pages/cat-list-assemble/cat-list-assemble",
+    "pages/shoppingcart/shoppingcart",
+    "pages/cat-list-spike/cat-list-spike",
+    "pages/address/getAddress",
+    "pages/shopsDetail/shopsDetail",
+    "pages/shopping-cart-detail/shopping-cart-detail",
+    "pages/shopping-cart-payment/shopping-cart-payment",
+    "pages/mine-order-detail/mine-order-detail",
+    "pages/mine-order/mine-order",
+    "pages/mine-address/mine-address",
+    "pages/mine-account/mine-account",
+    "pages/mine-balance/mine-balance",
+    "pages/mine-business/mine-business",
+    "pages/mine-collect/mine-collect",
+    "pages/mine-complaint/mine-complaint",
+    "pages/mine-history/mine-history",
+    "pages/mine-news/mine-news",
+    "pages/mine-security/mine-security",
+    "pages/mine-shopowner/mine-shopowner",
+    "pages/modify-number/modify-number",
+    "pages/modify-payment/modify-payment",
+    "pages/area-select/area-select",
+    "pages/mine-news/messageDetail",
+    "pages/mine-account/uploadHeader",
+    "components/passwordInput/passwordInput",
+    "pages/shopping-cart-detail/selectOrderType",
+    "pages/group/index",
+    "pages/group/joinGroup",
+    "pages/group/groupDetail",
+    "pages/cat-list-assemble/requireOrder",
+    "pages/Coupon/Coupon"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "iShopping",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "color": "#ccc",
+    "selectedColor": "#00abe4",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tab_home.png",
+        "text": "首页",
+        "selectedIconPath": "static/tab_home_active.png"
+      },
+      {
+        "pagePath": "pages/cat/cat",
+        "iconPath": "static/tab_classify.png",
+        "text": "分类",
+        "selectedIconPath": "static/tab_classify_active.png"
+      },
+      {
+        "pagePath": "pages/shoppingcart/shoppingcart",
+        "iconPath": "static/tab_shoppingCart.png",
+        "text": "购物车",
+        "selectedIconPath": "static/tab_shoppingCart_active.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "static/tab_mine.png",
+        "text": "我的",
+        "selectedIconPath": "static/tab_mine_active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "navigateToMiniProgramAppIdList": [
+    "wx591be725a7de769e"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于Isp小程序商城"
+    }
+  }
+}

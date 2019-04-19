@@ -4,5 +4,13 @@
 }
 .start image {
   width: 750rpx;
+  height: 1108rpx; 
+}
+.swiper {
   height: 1060rpx; 
+  width: 100%;
+}
+.swiper image {
+  height: 100%;
+  width: 100%;
 }

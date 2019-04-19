@@ -1,0 +1,29 @@
+<!--pages/area-select/area-select.wxml-->
+<pageHeader
+  pageTitle='切换地址'
+  bind:goBack="goBack"
+>
+
+</pageHeader>
+<view class='addressLists'>
+  <view class='address_grade'>
+    <view wx:if="{{areaGrade==0}}" bindtap='selectAllArea' class='address_list'>全国</view>
+    <view wx:if="{{areaGrade==1}}" bindtap='selectAllArea' class='address_list'>全省</view>
+    <view wx:if="{{areaGrade==2}}" bindtap='selectAllArea' class='address_list'>全市</view>
+    <view wx:if="{{areaGrade==3}}" bindtap='selectAllArea' class='address_list'>全区</view>
+    <view wx:if="{{areaGrade==4}}" bindtap='selectAllArea' class='address_list'>全部街道</view>
+    <view wx:if="{{areaGrade!=0}}" bindtap='selectAllArea' class='address_list' bindtap='backGrade'>返回上一级</view>
+  </view>
+  <view class='address_area'>
+    <block wx:for="{{areas}}">
+      <view class="address_list {{index%3==1?'middle':''}}" data-val="{{item.areaName}}" data-parentId="{{item.parentId}}" id='{{item.areaId}}' bindtap='areaSelect'>{{item.areaName}}</view>
+    </block>
+  </view>
+</view>
+<loading hidden="{{hiddenLoading}}">正在加载</loading>
+<modal hidden="{{modalHidden}}" confirm-text="确定"  
+cancel-text="取消" bindconfirm="modalBindcancel" bindcancel="modalBindcancel">  
+  <view  class="modal_text">
+   {{tips}}  
+  </view>
+</modal> 

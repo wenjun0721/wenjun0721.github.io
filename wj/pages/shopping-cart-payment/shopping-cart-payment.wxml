@@ -1,0 +1,80 @@
+<!--pages/shopping-cart-payment/shopping-cart-payment.wxml-->
+
+<view class="shopping-cart shopping-cart-payment">
+  <view class="header">
+    <view class="search flex flex-ac flex-zBetween flex-zLeftRight">
+      <h2>支付订单</h2>
+    </view>
+  </view>
+  <view class="content mgT4" wx:for="{{orderLists}}" wx:for-item="parent" wx:key="index">
+    <view class="block-card">
+      <view class='card'>
+        <view class='card-header flex flex-ac flex-zBetween flex-zLeftRight'>
+          <view class="flex flex-ac">
+            <h3>订单号： {{parent.orderNo}}</h3>
+          </view>
+        </view>
+        <view class='card-body'>
+          <block wx:for="{{parent.list}}" wx:key="index">
+            <view class="card-product flex flex-ac" bindtap='goCatDetail'>
+              <image class='image' src='{{item.goodsImg}}' mode='aspectFill'></image>
+              <view class="flex flex-zTopBottom flex-zBetween">
+                <p>{{item.goodsName}}</p>
+                <h4>{{item.goodsSpecNames}}</h4>
+                <view class="flex flex-cEnd flex-zBetween">
+                  <h5>¥{{item.goodsPrice}}</h5>
+                  <span>x{{item.goodsNum}}</span>
+                </view>
+              </view>
+            </view>
+          </block>
+          <view class="card-express flex flex-ac flex-zBetween flex-zLeftRight">
+            <h5>邮费</h5>
+            <span>¥{{parent.deliverMoney}}</span>
+          </view>
+        </view>
+        <view class="card-footer flex flex-ac flex-zEnd">
+          <!-- <span>共</span>
+                    <span>1</span> -->
+          <span>总金额：</span>
+          <h3>¥{{realTotalMoney}}</h3>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="footer-flex flex flex-ac flex-zEnd">
+    <button wx:if="{{payType==0}}" bindtap='pay'>确认支付</button>
+    <button  wx:if="{{payType==1}}" bindtap='payPwd'>确认支付</button>
+  </view>
+</view>
+<view class="mine-account">
+
+  <!--弹窗 start-->
+  <view wx:if="{{payType==1}}">
+    <view class='toast-box' wx:if="{{showModal}}">
+      <view class='toastbg' bindtap='hideModal'></view>
+      <view class='showToast'>
+        <view class='toast-title flex flex-ac flex-zBetween'>
+          <button class='button1' bindtap='hideModal'>取消</button>
+          <text>支付密码</text>
+          <button class='button1' style='color:#fff;margin:0 1rem 0 0'>取消</button>
+        </view>
+        <view class='toast-main'>
+          <view class='toast-input'>
+            <!-- <text>密码：</text> -->
+            <input id='name' type="password" value="{{value}}" placeholder="请输入支付密码" data-role="value" bindinput="listenerInput" />
+
+          </view>
+         
+          <view  wx:if="{{sharerToMoney != '1'}}" style="color:red;font-size: 0.76rem">请注意：每{{sharerToMoney}}个爱米抵扣￥1；本次将消耗{{allaimipay}}个爱米余额</view>
+          
+        </view>
+        <view class='toast-button'>
+          <view class='button2'>
+            <button bindtap='pay'>确认</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

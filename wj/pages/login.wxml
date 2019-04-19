@@ -1,0 +1,9 @@
+<!--pages/start/index.wxml-->
+<view class="container">
+  <view class="remind-box" wx:if="{{remind}}">
+  </view>
+  <block wx:else>
+  <image src='/static/logo.png' style='width:80%' mode='widthFix'></image>
+    <button open-type="getUserInfo" bindgetuserinfo="Logins" style='padding:0.5rem 1.5rem;background-color: #07b9ed;box-shadow: 0rem 0rem 0.31rem 0.16rem rgba(0, 0, 0, 0.1);color:#fff;margin-top:5rem;'>授权登录</button>
+  </block>
+</view>

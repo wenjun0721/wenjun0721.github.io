@@ -1,0 +1,64 @@
+<!--pages/cat-list-bargain/cat-list-bargain.wxml-->
+<view class="page">
+  <view bindtouchmove="tap_move" bindtouchend="tap_end" bindtouchstart="tap_start" class="content {{side.newopen?'state':''}}">
+    <view class="cat-detail mine-detail cat-list-spike">
+      <view class="header flex flex-ac">
+        <view class="search">
+          <input type="text" class="flex" placeholder="搜产品" />
+        </view>
+        <icon class='iconfont icon-gengduo-2' bindtap="tap_click"></icon>
+      </view>
+      <scroll-view class="content " scroll-y='true'>
+        <view class='card' wx:for="{{shopLists}}" wx:key="index" bindtap='goCatDetailBargain'>
+          <view class='card-body flex flex-ac'>
+            <image class="image" src='{{item.goodsImg}}' mode='aspectFill'></image>
+            <view class="flex flex-zTopBottom flex-zBetween">
+              <view class='p'>{{item.goodsName}}</view>
+              <view class='h4'>{{item.joinNum}}人参与</view>
+              <view class='h5'>底价：¥{{item.floorPrice}}
+                <text>${{item.marketPrice}}</text>
+              </view>
+              <view class='h4 time'>
+                <icon type="waiting" color="#ccc" size='11' />{{TimeVal[index]}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+   <view class="side"><!--侧滑菜单-->
+    <view class="side-right">
+      <view class='side-right-header'>
+        <text>商品分类</text>
+        <icon type="cancel" size="25" color="#ccc" bindtap='tap_click' />
+      </view>
+      <view class='side-right-content flex'>
+        <view class='title'>
+          <view class="li active">第一个item1</view>
+          <view class="li">第一个item1</view>
+          <view class="li">第一个item1</view>
+          <view class="li">第一个item1</view>
+        </view>
+        <view class='subtitle flex flex flex-zTopBottom'>
+          <view class="li flex flex-zBetween" bindtap='tap_ch'>
+            <text>第一个item1</text>
+            <i class="icon iconfont icon-you"></i>
+          </view>
+          <view class="li flex flex-zBetween" bindtap='tap_ch'>
+            <text>第一个item1</text>
+            <i class="icon iconfont icon-you"></i>
+          </view>
+          <view class="li flex flex-zBetween" bindtap='tap_ch'>
+            <text>第一个item1</text>
+            <i class="icon iconfont icon-you"></i>
+          </view>
+          <view class="li flex flex-zBetween" bindtap='tap_ch'>
+            <text>第一个item1</text>
+            <i class="icon iconfont icon-you"></i>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

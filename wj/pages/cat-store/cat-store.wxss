@@ -1,0 +1,624 @@
+/* pages/cat-store/cat-store.wxss */
+@import "/icon.wxss";
+
+page {
+  /* background: red; */
+}
+
+.card {
+  margin: 1rem 1rem 0;
+}
+
+.cat-store {
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.cat-store .cat-store-name button {
+  background-color: #07b9ed;
+}
+
+.icon-search {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.picker {
+  padding: 0;
+}
+
+/* .cat-store-flagship{
+    background: #07b9ed;
+} */
+
+.cat-store-flagship .header {
+  box-shadow: none;
+}
+
+.cat-store .cat-store-name {
+  position: relative;
+  padding: 0 1rem;
+  margin-bottom: 0;
+  background-color: transparent;
+}
+
+.cat-store .cat-store-name .card {
+  position: initial;
+  width: calc(100% - 1rem);
+}
+
+
+.cat-store-flagship .new-goods {
+  display: block;
+  height: 14rem;
+  width: calc(100% - 2rem);
+  margin: auto;
+}
+.cat-store-flagship .new-goods swiper{
+  height: 100%;
+}
+
+.cat-store-flagship .new-goods .card {
+  display: block;
+  height: 100%;
+  margin: 0;
+  background-size: cover;
+  background-position: center center;
+}
+
+.cat-store-flagship .cat-store-name .span {
+  background: #ff464f;
+  border-radius: 0.13rem;
+  font-size: 0.38rem;
+}
+
+.cat-store .cat-store-name span {
+  background-color: #07b9ed;
+}
+
+.cat-store-flagship .card-header {
+  box-shadow: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: #ff464f;
+  padding: 0.9rem 1rem;
+}
+
+.cat-store-flagship .card-header .h3 {
+  font-family: Tensentype-XiChaoHeiJ;
+  font-size: 1.25rem;
+  letter-spacing: 0.06rem;
+  color: #fff;
+}
+
+.cat-store-flagship .card-header .p {
+  font-size: 0.56rem;
+  letter-spacing: 0.03rem;
+  color: #fff;
+}
+
+.cat-store-flagship .cat-detail-image {
+  margin: 1rem 1rem;
+  padding: 0;
+}
+
+.cat-products {
+  margin: 0 0.5rem;
+}
+
+.cat-store-flagship .image {
+  /* height:10rem; */
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.cat-list .cat-filter {
+  margin: 1rem 1rem 0;
+}
+
+.tips {
+  border-radius: 50px;
+  margin-bottom: 1rem;
+}
+
+.tips icon {
+  background-color: #fedd19;
+  font-size: 1.38rem;
+  color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.tips p {
+  overflow: hidden;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  color: #999;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cat-store-flagship  .span {
+  display: block;
+  font-size: 0.69rem;
+  line-height: 1.44rem;
+  letter-spacing: 0.03rem;
+  color: #333;
+  text-align: center;
+}
+
+.cat-store-flagship .span view {
+  font-size: 0.69rem;
+  color: #333;
+  display: inline;
+}
+
+/* .cat-store-flagship .sw-bullet .li{
+    background-color: #eeeeee;
+}
+*/
+
+.active {
+  color: #333 !important;
+}
+
+.cat-store-flagship .cat-detail-image swiper {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  /* height: 11rem; */
+}
+
+.cat-store-flagship .card-body .flex.flex-zTopBottom.flex-zBetween {
+  width: calc(100% - 6.25rem);
+}
+
+.cat-store-flagship .search input {
+  margin: 0 1rem;
+  box-shadow: none;
+}
+
+.cat-store-flagship video {
+  height: 11.72rem;
+  background-color: #000;
+  width: calc(100% - 3rem);
+  object-fit: cover;
+  margin-top: 0;
+}
+
+.cat-store-flagship  .h4 {
+  font-size: 0.69rem;
+  color: #ccc;
+  margin-bottom: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.cat-store-flagship .card-body {
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.cat-store-flagship  .card-product {
+  margin-top: 0;
+}
+
+.cat-store-flagship  button {
+  background-color: #ff464f;
+  border-radius: 0.5rem;
+  color: #fff;
+  border: none;
+  padding: 3px 6px;
+  font-size: 0.69rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cat-store-flagship  .h5 {
+  font-size: 1rem;
+  line-height: 0.81rem;
+  letter-spacing: 0.06rem;
+  color: #ff464f;
+  font-weight: normal;
+  font-family: PingFangSC-Regular;
+}
+
+.cat-store-flagship  .h5 text {
+  font-size: 0.69rem;
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+.cat-store-flagship .image {
+  height: 6.25rem;
+  width: 6.25rem;
+}
+
+.shop_header_info_right {
+  float: right;
+}
+
+.shop_notice {
+  height: 42rpx !important;
+  width: 42rpx !important;
+}
+
+.search input {
+  margin: 1rem 1rem 1rem 0;
+  height: 1.75rem;
+  box-shadow: none;
+}
+
+.search-img {
+  height: 2rem !important;
+  width: 2rem !important;
+}
+
+.store-box {
+  position: fixed;
+  width: 100%;
+  height: 100rpx;
+  bottom: 0;
+  /* background: red; */
+  line-height: 100rpx;
+  text-align: center;
+  box-shadow: 0px 0px 5px 2.5px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.store-li {
+  float: left;
+  width: calc(33% - 2rpx);
+}
+
+.store-li-br {
+  border-right: 1rpx solid #e9e9e9;
+}
+
+.wxbox__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0);
+  /* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+  display: none;
+}
+
+.wxbox__container {
+  position: fixed;
+  bottom: 150rpx;
+  width: 650rpx;
+  /* 弹窗布局宽 */
+  left: 0;
+  height: 750rpx;
+  /* 弹窗布局高，与下面弹出距离transform有关 */
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(300%);
+  /* 弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  /* 弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+
+.wxbox--show .wxbox__container {
+  transform: translateY(0);
+}
+
+.wxbox--show .wxbox__mask {
+  background: rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+.wxbox__bottom {
+  width: 90%;
+  position: absolute;
+  bottom: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.cancel {
+  width: 50%;
+  float: left;
+  color: #888;
+}
+
+.wxbox {
+  width: 50%;
+  float: right;
+  color: #e00a4e;
+}
+
+.tblin_items_txt {
+  text-align: center;
+  line-height: 600rpx;
+}
+
+.card-body .p {
+  font-size: 14px;
+}
+
+.customQr image {
+  height: 550rpx;
+  width: 550rpx;
+  margin: 0 auto;
+}
+
+.cart-box {
+  height: 80rpx;
+  width: 80rpx;
+  position: fixed;
+  bottom: 140rpx;
+  right: 20rpx;
+  border-radius: 50%;
+  background: #07b9ed;
+}
+
+.tblin_items_txt {
+  text-align: center;
+}
+
+.card-body .p {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.label-box {
+  margin: 1rem 1.5rem;
+  /* background-color:#FFC107; */
+  padding: 0.2rem;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-around;
+}
+
+.label-box .label-li {
+  padding: 5rpx 15rpx;
+  border-radius: 6rpx;
+  background-color: #fff;
+  color: #ff464f;
+  border: 1rpx solid #ff464f;
+  margin: 10rpx;
+  font-size: 15px;
+}
+
+.card-box {
+  width: calc(100% - 2rem);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-box-label {
+  width: 46%;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 2.5px rgba(238, 238, 238, 0.8);
+  border-radius: 0.5rem;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fff;
+}
+
+.card-box-label:nth-child(1) {
+  background: #ff689f;
+}
+
+.card-box-label:nth-child(2) {
+  background: #f4dd45;
+}
+
+.card-box-label icon {
+  font-size: 50rpx;
+}
+
+.translate {
+  height: 100rpx;
+  width: 100rpx;
+  position: fixed;
+  right: 0;
+  bottom: 180rpx;
+}
+
+.goTop {
+  box-shadow: 0 2px 4px 2px rgba(255, 255, 255, 0.5);
+}
+
+.cat-store .cat-store-name .card i {
+  font-size: 25rpx !important;
+}
+
+.wxAppCode__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0);
+  /* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+  display: none;
+}
+
+.wxAppCode__container {
+  position: fixed;
+  bottom: 150rpx;
+  width: 650rpx;
+  /* 弹窗布局宽 */
+  left: 0;
+  height: 750rpx;
+  /* 弹窗布局高，与下面弹出距离transform有关 */
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(300%);
+  /* 弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  /* 弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+
+.wxAppCode--show .wxAppCode__container {
+  transform: translateY(0);
+}
+
+.wxAppCode--show .wxAppCode__mask {
+  background: rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+.wxAppCode__bottom {
+  width: 90%;
+  position: absolute;
+  bottom: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.cancel {
+  width: 50%;
+  float: left;
+  color: #888;
+}
+
+.wxAppCode {
+  width: 50%;
+  float: right;
+  color: #e00a4e;
+}
+
+.lattice {
+  margin-bottom: 1rem;
+}
+
+.lattice .lattice-right-body {
+  height: 6rem;
+  padding: 1rem;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: right 90%;
+}
+
+.lattice .lattice-right-body .span {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0.88rem;
+  height: 0.88rem;
+  margin-right: 0.3rem;
+  font-size: 0.63rem;
+  border-radius: 50%;
+  padding: 2px 3px;
+  color: #fff;
+  text-align: center;
+  line-height: 0.86rem;
+}
+
+.lattice .lattice-right-body+.lattice-right-body {
+  border-top: 1px solid #eee;
+}
+
+.lattice .lattice-left {
+  flex: 1;
+  height: 14rem;
+  margin: 0;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center 95%;
+  border-right: 1px solid #eee;
+  padding: 1rem;
+}
+
+.lattice-left, .lattice-right {
+  flex: 1;
+}
+
+.lattice .h2 {
+  font-size: 1.19rem;
+  color: #e82933;
+  margin-bottom: 1rem;
+}
+
+.lattice .h3 {
+  font-size: 0.88rem;
+  color: #333;
+}
+
+.lattice .p {
+  margin-top: 0.3rem;
+  font-size: 0.63rem;
+  color: #999;
+}
+
+.bg-color1 {
+  background-color: #97d7fa;
+}
+
+.bg-color2 {
+  background-color: #feca63;
+}
+
+.bg-color3 {
+  background-color: #ffcdc5;
+}
+
+.coupon {
+  margin: 1rem 1rem;
+  color: #fff;
+}
+
+.coupon-block {
+  flex: 1;
+  max-width: 50%;
+  padding: 0.5rem 0.3rem 1.2rem;
+  margin: 0;
+  background-size: 50%;
+  background-position: center 90%;
+  background-repeat: no-repeat;
+}
+
+.coupon-block+.coupon-block {
+  margin-left: 0.5rem;
+}
+
+.coupon .span {
+  font-size: 0.61rem;
+  height: auto;
+  margin-top: 0.5rem;
+  color: #fff;
+}
+
+.coupon .h1 {
+  font-size: 1.5rem;
+  margin-right: 2px;
+  line-height: 1.70rem;
+}
+
+.coupon .h3 {
+  font-size: 0.78rem;
+}
+
+.coupon .h4 {
+  font-size: 0.65rem;
+  color: #fff;
+}
+
+.hot-goods {
+  background-size: 100%;
+  /*margin: 1rem 1.5rem;*/
+  padding: 1rem 0.75rem;
+  padding-top: 6.5rem;
+}
+
+.hot-goods .card {
+  margin: 0.5rem 0 0;
+}

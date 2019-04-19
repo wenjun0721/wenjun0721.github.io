@@ -1,0 +1,55 @@
+<!--pages/cat-list-spike/cat-list-spike.wxml-->
+<view class="cat-detail mine-detail cat-list-spike">
+  <view class="header">
+    <view class="flex flex-hc tab-nav">
+      <ul class="first-title">
+        <li class="{{!remind?'active':''}}" bindtap="changeRobbing">正在抢购</li>
+        <li class="{{remind?'active':''}}" bindtap="changeRemind">即将开抢</li>
+      </ul>
+    </view>
+  </view>
+  <view class="content mgT2 mgD4">
+    <block wx:if="{{!remind}}">
+      <view class='card {{item.soldOut?"buyUp":""}}' wx:for="{{datas.robbing}}" wx:key="index" bindtap='goCatDetail' data-type='{{item.soldOut?"spikeEnd":"spikeing"}}'>
+        <view class='card-body flex flex-ac'>
+            <image class="image" src='{{item.image}}'></image>
+          <view class="flex flex-zTopBottom flex-zBetween">
+            <p>{{item.title}}</p>
+            <h4>{{item.sold}}件已付款</h4>
+            <view class="flex flex-cEnd flex-zBetween">
+              <h5>¥{{item.price}}
+                <text>${{item.costPrice}}</text> </h5>
+              <block wx:if='{{!item.soldOut}}'>
+                <button>马上抢
+                  <i class="icon iconfont icon-you"></i>
+                </button>
+              </block>
+              <block wx:else>
+                <button>已售完</button>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="block-card remind {{remind?'buyUp':''}}" >
+        <view class='card' wx:for="{{datas.remind}}" wx:key="index" bindtap='goCatDetail' data-type='spikeStart'>
+          <view class='card-body'>
+            <view class="card-product flex flex-ac">
+               <image class="image" src='{{item.image}}'></image>
+              <view class="flex flex-zTopBottom flex-zBetween">
+                <p>{{item.title}}</p>
+                <h4>{{item.follow}}件已关注 | {{item.time}}开抢</h4>
+                <view class="flex flex-cEnd flex-zBetween">
+                  <h5>¥{{item.price}}
+                    <text>${{item.costPrice}}</text> </h5>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

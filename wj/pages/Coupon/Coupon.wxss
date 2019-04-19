@@ -1,0 +1,52 @@
+.first_nav{
+ display:inline-block;
+height:60rpx;
+line-height:60rpx;
+text-align:center;
+margin:0 30rpx;
+font-size:0.8rem;
+color: #888;
+
+}
+.first_nav.active{
+  border-bottom: 2px solid #00abe4;
+  color:#555;
+}
+.card-body{
+  position: relative;
+}
+.coupon-right{
+  width: calc( 100% - 150rpx);
+  height:180rpx;
+}
+.btn-box{
+  position: absolute;
+  right:20rpx;
+  bottom:20rpx;
+  padding: 10rpx 20rpx;
+  color:#fff;
+  font-size: 26rpx;
+  border-radius: 10rpx;
+  background: #fe5339;
+}
+.shopName,.couponNum,.endDate{
+  width: 100%;
+}
+.couponNum,.endDate{
+  font-size: 24rpx;
+  line-height:60rpx;
+  color: #777;
+}
+.couponValue{
+  color: #fe5339;
+  position: absolute;
+  top: 30rpx;
+  font-size: 38rpx;
+  font-weight: 700;
+  right:50rpx;
+}
+.loading{
+  color: #999;
+  text-align: center;
+  font-size: 25rpx;
+}

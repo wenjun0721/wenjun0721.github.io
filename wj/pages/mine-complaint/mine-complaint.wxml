@@ -1,0 +1,6 @@
+<!--pages/mine-complaint/mine-complaint.wxml-->
+<view class="mine-complaint">
+    <view class="content text-center">
+        <h2 style="margin-top: 6rem">暂无投诉信息</h2>
+    </view>
+</view>

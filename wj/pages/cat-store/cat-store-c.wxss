@@ -1,0 +1,54 @@
+.header-box{
+  height: 100rpx;
+  box-shadow: 0rem 0rem 0.33rem 0.17rem rgba(0, 0, 0, 0.05);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  line-height: 100rpx;
+  text-align: center;
+}
+page{
+  background: #f8f9fa;
+}
+.store-li{
+  width: 100%;
+  position: relative;
+  
+}
+.store-li .title{
+   height: 100rpx;
+   width: 90%;
+  padding: 0 5%;
+  line-height: 100rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+.store-li .icon{
+  height: 40rpx;
+  width: 40rpx;
+  position: absolute;
+  right: 5%;
+  top: 30rpx;
+}
+.store-ul{
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-around;
+  background: #fff;
+  width: 90%;
+  padding: 30rpx 5%;
+}
+.store-ul-li{
+  line-height: 40rpx;
+ padding: 10rpx 20rpx;
+ border-radius: 10rpx;
+ float: left;
+ font-size: 28rpx;
+ background: #e8e8e8;
+ margin: 20rpx 10rpx;
+}
+.hide-title{
+  line-height: 200rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #888;
+}

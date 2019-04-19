@@ -1,0 +1,123 @@
+<wxs module="filter" src="../../lib/filter.wxs"></wxs>
+<view wx:if="{{empty==true}}">
+  <!-- 订单用户信息 -->
+  <view class="orderAddress" bindtap='toggleAddress'>
+    <view class='flex orderAddress_userInfo'>
+      <view class='orderAddress_userInfo_text'>{{userName}}</view>
+      <view class='orderAddress_userInfo_text'>{{filter.phoneNumber(userPhone,":")}}</view>
+      <view class='orderAddress_userInfo_tags' wx:if="{{labels}}">[{{labels}}]</view>
+    </view>
+    <view class='flex  orderAddress_userAddress'>
+      <image class="orderAddress_userAddressIcon;" src='/static/order_icon_location@2x.png'></image>
+      <view class='orderAddress_userAddressText'>{{areaName}}</view>
+    </view>
+    <image class="orderAddress_img" src='/static/nav_btn_back_new.png'></image>
+  </view>
+  <!-- 订单商品 -->
+  <view>
+    <block wx:for="{{carts}}" wx:for-item="parent" wx:key="index">
+      <view class='cart_list' id='{{parent.shopId}}'>
+        <!-- 购物车店铺头部 -->
+        <view class='cart_list_top' data-id='{{parent.shopId}}'>
+          <view class='cart_list_top_left'>
+            <image class='cart_brand_img' src='/static/shoppingcar_icon_shop.png'></image>
+            {{parent.datas.shopName}}
+          </view>
+        </view>
+        <block wx:for="{{parent.datas.list}}" wx:key="index">
+          <!-- 购物车店铺产品 -->
+          <view class="cart_list_goods {{item.isSelect==1?'':'noArea'}}" >
+            <!-- 商品图片 -->
+            <view class='cart_goods_img'>
+              <image class='cart_goods_img' src='{{item.goodsImg}}' mode='aspectFit'></image>
+            </view>
+            <!-- 商品文字 -->
+            <view class='cart_goods_text'>
+              <view class='cart_goods_title'>
+                {{item.goodsName}}
+              </view>
+              <view class='cart_goods_size'>{{item.specNames[0].itemName}}</view>
+              <!-- 商品价格 -->
+              <view class='cart_goods_info'>
+                <view class='cart_goods_price'>¥{{item.shopPrice}}</view>
+                <view>×{{item.cartNum}}</view>
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{item.isSelect!=1}}" class='orderOther_listRightMoney'>该商品不在下单区域内</view>
+        </block>
+      </view>
+      <view class='orderOther'>  
+        <view class='orderOther_list flex'>
+          <view class='orderOther_listLeft'>运费</view>
+          <view class='orderOther_listRightMoney'>¥{{parent.datas.freight || 0}}</view>
+        </view>
+        <view class='orderOther_list flex'>
+          <view class='orderOther_listLeft'>店铺合计（含运费）</view>
+          <view class='orderOther_listRightMoney '>¥{{parent.datas.goodsMoney}}</view>
+        </view>
+        <view class='orderOther_list flex'>
+          <view class='orderOther_listLeft'>买家留言</view>
+          <input class='orderOther_listLeft_input' bindinput='inputLeave' data-shopId='{{parent.shopId}}'  placeholder='填写订单备注'></input>
+        </view>
+      </view>
+    </block>
+  </view>  
+  <!-- 订单其他项 -->
+  <view class='orderOther'>     
+    <view wx:if="{{isDirectMail==1}}">
+      <view style='margin-top:40rpx;color:#e31d0b'>因海关清关需要 请填写收货人的身份信息</view>
+      <view class='orderOther_list flex'>
+        <view class='orderOther_listLeft'>身份证姓名</view>
+        <input class='orderOther_listLeft_input' bindinput='idcardInput' data-role="idName"  placeholder='身份证姓名'></input>
+      </view>   
+      <view class='orderOther_list flex'>
+        <view class='orderOther_listLeft'>身份证号码</view>
+        <input type='idcard' class='orderOther_listLeft_input' bindblur='requireCard' bindinput='idcardInput' data-role="idCard" placeholder='身份证号码'></input>
+      </view> 
+    </view>
+    <view class='orderOther_list flex'>
+      <view class='orderOther_listLeft'>支付方式</view>
+      <view class='orderOther_listRight'>
+        <picker mode ="selector" bindchange="bindPickerChange" data-role="pay" value="{{index}}" range="{{payArray}}">
+          <view class="picker">
+            {{payArray[payIndex]}}
+            <image class="orderOther_listRight_img" src='/static/nav_btn_back_new.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>  
+    <view class='orderOther_list flex'>
+      <view class='orderOther_listLeft'>配送方式</view>
+      <view class='orderOther_listRight'>
+        <picker mode ="selector" bindchange="bindPickerChange" data-role="distribution" value="{{index}}" range="{{distributionArray}}">
+          <view class="picker">
+            {{distributionArray[distributionIndex]}}
+              <image class="orderOther_listRight_img" src='/static/nav_btn_back_new.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>      
+    <view class='orderOther_list flex' wx:if="{{isAlone}}">
+      <view class='orderOther_listLeft'>商品金额</view>
+      <view class='orderOther_listRight orderOther_listRightMoney'>
+        ¥{{totalGoodsMoney}}
+      </view>
+    </view>       
+    <view class='orderOther_list flex' wx:if="{{isAlone}}">
+      <view class='orderOther_listLeft'>运费金额</view>
+      <view class='orderOther_listRight orderOther_listRightMoney'>
+        ¥{{allFreight || 0}}
+      </view>
+    </view>        
+  </view>
+  <!-- 总金额 提交 -->
+  <view class='submitBox'>
+    <view class='submitBox_left'>合计：<text style='color:#e31d0b;font-size:40rpx;'>¥{{totalMoney}}</text>  </view>
+    <view class='submitBox_btn' bindtap='submitOrder'>提交订单</view>
+  </view>
+</view>
+<view wx:else style='text-align:center'>
+  暂无订单
+</view>
+

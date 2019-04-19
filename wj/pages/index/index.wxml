@@ -1,0 +1,217 @@
+<!-- wxml -->
+
+<!--index.wxml-->
+<view>
+  <view class="header search ">
+    <view class='flex flex-ac flex-zBetween flex-zLeftRight'>
+      <button plain='true' hover-class="none" bindtap='goSelectArea' class='flex flex-zLeftRight flex-ac'>
+        <text class="iconfont icon-ditu-dibiao" style="color: #eeeeee"></text>
+        <text>{{position}}</text>
+      </button>
+      <navigator url='../search/search'>
+        <input type="text" placeholder="搜一搜" />
+      </navigator>
+      <!-- <button plain='true' hover-class="none">
+        <image src="../../static/search_btn.png"></image>
+      </button> -->
+    </view>
+  </view>
+  <view class='slider-banner'>
+    <swiper class='mgT4' indicator-dots="true" autoplay="true" interval="5000	" duration="1000" previous-margin="20px" next-margin="20px" circular="true">
+      <block wx:for="{{bannerLists}}" wx:key="index">
+        <swiper-item>
+          <navigator id='{{item.adId}}' class="slide-image" bindtap='indexClick' data-url="{{item.adURL}}" data-str="{{item.adTypeStr}}" open-type='{{item.adURLType}}'>
+            <image src="{{item.adFile}}" class='bannerImage' mode='aspectFill' />
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="content">
+    <view class="card">
+      <view class="slider-topic card-header flex flex-ac"  wx:if="{{sysConfig.bargain == '1'}}">
+        <view class="flex flex-ac">
+          <h4>每日好物</h4>
+          <view class="triangle_left"></view>
+        </view>
+        <view id="demo" class="slider-topic-title carousel slide" data-ride="carousel">
+          <view class="carousel-inner">
+            <view class="carousel-item active">
+              <p>Hero Baby荷兰美素甄选纯净奶源1-5荷兰美素甄选纯净奶源</p>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="card-body flex nav-icon">
+        <!-- <view bindtap='GetWebView' data-url="wechat/goods/grouplist_app.html?adId=329" wx:if="{{sysConfig.assemble == '1'}}"> -->
+        <view bindtap='goCatListSpike' wx:if="{{sysConfig.assemble == '1'}}"> 
+          <button plain='true' hover-class="none">
+            <span class="badge badge-pill badge-danger">新上10款</span>
+            <image src="/static/nav_icon_pinTuan.png"></image>
+          </button>
+          <span>拼团</span>
+        </view>
+        <view bindtap='GetWebView' data-url="addon/bargain-goods-wxlists_app.html" data-val="{{positionId}}" wx:if="{{sysConfig.bargain == '1'}}">
+          <button plain='true' hover-class="none">
+            <image src="/static/nav_icon_mian.png"></image>
+          </button>
+          <span>全民砍价</span>
+        </view>
+        <view bindtap='GetWebView' data-url="wechat/seckill/list_app.html" data-val="{{positionId}}"  wx:if="{{sysConfig.spike == '1'}}">
+          <button plain='true' hover-class="none">
+            <image src="/static/nav_icon_miaoSha.png"></image>
+          </button>
+          <span>秒杀</span>
+        </view>
+        <view bindtap='GetWebView' data-url="wechat/sharerapplys/keeper_app.html" wx:if="{{sysConfig.joins == '1'}}">
+          <button plain='true' hover-class="none">
+            <image src="/static/nav_icon_join.png"></image>
+          </button>
+          <span>加入爱搜品</span>
+        </view>
+        <view bindtap='GetWebView' data-url="wechat/shops/areaShopsNew_app.html" data-val="{{positionId}}" data-name="{{position}}" wx:if="{{sysConfig.region == '1'}}">
+          <button plain='true' hover-class="none">
+            <image src="{{webViewUrl}}/wstmart/wechat/view/default/new/image/shops_a.png"></image>
+          </button>
+          <span>区域商店</span>
+        </view>
+        <!-- <view>
+          <button plain='true' hover-class="none" bindtap='goCatListSpike'>
+            <span class="badge badge-pill badge-danger">新上10款</span>
+            <image src="../../static/nav_icon_pinTuan.png"></image>
+          </button>
+          <span>拼团</span>
+        </view> -->
+        <!-- <block wx:for="{{indexCats}}" wx:key="unique">
+          <view bindtap='{{item.addonsName=="Coupon"?"goCoupon":"GetBargain"}}'>
+            <button plain='true' hover-class="none">
+              
+              <image src="{{item.btnImg}}"></image>
+            </button>
+            <span>{{item.btnName}}</span>
+          </view>
+        </block> -->
+      </view>
+      <view>
+      </view>
+    </view>
+    <!-- <view class="flex-colmm flex block"> -->
+      <!-- <view class="card flex flex-zTopBottom" style="background-image: url('../../static/flex_colmm_1.png');">
+        <h3>特惠专区</h3>
+        <span>剁手高能区 慎入</span>
+      </view>
+      <view class="card flex flex-zTopBottom" style="background-image: url('../../static/flex_colmm_1.png')">
+        <h3 style='color:#ff464f'>猜你喜欢</h3>
+        <span>买家的心头好物</span>
+      </view> -->
+    <!-- </view> -->
+
+
+
+
+    <view class='cat'>
+      <view class='cat-products flex flex-zLeftRight'>
+        <block wx:for="{{shopListsCenter}}" wx:key="index">
+          <navigator class="block-card flex" url="/pages/shopsDetail/shopsDetail?goodsId={{item.goodsId}}">
+            <view class='card'>
+              <view class='card-body'>
+                <image src='{{item.goodsImg}}' mode='aspectFill'></image>
+              </view>
+              <view class='card-footer'>
+                <p>{{item.goodsName}}</p>
+                <view class="flex flex-cEnd flex-zBetween">
+                  <view class="flex flex-cEnd">
+                    <h3>¥{{item.shopPrice}}</h3>
+                    <text class="underline">¥{{item.marketPrice}}</text>
+                  </view>
+                  <!-- <span>{{item.saleNum}}人想要</span> -->
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </block>
+      </view>
+    </view>
+    <!-- <view class='tab-nav scroll_content'> -->
+      <scroll-view scroll-x="true" class='tab-nav scroll_content {{fixedNav?"fixed":""}}'>
+        <block wx:for="{{firstNav}}" wx:key="unique">
+          <navigator url="/pages/cat-list/cat-list?catId={{item.catId}}" id="{{item.catId}}" class="first_nav {{item.catId==slideIndex?'active':''}}">{{item.catName}} </navigator>
+        </block>
+      </scroll-view>
+    <!-- </view> -->
+    <view class='cat' id='cat'>
+      <view class='cat-products flex flex-zLeftRight'>
+        <block wx:for="{{shopLists}}" wx:key="index">
+          <navigator class="block-card flex" url="/pages/shopsDetail/shopsDetail?goodsId={{item.goodsId}}">
+            <view class='card'>
+              <view class='card-body'>
+                <image src='{{item.goodsImg}}' mode='aspectFill'></image>
+              </view>
+              <view class='card-footer'>
+                <p>{{item.goodsName}}</p>
+                <view class="flex flex-cEnd flex-zBetween">
+                  <view class="flex flex-cEnd">
+                    <h3>¥{{item.shopPrice}}</h3>
+                    <text class="underline">¥{{item.marketPrice}}</text>
+                  </view>
+                  <!-- <span>{{item.saleNum}}人想要</span> -->
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </block>
+      </view>
+      <!-- <view class='middle-ad block'>
+        <image src="../../static/middle_ad.png" style="width: 100%" mode='aspectFill'></image>
+      </view> -->
+      <!-- <view class='cat-like'>
+        <h2>猜你喜欢</h2>
+        <view class='card'>
+          <view class='card-body' style="background-image: url('../../static/cat_like_1.png');">
+            <view style="background-image: url('../../static/cat_like_bg.png');">
+              <span>卖家推荐</span>
+              <h3>韩国papa recipe春雨美白保湿修护蜂胶面膜10片</h3>
+            </view>
+          </view>
+          <view class='card-footer flex flex-cEnd flex-zBetween'>
+            <view class="flex flex-ac card-footer-left">
+              <image src="../../static/heard.png" mode='aspectFill'></image>
+              <view class="flex flex-al flex-zTopBottom">
+                <h4>KAMssdsdsdddssdEN</h4>
+                <view>
+                  <span>母婴用品</span>
+                  <span>个性彩妆</span>
+                  <span>个性彩妆</span>
+                  <span>个性彩妆</span>
+                </view>
+              </view>
+            </view>
+            <view class="card-footer-right ">
+              <h5>32424</h5>
+              <p>关注</p>
+            </view>
+          </view>
+        </view>
+      </view>-->
+    </view>
+    <view class="text-center Last-hint">
+      <span>{{loadingText!=''?loadingText:'— 我是有底线的 —'}}</span>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- 悬浮 -->
+<!-- 
+<image class='translate' src='/static/logo@2x.png' bindtap='getKefu'></image>
+ -->
+
+
+
+
+
+<!-- 返回頂部 -->
+<view class='goTop' bindtap='goTop' hidden='{{!floorstatus}}'>
+  <image src='/static/gotop.png'></image>
+</view>

@@ -1,0 +1,56 @@
+<view class='screeningBg' hidden='{{isScreen}}'>
+  <scroll-view class='screeningBody' scroll-y  bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <!-- 地址选择 -->
+    <view class='area_choose'>
+      <view class='area_choose_left'>IShopping 服务</view>
+      <view class='area_choose_right'>
+        <image src='/images/btn_localize_n@2x.png'></image>
+        {{areaText}}
+      </view>
+    </view>
+    <!-- 一级分类选择 -->
+    <view class='classifyLists'>
+      <block wx:for="{{firstNavs}}" wx:key="index">
+        <view data-index="{{index}}" class="classify_list {{index==firstNavIndex?'active':''}} {{index%3==1?'middle':''}}" bindtap='toggleFirstNav'>{{item}}</view>
+      </block>
+    </view>
+    <view class="bg_row"></view>
+    <!-- 价格区间 -->
+    <view class='price_choose'>
+      <view class='price_choose_title'>价格区间</view>
+      <view class='price_choose_inputBox' wx:if="{{!isDefaultText}}">
+        <input type='number' focus='true' placeholder='最低价格' value="{{lowerPrice}}" bindinput='lowerPrice'></input>
+        <view class='price_choose_input_row'></view>
+        <input type='number' placeholder='最高价格' value="{{higherPrice}}" bindinput='higherPrice'></input>
+      </view>
+      <view class='price_choose_inputBox'  wx:if="{{isDefaultText}}" bindtap='toggleDefaultText'>
+        <input type='number' placeholder='最低价格'  bindinput='lowerPrice'></input>
+        <view class='price_choose_input_row'></view>
+        <input type='number' placeholder='最高价格' bindinput='higherPrice'></input>
+      </view>
+    </view>
+    <!-- 品牌 -->
+    <view class='otherClassify'>
+      <view class='otherClassify_header'>
+        <view class='otherClassify_header_left'>品牌</view>
+        <view class='otherClassify_header_right' bindtap='toggleBrandShow'>
+          全部
+          <image src='/images/btn_more@2x.png' class="{{brandAll?'rotate':''}}"></image>
+        </view>
+      </view>
+      <view class='classifyLists' style='margin-top:14rpx;  padding-bottom: 98rpx;' hidden='{{!brandAll}}'>
+        <block wx:for="{{brandNavs}}" wx:key="index">
+          <view data-index="{{index}}" data-brandId="{{item.brandId}}" bindtap='toggleBrand' class="otherClassify_list_box {{index%3==1?'middle':''}} {{brandNavIndex==index?'active':''}}">
+            <view class="otherClassify_list ">{{item.brandName}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 功能按钮 -->
+    <view class='toolBtn'>
+      <view bindtap='reset' class='toolBtn_reset'>重置</view>
+      <view bindtap='confirm' class='toolBtn_confirm'>确定</view>
+    </view>
+  </scroll-view>
+</view>
+<view class="screeningBgController" bindtap='hideScreen' hidden='{{isScreen}}'></view>

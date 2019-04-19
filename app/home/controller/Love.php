@@ -12,6 +12,15 @@ class Love extends Base
     }
 
 
+    public function backGround()
+    {
+    	$l = new L();
+    	$res = $l->backGround();
+    	// $this->fetch();
+    	echo(json_encode(WSTReturn('success',1,$res)));die;
+    }
+
+    
     public function add()
     {
     	$data['toUser'] = '背影';

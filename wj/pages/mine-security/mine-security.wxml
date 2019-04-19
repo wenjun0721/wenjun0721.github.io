@@ -1,0 +1,19 @@
+<!--pages/mine-security/mine-security.wxml-->
+<view class="mine-security">
+    <view class="content text-center">
+        <navigator class="list flex flex-zBetween flex-ac"  url='../modify-payment/modify-payment'>
+            <view>
+                <h3>设置支付密码</h3>
+                <p>建议定期修改密码加强账户安全</p>
+            </view>
+            <i class="icon iconfont icon-you"></i>
+        </navigator>
+        <!-- <navigator class="list flex flex-zBetween flex-ac"  url='../modify-number/modify-number'>
+            <view>
+                <h3>修改手机号码</h3>
+                <p>若手机更换请尽快修改</p>
+            </view>
+            <i class="icon iconfont icon-you"></i>
+        </navigator> -->
+    </view>
+</view>

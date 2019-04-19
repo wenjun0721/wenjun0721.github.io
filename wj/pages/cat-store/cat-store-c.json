@@ -1,0 +1,5 @@
+{
+  "enablePullDownRefresh": true,
+  "backgroundColor": "blue",
+  "navigationBarTitleText": "热门分类"
+  }

@@ -1,0 +1,67 @@
+/* pages/cat-list-bargain/cat-detail-bargain.wxss */
+.h4{
+  margin-left: 0.3rem;
+  font-size: 0.75rem;
+  color: #333;
+}
+.cat-detail .introduce.way view{
+  margin-top: 0.5rem;
+
+}
+.cat-detail .introduce.way view text{
+  border: 1px solid #ccc;
+  padding: 0.3rem;
+width: 20%;
+}
+.cat-detail .introduce view.icon{
+  font-size: 1rem;
+  color: #ccc;
+}
+.cat-detail .introduce.flex{
+  border-bottom:1px solid #eee;
+  margin-bottom: 1rem;
+}
+.footer button{
+  font-size:0.63rem;
+  line-height: 0.73rem
+}
+.footer button text{
+  font-size:0.63rem;
+  display: block;
+}
+.toast-main image{
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+}
+.toast-main .list{
+  flex: 1;
+  padding: 0.5rem 1rem;
+}
+.toast-main .list{
+  flex: 1;
+  padding: 0.5rem 1rem;
+  text-align: left
+}
+.toast-main .list-name{
+ color: #333;
+ font-size: 0.86rem;
+  padding-left: 0.5rem
+}
+.toast-main .list-time{
+ color: #333;
+ font-size: 0.69rem;
+ padding-left: 0.5rem
+}
+.toast-main .list-price{
+ color: #ff464f;
+ font-size: 0.75rem;
+}
+.color-active{
+  color: #ff464f!important
+}
+.cat-detail .introduce .text {
+  font-size:0.69rem;
+  color:#333;
+
+}

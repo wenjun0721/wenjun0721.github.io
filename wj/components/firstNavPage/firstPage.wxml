@@ -1,0 +1,115 @@
+<!-- 导航上面三张广告图到otherPage -->
+<block wx:for="{{banTopAds}}" wx:key="index">
+  <navigator url='{{item.adURL}}' bindtap='indexClick' id='{{item.adId}}' open-type='{{item.adURLType}}'>
+    <image  src="{{item.adFile}}" class="banTopAds" mode="widthFix"/>
+  </navigator>
+</block>
+
+
+<!--轮播图-->
+<swiper style='height:380rpx;' wx:if="{{bannerLists.length>0}}" indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+  indicator-color="white" indicator-active-color="#F61628"
+  >
+    <block wx:for="{{bannerLists}}" wx:key="index">
+      <swiper-item>
+        <navigator id='{{item.adId}}' bindtap='indexClick' url="{{item.adURL}}" open-type='{{item.adURLType}}'>
+            <image src="{{item.adFile}}" style='width:100%;height:380rpx;' class="slide-image"/>
+        </navigator>
+      </swiper-item>
+    </block>
+</swiper>
+
+<!-- 导航下面三张广告图到otherPage -->
+<view  wx:if="{{banBottomAds.length>0}}">
+  <block wx:for="{{banBottomAds}}" wx:key="index">
+    <navigator url='{{item.adURL}}' id='{{item.adId}}' bindtap='indexClick' open-type='{{item.adURLType}}'>
+      <image  src="{{item.adFile}}" class="banTopAds" mode="widthFix"/>
+    </navigator>
+  </block>
+</view>
+
+  <!-- 2张广告图 -->
+  <view wx:if="{{w_index_ads_two.length>0}}" class='two_ads'>
+    <block wx:for="{{w_index_ads_two}}" wx:key="index" >
+      <navigator url='{{item.adURL}}' class='two_ads_list' id='{{item.adId}}' bindtap='indexClick' open-type='{{item.adURLType}}'>
+        <image  src="{{item.adFile}}" style='width:100%;' class="" mode="widthFix"/>
+      </navigator>
+    </block>
+  </view>
+
+
+<view style='background:#fff;'>
+  <view class="second_navs" wx:if="{{secondNav.length>0}}">
+    <block wx:for="{{secondNav}}" wx:key="index">
+      <navigator class="second_nav" bindtap='indexClick' id="{{item.id}}" url="{{item.btnUrl}}" open-type='{{item.adURLType}}'>
+          <image src="{{item.btnImg}}"/>
+          <text>{{item.btnName}}</text>
+        </navigator>
+    </block>
+  </view>
+  <!-- 二级分类下面广告位 -->
+  <view class='secondNavs_bottomAds'>
+    <block wx:for="{{buttonBottomAds}}" wx:key="index">
+      <navigator url='{{item.adURL}}' bindtap='indexClick' id='{{item.adId}}' open-type='{{item.adURLType}}'>
+        <image  src="{{item.adFile}}" class="banTopAds" mode="widthFix"/>
+      </navigator>
+    </block>
+  </view>
+  <!-- 首页第一个页面广告 -->
+  <block wx:for="{{w_index_cad_First}}" wx:key="index">
+    <navigator url='{{item.adURL}}' bindtap='indexClick' id='{{item.adId}}' open-type='{{item.adURLType}}'>
+      <image style='width:100%;' src='{{item.adFile}}' mode="widthFix"/>
+    </navigator>
+  </block>
+  <!--商品列表中间-->
+  <view class="shops_list">
+    <block wx:for="{{shopListsCenter}}" wx:key="index">
+      <navigator id='{{item.goodsId}}' class="shops" url="/pages/group/groupDetail?goodsId={{item.goodsId}}" >
+        <image mode="widthFix" class="shops_img" src="{{item.goodsImg}}" />
+          <view class="shops_intro">
+            <view class="shops_title">
+              <view  style='display:inline-block'>
+                <!-- <image class='shop_preIcon' src='/images/details_img_selfCell.png'></image> -->
+                <image wx:if="{{item.isSelf}}" class='shop_preIcon' src='/images/details_img_frank.png'></image>
+              </view>
+              {{item.goodsName}}
+            </view>
+            <view class="shops_detail">
+              <text class="shops_price">¥{{item.shopPrice}}</text>
+              <text class="shops_sales">¥{{item.marketPrice}}</text>
+            </view>
+            <view class='shops_btn'>去拼单</view>
+          </view>
+        </navigator>
+    </block>
+  </view>
+  <!-- 首页第二个页面广告 -->
+  <block wx:for="{{w_index_cad_Second}}" wx:key="index">
+    <navigator url='{{item.adURL}}' bindtap='indexClick' id='{{item.adId}}' open-type='{{item.adURLType}}'>
+      <image style='width:100%;' src='{{item.adFile}}' mode="widthFix"/>
+    </navigator>
+  </block>
+  <!--商品列表-->
+  <view class="shops_list">
+    <block wx:for="{{shopLists}}" wx:key="index">
+      <navigator id='{{item.goodsId}}' class="shops" url="/pages/shopsDetail/shopsDetail?goodsId={{item.goodsId}}" >
+        <image mode="widthFix" class="shops_img" src="{{item.goodsImg}}" />
+          <view class="shops_intro">
+            <text class="shops_title">{{item.goodsName}}</text>
+            <view class="shops_detail">
+              <text class="shops_price">¥{{item.shopPrice}}</text>
+              <text class="shops_sales">¥{{item.marketPrice}}</text>
+            </view>
+            <view class='shops_btn'>立即购买</view>
+          </view>
+        </navigator>
+    </block>
+  </view>
+</view>
+
+  
+
+
+  <!-- 底部loading -->
+  <view style='text-align:center'>{{loadingText}}</view>

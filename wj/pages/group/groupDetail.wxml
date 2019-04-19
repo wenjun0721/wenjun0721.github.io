@@ -1,0 +1,318 @@
+
+<view wx:if="{{noGoods}}" style='text-align:center;padding-top:50rpx;'>
+  对不起你查看的商品不存在或已下架
+</view>
+<view  wx:if="{{!noGoods}}">
+<!-- 轮播图展示 -->
+ <swiper style='height:750rpx;' indicator-dots="true"
+  autoplay="true" interval="3000" duration="500"
+  indicator-color="#ccc" indicator-active-color="#F61628"
+  id='data-0'
+  >
+    <block wx:for="{{bannerLists}}" wx:key="index">
+      <swiper-item>
+          <image src="{{item}}" style='width:100%;height:750rpx;' class="slide-image"/>
+      </swiper-item>
+    </block>
+</swiper>
+<view class='groupGoods_info'>
+  <image class='groupGoods_info_bg' src='/images/spellGroup/details_price_bg.png'></image>
+  <view class='groupGoods_info_content'>
+    <view>
+      <view class='groupGoods_info_content_price'>¥{{groupons.grouponPrice}}</view>
+      <view class='groupGoods_info_content_marketPrice'>单买价¥{{shopsPrice}}</view>
+    </view>
+    <view style='width:300rpx;'>
+      <view class='groupGoods_info_content_timeTitle'>距拼购结束还剩：</view>
+      <view class='groupGoods_info_content_time'>{{goodsTime.day}}天{{goodsTime.hour}}：{{goodsTime.min}}：{{goodsTime.second}}</view>
+    </view>
+  </view>
+</view>
+<view class='shops_info'>
+  <view class='shops_info_top'>
+    <view  class='shops_title'>{{goodsName}}</view>
+    <view style='position:relative'>
+      <button plain="true" class='shareBtn' open-type='share'></button>
+      <image src='../../images/share.png' class='pageHeader_tool' />
+    </view>
+  </view>
+  <view  class='shops_tag' >
+    <view class='shops_tag_text'  wx:if="{{isSelf}}">自营</view>
+    <view class='shops_tag_text'  wx:if="{{isFrank}}">包邮</view>
+    {{goodsTips}}
+  </view>
+
+  <!-- <view class='text_row'>
+    <view class='t2'>分享购买可获{{shareMoney.shareMoney}}元佣金</view>
+  </view> -->
+</view> 
+  <!-- 点击复制文字 -->
+  <view class='getClipboard' wx:if="{{goodsWiki!=''}}">
+    <view class='getClipboard_title'>
+      <text>产品百科</text>
+      <view class='setClipboard' bindtap='setClipboard'>点击复制</view>
+    </view>
+    <view class='getClipboard_text'>{{goodsWiki}}</view>
+  </view> 
+<view class='spellGroup_groupsInfo'>
+  <view class='spellGroup_groupsInfo_left'>
+    <image class='spellGroup_groupsInfo_left_img' src='/images/spellGroup/details_sales_bg.png'></image>
+    <view class='spellGroup_groupsInfo_left_text'>已拼{{groupons.orderNum}}件</view>
+  </view>
+  <view class='spellGroup_groupsInfo_right' bindtap='showModal'>
+    {{groupons.grouNum}}人正在拼团
+    <image class='shops_row_toggleIcon ' src='/images/details_btn_more.png'></image>
+  </view>
+</view>
+<view class='spellGroup_groupsInfoList'>
+  <block wx:for='{{groupLists}}' wx:key="index">
+    <view class='spellGroup_groupsInfo_list' wx:if="{{index<2}}">
+      <image class='spellGroup_groupsInfo_list_img' src='{{item.userPhoto}}'></image>
+      <view class='spellGroup_groupsInfo_list_name'>{{item.userName}}</view>
+      <view class='spellGroup_groupsInfo_list_info'>
+        <view class='spellGroup_groupsInfo_list_info_top'>还差<text style='color:#EF1E31;'>{{item.redNum}}</text>人拼成功</view>
+        <view class='spellGroup_groupsInfo_list_info_bottom'>剩余{{times[index].hour}}:{{times[index].min}}:{{times[index].second}}</view>
+      </view>
+      <view wx:if="{{times[index].over=='no'}}" bindtap='goSpell' data-id='{{item.groupNo}}' class='spellGroup_groupsInfo_list_goGroup'>去拼单</view>
+      <view wx:if="{{times[index].over=='yes'}}" class='spellGroup_groupsInfo_list_goGroupOver'>已结束</view>
+    </view>
+  </block>
+</view>
+<view class='spellGroup_intro'>
+  <view class='spellGroup_intro_left'>拼团玩法</view>
+  <view class='spellGroup_intro_right'>详情<image src='../../images/details_btn_more.png' class="shops_row_toggleIcon "/></view>
+</view>
+<view style='padding:10rpx 30rpx;'>
+  <image src='/images/spellGroup/details_img_rule@2x.png' style='width:100%;' mode='widthFix'></image>
+</view>
+
+<view class='spellGroup_modal' wx:if="{{modelShow}}">
+  <view class='spellGroup_modal_body'>
+    <image src='/images/spellGroup/groupbuying_btn_close.png' bindtap='hideModal' class='spellGroup_modal_body_close'></image>
+    <view class='spellGroup_modal_body_title'>等待成团</view>
+    <scroll-view scroll-y="true" class='spellGroup_modal_bodyList'>
+      <block wx:for='{{groupLists}}' wx:key="index">
+        <view class='spellGroup_groupsInfo_list'>
+          <image class='spellGroup_groupsInfo_list_img' src='{{item.userPhoto}}'></image>
+          <view class='spellGroup_groupsInfo_list_name'>{{item.userName}}</view>
+          <view class='spellGroup_groupsInfo_list_info'>
+            <view class='spellGroup_groupsInfo_list_info_top'>还差<text style='color:#EF1E31;'>{{item.redNum}}</text>人拼成功</view>
+            <view class='spellGroup_groupsInfo_list_info_bottom'>剩余{{times[index].hour}}:{{times[index].min}}:{{times[index].second}}</view>
+          </view>
+          <view wx:if="{{times[index].over=='no'}}" bindtap='goSpell' data-id='{{item.groupNo}}'  class='spellGroup_groupsInfo_list_goGroup'>去拼单</view>
+          <view wx:if="{{times[index].over=='yes'}}" class='spellGroup_groupsInfo_list_goGroupOver'>已结束</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+<!-- 商家店铺 -->
+<view class='store'>
+  <view class='store_info' bindtap='goShop'>
+    <view class='left'>
+      <image src='{{shopImg}}' class='store_img'/>
+      <view class='right'>
+        <view class='store_title'>{{shopName}}</view>
+        <view class='store_title' wx:if="{{shopCat}}">主营：{{shopCat || ''}}</view>
+      </view>
+    </view>
+    <navigator class='right' id='{{shopId}}'>
+      进店逛
+    </navigator>
+  </view>
+  <!-- <view class='store_grade'>
+    <view>商品评分：<text>{{goodsScore}}</text></view>
+    <view>时效评分：<text>{{timeScore}}</text></view>
+    <view>服务评分：<text>{{serviceScore}}</text></view>
+  </view> -->
+</view>
+<!-- 项目详情 -->
+<block wx:for="{{goodsDesc}}" wx:key="index">
+  <image src='{{item}}' mode='widthFix' style='width:100%;'></image>
+</block>
+
+<!-- 为您推荐 -->
+<!-- <view class='recommend'>
+  <view class='recommend_title'>为您推荐</view>
+  <view class='recommendLists'>
+    <block wx:for="{{recommendLists}}" wx:key="index">
+      <navigator url='{{item.url}}' 
+      class="recommend_list {{index%3==1?'recommend_list_middle':''}}">
+        <image class='recommend_list_img' src='{{item.src}}'></image>
+        <view  class='recommend_list_title'>{{item.title}}</view>
+        <view class='recommend_list_price'>¥<text>{{item.price}}</text></view>
+      </navigator>
+    </block>
+  </view>
+</view>
+<navigator class='look_all' url='/'>查看更多 <image src="../../images/details_btn_more.png" /> </navigator> -->
+
+<!-- 底部导航 -->
+ <view class='footer'>
+  <navigator class='footer_left' url='/pages/index/index' open-type='switchTab'>
+    <image src='../../images/details_tab_home.png'></image>
+    <view class='footer_left_text'>首页</view>
+  </navigator>
+  <view class='footer_left' bindtap='toggleAttension' data-id="{{attensionId}}">
+    <image  src="{{attensionId!=0?'../../images/details_tab_focus_s.png':'../../images/details_tab_focus_n.png'}}"></image>
+    <view class="footer_left_text {{attensionId!=0?'isSelect':''}}">关注</view>
+  </view>
+  <view class='footer_right okBuy' wx:if="{{whether==1}}"  bindtap='buyCart' >
+    <view>
+      <view>¥{{groupons.grouponPrice}}</view>
+      <view wx:if="{{groupNo}}">加入拼团</view>
+      <view wx:else>发起拼团</view>
+    </view>
+  </view>
+    <view class='footer_right aloneBuy' bindtap='addCart'  wx:if="{{whether==1}}">
+    <view>
+      <view>¥{{shopsPrice}}</view>
+    单独购买</view>
+  </view>
+  <view class='footer_right ' wx:if="{{whether!=1}}">
+    <view>
+      <view>¥{{groupons.grouponPrice}}</view>
+      <view>发起拼团</view>
+    </view>
+  </view>
+    <view class='footer_right'  wx:if="{{whether!=1}}">
+    <view>
+      <view>¥{{shopsPrice}}</view>
+    单独购买</view>
+  </view>
+</view> 
+
+<!-- 添加购物车 -->
+<view hidden='{{addCart}}' class='addCart' catchtap='addCartBody'>
+</view>
+<!-- 如果有规格时候 -->
+<view hidden='{{addCart}}' wx:if="{{cartData.spec.length>0}}"  class='addCart_body'>
+  <view class='addCart_info'>
+    <view  class='addCart_info_img'>
+      <image src='{{cartData.img}}'></image>
+    </view>
+    <view class='right'>
+        <text class='addCart_info_t1'>¥{{cartData.shopPrice}}</text>
+        <view wx:if="{{cartData.shareMoney && isSharer!=0}}">可获得{{cartData.shareMoney}}颗爱豆</view>
+        <view class='select_one' wx:if="{{cartData.specStr}}">已选：{{cartData.specStr}}</view>
+    </view>
+  </view>
+  <!-- 选取规格为图片 -->
+  <block  wx:for="{{cartData.spec}}" wx:for-index="parentIndex" wx:key="abc">
+    <view class='addCartClassify'>
+      <view class='addCart_classify_title'>{{item.catName}}</view>
+      <scroll-view scroll-y="true" class='addCartClassifyList'>
+        <block wx:for="{{item.list}}" wx:key="index">
+            <image wx:if="{{item.itemImg}}" bindtap='toggleSpecImg' data-index="{{parentIndex+'-'+index}}"  class="specImg {{item.select=='yes'?'selectSpecImg':''}}" src='{{item.itemImg}}'></image>
+            <view wx:else bindtap='toggleSpecText'  data-index="{{parentIndex+'-'+index}}" class="addCartClassify_list {{item.select=='yes'?'active':''}}" id='{{item.id}}'>{{item.itemName}}</view>
+        </block>
+      </scroll-view>
+    </view>
+  </block>
+  <!-- 拼团 -->
+  <view class='addCartClassify' wx:if="{{!groupNo}}">
+    <view class='addCart_classify_title'>拼团</view>
+    <scroll-view scroll-y="true" class='addCartClassifyList'>
+      <view class="addCartClassify_list {{aloneBuy?'active':''}}" bindtap='aloneBuy'>单独购买</view>
+      <block wx:for="{{groupons.son}}" wx:key="index">
+        <view data-id="{{item.specId}}" data-index="{{index}}" data-grouponId="{{item.grouponId}}" data-num="{{item.num}}" bindtap='groupBuy' class="addCartClassify_list {{groupBuyIndex==index?'active':''}}">{{item.num}}人团</view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class='addCartNum'>
+    <view class='addCartNum_title'>购买数量</view>
+    <view class='addCart_num'>
+      <view class='left'>库存：<text>{{cartData.stock}}{{goodsUnit}}</text></view>
+      <view class='right'>
+        <view class='addCart_num_reduce' bindtap='onReduce'>-</view>
+        <input type='number' value='{{cartNum}}' bindblur="onBlur" class='addCart_num_input' bindfocus='onFocus'></input>
+        <view class='addCart_num_add' bindtap='onAdd'>+</view>
+      </view>
+    </view>
+  </view>
+  <view class='addCartOk' bindtap='addCartOk'>
+    确定
+  </view>
+</view>
+<!-- 如果没有规格的时候 -->
+<view hidden='{{addCart}}' wx:else class='addCart_body'>
+  <view class='addCart_info'>
+    <image src='{{cartData.img}}' class='addCart_info_img'></image>
+    <view class='right'>
+        <text class='addCart_info_t1'>¥{{cartData.shopPrice}}</text>
+        <view wx:if="{{cartData.shareMoney && isSharer!=0}}">可获得{{cartData.shareMoney}}颗爱豆</view>
+        <view class='select_one' wx:if="{{cartData.specStr}}">已选：{{cartData.specStr}}</view>
+    </view>
+  </view>
+  <!-- 拼团 -->
+  <view class='addCartClassify' wx:if="{{!groupNo}}">
+    <view class='addCart_classify_title'>拼团</view>
+    <scroll-view scroll-y="true" class='addCartClassifyList'>
+      <view class="addCartClassify_list {{aloneBuy?'active':''}}" bindtap='aloneBuy'>单独购买</view>
+      <block wx:for="{{groupons.son}}" wx:key="index">
+        <view data-id="{{item.specId}}" data-index="{{index}}" data-grouponId="{{item.grouponId}}" data-num="{{item.num}}" bindtap='groupBuy' class="addCartClassify_list {{groupBuyIndex==index?'active':''}}">{{item.num}}人团</view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class='addCartNum'>
+    <view class='addCartNum_title'>购买数量</view>
+    <view class='addCart_num'>
+      <view class='left'>库存：<text>{{cartData.stock}}</text></view>
+      <view class='right'>
+        <view class='addCart_num_reduce' bindtap='onReduce'>-</view>
+        <input type='number' value='{{cartNum}}' bindblur="onBlur" class='addCart_num_input' bindfocus='onFocus'></input>
+        <view class='addCart_num_add' bindtap='onAdd'>+</view>
+      </view>
+    </view>
+  </view>
+  <view class='addCartOk' bindtap='addCartOk'>
+    确定
+  </view>
+</view>
+
+
+<modal hidden="{{modalHidden}}" confirm-text="确定"  
+cancel-text="取消" bindconfirm="modalBindcancel" bindcancel="modalBindcancel">  
+  <view  class="modal_text">
+   {{tips}}  
+  </view>
+</modal> 
+
+<!-- 选择已有收货地址或者重新选择地址 -->
+<view  class='areaSelectFixed' wx:if="{{isSelectFixed}}">
+  <scroll-view scroll-y="true" class='areaSelectFixedBody'>
+      <view class='areaSelectFixed_title'>
+            <image class='areaSelectFixed_title_img' bindtap='toggleSelectArea' src='/images/nav_btn_back_new.png'></image>
+        配送至
+      </view>
+      <view wx:if="{{isSelectOther}}">
+        <block wx:for="{{userAddressList}}" wx:key="index">
+          <view bindtap='selectAddressArea' class='areaSelectFixed_addressList' id="{{item.addressId}}">
+            {{item.pathName}}
+          </view>
+        </block>
+        <view class='areaSelectFixed_otherList' bindtap='selectOtherArea'>其他地区</view>
+      </view>
+
+      <view wx:if="{{!isSelectOther}}">
+        <view class='addressLists'>
+          <view class='address_grade'>
+            <view wx:if="{{areaGrade!=0}}" bindtap='selectAllArea' class='address_list' bindtap='backGrade'>返回上一级</view>
+            <view wx:if="{{areaGrade==0}}" bindtap='selectAllArea' id='0' class='address_list'>全国</view>
+            <view wx:if="{{areaGrade==1}}" bindtap='selectAllArea' class='address_list'>全省</view>
+            <view wx:if="{{areaGrade==2}}" bindtap='selectAllArea' class='address_list'>全市</view>
+            <view wx:if="{{areaGrade==3}}" bindtap='selectAllArea' class='address_list'>全区</view>
+            <view wx:if="{{areaGrade==4}}" bindtap='selectAllArea' class='address_list'>全部街道</view>
+          </view>
+          <view class='address_area'>
+            <block wx:for="{{areas}}" wx:key="index">
+              <view class="address_list {{index%3==1?'middle':''}}" data-val="{{item.areaName}}" data-parentId="{{item.parentId}}" id='{{item.areaId}}' bindtap='areaSelect'>{{item.areaName}}</view>
+            </block>
+          </view>
+        </view>
+      </view>
+
+  </scroll-view>
+</view>
+
+</view>

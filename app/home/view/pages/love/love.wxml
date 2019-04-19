@@ -1,5 +1,7 @@
-
-
-<view class="container" wx:for="{{loves}}" wx:key="{{index}}">
-    <view class="start"><image src="{{webViewUrl}}/upload/love/{{item.img}}" /></view> 
-</view>
+<swiper class="swiper"  autoplay="true" interval="5000" duration="1000">  
+      <block wx:for="{{loves}}" wx:for-index="index">  
+        <swiper-item>  
+          <image src="{{webViewUrl}}/upload/love/{{item.img}}" class="slide-image" mode="aspectFill"/>  
+        </swiper-item>  
+      </block>  
+    </swiper>

@@ -1,0 +1,12 @@
+var filter = {
+  phoneNumber: function (phone) {
+    if (phone) {
+      phone = phone.substring(0, 3) + '****' + phone.substring(7);
+    }
+    return phone;
+  },
+}
+
+module.exports = {
+  phoneNumber: filter.phoneNumber
+}

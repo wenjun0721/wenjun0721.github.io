@@ -1,8 +1,33 @@
 
 
-<view>
-<input type="text" name="toUser" placeholder="您想说的话" />
-<input type="text" name="fromUser" placeholder="您想说的话" />
-<input type="text" name="text" placeholder="您想说的话" />
-<input type="button"  bt />
+<!-- <view class='editBox'>
+    <view class='edit_list' >
+
+        <input type='password'  data-role="oldPassword" bindinput="listenerInput" placeholder="她的笔名（可空）"
+        ></input>
+
+        <input type='password'  data-role="oldPassword" bindinput="listenerInput" placeholder="您的笔名（可空）"
+        ></input>
+
+        <textarea type='password'  data-role="oldPassword" bindinput="listenerInput" placeholder="您想说的话，最多200字哦"
+        ></textarea>
+
+        <view class='login_btn1' bindtap='background'>请选择一张您喜欢的背景图哦</view> 
+    </view>
+    <view class='login_btn' bindtap='require'>预览</view> 
+</view> -->
+
+<view class='toast-box' hidden='{{!backShow}}'>
+	<view class='cat-products flex flex-zLeftRight'>
+        <block wx:for="{{imageList}}" wx:key="index">
+          <view class="block-card flex">
+            <view class='card' bindtap='goCatDetail'>
+              <view class='card-body'>
+                <image bindtap='previewImg' data-index='{{index}}' src='{{item}}' mode='aspectFill'></image>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+
 </view>

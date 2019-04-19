@@ -1,0 +1,111 @@
+<!--pages/mine-account/mine-account.wxml-->
+
+<view class="mine-account">
+  <!-- <view class="mine-detail-header">
+        <span>账户管理</span>
+    </view> -->
+  <view class="content text-center">
+  <navigator url='/pages/mine-account/uploadHeader'>
+    <a class="list flex flex-zBetween flex-ac" id="picture">
+      <h3>头像</h3>
+      <view class='flex flex-ac' >
+        <image src="{{headerImg}}"></image>
+        <i class="icon iconfont icon-you"></i>
+      </view>
+    </a>
+      </navigator>
+    <a class="list flex flex-zBetween flex-ac">
+      <h3>用户名</h3>
+      <view>
+        <p>{{loginName}}</p>
+      </view>
+    </a>
+    <a class="list flex flex-zBetween flex-ac" data-toggle="modal" data-target="#myModal">
+      <h3>昵称</h3>
+      <view bindtap='showModal'>
+        <p>{{userName}}</p>
+        <i class="icon iconfont icon-you"></i>
+      </view>
+    </a>
+    <a class="list flex flex-zBetween flex-ac" id="gender">
+      <h3>性别</h3>
+     <picker bindchange="bindPickerChange" style='display:flex' value="{{index}}" range="{{array}}">
+      <p class="picker">
+           {{array[index]}}
+          <i class="icon iconfont icon-you"></i>
+        </p>
+    </picker>
+    </a>
+    <a class="list flex flex-zBetween flex-ac" data-toggle="modal" data-target="#wechatModal">
+      <h3>微信号</h3>
+      <view bindtap='wechatModal'>
+        <p>{{userWechat}}</p>
+        <i class="icon iconfont icon-you"></i>
+      </view>
+    </a>
+  </view>
+  <!--弹窗 start-->
+  <view class='toast-box' hidden='{{!showModal}}'>
+    <view class='toastbg' bindtap='hideModal'></view>
+    <view class='showToast'>
+      <view class='toast-title flex flex-ac flex-zBetween'>
+        <button class='button1' bindtap='hideModal'>取消</button>
+        <text>修改昵称</text>
+        <button class='button1' style='color:#fff;margin:0 1rem 0 0'>取消</button>
+      </view>
+      <view class='toast-main'>
+        <view class='toast-input'>
+          <text>昵称：</text>
+          <input class='editNameInput' bindinput='input'  placeholder='新昵称'></input>
+        </view>
+      </view>
+      <view class='toast-button'>
+        <view class='button2'>
+          <button bindtap='require'>保存</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+    <!--弹窗 start-->
+  <view class='toast-box' hidden='{{!wechatModal}}'>
+    <view class='toastbg' bindtap='hideModal'></view>
+    <view class='showToast'>
+      <view class='toast-title flex flex-ac flex-zBetween'>
+        <button class='button1' bindtap='hideModal'>取消</button>
+        <text>修改微信号</text>
+        <button class='button1' style='color:#fff;margin:0 1rem 0 0'>取消</button>
+      </view>
+      <view class='toast-main'>
+        <view class='toast-input'>
+          <text>微信号：</text>
+          <input class='editNameInput' data-role="userWechat" bindinput='listenerInput'  placeholder='请输入微信号'></input>
+        </view>
+      </view>
+      <view class='toast-button'>
+        <view class='button2'>
+          <button bindtap='requireWechat'>保存</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--弹窗 end-->
+  <!--性别弹出框start-->
+  <!-- <view class="bottom_dialog  gender_dialog">
+        <view>
+            <button id="nan">男</button>
+            <button id="nv">女</button>
+            <button id="bottom_dialog_cancel">取消</button>
+        </view>
+    </view> -->
+  <!--底部弹出框end-->
+  <!--底部弹出框start-->
+  <!-- <view class="bottom_dialog picture_dialog">
+        <view>
+            <button id="photograph">拍照</button>
+            <button id="gallery">照片图库</button>
+            <button id="bottom_dialog_cancel">取消</button>
+        </view>
+    </view> -->
+  <!--底部弹出框end-->
+</view>

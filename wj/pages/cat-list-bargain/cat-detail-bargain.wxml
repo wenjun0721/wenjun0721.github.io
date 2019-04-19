@@ -1,0 +1,216 @@
+<!--pages/cat-list-bargain/cat-detail-bargain.wxml-->
+<view style="background-color: #05b9ec;" class="cat-detail ">
+  <view>
+    <view class="content">
+      <view id="goods" class="scroll_detail">
+        <view class="cat-detail-image">
+          <view class='slider-banner'>
+            <swiper indicator-dots="true" autoplay="true" interval="5000	" duration="1000" circular="true">
+              <block wx:for="{{imgUrls}}" wx:key="1">
+                <swiper-item>
+                  <image src="{{item}}" class="slide-image" mode='aspectFill' />
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>
+        </view>
+        <view class="card">
+          <view class="card-header flex flex-ac flex-zBetween">
+            <h3 style="color: #07b9ed;font-weight: 800;font-size: 0.88rem;">
+              砍价活动剩余：
+              <em id="day_show">{{countDownDay}}天</em>
+              <em id="hour_show">{{countDownHour}}时</em>
+              <em id="minute_show">{{countDownMinute}}分</em>
+              <em id="second_show">{{countDownSecond}}秒</em>
+            </h3>
+          </view>
+
+          <view class="card-body ">
+            <view class="flex flex-ac flex-zBetween flex-zLeftRight">
+              <view class="flex flex-ac">
+                <h3>原价：¥218</h3>
+                <text class='h4'>底价：¥218</text>
+                <span>包邮</span>
+              </view>
+              <!-- <view class="flex flex-ac"> -->
+                <!-- <i class="icon iconfont icon-liwuhuodong"></i> -->
+                <!-- <button open-type='share' class='flex flex-ac btn-no'>
+                  <p>分享</p>
+                </button> -->
+              <!-- </view> -->
+            </view>
+
+            <view>
+              <h2 style="margin-top: 0.5rem;font-size:0.75rem">
+                洗护套装（湿巾80抽*5 + 宝宝水霜（面霜）50g 送储奶袋10片装）
+              </h2>
+            </view>
+
+            <!-- <view class="flex flex-ac flex-zBetween">
+              <h4>
+                <i class="iconfont icon-weizhi"></i>广东省 深圳市
+              </h4>
+              <h4 bindtap='showAddress'>
+                查看可配送区域
+              </h4>
+            </view> -->
+            <!-- <view style="display:{{isShowAddress?'block':'none'}}">
+              <h4>
+                北京，天津，上海，重庆，新疆，西藏，宁夏，内蒙古，广西，黑龙江，吉林，辽宁，河北，山东，江苏，安徽，浙江，福建，广东海南云南贵州，四川，湖南，湖北，河南，山西陕西，甘肃，青海，江西，台湾，香港，澳门，兰州
+              </h4>
+            </view> -->
+          </view>
+          <view class='card-footer'>
+            <view class='flex flex-ac flex-zBetween'>
+              <view class="flex flex-ac">
+                <image src="../../static/heard.png"></image>
+                <view class="flex flex-ac">
+                  <h4>KAMEN</h4>
+                  <span>旗舰</span>
+                </view>
+              </view>
+              <view class="card-footer-right">
+                <button bindtap="goCatStore">进店看看</button>
+              </view>
+            </view>
+            <view class='flex flex-ac flex-zBetween'>
+              <h3>库存数：5</h3>
+              <h3>成交数：5</h3>
+              <h3>参与人数：5</h3>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view id="details" class="scroll_detail">
+        <view class='introduce'>
+            <h3>亲爱的XX:</h3>
+          <view class='text'>已经有<text class='color-active'>0</text>位好友帮你砍价，当前价格为<text class='color-active'>1367.2</text>元，继续加油喔！</view>
+        </view>
+        <view class='introduce flex flex-zBetween flex-ac'>
+          <h3>亲友团出刀</h3>
+          <view class="flex flex-ac" bindtap='showAssembleModal' style='color: #ed1b5b;'>
+            <text>¥13.75</text>
+            <view class="icon iconfont icon-you"></view>
+          </view>
+        </view>
+
+        <view class='middle-ad'>
+          <navigator>
+            <image mode='widthFix' src="http://tie.027cgb.com/612602/recruit_boss.png" style="width: 100%"></image>
+          </navigator>
+          <!--商品介绍图 start-->
+          <block wx:for-items="{{detailImg}}" wx:key="name">
+            <image class="image_detail" src="{{item}}" mode='widthFix' />
+          </block>
+          <!--商品介绍图 end-->
+        </view>
+      </view>
+    </view>
+    <!-- 购买弹出框  start -->
+    <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+    <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+      <view class="bottom_dialog shopping_dialog">
+        <em style="height: 3rem;background: none;width:100%;display: block;"></em>
+        <em style="display: inline-block;width:100%;background: #fff;">
+          <em class="flex flex-ac flex-zBetween" style='padding:0 1.5rem 0.5rem;'>
+            <em class="flex flex-cEnd flex-nowrap">
+              <image class="image" src="http://img.027cgb.com/612602/flex_colmm_1.png" mode='aspectFill'> </image>
+              <em>
+                <h4>名称名称名称名称名称名称名称名称名称名称</h4>
+                <h3>¥140.00</h3>
+              </em>
+            </em>
+            <em class="bottom_dialog_cancel" bindtap='hideModal'>
+              <i class="icon iconfont icon-shanchu3" style="color: #999"></i>
+            </em>
+          </em>
+          <scroll-view scroll-y='true' style='height:45vh;padding:0 1.5rem;width:calc(100% - 3rem);'>
+            <h2 style="margin: 0.5rem 0">规格</h2>
+            <ul class="image-list">
+              <li class="active" style="background-image: url(../../static/heard.png)"></li>
+              <li style="background-image: url(http://img.027cgb.com/612602/flex_colmm_1.png)"></li>
+              <li style="background-image: url(http://img.027cgb.com/612602/flex_colmm_1.png)"></li>
+              <li style="background-image: url(http://img.027cgb.com/612602/flex_colmm_1.png)"></li>
+              <li style="background-image: url(../../static/heard.png)"></li>
+              <li style="background-image: url(http://img.027cgb.com/612602/flex_colmm_1.png)"></li>
+              <li style="background-image: url(http://img.027cgb.com/612602/flex_colmm_1.png)"></li>
+              <li style="background-image: url(http://img.027cgb.com/612602/flex_colmm_1.png)"></li>
+            </ul>
+            <h2 style="margin: 0.5rem 0">规格</h2>
+            <ul class="txt-list">
+              <li class="active">黄色</li>
+              <li>绿色</li>
+              <li>绿色</li>
+              <li>绿色</li>
+              <li>绿色</li>
+              <li>绿色</li>
+              <li>绿色</li>
+              <li>绿色</li>
+            </ul>
+            <h2 style="margin: 0.5rem 0">拼团</h2>
+            <ul class="txt-list">
+              <li>单独购买</li>
+              <li class="active">2人团</li>
+            </ul>
+            <h2 style="margin: 0.5rem 0">数量</h2>
+            <em class="flex flex-ac flex-zBetween" style="margin:0.5rem 0;">
+              <h2>库存：
+                <span class="number">{{stockNum}}</span> 瓶</h2>
+              <em class='flex flex-ac'>
+                <button class='btn-edit-num' bindtap="jian">-</button>
+                <input id="zhi" type="number" value="{{exitNum}}" bindinput="inputNum" />
+                <button class='btn-edit-num' bindtap="jia">+</button>
+              </em>
+            </em>
+          </scroll-view>
+          <button bindtap="hideModal">确定</button>
+        </em>
+      </view>
+    </view>
+    <!-- 购买弹出框 end -->
+    <!--拼团弹窗 start-->
+    <view class='toast-box' hidden='{{!showAssembleModal}}'>
+      <view class='toastbg' bindtap='hideAssembleModal'></view>
+      <view class='showToast'>
+        <view class='toast-title flex flex-ac flex-zBetween'>
+          <button class='button1' bindtap='hideAssembleModal'>取消</button>
+          <text>亲友团出刀</text>
+          <button class='button1' style='color:#fff;margin:0 1rem 0 0'>取消</button>
+        </view>
+        <view class='toast-main' style='margin-bottom:1rem;padding:0;height:44vh;border-radius:0 0 16rpx 16rpx'>
+          <view wx:for='{{friends}}' wx:key='index' class='flex flex-zBetween list flex-ac'>
+            <view class='flex'>
+              <image src='{{item.image}}'></image>
+              <view>
+                <view class='list-name'>{{item.name}}</view>
+                <text class='list-time'>{{item.time}}</text>
+              </view>
+            </view>
+         <view class='list-price'>帮砍：¥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--拼团弹窗 end-->
+    <view class="footer flex flex-ac flex-zBetween flex-zLeftRight">
+      <view class='flex flex-ac'>
+        <navigator bindtap='goIndex'>
+          <i class="icon iconfont icon-shouye" style="color:#07b9ed"></i>
+        </navigator>
+        <navigator id='call' bindtap='showtip'>
+          <i class="icon iconfont icon-xiaoxi2" style="color:#eeeeee"></i>
+        </navigator>
+        <navigator id='collect' bindtap="addLike">
+          <i class="icon iconfont {{isLike?'icon-star':'icon-xingxing'}}" style="color:#ff3a00"></i>
+          <!-- <i class="icon iconfont icon-xingxing" style="color:#ff3a00"></i> -->
+        </navigator>
+      </view>
+      <view class="flex flex-ac" style='padding-left:0'>
+        <button style="background-color: #07b9ed;" class="add-cart" open-type='share'>找亲友帮忙砍刀</button>
+        <button style="background-color: #ff464f;" bindtap="showModal">
+        立即下单
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

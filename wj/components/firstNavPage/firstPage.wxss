@@ -1,0 +1,183 @@
+
+.second_navs{
+  width:94%;
+  margin:0 auto;
+  display: flex;
+  flex-wrap:wrap;
+  padding-bottom: 24rpx;
+  background: #fff;
+}
+.second_nav{
+  width:20%;
+  text-align: center;
+  margin-top:26rpx;
+  background: #fff;
+}
+.second_nav image{
+  width:76rpx;
+  height: 76rpx;
+  display: block;
+  margin:0 auto;
+}
+.second_nav text{
+  font-size: 20rpx;
+  color:#666;
+  margin-top: 4rpx;
+}
+
+
+.ad{
+  border-top: 1px solid #F8EEE5;
+  border-bottom: 1px solid #F8EEE5;
+  padding:18rpx 30rpx;
+}
+.adText{
+  color:#FF3436;
+  font-size: 34rpx;
+}
+
+
+.quality_goods{
+  margin-bottom: 16rpx;
+}
+.q_goods_head{
+  height:40rpx;
+  margin-top: 30rpx;
+  margin-bottom: 44rpx;
+}
+.q_goods_head>image{
+  height:40rpx;
+  width: 12rpx;
+  float: left
+}
+.q_goods_title{
+  font-size: 26rpx;
+  color:#333;
+  margin-left: 16rpx;
+  float: left;
+  height:40rpx;
+  line-height: 42rpx;
+}
+.q_goods_btn{
+  float: right;
+  height: 40rpx;
+  line-height: 42rpx;
+}
+.q_goods_btn text{
+  color:#666;
+  font-size: 22rpx;
+}
+.q_goods_btn image{
+  width:50rpx;
+  height:50rpx;
+  vertical-align: middle;
+}
+.q_goods_link{
+  display: inline-block;
+  margin:0 30rpx;
+}
+.q_goods_link image{
+  width: 174rpx;
+  height:174rpx;
+}
+.q_goods_link text{
+  display: block;
+  text-align: center;
+}
+.quality_price{
+  color: #F51628;
+  font-size: 26rpx;
+}
+.quality_initPrice{
+  color:#666;
+  font-size: 22rpx;
+  text-decoration-line: line-through;
+}
+
+
+.shops_list{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background: #f8f8f8;
+  margin-top:-7rpx;
+}
+.shops{
+  width:49.2%;
+  background: #fff;
+  margin-bottom: 10rpx;
+  box-shadow: 2rpx 3rpx 6rpx #d1d0d0;
+  border-radius:10rpx;
+}
+.shops_img{
+  height:370rpx;
+  width:100%;
+  margin-top: -1rpx;
+}
+.shops_title{
+  color:#333;
+  font-size: 12px;
+  word-break:break-all;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  min-height: 34px;
+}
+.shop_preIcon{
+  width: 60rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-right: 9rpx;
+}
+.shops_intro{
+  padding:10rpx 13rpx;
+}
+.shops_detail{
+  margin-top: 10rpx;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+.shops_price{
+  color:#F51628;
+  font-size: 30rpx;
+}
+.shops_sales{
+  color:#666;
+  font-size: 22rpx;
+  text-decoration:line-through;
+  margin-left:10rpx;
+}
+.banTopAds{
+  width: 100%;
+
+}
+.secondNavs_bottomAds{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.secondNavs_bottomAds image{
+  width:49vw;
+  margin-bottom: 10rpx;
+}
+.shops_btn{
+  margin: 0 auto;
+  color: #fff;
+  background: #ff4e51;
+  height: 60rpx;
+  line-height: 64rpx;
+  width: 200rpx;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+.two_ads{
+  display: flex;
+}
+.two_ads_list{
+  width: 50%;
+}

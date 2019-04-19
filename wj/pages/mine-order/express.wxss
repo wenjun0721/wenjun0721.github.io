@@ -1,0 +1,13 @@
+@import "/icon.wxss";
+@import "/colorui.wxss";
+timeline time {
+width:160px;
+}
+timeline .content {
+line-height: 48rpx;
+}
+.cur{
+  position: fixed;
+  top: 0;
+}
+

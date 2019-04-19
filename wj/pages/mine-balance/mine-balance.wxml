@@ -1,0 +1,9 @@
+<!--pages/mine-balance/mine-balance.wxml-->
+<view class="mine-balance">
+    <view class="content text-center">
+        <!-- <img src="../../image/mine-balance.png"/> -->
+        <image src="../../static/mine_balance.png" style="width: 40vw" mode='widthFix'></image>
+        <h3>账户余额</h3>
+        <span>¥{{money}}</span>
+    </view>
+</view>

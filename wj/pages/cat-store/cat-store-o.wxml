@@ -1,0 +1,299 @@
+<!--pages/cat-store/cat-store.wxml-->
+<!-- 
+  <view>
+     <web-view  src="{{webViewUrl}}"  bindmessage="msgHandler" ></web-view>
+</view>
+ -->
+
+
+
+
+
+
+
+
+
+
+<view class="cat-list cat-store" style="{{shopInfo.shareRankStatus?'background:#07b9ed;':''}}">
+  <!-- <view class="header">
+        <view class="search flex flex-ac flex-zBetween flex-zLeftRight">
+            <input type="text" class="flex" placeholder="搜本店商品"/>
+        </view>
+    </view> -->
+  <view class="cat-store-name">
+    <view class="search flex flex-ac flex-zBetween flex-zLeftRight">
+      <input type="text" class="flex" bindinput='searchWord' placeholder='{{placeholder}}' />
+      <image class='search-img' bindtap='search' src='/static/search_btn.png'></image>
+
+    </view>
+    <view class="flex flex-ac flex-zBetween">
+      <view class="flex flex-ac" style="max-width: 65%">
+        <image src="{{shopInfo.shopImg}}" data-src="{{shopInfo.shopImg}}" bindtap="ImgEnlarge"></image>
+        <h4>{{shopInfo.shopName}}
+          <!-- <span wx:if="{{shopmarker!=''}}">{{shopmarker}}</span> -->
+        </h4>
+      </view>
+
+      <image bindtap='noticeShop' class=' shop_notice' wx:if="{{isFavor==0}}" src='/static/collect.png'></image>
+      <image bindtap='cancelNotice' class=' shop_notice' wx:if="{{isFavor!=0}}" src='/static/collect-s.png'></image>
+      <button bindtap='wxAppCode'>
+          <i class="icon iconfont icon-qr_code"></i>
+        </button>
+      <button open-type='share' >
+        推广
+      </button>
+
+    </view>
+    <view class="card flex flex-ac flex-zBetween flex-zLeftRight">
+      <span>
+        <i class="icon iconfont icon-vip "></i>正品商城</span>
+      <span>
+        <i class="icon iconfont icon-medal"></i>品质严选</span>
+      <span>
+        <i class="icon iconfont icon-discover"></i>全球直采</span>
+      <span>
+        <i class="icon iconfont icon-deliver"></i>售后无忧</span>
+    </view>
+  </view>
+  <view class="content">
+
+    <view class="label-box flex" wx:if="{{reward != 0}}">
+      <block wx:for="{{reward}}" wx:key="{{index}}">
+        <view class='label-li'>{{item.rewardTitle}}</view>
+      </block>
+    </view>
+    <view class="cat-store-flagship">
+      <!-- <view class="lattice flex">
+        <view class="card" style="background-image: url('http://pic.58pic.com/58pic/17/22/66/83n58PICr3E_1024.jpg')">
+          <view class="image"></view>
+          <view class=" flex flex-ac flex-hc flex-zTopBottom">
+            <text class="h4">— 免费试用 —</text>
+            <text class="h2">冬季换潮物</text>
+          </view>
+        </view>
+        <view>
+          <view class="card" style="background-image: url('http://pic.58pic.com/58pic/17/22/66/83n58PICr3E_1024.jpg')">
+            <view class="image"></view>
+            <view class=" flex flex-ac flex-hc flex-zTopBottom">
+              <text class="h4">— 免费试用 —</text>
+              <text class="h2">冬季换潮物</text>
+            </view>
+          </view>
+          <view class="card" style="background-image: url('http://pic.58pic.com/58pic/17/22/66/83n58PICr3E_1024.jpg')">
+            <view class="image"></view>
+            <view class=" flex flex-ac flex-hc flex-zTopBottom">
+              <text class="h4">— 免费试用 —</text>
+              <text class="h2">冬季换潮物</text>
+            </view>
+          </view>
+        </view>
+      </view> -->
+      <block wx:if="{{tCoupons != 0}}">
+        <view bindtap='getWebView' data-url="addon/coupon-coupons-wxindexApp" data-val="shopId={{shopInfo.shopId}}">
+          <view class="card flex flex-zBetween flex-zLeftRight" style="margin: 1rem 1.5rem ;background-color: #FFC107;padding: 0.8rem;" onclick="goAddon">
+            <span style="font-size: 0.8rem;color: #fff">领取优惠券</span>
+            <i class="icon iconfont icon-you" style="color: #fff"></i>
+          </view>
+        </view>
+      </block>
+
+      <view class="card-box">
+        <view class='card-box-label' bindtap='GetWebView' data-url="addon/bargain-goods-wxlists_app.html" data-val="areaId={{positionId}}&&shopId={{shopInfo.shopId}}"><icon class='icon-goodsnew'></icon>砍价</view>
+        <view class='card-box-label' bindtap='GetWebView' data-url="wechat/seckill/list_app.html" data-val="areaId={{positionId}}&&shopId={{shopInfo.shopId}}"><icon class='icon-time'></icon>秒杀</view>
+      </view>
+
+      <view class="card cat-detail-image" wx:if="{{groupons!=0}}">
+        <view class="flex flex-zBetween flex-ar card-header">
+          <text class='h3'>拼团抢购</text>
+          <text class='p'>— 抢购拼速度 好货有温度</text>
+        </view>
+        <view class="slider-banner">
+          <swiper  autoplay="true" interval="5000 " duration="1000" circular="true">
+            <block wx:for="{{groupons}}" wx:for-item="parent" wx:for-index="parentIndex" wx:key="index">
+              <swiper-item class='flex flex-zTopBottom' bindtap="Getgoods" data-goodsid="{{parent.goodsId}}">
+                <view class='card-body'>
+                  <view class="card-product flex flex-ac">
+                    <image src="{{parent.goodsImg}}" class="image" mode='aspectFill' />
+                    <view class="flex flex-zTopBottom flex-zBetween">
+                      <text class="p">{{parent.goodsName}}</text>
+                      <text class="h4">{{parent.grouponNum}}人想要</text>
+                      <view class="flex flex-cEnd flex-zBetween">
+                        <view class="h5">¥{{parent.grouponPrice}}
+                          <text>¥{{parent.shopPrice}}</text>
+                        </view>
+                        <button>去拼单</button>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <viem class="span">
+                  距结束：
+                  <view class="day_show em">{{times[parentIndex].date}}天</view>
+                  <view class="hour_show em">{{times[parentIndex].hour}}时</view>
+                  <view class="minute_show em">{{times[parentIndex].min}}分</view>
+                  <view class="second_show em">{{times[parentIndex].second}}秒</view>
+                </viem>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </view>
+      <!-- <video class='card' id="myVideo" src="{{videoSrc}}" poster='{{videoImage}}' controls='true' objectFit='cover'></video> -->
+      <view class="big-goods">
+        <view class="block-card goods">
+          <view class='card' wx:for="{{goodsBig}}" wx:key="index">
+            <view class='card-body'>
+              <view class="card-product flex flex-ac">
+                <image class="image" src="{{item.image}}" mode='aspectFill'></image>
+                <view class="flex flex-zTopBottom flex-zBetween">
+                  <text class="p">{{item.title}}</text>
+                  <text class="h4">{{item.num}}想要</text>
+                  <view class="flex flex-cEnd flex-zBetween">
+                    <view class='h5'>¥{{item.price}}
+                      <text>¥{{item.costPrice}}</text>
+                    </view>
+                    <button>立即购买</button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="cat-filter flex block flex-zBetween">
+      <block wx:for="{{condiNavs}}" wx:for-item="firstItem" wx:key="index">
+        <view bindtap='isPopularity' data-id='{{index}}' bindtap='_condiNav' class="{{condiNavIndex==index?'active':''}}">
+          {{firstItem.text}}
+          <i class="icon iconfont {{firstItem.select==index?'icon-fold ':'icon-unfold'}}"></i>
+        </view>
+      </block>
+      <!-- <picker bindchange="bindSelect" value="{{index}}" range="{{classify}}">
+        <view class="picker">
+          {{classify[index]}}
+          <i class="icon iconfont icon-sanjiaoxia-copy"></i>
+        </view>
+      </picker> -->
+      <!-- <view class="cat-store-classify">
+                <em>全部</em>
+                <i class="icon iconfont icon-sanjiaoxia-copy"></i>
+                <ul>
+                    <li>包包</li>
+                    <li>鞋子</li>
+                    <li>手机</li>
+                    <li>袜子</li>
+                </ul>
+            </view> -->
+    </view>
+    <view class='cat'>
+      <view class='cat-products flex flex-zLeftRight'>
+        <block wx:for="{{shopLists}}" wx:key="index">
+          <view class="block-card flex" bindtap='Getgoods' data-goodsid="{{item.goodsId}}">
+            <view class='card'>
+              <view class='card-body' style="background-image: url({{item.goodsImg}});"></view>
+              <view class='card-footer'>
+                <p>{{item.goodsName}}</p>
+                <view class="flex flex-cEnd flex-zBetween">
+                  <view class="flex flex-cEnd">
+                    <h3>¥{{item.shopPrice}}</h3>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="text-center" style="margin: 1.5rem 0 2.5rem">
+      <span style="color:#cccccc;font-family: PingFangSC-Regular;font-size: 1rem; ">{{loadingText}}</span>
+    </view>
+  </view>
+</view>
+
+
+
+
+<!--  -->
+<view class='store-box'>
+  <view class='s4tore-ul'>
+    <view class='store-li store-li-br' bindtap='goMyShops' data-id='{{shopInfo.myShops.shop.shopId}}' wx:if="{{shopInfo.myShops.shop}}">
+      我的店铺
+    </view>
+    <view class='store-li store-li-br' style="width:{{shopInfo.myShops.shop==null?'49%':''}}" bindtap='goStoreC' data-id="{{shopInfo.shopId}}">
+      商品分类
+    </view>
+    <view class='store-li' wx:if="{{!shopInfo.customQr}}" style="width:{{shopInfo.myShops.shop==null?'49%':''}}" bindtap='goWx' data-val="{{shopInfo.userWechat}}">
+      客服
+    </view>
+
+      <view class='store-li' wx:if="{{shopInfo.customQr}}" style="width:{{shopInfo.myShops.shop==null?'49%':''}}" bindtap='goWx' data-val="{{shopInfo.userWechat}}">
+      客服
+    </view>
+  </view>
+</view>
+
+
+
+
+<!--  -->
+<view class="wxbox {{ wxboxLayerStatus ? 'wxbox--show' : '' }}" wx:if="{{wxboxLayerStatus}}">
+  <view class="wxbox__mask" />
+  <view class="wxbox__container" style="height:{{!shopInfo.customQr?'250':'750'}}rpx;bottom:400rpx">
+    <view>
+      <view class='customQr' style='padding:50rpx ' wx:if="{{shopInfo.customQr}}">
+        <image mode="aspectFit" src='{{shopInfo.customQr}}' bindtap="qRImg" data-url='{{shopInfo.customQr}}'></image>
+      </view>
+      <view class="tblin_items_txt" style="line-height:{{!shopInfo.customQr?'150':'600'}}rpx" wx:if="{{!shopInfo.customQr}}" selectable="true">{{shopTel?'':'店铺未设置客服'}}</view>
+      <view class="wxbox__bottom">
+        <view class='cancel' bindtap="hideLayer" data-type="wxbox">取消</view>
+        <view wx:if="{{shopInfo.customQr}}" bindtap="saveWxAppPoster" data-url='{{shopInfo.customQr}}'>保存</view>
+        <view wx:if="{{!shopInfo.customQr && shopInfo.shopTel}}" class='wxboxBtn' class='wxboxBtn' bindtap='showtip' data-tel="{{shopInfo.shopTel}}">拨打电话号码
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="wxAppCode {{ wxAppCodeLayerStatus ? 'wxAppCode--show' : '' }}" wx:if="{{wxAppCodeLayerStatus}}">
+  <view class="wxAppCode__mask" />
+  <view class="wxAppCode__container" style="height:{{!shopInfo.wxAppCode?'250':'750'}}rpx;bottom:400rpx">
+    <view>
+      <view class='customQr' style='padding:50rpx ' wx:if="{{shopInfo.wxAppCode}}">
+        <image mode="aspectFit" src='{{shopInfo.wxAppCode}}' bindtap="qRImg" data-url='{{shopInfo.wxAppCode}}'></image>
+      </view>
+      <view class="wxAppCode__bottom">
+        <view class='cancel' bindtap="hideLayer" data-type="wxAppCode">取消</view>
+        <view wx:if="{{shopInfo.wxAppCode}}" bindtap="saveWxAppPoster" data-url='{{shopInfo.wxAppCode}}'>保存</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetbindchange">
+  <block wx:for-items="{{actionSheetItems}}">
+    <action-sheet-item bindtap="bind{{item.bindtap}}">{{item.txt}}</action-sheet-item>
+  </block>
+  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+</action-sheet>
+
+
+
+
+<!-- 悬浮 -->
+
+<image class='translate' src='/static/logo@2x.png' bindtap='getIndex'></image>
+
+
+
+
+<!-- 返回頂部 -->
+<view class='goTop' bindtap='goTop' hidden='{{!floorstatus}}'>
+  <image src='/static/gotop.png'></image>
+</view>

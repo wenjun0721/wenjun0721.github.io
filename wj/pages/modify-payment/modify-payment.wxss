@@ -1,0 +1,33 @@
+.editBox{
+  padding:0 60rpx;
+  padding-top:30rpx;
+}
+.login_btn{
+  background: #00abe4;
+  color:#fff;
+  font-size: 30rpx;
+  border-radius: 20rpx;
+  text-align: center;
+  height: 82rpx;
+  line-height: 82rpx;
+  margin-top:88rpx;
+}
+
+.eyes{
+  width: 34rpx;
+  height: 34rpx;
+}
+.password_list{
+  display: flex;
+  align-items: center;
+}
+.password_list_input{
+  font-size: 30rpx;
+  color:#333;
+  margin-right: 20rpx;
+}
+
+.edit_list{
+  border-bottom: 1px solid #eee;
+  margin: 40rpx 0;
+}

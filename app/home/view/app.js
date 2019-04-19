@@ -1,4 +1,5 @@
 //app.js
+var util = require("utils/util.js");
 var api = require("config/api.js");
 App({
   onLaunch: function () {
@@ -6,7 +7,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    wx.setStorageSync('userId', 1)
     // 登录
     wx.login({
       success: res => {
@@ -35,6 +36,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null
-  }
+    userInfo: null,
+    util:util,
+    api:api,
+    webViewUrl:'http://www.tplm.com/'
+  },
 })

@@ -18,7 +18,7 @@ Page({
   onLoad: function () {
     var that = this;
     wx.request({
-      url: 'http://www.tplm.com/home/Love/index',
+      url: 'http://www.tplm.com/home/Looklove/index',
       success: function (res) {
         console.log(res);
         that.setData({

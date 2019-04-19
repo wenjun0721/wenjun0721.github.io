@@ -1,0 +1,36 @@
+<view class="search">
+  <view class="header">
+    <view class="search flex flex-ac flex-zBetween flex-zLeftRight">
+      <input type="text" class="flex"  bindinput='searchWord' placeholder='{{placeholder}}' placeholder="搜一搜" />
+      <button plain='true'  bindtap='search' hover-class="none">
+        <image src="../../static/search_btn.png"></image>
+      </button>
+    </view>
+  </view>
+  <view class="block mgT4">
+    <view>
+      <h2>{{searchBody}}</h2>
+      <view class="list-search">
+      
+      <block wx:for="{{hotWords}}" wx:key="index">
+          <view  bindtap='searchText' data-text="{{item.words}}"  wx:if="{{index<10}}" url='/pages/index/index/?keyWord={{item.words}}' class="search_list {{index<3?'select':''}}">
+              <text class='search_text'>{{item.words}}</text>
+          </view>
+      </block>
+      </view>
+    </view>
+    <view>
+      <view class="flex flex-ac flex-zBetween">
+        <h2>{{searchHistory}}</h2>
+        <button  bindtap='clearLocalWords' wx:if="{{localWords.length>0}}">清除历史</button>
+      </view>
+       <view class="searchLists">
+      <block wx:for="{{localWords}}">
+          <view bindtap='searchText' data-text="{{item.text}}" class="search_list {{item.isSelect?'select':''}}">
+              <text class='search_text'>{{item.text}}</text>
+          </view>
+      </block>
+    </view>
+    </view>
+  </view>
+</view>

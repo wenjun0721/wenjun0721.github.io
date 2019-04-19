@@ -1,0 +1,6 @@
+
+<block wx:for="{{adLists}}" wx:key="index">
+  <navigator url='/pages/shopsDetail/shopsDetail?goodsId={{item.id}}'>
+    <image src='{{item.img}}' class='adImg' mode="widthFix"></image>
+  </navigator>
+</block>

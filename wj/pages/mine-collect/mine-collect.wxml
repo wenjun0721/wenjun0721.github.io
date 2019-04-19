@@ -1,0 +1,78 @@
+<!--pages/mine-collect/mine-collect.wxml-->
+<view class="mine-collect mine-detail">
+  <view class="header">
+    <view class="flex flex-ac flex-zBetween">
+      <button style="color: #fff;margin-left:0.5rem;background:#fff">管理</button>
+      <ul class="first-title">
+        <li class="{{showGoods?'active':''}}" bindtap="changeGoods">关注商品</li>
+        <li class="{{showGoods?'':'active'}}"  bindtap="changeStore" wx:if="{{abc == '1'}}">关注店铺</li>
+      </ul>
+      <button id="collect_manage" bindtap="changeCheckbox">{{showCheckbox?'完成':'管理'}}</button>
+    </view>
+  </view>
+  <view class="content mgT2 mgD4">
+    <block wx:if="{{showGoods}}">
+      <view class="block-card goods">
+        <view class='card' wx:for="{{browseHistoryLists}}" wx:key="index">
+          <view class='card-body'>
+            <view class="card-product flex flex-ac">
+              <!-- <input type="checkbox"> -->
+              <view wx:if="{{showCheckbox}}">
+                <icon wx:if="{{item.selected}}" size="20" bindtap="bindCheckbox" data-index="{{index}}" class="icon iconfont icon-dui" style='height:14pt;color:#ed1b5b' />
+                <icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}" style='height:14pt' />
+              </view>
+              <navigator  url='/pages/shopsDetail/shopsDetail?goodsId={{item.goodsId}}' >
+              <view class="image" style="background-image: url('{{item.goodsImg}}')"></view>
+                </navigator>
+              <view class="flex flex-zTopBottom flex-zBetween">
+                <p>{{item.goodsName}} </p>
+                <!-- <h4>{{item.model}}</h4> -->
+                <view class="flex flex-cEnd flex-zBetween">
+                  <h5>¥{{item.shopPrice}}</h5>
+                  <view>找相似</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view class="block-card store">
+        <view class='card' wx:for="{{shopLists}}" wx:key="index">
+          <view class='card-body'>
+           <navigator  url='/pages/shop/shop?shopId={{item.shopId}}'>
+            <view class="card-product flex flex-ac">
+              <!-- <input type="checkbox"> -->
+               <view wx:if="{{showCheckbox}}">
+                <icon wx:if="{{item.selected}}" size="20" bindtap="bindCheckbox" data-index="{{index}}" class="icon iconfont icon-dui" style='height:14pt;color:#ed1b5b' />
+                <icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}" style='height:14pt' />
+              </view>
+              <view class="image" style="background-image: url('{{item.shopImg}}')"></view>
+              <view class="flex flex-zTopBottom flex-zBetween">
+                <p>{{item.shopName}}</p>
+                <span>旗舰</span>
+              </view>
+            </view>
+             </navigator>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="footer-flex flex flex-ac flex-zBetween flex-zLeftRight" wx:if="{{showCheckbox}}">
+    <!-- <lable class="flex flex-ac">
+            <input type="checkbox" id="checkAll">
+        &nbsp&nbsp全选</lable> -->
+    <lable class="flex flex-ac" bindtap="bindSelectAll">
+      <icon wx:if="{{selectedAllStatus}}" size="20" class="icon iconfont icon-dui" style='height:20pt;color:#ed1b5b' />
+      <icon wx:else size="20" type='circle' style='height:14pt' /> 全选
+    </lable>
+      <button bindtap='delete'>删除</button>
+  </view>
+</view>
+<view style='margin-top:30rpx;'>
+  <view class="loading" hidden="{{searchLoading}}">正在载入更多...</view>  
+  <view class="loading" hidden="{{!searchLoading}}">已加载全部</view>  
+</view>

@@ -1,0 +1,20 @@
+<!-- <view class='header-box'>
+
+
+</view> -->
+<block wx:if="{{catesDataStatus}}" wx:for="{{catesData}}" wx:for-item="parent" wx:for-index="parentIndex" wx:key="index">
+  <view class='store-li'>
+    <view class='title' bindtap='goSearch' data-cid1="{{parent.catId}}">{{parent.catName}}</view>
+    <image wx:if="{{!parent.children}}" class='icon' src='/static/right-b.png'></image>
+    <view wx:if="{{parent.children}}" class='store-ul'>
+      <block wx:if="{{parent.children}}" wx:for="{{parent.children}}" wx:key="index">
+        <view class='store-ul-li' bindtap='goSearch' data-cid2="{{item.catId}}">
+          {{item.catName}}
+        </view>
+      </block>
+    </view>
+  </view>
+</block>
+<block wx:if="{{!catesDataStatus}}">
+    <view class="hide-title">暂无店铺商品分类数据</view>
+</block>

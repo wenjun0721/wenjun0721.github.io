@@ -1,0 +1,116 @@
+<!--pages/shopping-cart-detail/shopping-cart-detail.wxml-->
+<wxs module="filter" src="../../lib/filter.wxs"></wxs>
+<view class="shopping-cart shopping-cart-detail">
+  <view class="content mgT1">
+    <view class="block-card">
+      <view class='card shopping-cart-address'>
+        <view wx:if="{{userName}}" bindtap='toggleAddress' class='card-body'>
+          <em class="btn flex flex-zTopBottom" data-toggle="modal" data-target="#myModal">
+            <view class='flex flex-ac flex-zBetween flex-zLeftRight'>
+              <h5>收货人 : {{userName}}</h5>
+              <h5>{{filter.phoneNumber(userPhone,":")}}</h5>
+            </view>
+            <view class="text-left" style="padding: 0">
+              <i class="iconfont icon-weizhi" style="color: #eeeeee"></i>
+              <span>收货地址：</span>
+              <!-- <text>[{{labels}}]</text> -->
+              <span>{{areaName}}</span>
+            </view>
+          </em>
+        </view>
+        <view wx:else class="card-body" bindtap='toggleAddress'>去选择地址</view>
+
+      </view>
+
+        <block wx:for="{{carts}}" wx:for-item="parent" wx:key="index">
+        <view class='card'>
+          <view class='card-header flex flex-ac flex-zBetween flex-zLeftRight'>
+            <view class="flex flex-ac">
+              <image src=" {{parent.datas.shopImg}}"></image>
+              <h3>{{parent.datas.shopName}}</h3>
+              <span>旗舰</span>
+            </view>
+          </view>
+          <view class='card-body'>
+            <block wx:for="{{parent.datas.list}}" wx:key="index">
+              <view class="card-product flex flex-ac">
+                <image class="image" src="{{item.goodsImg}}" mode='aspectFill'></image>
+                <view class="flex flex-zTopBottom flex-zBetween">
+                  <p> {{item.goodsName}} 10片</p>
+                  <h4>{{item.specNames[0].itemName}}</h4>
+                  <view class="flex flex-cEnd flex-zBetween">
+                    <h5>¥{{item.shopPrice}}</h5>
+                    <span>x{{item.cartNum}}</span>
+                  </view>
+                </view>
+              </view>
+            </block>
+
+          </view>
+          <view class="card-express flex flex-ac flex-zBetween flex-zLeftRight">
+          <h5>运费</h5>
+          <span>¥{{allFreight}}</span>
+        </view>
+
+        <view class="card-remarks flex flex-ac">
+          <h5>留言</h5>
+          <input type="text" bindinput='inputLeave' data-shopId='{{parent.shopId}}' placeholder="填写备注内容(选填)" />
+        </view>
+        
+        <view class="card-footer flex flex-ac flex-zEnd">
+          <span>店铺合计（含运费）:</span>
+          <h3>¥{{parent.datas.goodsMoney}}</h3>
+        </view>
+      </view>
+
+        </block>
+
+
+
+
+      <view class='card' wx:if="{{isDirectMail==1}}">
+        <view class='card-body' >
+          <!-- 进口商品show  start-->
+          <h4 style="color: red;margin-top: 0.5rem">因海关需要 请填写收货人的身份信息</h4>
+          <view class="card-express flex flex-ac">
+            <h5>身份证姓名</h5>
+            <input type="text" bindinput='idcardInput' data-role="idName" placeholder="填写真实身份证姓名" />
+          </view>
+          <view class="card-express flex flex-ac">
+            <h5>身份证号码</h5>
+            <input type="idcard" bindblur='requireCard' bindinput='idcardInput' data-role="idCard" placeholder="填写真实身份证姓名" />
+          </view>
+          <!-- 进口商品show  end-->
+        </view>
+      </view>
+      <view class="select-way">
+        <view class=" flex flex-ac flex-zBetween flex-zLeftRight ">
+          <h5>支付方式</h5>
+          <picker  mode ="selector" bindchange="bindPickerChange" value="{{index}}"  data-role="pay" range="{{payArray}}">
+            <span class="picker">
+              {{payArray[payIndex]}}
+              <i class="icon iconfont icon-you"></i>
+            </span>
+          </picker>
+        </view>
+        <view class=" flex flex-ac flex-zBetween flex-zLeftRight">
+          <h5>配送方式</h5>
+          <picker mode="selector" bindchange="bindPickerChange" data-role="distribution" value="{{index}}" range="{{distributionArray}}">
+            <span>
+              {{distributionArray[distributionIndex]}}
+            </span>
+          </picker>
+        </view>
+      </view>
+
+    </view>
+  </view>
+  <view class="footer-flex flex flex-ac flex-zBetween flex-zLeftRight">
+    <view></view>
+    <view class="flex flex-ac">
+      <span>合计:</span>
+      <h3>¥{{totalMoney}}</h3>
+      <button bindtap='submitOrder'>提交订单</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,99 @@
+<!--轮播图-->
+  <swiper style='height:380rpx;'  wx:if="{{bannerLists.length>0}}"  indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+  indicator-color="white" indicator-active-color="#F61628"
+  >
+    <block wx:for="{{bannerLists}}" wx:key="index">
+      <swiper-item>
+        <navigator url="{{item.adURL}}" open-type='{{item.adURLType}}' data-id="{{item.adId}}">
+            <image src="{{item.adFile}}" style='width:100%;height:380rpx;' class="slide-image"/>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!--二级导航-->
+<view style='background:#fff'>
+  <view class="second_navs" wx:if="{{secondNav.length>0}}">
+    <block wx:if="{{secondNav.length>6}}">
+        <block wx:if="{{toggleLength}}">
+          <block wx:for="{{secondNav}}" wx:key="index">
+            <view data-id="{{item.id}}" data-keyword="{{item.name}}" wx:if="{{index<4}}"  bindtap='secondNav' class="second_nav" >
+                <image src="{{item.img}}"/>
+                <text>{{item.name}}</text>
+            </view>
+            <view bindtap='toggleLength' class="second_nav"  wx:if="{{index==4}}">
+              <view class='toggleLength'>
+                <image src='../../images/classify_btn_all.png'></image>
+              </view> 
+              <text>全部</text>
+            </view>
+          </block>
+        </block>
+        <block  wx:if="{{!toggleLength}}">
+          <block wx:for="{{secondNav}}" wx:key="index">
+            <view data-id="{{item.id}}" data-keyword="{{item.name}}" class="second_nav"  bindtap='secondNav'>
+                <image src="{{item.img}}"/>
+                <text>{{item.name}}</text>
+            </view>
+          </block>
+          <view bindtap='toggleLength' class="second_nav">
+            <view class='toggleLength'>
+              <image src='../../images/classify_btn_closed.png'></image>
+            </view> 
+            <text>全部</text>
+          </view>
+        </block>
+    </block>
+    <block wx:else>
+      <block wx:for="{{secondNav}}" wx:key="index">
+        <view data-id="{{item.id}}" data-keyword="{{item.name}}" class="second_nav" bindtap='secondNav'>
+            <image src="{{item.img}}"/>
+            <text>{{item.name}}</text>
+        </view>
+      </block>
+    </block>
+  </view>
+  <!--商品列表-->
+  <view>
+    <view class='condition_nav' data-id='conditionNav'>
+      <!-- <view data-id='1' bindtap='condiNav'>
+        <view class="condtion_nav_text {{condiNavIndex==1?'condtion_nav_select':''}}">全部</view> 
+      </view> -->
+      <block wx:for="{{condiNavs}}" wx:for-item="firstItem" wx:key="index">
+        <view data-id='{{index}}' bindtap='_condiNav'>
+          <view class="condtion_nav_text {{condiNavIndex==index?'condtion_nav_select':''}}">
+            {{firstItem.text}}              
+              <block wx:if="{{index==3}}">
+                <block wx:for="{{firstItem.imgs}}" wx:key="index">
+                  <image class="condiNav_screen" src='{{item}}'></image>
+                </block>
+              </block>
+              <block wx:else>
+                <block wx:for="{{firstItem.imgs}}" wx:key="index">
+                  <image class="condiNav" wx:if='{{firstItem.select==index}}' src="{{item}}"></image>
+                </block>
+              </block>
+          </view> 
+        </view>
+      </block>
+    </view>
+    <view class="shops_list">
+      <block wx:for="{{shopLists}}" wx:key="index">
+        <navigator class="shops" url="/pages/shopsDetail/shopsDetail?goodsId={{item.goodsId}}" data-id="{{item.goodsId}}">
+          <image mode="aspectFit" class="shops_img" src="{{item.goodsImg}}" />
+            <view class="shops_intro">
+              <view class="shops_title">{{item.goodsName}}</view>
+              <view class="shops_detail">
+                <text class="shops_price">¥{{item.shopPrice}}</text>
+                <text class="shops_sales">人气值:{{item.visitNum}}</text>
+              </view>
+            </view>
+          </navigator>
+      </block>
+    </view>
+  </view>
+    <!-- 底部loading -->
+  <view style='text-align:center'>{{loadingText}}</view>
+</view>
+  

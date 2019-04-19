@@ -1,0 +1,18 @@
+.list{
+  padding:0 30rpx;
+  align-items: center;
+  margin:50rpx auto;
+  width:70%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 8rpx;
+}
+
+.green{
+  background: #00CC66;
+}
+.orange{
+  background: #FF9966;
+}

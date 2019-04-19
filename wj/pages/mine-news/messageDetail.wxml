@@ -1,0 +1,2 @@
+<view style='text-align:center;padding-top:20rpx'>{{info.createTime}}</view>
+<view  style='text-indent:2em;padding:0 30rpx;padding-top:20rpx;font-size:28rpx;color:#333;'>{{info.msgContent}}</view>

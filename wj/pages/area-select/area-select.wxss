@@ -1,0 +1,36 @@
+/* pages/area-select/area-select.wxss */
+page{
+  padding-top: 90rpx;
+}
+.addressLists{
+  padding:0 30rpx;
+}
+.address_grade{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+.address_list{
+  text-align: center;
+  width: 32%;
+  border:1px solid #ccc;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1; 
+}
+.address_list.middle{
+  margin:0 2%;
+}
+.address_area{
+  display: flex;
+  flex-wrap: wrap;
+}
+.modal_text{
+  text-align: center
+}

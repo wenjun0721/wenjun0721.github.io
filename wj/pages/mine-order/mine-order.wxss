@@ -1,0 +1,20 @@
+/* pages/mine-order/mine-order.wxss */
+
+.btn {
+  font-size: 9pt;
+  padding: 8rpx 15rpx;
+  border-radius: 50rpx;
+  margin-left: 0.5rem;
+}
+
+.card-header {
+  position: relative;
+}
+
+.parent-status {
+  position: absolute;
+  right: 50rpx;
+  top: 20rpx;
+  font-size: 30rpx;
+color: red;
+}

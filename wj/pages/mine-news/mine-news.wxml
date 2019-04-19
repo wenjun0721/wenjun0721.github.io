@@ -1,0 +1,44 @@
+<!--pages/mine-news/mine-news.wxml-->
+<view class="mine-news mine-detail">
+  <view class="header">
+    <view class="flex flex-ac flex-zBetween">
+      <button style="color: #fff;margin-left:0.5rem;background:#fff">管理</button>
+      <ul class="first-title">
+        <li style='color:#333;padding-bottom:0'>我的消息</li>
+      </ul>
+      <button id="collect_manage" bindtap="changeCheckbox">{{showCheckbox?'完成':'管理'}}</button>
+    </view>
+  </view>
+  <view class="content mgT2 mgD4">
+    <view class="block-card">
+      <view class='card' wx:for="{{messageLists}}"  wx:key="index">
+        <view class='card-body'>
+          <view class="card-product flex flex-ac" >
+            <!-- <input type="checkbox"> -->
+            <view wx:if="{{showCheckbox}}">
+            
+              <icon wx:if="{{item.select}}" size="20" bindtap='select' data-id='{{item.id}}' data-index="{{index}}" mode='widthFix' class="icon iconfont icon-dui" style='height:14pt;color:#ed1b5b' />
+              <icon wx:else type="circle" size="20"style='height:14pt'  bindtap='select' data-id='{{item.id}}' data-index="{{index}}" mode='widthFix'/>
+            </view>
+            <view data-id='{{item.id}}' data-index="{{index}}" bindtap='goDetail'>
+            <i class="icon iconfont icon-xiaoxi1 {{item.msgStatus==1?'':'active'}}"  ></i>
+            <p>{{item.msgContent}}{{item.msgContent}}</p>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="footer-flex flex flex-ac flex-zBetween flex-zLeftRight" wx:if="{{showCheckbox}}">
+    <!-- <lable class="flex flex-ac">
+            <input type="checkbox" id="checkAll">
+        &nbsp&nbsp全选</lable> -->
+    <lable class="flex flex-ac" bindtap='selectAll'>
+      <icon wx:if="{{selectedAllStatus}}" size="20" class="icon iconfont icon-dui" style='height:20pt;color:#ed1b5b' />
+      <icon wx:else size="20" type='circle' style='height:14pt' /> 全选
+    </lable>
+    <button bindtap='deleteMessage'>删除</button>
+  </view>
+  
+<view wx:if="{{loading}}" style='text-align:center;padding-top:20rpx;'>{{loadingText}}</view>
+</view>

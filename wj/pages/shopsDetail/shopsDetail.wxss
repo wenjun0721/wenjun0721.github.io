@@ -1,0 +1,241 @@
+.shopping_dialog .list .specImg {
+height:2rem;
+width:2rem;
+margin:0.2rem 0.2rem;
+display:inline-block;
+border:1px solid #ccc;
+background-size:contain;
+background-position:center;
+background-repeat:no-repeat;
+
+}
+
+.shopping_dialog .list .addCartClassify_list{
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
+  display:inline-block;
+  margin:0.2rem 0.2rem;
+  padding:3px 6px;
+  background-color:#eee;
+  color:#666;
+  font-size:12px;
+  border-radius:4px;
+  position: relative;
+}
+.shopping_dialog .list .specImg.selectSpecImg {
+  border:1px solid #ff464f;
+}
+.shopping_dialog .list .addCartClassify_list.active {
+  background-color:#ff464f;
+  color:#fff;
+}
+
+.cat-detail .footer .attension{
+  padding: 0;
+}
+
+.line-clamp{
+  display: -webkit-box;      
+  /* //定义为自适应布局     */
+word-break: break-all;
+text-overflow: ellipsis;  
+/* //超出文字用省略号代替 */
+  overflow: hidden;           
+   /* //多出不分隐藏 */
+-webkit-box-orient: vertical;    
+/* //竖直方向的超出和隐藏 */
+-webkit-line-clamp:2;
+ /* //设定行数为2 */
+/* //white-space: nowrap; */
+}
+
+.cat-products .card-footer span,.cat-products .card-footer text {
+font-size:9pt;
+color:#cccccc;
+flex-shrink:0;
+
+}
+.cat-products .card-footer text {
+margin-left:0.3rem;
+text-decoration:line-through;
+
+}
+
+
+.lineGoods{
+  padding:40rpx  0 180rpx;
+  background: #07b9ed;
+}
+.cat-detail .cat-detail-image .slider-banner swiper{
+  height:20rem;
+}
+
+
+
+
+
+
+
+
+.code__mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0);
+  /* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+  display: none;
+}
+.code__container{
+  position: fixed;
+  bottom: 150rpx;
+  width: 650rpx;
+  /* 弹窗布局宽 */
+  height: 85%;
+  /* 弹窗布局高，与下面弹出距离transform有关 */
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(300%);
+  /* 弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  /* 弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+.code-input {
+  height: 200rpx;
+  width: calc(90% - 20rpx);
+  margin: 0 5% 0;
+  padding: 10rpx;
+  background: rgba(0, 0, 0, 0.1);
+  /* color: #000; */
+}.code--show .code__container{
+  transform: translateY(0);
+}
+.code--show .code__mask {
+  background: rgba(0, 0, 0, .3);
+  display: block;
+}.code__bottom{
+  width: 90%;
+  position: absolute;
+  bottom: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+.cancel{
+  width: 50%;
+  float: left;
+  color: #000;
+}
+.codeBtn{
+  width: 50%;
+  float: right;
+  color: #05c160;
+}
+
+
+
+
+.bgImg{
+  height:800rpx;
+  margin:  0 auto;
+}
+
+
+
+.wxbox__mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0);
+  /* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+  display: none;
+}
+
+.wxbox__container {
+  position: fixed;
+  bottom: 250rpx;
+  width: 650rpx;
+  /* 弹窗布局宽 */
+  left:0;
+ height:750rpx;
+  /* 弹窗布局高，与下面弹出距离transform有关 */
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(300%);
+  /* 弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  /* 弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+.wxbox--show .wxbox__container {
+  transform: translateY(0);
+}
+.wxbox--show .wxbox__mask {
+  background: rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+.wxbox__bottom {
+  width: 90%;
+  position: absolute;
+  bottom: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.cancel {
+  width: 50%;
+  float: left;
+  color: #888;
+}
+
+.wxbox {
+  width: 50%;
+  float: right;
+  color: #e00a4e;
+}
+.tblin_items_txt{
+  text-align: center;
+  line-height: 600rpx;
+}
+.card-body .p{
+  font-size: 14px;
+}
+
+.customQr image{
+  height:550rpx;
+  width: 550rpx;
+  margin:  0 auto;
+}
+.cat-detail #goods .card-footer{
+  padding: 0.5rem 0;
+}
+.bd-bottom{
+  border-bottom:1px solid #f2f2f2;
+}
+.pd-bottom{
+  padding-bottom:0.5rem;
+}
+.red{
+  color: #ed1b5b;
+}
+
+.cart-box{
+  height: 80rpx;
+  width: 80rpx;
+  position: fixed;
+  bottom: 140rpx;
+  right: 20rpx;
+  border-radius:50%;
+  background:#07b9ed;
+}

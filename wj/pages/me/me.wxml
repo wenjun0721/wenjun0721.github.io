@@ -1,0 +1,90 @@
+<view class="mine">
+    <view class="content">
+        <view class="mine-header flex flex-ac flex-zBetween">
+            <view class="flex flex-ac">
+                <image src="{{headerSrc}}"></image>
+                <view class="flex flex-al flex-zTopBottom">
+                    <h4>{{userName}}</h4>
+                    <view wx:if="{{rankName}}">
+                        <span>{{rankName}}</span>
+                    </view>
+                </view>
+            </view>
+            <view class="flex">
+                <navigator  url='../mine-account/mine-account'>
+                    <i class="icon iconfont icon-set"></i>
+                </navigator>
+                <navigator url='../mine-news/mine-news' style="position: relative">
+                    <em class="badge" ></em>
+                    <i class="icon iconfont icon-xiaoxi"></i>
+                </navigator>
+            </view>
+        </view>
+        <view class='card'>
+            <view class="card-header flex flex-ac flex-zBetween" bindtap="goMineOrder" data-status="0">
+                <h4>我的订单</h4>
+                <span>全部订单</span>
+            </view>
+            <view class='card-body flex flex-ac'>
+                <view bindtap="goMineOrder" data-status="2">
+                    <image src="../../static/mine_pingtuan.png" style='width:37rpx'></image>
+                    <span>我的拼团</span>
+                </view>
+                <view bindtap="goMineOrder" data-status="1">
+                    <image src="../../static/mine_fukuan.png"></image>
+                    <span>待付款</span>
+                </view>
+                <view bindtap="goMineOrder" data-status="3">
+                    <image src="../../static/mine_fahuo.png"></image>
+                    <span>待发货</span>
+                </view>
+                <view bindtap="goMineOrder" data-status="4">
+                    <image src="../../static/mine_shouhuo.png"></image>
+                    <span>待收货</span>
+                </view>
+                <view bindtap="goMineOrder" data-status="7">
+                    <image src="../../static/mine_pingjia.png"></image>
+                    <span>待评价</span>
+                </view>
+            </view>
+        </view>
+        <view class='middle-ad' wx:if="{{sysConfig.settledInImg == '1'}}">
+          <block wx:for="{{sysConfig.ads}}" wx:key="{{index}}">
+
+            <block wx:if="{{item.adURLType=='navigator'}}">
+            <navigator url='{{item.adURL}}'>
+              <image src="{{item.adFile}}" style="width: 100%;display:blocks;height:6rem"></image>
+            </navigator>
+            </block>
+            
+            <block wx:if="{{item.adURLType!='navigator'}}">
+            <view  bindtap='indexClick' data-type="{{item.adURLType}}" data-url="{{item.adURL}}" data-str="{{item.adTypeStr}}">
+              <image src="{{item.adFile}}" style="width: 100%;display:blocks;height:6rem"></image>
+              </view>
+              </block>
+
+            </block>
+        </view>
+        <view class="card mine-list">
+            <ul>
+                <li><navigator url='/pages/index/web?url=/wechat/favorites/list_app.html'>我的收藏</navigator></li>
+                <!-- <li><navigator url='../mine-balance/mine-balance'>我的余额</navigator></li> -->
+                 <li><navigator url='../mine-balance/mine-balance'>我的余额</navigator></li> 
+                 <li><navigator url='/pages/mine-history/mine-history'>浏览记录</navigator></li>
+                <!-- <li><navigator url='/pages/index/web?url=/wechat/goods/history'>浏览记录</navigator></li> -->
+                <li><navigator url='../mine-address/mine-address'>地址管理</navigator></li>
+
+                <li wx:if="{{shareRank==0  &&  sysConfig.shopowner == '1'}}">
+                <navigator url='/pages/index/web?url=/wechat/sharerapplys/keeper_app'>成为店长</navigator>
+                </li>
+                <li wx:if="{{real_shop==0  &&  sysConfig.settledIn == '1'}}"><navigator url='/pages/index/web?url=/wechat/consult/consult_app'>商家入驻</navigator>
+                </li>
+                <li><navigator url='/pages/index/web?url=/wechat/ordercomplains/index.html'>订单投诉</navigator></li>
+                <li><navigator url='../mine-security/mine-security'>账户安全</navigator></li>
+                 <!-- <li><navigator url='/pages/index/web?type=kefu'>客服</navigator></li> -->
+                 <li><button open-type="contact" style="color:#333;font-size:0.75rem;">客服</button></li>
+                <!-- <li><navigator url='/pages/index/web?url=/wechat/supply/index_app'>供应链</navigator></li> -->
+            </ul>
+        </view>
+    </view>
+  </view>

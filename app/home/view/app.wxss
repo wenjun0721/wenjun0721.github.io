@@ -25,3 +25,8 @@
 .fr {
   float: right;
 }
+/* 弹性布局 */
+.flex{
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    /* flex:1; */
+}

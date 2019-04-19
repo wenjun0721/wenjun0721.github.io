@@ -1,0 +1,40 @@
+<card class="article no-card">
+  <item wx:for="1" wx:key class="shadow">
+    <view class="title">{{data.shopName}}</view>
+    <view class="content">
+      <image src="{{data.goods.goodsImg}}" mode="aspectFill"></image>
+      <view class="desc">
+        <view class='text-content'> {{data.goods.goodsName}}</view>
+        <list class="menu">
+          <item >
+            <view class='content'>
+              <text class='text-grey'>{{data.goods.goodsPrice}}</text>
+            </view>
+            <view class='action'>
+              <text class='text-grey text-sm'>x{{data.goods.goodsNum}}</text>
+            </view>
+          </item>
+        </list>
+      </view>
+    </view>
+  </item>
+</card>
+
+<list class="menu">
+  <item class="arrow" >
+    <avatar class="round sm bg-white margin-sm" style="background-image:url(/static/refund1.png);"></avatar>
+    <view class='content' bindtap='goSaleAfter' data-ordid="{{data.oId}}" data-type="0">
+      <view class='text-df'>仅退款</view>
+      <view class='text-gray text-xs'>
+        未收到货(包含未签收),或卖家协商同意前提下</view>
+    </view>
+  </item>
+  <item class="arrow">
+    <avatar class="round sm bg-white margin-sm" style="background-image:url(/static/refund2.png);"></avatar>
+    <view class='content' bindtap='goSaleAfter' data-ordid="{{data.oId}}" data-type="1">
+      <view class='text-df'>退款退货</view>
+      <view class='text-gray text-xs'>
+        已收到货，需要退换已收到的货物(请联系卖家确认)</view>
+    </view>
+  </item>
+</list>

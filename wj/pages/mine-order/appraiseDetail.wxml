@@ -1,0 +1,97 @@
+<list class="menu menu-avatar no-padding">
+  <item class="">
+    <avatar class="radius xl" style="background-image:url({{shopsInfo.goodsImg}});"></avatar>
+    <view class='content padding-sm'>
+      <view class='text-df'> {{shopsInfo.goodsName}}</view>
+    </view>
+  </item>
+</list>
+
+
+
+
+
+<bar class="">
+  <view class='action'>
+    评价信息:
+  </view>
+</bar>
+<view wx:if='{{isAppraise==true}}'>
+  <list class="menu ">
+    <item>
+      <view class='content'>
+        <view> {{appraiseInfo.content}} </view>
+      </view>
+    </item>
+  </list>
+</view>
+<form>
+  <form-group>
+    <textarea wx:if='{{isAppraise!=true}}' class='write_appraise_input' bindinput='appraiseText' value="{{appraiseText}}" placeholder='宝贝满足你的期待吗？说说它的优点和美中不足的地方吧'></textarea>
+  </form-group>
+
+  <form-group class="" wx:if='{{isAppraise==true}}'>
+    <view class="grid col-3 grid-square flex-sub">
+      <block wx:for="{{appraiseInfo.images}}" wx:key="{{index}}">
+        <view class="padding-xs bg-img" style="background-image:url({{appraiseInfo.images[index]}});">
+        </view>
+      </block>
+    </view>
+  </form-group>
+  <form-group class="" wx:else>
+    <view class="grid col-3 grid-square flex-sub">
+      <block wx:for="{{img}}" wx:key="index">
+        <view class="padding-xs bg-img" style="background-image:url({{item}});">
+          <tag class="bg-red" bindtap='cancel' data-index="{{index}}">
+            <icon class='icon-close'></icon>
+          </tag>
+        </view>
+      </block>
+      <view class="padding-xs solids" bindtap="upfile">
+        <icon class='icon-cameraadd'></icon>
+      </view>
+    </view>
+  </form-group>
+
+</form>
+
+
+  <view class='score-title'>
+    店铺评分:
+  </view>
+<list class="menu no-padding card-menu" wx:if="{{isAppraise==true}}">
+  <block wx:for="{{scoreList}}" wx:for-item="parent" wx:for-index="parentIndex" wx:key="{{index}}">
+    <item>
+      <view class='content'>
+        <text class='text-grey'>{{parent.name}}：{{parent.score}}分</text>
+      </view>
+      <view class='action'>
+        <block wx:for="{{star}}" wx:key="index">
+          <tag class='icon-favorfill  text-red' data-parentindex="{{parentIndex}}" data-self="{{index}}" wx:if="{{index<parent.score}}"></tag>
+          <tag class='icon-favorfill' data-parentindex="{{parentIndex}}" data-self="{{index}}" wx:else></tag>
+        </block>
+      </view>
+    </item>
+  </block>
+</list>
+
+
+<list class="menu no-padding card-menu margin-top" wx:else>
+  <block wx:for="{{scoreList}}" wx:for-item="parent" wx:for-index="parentIndex">
+    <item>
+      <view class='content'>
+        <text class='text-grey'>{{parent.name}}：{{parent.score}}分</text>
+      </view>
+      <view class='action'>
+        <block wx:for="{{star}}" wx:key="index">
+          <tag class='icon-favorfill text-red' data-parentindex="{{parentIndex}}" data-self="{{index}}" bindtap='star' wx:if="{{index<parent.score}}"></tag>
+          <tag class='icon-favorfill ' data-parentindex="{{parentIndex}}" data-self="{{index}}" bindtap='star' wx:else></tag>
+        </block>
+      </view>
+    </item>
+  </block>
+</list>
+
+<view class="padding flex flex-direction" wx:if="{{isAppraise!=true}}" bindtap='submit'>
+  <button class='bg-red padding radius text-center shadow-blur'>发布</button>
+</view>

@@ -1,0 +1,13 @@
+/* pages/mine-history/mine-history.wxss */
+.card{
+  position: relative;
+}
+.goCatList{
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+}
+.first-title{
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,54 @@
+<!--pages/mine-history/mine-history.wxml-->
+<view class="mine-history mine-detail">
+  <view class="header">
+    <view class="flex flex-ac flex-zBetween">
+      <!-- <button style="color: #fff;margin-left:0.5rem;background:#fff">管理</button> -->
+      <ul class="first-title">
+        <li style='color:#333;padding-bottom:0'>浏览记录</li>
+      </ul>
+      <!-- <button id="collect_manage" bindtap="changeCheckbox">{{showCheckbox?'完成':'管理'}}</button> -->
+    </view>
+  </view>
+  <view class="content mgT2 mgD4">
+    <view class="block-card">
+      <view wx:if="{{goodsDatasC}}" class='card' wx:for="{{goodsDatas}}" wx:key="indexs">
+        <view class='card-body'>
+          <view class="card-product flex flex-ac" >
+            <!-- <input type="checkbox"> -->
+            <view wx:if="{{showCheckbox}}">
+              <icon wx:if="{{item.selected}}" size="20" bindtap="bindCheckbox" data-index="{{index}}" class="icon iconfont icon-dui" style='height:14pt;color:#ed1b5b' />
+              <icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}" style='height:14pt' />
+            </view>
+            <image class="image" src="{{item.goodsImg}}" bindtap='goGoodsDetail' data-goodsid="{{item.goodsId}}"></image>
+            <view class="flex flex-zTopBottom flex-zBetween">
+              <p  bindtap='goGoodsDetail' data-goodsid="{{item.goodsId}}">{{item.goodsName}}</p>
+              <!-- <h4>{{item.saleNum}}</h4> -->
+              <view class="flex flex-cEnd flex-zBetween">
+                <h5>¥{{item.shopPrice}}</h5>
+                <button bindtap='goCatList' class='goCatList'>找相似</button>
+
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{!goodsDatasC}}" style=' text-align: center'>
+      暂无数据
+      </view>
+    </view>
+  </view>
+  <view class="footer-flex flex flex-ac flex-zBetween flex-zLeftRight" wx:if="{{showCheckbox}}">
+    <!-- <lable class="flex flex-ac">
+            <input type="checkbox" id="checkAll">
+        &nbsp&nbsp全选</lable> -->
+    <lable class="flex flex-ac" bindtap="bindSelectAll">
+      <icon wx:if="{{selectedAllStatus}}" size="20" class="icon iconfont icon-dui" style='height:20pt;color:#ed1b5b' />
+      <icon wx:else size="20" type='circle' style='height:14pt' /> 全选
+    </lable>
+    <button bindtap='delete'>删除</button>
+  </view>
+</view>
+<!-- <view style='margin-top:30rpx;text-align:center;'>
+  <view class="loading" >{{searchLoading}}</view>  
+</view>
+ -->

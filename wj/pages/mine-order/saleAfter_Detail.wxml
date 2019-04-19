@@ -1,0 +1,59 @@
+<card class="article no-card">
+  <item wx:for="1" wx:key class="shadow">
+    <view class="title">{{data.shopName}}</view>
+    <view class="content">
+      <image src="{{data.goods.goodsImg}}" mode="aspectFill"></image>
+      <view class="desc">
+        <view class='text-content'> {{data.goods.goodsName}}</view>
+        <list class="menu">
+          <item>
+            <view class='content'>
+              <text class='text-grey'>{{data.goods.goodsPrice}}</text>
+            </view>
+            <view class='action'>
+              <text class='text-grey text-sm'>x{{data.goods.goodsNum}}</text>
+            </view>
+          </item>
+        </list>
+      </view>
+    </view>
+  </item>
+</card>
+
+
+<form>
+  <form-group>
+    <view class='title'>退款原因</view>
+    <picker bindchange="bindPickerType" value="{{idx}}" range="{{refundReason}}" range-key="{{'dataName'}}">
+      <view class="picker">{{refundReason[idx].dataName?refundReason[idx].dataName:'请选择'}}</view>
+    </picker>
+  </form-group>
+  <form-group>
+    <textarea placeholder="请输入退款原因" value="{{remarksVal}}"  data-role="remarks" bindinput="listenerInput" placeholder-class='placeholder'></textarea>
+  </form-group>
+  <form-group>
+    <view class='title'>退款金额</view>
+    <input placeholder="请输入退款金额 最多￥59.00 含运费￥0.00" class='radius' value="{{moneyVal}}"  data-role="money" bindinput="listenerInput"></input>
+  </form-group>
+  <form-group class="margin-top">
+    <view class='title'>上传凭证</view>
+  </form-group>
+  <form-group>
+      <view class="grid col-3 grid-square flex-sub">
+      <block wx:for="{{img}}" wx:key="index">
+        <view class="padding-xs bg-img" style="background-image:url({{item}});">
+          <tag class="bg-red" bindtap='cancel' data-index="{{index}}">
+            <icon class='icon-close'></icon>
+          </tag>
+        </view>
+      </block>
+      <view class="padding-xs solids" bindtap="upfile">
+        <icon class='icon-cameraadd'></icon>
+      </view>
+    </view>
+  </form-group>
+
+</form>
+<view class="padding">
+  <button class='block bg-red margin-tb-sm df' bindtap='refund'>提交</button>
+</view>

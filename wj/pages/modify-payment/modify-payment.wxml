@@ -1,0 +1,17 @@
+
+<view class='editBox'>
+    <view class='edit_list' wx:if="{{isPassword}}">
+        <input type='password' value="{{oldPassword}}" data-role="oldPassword" bindinput="listenerInput" placeholder="请填写旧密码"
+        ></input>
+    </view>
+    <view class='edit_list'>
+        <input type='password' value="{{newPassword}}" data-role="newPassword" bindinput="listenerInput" placeholder="请填写新密码"
+        ></input>
+    </view>
+    <view class='edit_list'>
+        <input type='password' value="{{requirePassword}}" data-role="requirePassword" bindinput="listenerInput" placeholder="请确认新密码"
+        ></input>
+    </view>
+    <navigator style='font-size:20rpx;color:#333;' url='/pages/me/security/forgetPassword'>忘记支付密码?</navigator>
+    <view class='login_btn' bindtap='require'>确认</view> 
+</view>

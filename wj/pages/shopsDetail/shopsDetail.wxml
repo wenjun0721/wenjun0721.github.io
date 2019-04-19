@@ -1,0 +1,320 @@
+<view style="background-color: #05b9ec;" class="cat-detail " wx:if="{{!noGoods}}">
+  <view>
+    <view class="content">
+      <view id="goods" class="scroll_detail">
+        <view class="cat-detail-image">
+          <view class='slider-banner'>
+            <swiper indicator-dots="true" autoplay="true" interval="5000	" duration="500" circular="true" indicator-color="#ccc" indicator-active-color="#F61628" id='data-0'>
+              <block wx:for="{{bannerLists}}" wx:key="index">
+                <swiper-item>
+                  <image src="{{item}}" style='width:100%;' class="slide-image" data-src="{{item}}" data-type="head" mode='aspectFit' bindtap="ImgEnlarge" />
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>
+        </view>
+        <view class="card">
+          <view class="card-header flex flex-ac flex-zBetween">
+            <h2>
+              {{goodsName}}
+            </h2>
+          </view>
+          <view class="card-body ">
+            <view class="flex flex-ac flex-zBetween flex-zLeftRight">
+              <view class="flex flex-ac">
+                <h3>¥{{shopsPrice}}</h3>
+                <span wx:if="{{shop.isSelf}}">自营</span>
+                <span wx:if="{{isFreeShipping}}">包邮</span>
+              </view>
+
+              <view class="flex flex-ac">
+                <i class="icon iconfont icon-liwuhuodong"></i>
+                <button open-type='share' class='flex flex-ac btn-no' data-id="{{goodsId}}" data-name="{{goodsName}}">
+                  <p>分享</p>
+                </button>
+              </view>
+            </view>
+            <view style='position: relative;height:50rpx;line-height:50rpx;text-align:left;color:red;font-size:24rpx;' bindtap="getCode">
+              自购分享可获得{{shareMoney.shareMoney}}爱米
+            </view>
+            <view style='position: relative;height:50rpx;line-height:50rpx;text-align:right;color:#666;font-size:28rpx;' bindtap="getCode">
+              <!--<h4>人气值 {{visitNum}} | 好评数 {{appraiseNum}} </h4>-->
+              二维码
+            </view>
+            <view class="flex flex-ac flex-zBetween">
+              <h4 style="margin-top:0;">
+                <i class="iconfont icon-weizhi"></i>{{address.name}}
+              </h4>
+              <h4 bindtap='showAddress' style="margin-top:0;">
+                查看可配送区域
+              </h4>
+            </view>
+            <view style="display:{{isShowAddress?'block':'none'}}">
+              <h4>{{goodareaname}}
+              </h4>
+            </view>
+          </view>
+          <view class='card-footer' wx:if="{{!myShop}}">
+            <view class='flex flex-ac flex-zBetween' wx:if="{{abc == '1'}}">
+              <view class="flex flex-ac" bindtap='toShop' data-shopid="{{myShop.shopId}}">
+                <image src="{{myShop.shopImg}}"></image>
+                <view class="flex flex-ac">
+                  <h4>{{myShop.shopName||''}}</h4>
+                  <!-- <span wx:if="{{myShopShareRank!=''}}">{{myShopShareRank}}</span> -->
+                </view>
+              </view>
+              <view class="card-footer-right" id='{{myShop.shopId}}'>
+                <button bindtap="goCatStore" data-shopId='{{myShop.shopId}}'>进店看看</button>
+              </view>
+            </view>
+            <view class='flex flex-ac flex-zBetween'>
+              <h3>商品评分：{{myShop.goodsScore}}</h3>
+              <h3>时效评分：{{myShop.timeScore}}</h3>
+              <h3>服务评分：{{myShop.serviceScore}}</h3>
+            </view>
+          </view>
+
+
+          <view class='card-footer' wx:if="{{myShop}}">
+            <view class='flex flex-ac flex-zBetween' wx:if="{{abc == '1'}}">
+              <view class="flex flex-ac" bindtap='toShop' data-shopid="{{shop.shopId}}">
+                <image src="{{shop.shopImg}}"></image>
+                <view class="flex flex-ac">
+                  <h4>{{shop.shopName||''}}</h4>
+                  <!-- <span wx:if="{{shop.shareRank!=''}}">{{shop.shareRank}}</span> -->
+                </view>
+              </view>
+              <view class="card-footer-right" id='{{shop.shopId}}'>
+                <button bindtap="goCatStore" data-shopId='{{shop.shopId}}'>进店看看</button>
+              </view>
+            </view>
+            <view class='flex flex-ac flex-zBetween'>
+              <h3>商品评分：{{myShop.goodsScore}}</h3>
+              <h3>时效评分：{{myShop.timeScore}}</h3>
+              <h3>服务评分：{{myShop.serviceScore}}</h3>
+            </view>
+          </view>
+
+
+        </view>
+      </view>
+      <view id="details" class="scroll_detail">
+        <!-- <view class='introduce'>
+          <h3>商品好评率</h3>
+          <text>好评(100%) 中评(0%) 差评（0%）</text>
+        </view> -->
+        <!-- <view class='introduce'>
+          <view class='flex flex-ac flex-zBetween'>
+            <h3>产品百科</h3>
+            <button bindtap='copyBtn'>点击复制</button>
+          </view>
+          <text>{{encyclopedias}}</text>
+        </view> -->
+        <view style='margin-bottom:80rpx;'>
+          <block wx:for="{{goodsDesc}}" wx:key="index">
+            <image src='{{item}}' mode='widthFix' style='width:100%;' data-src="{{item}}" data-type="desc" bindtap="ImgEnlarge"></image>
+          </block>
+          <image mode="widthFix" style='width:100%;' src='{{wxAppPoster}}' bindtap="qRImg" data-url='{{wxAppPoster}}'></image>
+        </view>
+
+        <view class="content" wx:if="{{!myShop && shop.shopId!=myShop.shopId}}">
+          <view id="goods" class="scroll_detail">
+            <view class='card'>
+              <view class='card-footer'>
+                <view class='flex flex-ac flex-zBetween'  wx:if="{{abc == '1'}}">
+                  <view class="flex flex-ac" bindtap='toShop' data-shopid="{{shop.shopId}}">
+                    <image src="{{shop.shopImg}}"></image>
+                    <view class="flex flex-ac">
+                      <h4>{{shop.shopName||''}}</h4>
+                      <span wx:if="{{shop.shareRank!=''}}">{{shop.shareRank}}</span>
+                    </view>
+                  </view>
+                  <view class="card-footer-right" id='{{shop.shopId}}'>
+                    <button bindtap="goCatStore" data-shopId='{{shop.shopId}}'>进店看看</button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <!-- 购买弹出框  start -->
+    <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+    <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+      <view class="bottom_dialog shopping_dialog">
+        <em style="height: 3rem;background: none;width:100%;display: block;"></em>
+        <em style="display: inline-block;width:100%;background: #fff;">
+          <em class="flex flex-ac flex-zBetween" style='padding:0 1.5rem 0.5rem;'>
+            <em class="flex flex-cEnd flex-nowrap">
+              <image class="image" src="{{cartData.img}}" mode='aspectFill'> </image>
+              <em>
+                <h4 class="line-clamp">{{cartData.specStr}}</h4>
+                <h4 class="line-clamp" style="font-size: 11px;color: red">自购分享可获得{{cartData.shareMoney}}爱米</h4>
+                <h3>¥{{cartData.shopPrice}}</h3>
+              </em>
+            </em>
+            <em class="bottom_dialog_cancel" bindtap='hideModal'>
+              <i class="icon iconfont icon-shanchu3" style="color: #999"></i>
+            </em>
+          </em>
+          <scroll-view scroll-y='true' style='height:45vh;padding:0 1.5rem;width:calc(100% - 3rem);'>
+
+            <block wx:for="{{cartData.spec}}" wx:for-index="parentIndex" wx:key="abc">
+              <h2 style="margin: 0.5rem 0">{{item.catName}}</h2>
+              <ul class="list">
+                <block wx:for="{{item.list}}" wx:key="index">
+                  <image wx:if="{{item.itemImg}}" bindtap='toggleSpecImg' data-itemid="{{item.itemId}}" data-index="{{parentIndex+'-'+index}}" class="specImg {{item.select=='yes'?'selectSpecImg':''}}" src='{{item.itemImg}}'></image>
+                  <view wx:else bindtap='toggleSpecText' data-itemid="{{item.itemId}}" data-index="{{parentIndex+'-'+index}}" class="addCartClassify_list {{item.select=='yes'?'active':''}}" id='{{item.id}}'>{{item.itemName}}</view>
+                </block>
+              </ul>
+
+            </block>
+
+            <!-- <h2 style="margin: 0.5rem 0">拼团</h2>
+            <ul class="txt-list">
+              <li class="active">黄色</li>
+              <li>单独购买</li>
+              <li>2人团</li>
+            </ul> -->
+            <!-- <h2 style="margin: 0.5rem 0">数量</h2> -->
+            <em class="flex flex-ac flex-zBetween" style="margin:0.5rem 0;">
+              <h2>库存：
+                <span class="number">{{cartData.stock}}</span>{{goodsUnit}}</h2>
+              <em class='flex flex-ac'>
+                <button class='btn-edit-num' bindtap="onReduce">-</button>
+                <input id="zhi" type="number" value="{{cartNum}}" bindinput="onBlur" bindfocus='onFocus' />
+                <button class='btn-edit-num' bindtap="onAdd">+</button>
+              </em>
+            </em>
+          </scroll-view>
+          <button bindtap='addCartOk'>确定</button>
+        </em>
+      </view>
+    </view>
+    <!-- 购买弹出框 end -->
+    <view class="footer flex flex-ac flex-zBetween flex-zLeftRight">
+      <view class='flex flex-ac'>
+        <navigator url='/pages/index/index' open-type='switchTab'>
+          <i class="icon iconfont icon-shouye" style="color:#07b9ed"></i>
+        </navigator>
+        <navigator id='call' bindtap='goWx'>
+          <i class="icon iconfont icon-xiaoxi2" style="color:#eeeeee"></i>
+        </navigator>
+        <!-- <navigator id='call' bindtap='showtip'  data-tel="{{shopTel}}" data-telephone="{{telephone}}">
+          <i class="icon iconfont icon-xiaoxi2" style="color:#eeeeee"></i>
+        </navigator> -->
+        <view class='attension' id='collect' bindtap='toggleAttension' data-id="{{attensionId}}">
+          <i class="icon iconfont {{attensionId?'icon-xingxing':'icon-star'}}" style="color:#ff3a00"></i>
+          <!-- <i class="icon iconfont icon-xingxing" style="color:#ff3a00"></i> -->
+        </view>
+      </view>
+      <view class="flex flex-ac">
+        <!-- <button style="background-color: #07b9ed;" class="add-cart" bindtap="showModal">加入购物车</button>
+        <button style="background-color: #ff464f;" bindtap="showModal">立即购买</button> -->
+
+        <button class='add-cart' style="background-color: #07b9ed;" bindtap='addCart' wx:if="{{whether==1}}">
+          加入购物车
+        </button>
+        <button style="background-color: #ff464f;" wx:if="{{whether==1}}" bindtap='buyCart'>
+          立即购买
+        </button>
+
+        <button class='add-cart' style="background-color: #07b9ed;" wx:if="{{whether!=1}}">
+          加入购物车
+        </button>
+        <button style="background-color: #ff464f;" wx:if="{{whether!=1}}">
+          立即购买
+        </button>
+
+
+      </view>
+    </view>
+  </view>
+</view>
+<view class='lineGoods'>
+  <h3 style="font-size: 1.2rem;text-align: center;color: #f3f2ee;">为你推荐</h3>
+  <view class='cat'>
+    <view class='cat-products flex flex-zLeftRight'>
+      <block wx:for="{{cartData.lines}}" wx:for-item="parent" wx:for-index="parentIndex" wx:key="index">
+        <navigator class="block-card flex" url="/pages/shopsDetail/shopsDetail?goodsId={{parent.goodsId}}">
+          <view class='card'>
+            <view class='card-body'>
+              <image src='{{parent.goodsImg}}' mode='aspectFill'></image>
+            </view>
+            <view class='card-footer'>
+              <p>{{parent.goodsName}}</p>
+              <view class="flex flex-cEnd flex-zBetween">
+                <view class="flex flex-cEnd">
+                  <h3>¥{{parent.shopPrice}}</h3>
+                  <text class="underline">¥{{parent.marketPrice}}</text>
+                </view>
+                <!-- <span>{{parent.saleNum}}人想要</span> -->
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+
+
+</view>
+
+<view wx:if="{{noGoods}}" style='text-align:center;padding-top:50rpx;'>
+  对不起你查看的商品不存在或已下架
+</view>
+
+
+
+<view class="code {{ codeLayerStatus ? 'code--show' : '' }}">
+  <view class="code__mask" />
+  <view class="code__container">
+    <view style='padding:60rpx 30rpx;'>
+      <view>
+        <view class='bgImg'>
+          <image mode="aspectFit" src='{{wxAppPoster?wxAppPoster:wxAppCode}}' bindtap="qRImg" data-url='{{wxAppPoster?wxAppPoster:wxAppCode}}'></image>
+        </view>
+      </view>
+      <view class="code__bottom">
+        <view class='cancel' bindtap="showLayer">取消</view>
+        <view class='codeBtn' bindtap="saveWxAppPoster" data-url='{{wxAppPoster}}'>保存</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+
+
+<!--  -->
+
+<view class="wxbox {{ wxboxLayerStatus ? 'wxbox--show' : '' }}" wx:if="{{wxboxLayerStatus}}">
+  <view class="wxbox__mask" />
+  <view class="wxbox__container" style="height:{{!customQr?'250':'750'}}rpx;bottom:400rpx">
+    <view>
+      <view class='customQr' style='padding:50rpx ' wx:if="{{customQr}}">
+        <image mode="aspectFit" src='{{customQr}}'></image>
+      </view>
+      <view class="tblin_items_txt" style="line-height:{{!customQr?'150':'600'}}rpx" wx:if="{{!customQr}}" selectable="true">{{shopTel?'':'店铺未设置客服'}}</view>
+      <view class="wxbox__bottom">
+        <view class='cancel' bindtap="hideLayer" data-type="wxbox">取消</view>
+        <view wx:if="{{customQr}}">保存</view>
+        <view wx:if="{{customQr}}" bindtap="saveWxAppPoster" data-url='{{customQr}}'>保存</view>
+        <view wx:else class='wxboxBtn' class='wxboxBtn' bindtap='showtip' data-tel="{{shopTel}}">拨打号码
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- 购物车 -->
+<view class='cart-box' bindtap='goCard'>
+  <image class='cart-box-icon' src='/static/cart-box.png'></image>
+</view>
