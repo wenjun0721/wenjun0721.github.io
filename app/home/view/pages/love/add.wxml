@@ -1,6 +1,6 @@
 
 
-<!-- <view class='editBox'>
+<view class='editBox' hidden='{{!indexShow}}'>
     <view class='edit_list' >
 
         <input type='password'  data-role="oldPassword" bindinput="listenerInput" placeholder="她的笔名（可空）"
@@ -15,9 +15,25 @@
         <view class='login_btn1' bindtap='background'>请选择一张您喜欢的背景图哦</view> 
     </view>
     <view class='login_btn' bindtap='require'>预览</view> 
-</view> -->
+</view>
 
 <view class='toast-box' hidden='{{!backShow}}'>
+  <view class='toast-title flex flex-ac flex-zBetween'>
+    <view class='button1' bindtap='hideModal'>取消</view>
+    <picker bindchange="bindPickerChange" value="{{backgroundCatArrindex}}" range="{{backgroundCatArr}}">
+      <view class='bg picker'>{{backgroundCatArr[backgroundCatArrindex]}}</view>
+      <image class='imagexiala' src='../../assets/images/xiala.png'></image>
+    </picker>
+  </view>
+
+  <view class='toast-title flex flex-ac flex-zBetween' hidden='{{!backgroundCatShow}}'>
+    <view class='button1' bindtap='hideModal'>取消</view>
+    <picker bindchange="bindPickerChangeTwo" value="{{backgroundCatTwoArrindex}}" range="{{backgroundCatTwoArr}}">
+      <view class='bg picker'>{{backgroundCatTwoArr[backgroundCatTwoArrindex]}}</view>
+      <image class='imagexiala' src='../../assets/images/xiala.png'></image>
+    </picker>
+  </view>
+  
 	<view class='cat-products flex flex-zLeftRight'>
         <block wx:for="{{imageList}}" wx:key="index">
           <view class="block-card flex">
@@ -29,5 +45,4 @@
           </view>
         </block>
       </view>
-
 </view>

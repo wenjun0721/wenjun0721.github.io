@@ -20,6 +20,13 @@ class Love extends Base
     	echo(json_encode(WSTReturn('success',1,$res)));die;
     }
 
+    public function backGround_cat()
+    {
+    	$l = new L();
+    	$res = $l->backGround_cat();
+    	echo(json_encode(WSTReturn('success',1,$res)));die;
+    }
+
     
     public function add()
     {

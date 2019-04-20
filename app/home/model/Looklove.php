@@ -8,6 +8,7 @@ class Looklove extends Base
     {
     	$where['userId'] = Session::get('userId');
     	$where['isok']   = 1;
+    	$where['isshow']   = 1;
     	$res = DB::name('xp')->where($where)->order(SO)->select();
     	return $res;
     }

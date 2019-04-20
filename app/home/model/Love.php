@@ -8,6 +8,7 @@ class Love extends Base
     {
     	$where['userId'] = Session::get('userId');
     	$where['isok']   = 1;
+        $where['isshow']   = 1;
     	$res = DB::name('xp')->where($where)->order(SO)->select();
         foreach ($res as $k => $v) {
             $res[$k]['img'] = WEBURL.'upload/love/'.$v['img'];
@@ -19,8 +20,9 @@ class Love extends Base
     public function backGround()
     {
     	$where['userId'] = input('userId/d',0);
-    	$where['isok']   = 1;
-    	$where['ischeck']   = 1;
+    	$where['isok']   = 1; //是否有效
+        $where['isshow']   = 1; //是否显示
+    	$where['ischeck']   = 1; //是否审核
     	$res = DB::name('background')->where($where)->order(SO_BACKGROUND)->select();
         $img = [];
         foreach ($res as $k => $v) {
@@ -28,5 +30,31 @@ class Love extends Base
         }
         $res['imgs'] = $img;
     	return $res;
+    }
+
+    public function backGround_cat()
+    {
+        $where['isok']   = 1; //是否有效
+        $where['isshow']   = 1; //是否显示
+        $vaule = input('value/d',1);
+        if ($vaule == 2) {
+            $where['userId'] = input('userId/d',0);
+        }else{
+            $where['userId'] = 0;
+        }
+        $res = DB::name('background_cat')->where($where)->order(SO_BACKGROUND_CAT)->select();
+        $arr = [];
+        $arrindex = [];
+        foreach ($res as $k => $v) {
+            $arr[$v['catId']] = $v['catName'];
+        }
+        if ($arr) {
+            reset($arr);
+            $first_key = key($arr);
+            $rs['arrindex'] = $first_key;
+        }
+        $rs['arr'] = $arr;
+        
+        return $rs;
     }
 }
