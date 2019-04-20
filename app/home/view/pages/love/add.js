@@ -72,6 +72,7 @@ Page({
 
   //改变分类，获取2级分类
   bindPickerChange: function (e) {
+    var that = this;
     let value = e.detail.value;
     let obj = {
         value: value, 
@@ -81,11 +82,11 @@ Page({
       app.util.request(app.api.Love_backGround_cat, 'POST', obj).then((res) => {
         if (res.status && res.status == 1) {
           console.log(res.data)
-          // that.setData({
-          //   backgroundCatTwoArrindex:0,
-          //   backgroundCatTwoArr:res.data,
-          //   backgroundCatShow: true,
-          // })
+          that.setData({
+            backgroundCatTwoArrindex:0,
+            backgroundCatTwoArr:res.data.arr,
+            backgroundCatShow: true,
+          })
         }
       }).catch((error) => {
         console.log(error)
@@ -99,24 +100,25 @@ Page({
   //改变分类，获取2级分类
   bindPickerChangeTwo: function (e) {
     let value = e.detail.value;
-    let obj = {
-        value: value, 
-        userId: wx.getStorageSync('userId')
-      }
-    if (value != 0) {
-      app.util.request(app.api.Love_backGround_cat, 'POST', obj).then((res) => {
-        if (res.status && res.status == 1) {
-          console.log(res.data)
-          that.setData({
-            backgroundCatTwoArrindex:0,
-            backgroundCatTwoArr:res.data,
-            backgroundCatShow: true,
-          })
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
-    }
+    console.log(value)
+    // let obj = {
+    //     value: value, 
+    //     userId: wx.getStorageSync('userId')
+    //   }
+    // if (value != 0) {
+    //   app.util.request(app.api.Love_backGround_cat, 'POST', obj).then((res) => {
+    //     if (res.status && res.status == 1) {
+    //       console.log(res.data)
+    //       that.setData({
+    //         backgroundCatTwoArrindex:0,
+    //         backgroundCatTwoArr:res.data,
+    //         backgroundCatShow: true,
+    //       })
+    //     }
+    //   }).catch((error) => {
+    //     console.log(error)
+    //   })
+    // }
     this.setData({
       backgroundCatArrindex:value,
     })

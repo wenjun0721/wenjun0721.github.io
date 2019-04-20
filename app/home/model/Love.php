@@ -44,17 +44,10 @@ class Love extends Base
         }
         $res = DB::name('background_cat')->where($where)->order(SO_BACKGROUND_CAT)->select();
         $arr = [];
-        $arrindex = [];
         foreach ($res as $k => $v) {
-            $arr[$v['catId']] = $v['catName'];
-        }
-        if ($arr) {
-            reset($arr);
-            $first_key = key($arr);
-            $rs['arrindex'] = $first_key;
+            $arr[$k] = $v['catName'];
         }
         $rs['arr'] = $arr;
-        
         return $rs;
     }
 }
