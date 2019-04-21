@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2019-04-20 18:42:34
+Date: 2019-04-21 19:01:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,6 +22,8 @@ DROP TABLE IF EXISTS `lm_background`;
 CREATE TABLE `lm_background` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `img` varchar(255) DEFAULT NULL COMMENT '图片',
+  `imgName` varchar(255) DEFAULT NULL COMMENT '图片名称',
+  `useclick` int(11) DEFAULT '0' COMMENT '使用次数',
   `downclick` int(11) DEFAULT '0' COMMENT '被下载的次数',
   `is_recom` tinyint(1) DEFAULT '0' COMMENT '是否推荐',
   `sort` int(11) DEFAULT '100' COMMENT '排序',
@@ -40,9 +42,9 @@ CREATE TABLE `lm_background` (
 -- ----------------------------
 -- Records of lm_background
 -- ----------------------------
-INSERT INTO `lm_background` VALUES ('1', '1.jpg', '0', '0', '100', '1', '1', '0', '0', '1', null, '1523486289');
-INSERT INTO `lm_background` VALUES ('2', '2.jpg', '0', '0', '100', '1', '1', '0', '0', '1', null, '1568315237');
-INSERT INTO `lm_background` VALUES ('3', '3.jpg', '0', '0', '100', '1', '1', '0', '0', '1', null, '1523698752');
+INSERT INTO `lm_background` VALUES ('1', '1.jpg', '甜蜜', '0', '0', '0', '101', '1', '1', '0', '0', '1', null, '1523486289');
+INSERT INTO `lm_background` VALUES ('2', '2.jpg', '回忆', '0', '0', '1', '100', '1', '1', '0', '0', '1', null, '1568315237');
+INSERT INTO `lm_background` VALUES ('3', '3.jpg', '爱', '0', '0', '0', '100', '1', '1', '0', '0', '1', null, '1523698752');
 
 -- ----------------------------
 -- Table structure for lm_background_cat
