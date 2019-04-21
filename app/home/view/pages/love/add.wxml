@@ -12,7 +12,8 @@
         <textarea type='password'  data-role="oldPassword" bindinput="listenerInput" placeholder="您想说的话，最多200字哦"
         ></textarea>
 
-        <view class='login_btn1' bindtap='background'>请选择一张您喜欢的背景图哦</view> 
+        <view class='login_btn1' bindtap='background'>{{backgroundText}}</view> 
+        <input hidden="true" name="backgroundImg" value="{{backgroundImg}}" />
     </view>
     <view class='login_btn' bindtap='require'>预览</view> 
 </view>
@@ -20,29 +21,33 @@
 <view class='toast-box' hidden='{{!backShow}}'>
   <view class='toast-title flex flex-ac flex-zBetween'>
     <view class='button1' bindtap='hideModal'>取消</view>
-    <picker bindchange="bindPickerChange" value="{{backgroundCatArrindex}}" range="{{backgroundCatArr}}">
-      <view class='bg picker'>{{backgroundCatArr[backgroundCatArrindex]}}</view>
+    <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+      <view class='bg picker' style="margin-left:{{left}}">{{multiArray[0][multiIndex[0]]}}&{{multiArray[1][multiIndex[1]]}}</view>
       <image class='imagexiala' src='../../assets/images/xiala.png'></image>
     </picker>
   </view>
-
-  <view class='toast-title flex flex-ac flex-zBetween' hidden='{{!backgroundCatShow}}'>
-    <view class='button1' bindtap='hideModal'>取消</view>
-    <picker bindchange="bindPickerChangeTwo" value="{{backgroundCatTwoArrindex}}" range="{{backgroundCatTwoArr}}">
-      <view class='bg picker'>{{backgroundCatTwoArr[backgroundCatTwoArrindex]}}</view>
-      <image class='imagexiala' src='../../assets/images/xiala.png'></image>
-    </picker>
-  </view>
-  
 	<view class='cat-products flex flex-zLeftRight'>
         <block wx:for="{{imageList}}" wx:key="index">
           <view class="block-card flex">
-            <view class='card' bindtap='goCatDetail'>
-              <view class='card-body'>
-                <image bindtap='previewImg' data-index='{{index}}' src='{{item}}' mode='aspectFill'></image>
+            <view class='card'>
+              <view class='card-body'wx:if="{{selectindex == index+1}}" style="border:4rpx solid #FF0000">
+                <!-- <image bindtap='previewImg' data-index='{{index}}' src='{{item}}' mode='aspectFill'></image> -->
+                <image bindtap="doubleTap" data-time="{{lastTapTime}}" data-index='{{index}}' src='{{item}}' mode='aspectFill'></image>
+              </view>
+              <view class='card-body' wx:else>
+                <!-- <image bindtap='previewImg' data-index='{{index}}' src='{{item}}' mode='aspectFill'></image> -->
+                <image bindtap="doubleTap" data-time="{{lastTapTime}}" data-index='{{index}}' src='{{item}}' mode='aspectFill'></image>
               </view>
             </view>
           </view>
         </block>
       </view>
 </view>
+
+
+  <modal class="cat-products" title="点击图片可以放大" hidden="{{!modalHidden}}" confirm-text="确定选中" cancel-text="取消重选" bindconfirm="modalConfirm" bindcancel="modalCandel">
+    <view class='card-body' style="text-align: center;" bindtap='previewImg'>
+      <image style="width: 50%" src="{{lookImage}}" mode='aspectFill'></image>
+    </view>
+  </modal>
+

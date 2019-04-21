@@ -43,7 +43,16 @@ Page({
   },
 
   onLoad: function () {
-    
+    const innerAudioContext = wx.createInnerAudioContext()
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = 'http://www.tplm.com/upload/video/renxi.mp3'
+    innerAudioContext.onPlay(() => {
+        console.log('开始播放')
+    })
+    innerAudioContext.onError((res) => {
+        console.log(res.errMsg)
+        console.log(res.errCode)
+    })
   },
 
 

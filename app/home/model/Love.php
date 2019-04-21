@@ -9,7 +9,7 @@ class Love extends Base
     	$where['userId'] = Session::get('userId');
     	$where['isok']   = 1;
         $where['isshow']   = 1;
-    	$res = DB::name('xp')->where($where)->order(SO)->select();
+    	$res = Db::name('xp')->where($where)->order(SO)->select();
         foreach ($res as $k => $v) {
             $res[$k]['img'] = WEBURL.'upload/love/'.$v['img'];
         }
@@ -20,10 +20,22 @@ class Love extends Base
     public function backGround()
     {
     	$where['userId'] = input('userId/d',0);
+        $is_new = input('is_new/d',0);
+
+        if ($is_new == 1) {
+            $SO = SO_BACKGROUND_NEW;
+        }else{
+            $SO = SO_BACKGROUND;
+        }
+        $catId = input('catId/d',0);
+        if ($catId) {
+            $where['catId'] = $catId;
+        }
+
     	$where['isok']   = 1; //是否有效
         $where['isshow']   = 1; //是否显示
     	$where['ischeck']   = 1; //是否审核
-    	$res = DB::name('background')->where($where)->order(SO_BACKGROUND)->select();
+    	$res = Db::name('background')->where($where)->order($SO)->select();
         $img = [];
         foreach ($res as $k => $v) {
             $img[$k] = WEBURL.'upload/background/'.$v['img'];
@@ -36,18 +48,35 @@ class Love extends Base
     {
         $where['isok']   = 1; //是否有效
         $where['isshow']   = 1; //是否显示
-        $vaule = input('value/d',1);
-        if ($vaule == 2) {
+        $value = input('value/d',1);
+        if ($value == 2) {
             $where['userId'] = input('userId/d',0);
+            $addArr = ['catId'=>'0','catName'=>'个人最新'];
         }else{
             $where['userId'] = 0;
+            $addArr = ['catId'=>'0','catName'=>'官方最新'];
         }
-        $res = DB::name('background_cat')->where($where)->order(SO_BACKGROUND_CAT)->select();
+        $res = Db::name('background_cat')->where($where)->order(SO_BACKGROUND_CAT)->select();
+        if (count($res)>0) {
+            array_unshift($res, $addArr);
+        }else{
+            $res = $addArr;
+        }
         $arr = [];
+        $arrIndex = [];
         foreach ($res as $k => $v) {
-            $arr[$k] = $v['catName'];
+            $arr[$k]['catId'] = $v['catId'];
+            $arr[$k]['catName'] = $v['catName'];
+            $arrIndex[$k] = $v['catId'];
         }
-        $rs['arr'] = $arr;
+        if ($value == 0) {
+            $rs['arr'] = [];
+            $rs['arrIndex'] = [];
+        }else{
+            $rs['arr'] = $arr;
+            $rs['arrIndex'] = $arrIndex;
+        }
+        
         return $rs;
     }
 }
