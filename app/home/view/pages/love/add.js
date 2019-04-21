@@ -44,6 +44,8 @@ Page({
     }, 500);
     
     this.initDate();
+    const back=wx.getBackgroundAudioManager();
+    back.stop();
   },
 
   onLoad: function () {
