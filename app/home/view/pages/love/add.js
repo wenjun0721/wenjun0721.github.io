@@ -116,11 +116,7 @@ Page({
       modalHidden: false,
     })
   },
-  tpCandel: function () {
-    this.setData({
-      myLoveShow: false,
-    })
-  },
+  
 
   modalConfirm:function () {
     this.setData({
@@ -294,5 +290,44 @@ Page({
   getStrLength: function(str) {
       return str.replace(/[\u0391-\uFFE5]/g,"aa").length;   //先把中文替换成两个字节的英文，在计算长度
   },
+
+
+  //取消预览
+  tpCandel:function(){
+    let love = this.data.love;
+    let obj = {
+      love: love
+    }
+    app.util.request(app.api.Love_delImg, 'POST',obj).then((res) => {　
+      console.log('取消成功')
+      this.setData({
+        myLoveShow: false,
+      })
+    })
+  }
+
+  //确定选中
+  tpConfirm:function(){
+    let love = this.data.love;
+    let obj = {
+      img: this.data.love,
+      loveCatId: this.data.loveCatId,
+      toUser: this.data.toName,
+      fromUser: this.data.fromName,
+      text: loveTetx,
+    }
+    app.util.request(app.api.Love_addImg, 'POST',obj).then((res) => {　
+      console.log('确定成功')
+      this.setData({
+        myLoveShow: false,
+      })
+      wx.showToast({
+       title: '确定成功',
+       icon: 'success',
+       duration: 1000
+      })
+
+    })
+  }
 
 })

@@ -81,12 +81,24 @@ class Love extends Base
 
 		$data['img'] = $fileName;
 		$data['add_time'] = time();
-		//记录数据表
-		$l = new L();
-    	$l->loveAdd($data);
+		//预览不用记录数据表
+		// $l = new L();
+  //   	$l->loveAdd($data);
 		$localUrl = './'.$fileName;
 		imagejpeg($bg, $localUrl, 90);
 		echo(json_encode(WSTReturn('success',1,$fileName)));die;
+    }
+
+    public function delImg(){
+    	$img = input('love');
+    	@unlink('./'.$img);
+    }
+
+    public function addImg(){
+    	$l = new L();
+    	$data = input();
+    	$data['add_time'] = time();
+    	$l->loveAdd($data);
     }
 
 }
