@@ -7,7 +7,6 @@ class Love extends Base
     {
     	$l = new L();
     	$res = $l->index();
-    	// $this->fetch();
     	echo(json_encode(WSTReturn('success',1,$res)));die;
     }
 
@@ -16,7 +15,6 @@ class Love extends Base
     {
     	$l = new L();
     	$res = $l->backGround();
-    	// $this->fetch();
     	echo(json_encode(WSTReturn('success',1,$res)));die;
     }
 
@@ -30,11 +28,12 @@ class Love extends Base
     
     public function add()
     {
-    	$data['toUser'] = '背影';
-		$data['fromUser'] = '决心';
-		$data['text'] = '知道不该打扰你,
-		但每次偷看你背影，
-		都不忍再下决心。';
+    	$inputDate =input();
+    	$data['userId'] = $inputDate['userId'];
+    	$data['loveCatId'] = $inputDate['loveCatId'];
+    	$data['toUser'] = $inputDate['toName'];
+		$data['fromUser'] = $inputDate['fromName'];
+		$data['text'] = $inputDate['loveTetx'];
 		$kk  = explode("\n", $data['text']);
 		foreach ($kk as $k => $v) {
 		    $len = mb_strlen($v,'utf-8');
@@ -54,9 +53,9 @@ class Love extends Base
 		$content .=$arr;
 		$content .= "\n"."\n"."-------".$data['fromUser'].'。';
 
-		$src = 'http://'.$_SERVER['SERVER_NAME'].'/upload/background/1.jpg';
+		$src = $inputDate['backgroundImg'];
 		$bg = imagecreatefromjpeg($src);
-		$fontFamily = './font/zt0.ttf';//c盘windows/fonts
+		$fontFamily = './upload/font/zt0.ttf';//c盘windows/fonts
 		$fontSize = 30;
 		$charset = 'utf8';
 		$textcolor = imagecolorallocatealpha($bg, 0, 0, 0,1);
@@ -74,23 +73,20 @@ class Love extends Base
 		}else{
 		    $startY = 400;
 		}
-
-
 		$lineWidth = imagesx($bg) - $startX - $startY;
-
-
-
 		foreach ($lineArr as $k => $v) {
 		    imagettftext($bg, $fontSize, 0, $startX, ($startY + ($lineHeight * $k)), $textcolor, $fontFamily, $v);
 		}
-		$fileName = date('YmdHis').rand(10000,100000).'.jpg';
+		$fileName = 'upload/love/'.date('YmdHis').rand(10000,100000).'.jpg';
 
 		$data['img'] = $fileName;
 		$data['add_time'] = time();
 		//记录数据表
-		$result=DBAdd('xp',$data);
-		$localUrl = './upload/'.$fileName;
+		$l = new L();
+    	$l->loveAdd($data);
+		$localUrl = './'.$fileName;
 		imagejpeg($bg, $localUrl, 90);
+		echo(json_encode(WSTReturn('success',1,$fileName)));die;
     }
 
 }

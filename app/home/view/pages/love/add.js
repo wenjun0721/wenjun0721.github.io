@@ -1,5 +1,4 @@
 const app = getApp().globalData;
-
 Page({
   data: {
     webViewUrl:"http://www.tplm.com/",
@@ -26,13 +25,16 @@ Page({
     selectindex:0,
     modalHidden: false,
     backgroundImgTrue:true,
+    myLoveShow: false,
     backgroundText:'请选择一张您喜欢的背景图哦',
+    loveCatId:0,
   },
   onShow: function() {
     var that = this;
     this.setData({
       backShow: false,
       indexShow:true,
+      myLoveShow:false,
     })
     wx.showToast({
       title: '加载中',
@@ -44,8 +46,7 @@ Page({
     }, 500);
     
     this.initDate();
-    const back=wx.getBackgroundAudioManager();
-    back.stop();
+    app.BMGMUSIC.stop()
   },
 
   onLoad: function () {
@@ -77,6 +78,7 @@ Page({
       indexShow:true,
     })
   },
+
 
   //双击事件
   doubleTap:function(e){
@@ -112,6 +114,11 @@ Page({
   modalCandel: function () {
     this.setData({
       modalHidden: false,
+    })
+  },
+  tpCandel: function () {
+    this.setData({
+      myLoveShow: false,
     })
   },
 
@@ -244,17 +251,48 @@ Page({
   },
 
 
-  // bindcancel: function(e){
-  //   var xiaoquList = this.data.result;
-  //   var xiaoquArr = xiaoquList.map(item => {　　　　// 此方法将校区名称区分到一个新数组中
-  //     return item.backGroundDefault_name;
-  //   });
-  //   this.setData({
-  //     multiArray: [xiaoquArr, []],　　
-  //     xiaoquList,
-  //     xiaoquArr,
-  //     multiIndex:[0,0],
-  //   })
-  // }
+  //监听输入内容并且赋值
+  listenerInput: function (e) {
+    let role = e.currentTarget.dataset.role;
+    let val = e.detail.value;
+    var len = this.getStrLength(val);
+    let obj = [];
+    obj[role] = val;
+    this.setData({ [role] : val});
+  },
+  lookMyLove: function() {
+    const that = this;
+    let toName = that.data.toName;
+    let fromName = that.data.fromName;
+    let loveTetx = that.data.loveTetx;
+    let backgroundImg = that.data.backgroundImg;
+    let loveCatId = that.data.loveCatId;
+
+    //生成图片
+    let obj = {
+      userId: wx.getStorageSync('userId'),
+      toName: toName,
+      fromName: fromName,
+      loveTetx: loveTetx,
+      backgroundImg: backgroundImg,
+      loveCatId: loveCatId
+    }
+    app.util.request(app.api.Love_add, 'POST', obj).then((res) => {
+      if (res.status && res.status == 1) {
+        console.log(res.data)
+        that.setData({
+          love: res.data,
+        })
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
+    this.setData({
+      myLoveShow:true,
+    })
+  },
+  getStrLength: function(str) {
+      return str.replace(/[\u0391-\uFFE5]/g,"aa").length;   //先把中文替换成两个字节的英文，在计算长度
+  },
 
 })

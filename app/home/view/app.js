@@ -39,6 +39,7 @@ App({
     userInfo: null,
     util:util,
     api:api,
-    webViewUrl:'http://www.tplm.com/'
+    webViewUrl:'http://www.tplm.com/',
+    BMGMUSIC:wx.createInnerAudioContext(), //内置音乐播放器
   },
 })

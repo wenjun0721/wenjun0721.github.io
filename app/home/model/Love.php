@@ -79,4 +79,9 @@ class Love extends Base
         
         return $rs;
     }
+
+    public function loveAdd($data)
+    {
+        $res = Db::name('xp')->insert($data);
+    }
 }

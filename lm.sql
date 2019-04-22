@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2019-04-21 19:01:37
+Date: 2019-04-22 19:26:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -107,13 +107,17 @@ CREATE TABLE `lm_xp` (
   `sort` int(11) DEFAULT '50' COMMENT '排序',
   `isshow` tinyint(1) DEFAULT '1' COMMENT '是否显示',
   `isok` tinyint(1) DEFAULT '1' COMMENT '是否被删除/无效',
+  `loveCatId` int(11) DEFAULT '0' COMMENT '相册ID，0为默认相册',
   `add_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_xp
 -- ----------------------------
-INSERT INTO `lm_xp` VALUES ('78', '1', '夏日', '冬阳', '你是夏日风雨,\r\n冬日里的暖阳，\r\n温柔了岁月，惊艳了时光。', '2019041717492378989.jpg', '0', '0', '50', '1', '1', '1555494563');
-INSERT INTO `lm_xp` VALUES ('81', '1', '心晴', '心安', '爱无非是,\r\n初见你心晴，\r\n久见你心安。', '2019041717534098169.jpg', '0', '0', '50', '1', '1', '1555494820');
-INSERT INTO `lm_xp` VALUES ('85', '1', '背影', '决心', '知道不该打扰你,\r\n但每次偷看你背影，\r\n都不忍再下决心。', '2019041717562219374.jpg', '0', '0', '50', '1', '1', '1555494982');
+INSERT INTO `lm_xp` VALUES ('78', '1', '夏日', '冬阳', '你是夏日风雨,\r\n冬日里的暖阳，\r\n温柔了岁月，惊艳了时光。', '2019041717492378989.jpg', '0', '0', '50', '1', '1', '0', '1555494563');
+INSERT INTO `lm_xp` VALUES ('81', '1', '心晴', '心安', '爱无非是,\r\n初见你心晴，\r\n久见你心安。', '2019041717534098169.jpg', '0', '0', '50', '1', '1', '0', '1555494820');
+INSERT INTO `lm_xp` VALUES ('85', '1', '背影', '决心', '知道不该打扰你,\r\n但每次偷看你背影，\r\n都不忍再下决心。', '2019041717562219374.jpg', '0', '0', '50', '1', '1', '0', '1555494982');
+INSERT INTO `lm_xp` VALUES ('86', '1', '花开', '花落', '人生如是也！', 'upload/love/2019042218505022310.jpg', '0', '0', '50', '1', '1', '0', '1555930250');
+INSERT INTO `lm_xp` VALUES ('87', '1', '月圆', '月缺', '又一月！', 'upload/love/2019042218523484205.jpg', '0', '0', '50', '1', '1', '0', '1555930354');
+INSERT INTO `lm_xp` VALUES ('88', '1', '月圆', '月缺', '又一月！', 'upload/love/2019042218550248035.jpg', '0', '0', '50', '1', '1', '0', '1555930502');

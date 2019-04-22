@@ -31,43 +31,15 @@ Page({
     }).catch((error) => {
       console.log(error)
     })
-    // wx.request({
-    //   url: 'http://www.tplm.com/home/Looklove/index',
-    //   success: function (res) {
-    //     console.log(res);
-    //     that.setData({
-    //       loves: res.data.data,
-    //     })
-    //   }
-    // })
-    const back=wx.getBackgroundAudioManager();
-    back.src ="http://www.tplm.com/upload/video/renxi.mp3";
-    back.title="天天音乐";
-    back.coverImgUrl ="http://www.tplm.com/upload/video/renxi.mp3";
-    back.play();
-    back.onPlay(()=>{
-    console.log("音乐播放开始");
-    })
-    back.onEnded(()=>{
-    console.log("音乐播放结束");
-    })
+
+    //播放音乐
+    const innerAudioContext = app.BMGMUSIC
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = 'http://www.tplm.com/upload/video/renxi.mp3'
+    innerAudioContext.play();
   },
 
   onLoad: function () {
-    // const innerAudioContext = wx.createInnerAudioContext()
-    // innerAudioContext.autoplay = true
-    // innerAudioContext.src = 'http://www.tplm.com/upload/video/renxi.mp3'
-    // innerAudioContext.onPlay(() => {
-    //     console.log('开始播放')
-    // })
-    // innerAudioContext.onError((res) => {
-    //     console.log(res.errMsg)
-    //     console.log(res.errCode)
-    // })
-
-
     
   },
-
-
 })

@@ -3,19 +3,18 @@
 <view class='editBox' hidden='{{!indexShow}}'>
     <view class='edit_list' >
 
-        <input type='password'  data-role="oldPassword" bindinput="listenerInput" placeholder="她的笔名（可空）"
+        <input type='text' data-role="toName" maxlength="5" value="{{toName}}" bindinput="listenerInput" placeholder="她的笔名（可空,最多5字哦）"
         ></input>
 
-        <input type='password'  data-role="oldPassword" bindinput="listenerInput" placeholder="您的笔名（可空）"
+        <input type='text' data-role="fromName" maxlength="5" value="{{fromName}}" bindinput="listenerInput" placeholder="您的笔名（可空,最多5字哦）"
         ></input>
 
-        <textarea type='password'  data-role="oldPassword" bindinput="listenerInput" placeholder="您想说的话，最多200字哦"
+        <textarea type='text' data-role="loveTetx" maxlength="200" value="{{loveTetx}}" bindinput="listenerInput" placeholder="您想说的话，最多200字哦"
         ></textarea>
 
-        <view class='login_btn1' bindtap='background'>{{backgroundText}}</view> 
-        <input hidden="true" name="backgroundImg" value="{{backgroundImg}}" />
+        <view class='login_btn1' bindtap='background'>{{backgroundText}}</view>
     </view>
-    <view class='login_btn' bindtap='require'>预览</view> 
+    <view class='login_btn' bindtap='lookMyLove'>预览</view> 
 </view>
 
 <view class='toast-box' hidden='{{!backShow}}'>
@@ -51,3 +50,9 @@
     </view>
   </modal>
 
+  
+<modal class="cat-products" title="确定提交？" hidden="{{!myLoveShow}}" bindconfirm="tpConfirm" bindcancel="tpCandel">
+    <view class='start' style="text-align: center;" >
+      <image style="width: 100%" src="{{webViewUrl}}{{love}}" mode='aspectFill'></image>
+    </view>
+  </modal>
