@@ -25,19 +25,34 @@ class Love extends Base
     	echo(json_encode(WSTReturn('success',1,$res)));die;
     }
 
-    
-    public function add()
+    /* 水印相关常量定义 
+    const WATER_NORTHWEST = 1; //常量，标识左上角水印
+    const WATER_NORTH     = 2; //常量，标识上居中水印
+    const WATER_NORTHEAST = 3; //常量，标识右上角水印
+    const WATER_WEST      = 4; //常量，标识左居中水印
+    const WATER_CENTER    = 5; //常量，标识居中水印
+    const WATER_EAST      = 6; //常量，标识右居中水印
+    const WATER_SOUTHWEST = 7; //常量，标识左下角水印
+    const WATER_SOUTH     = 8; //常量，标识下居中水印
+    const WATER_SOUTHEAST = 9; //常量，标识右下角水印
+    */
+  	public function add()
     {
     	$inputDate =input();
-    	$data['userId'] = $inputDate['userId'];
-    	$data['loveCatId'] = $inputDate['loveCatId'];
     	$data['toUser'] = $inputDate['toName'];
 		$data['fromUser'] = $inputDate['fromName'];
 		$data['text'] = $inputDate['loveTetx'];
 		$kk  = explode("\n", $data['text']);
+		$limit = 18;
+		$fontSize = 30;
+		// $widthW = $inputDate['widthW'];
+		// $heightW = $inputDate['heightW'];
+		$widthW = 10;
+		$heightW = 10;
+		$fontFamily = './upload/font/zt0.ttf';
 		foreach ($kk as $k => $v) {
 		    $len = mb_strlen($v,'utf-8');
-		    $limit = 16;
+		    
 		    $num = ceil($len/$limit);
 		    if ($num*1 >1) {
 		        $arr = array();
@@ -48,44 +63,26 @@ class Love extends Base
 		    }
 		}
 		$arr = implode("\n", $kk);
-
 		$content = $data['toUser'].':'."\n"."\n";
 		$content .=$arr;
 		$content .= "\n"."\n"."-------".$data['fromUser'].'。';
-
-		$src = $inputDate['backgroundImg'];
-		$bg = imagecreatefromjpeg($src);
-		$fontFamily = './upload/font/zt0.ttf';//c盘windows/fonts
-		$fontSize = 30;
-		$charset = 'utf8';
-		$textcolor = imagecolorallocatealpha($bg, 0, 0, 0,1);
-		$lineHeight = 40;
-		$startX = 30;
 		$lineArr = explode("\n", $content);
 		$allnum =count($lineArr);
 		if ($allnum*1 >27) {
-		    echo "<script>alert('您的浪漫，空行过多哦。请删除一些，么么哒')</script>";exit;
+			echo(json_encode(WSTReturn('您的浪漫，空行过多哦。请删除一些，么么哒',-1)));die;
 		}
-		if ($allnum*1>10 && $allnum*1<20) {
-		    $startY = 300;
-		}else if ($allnum*1>20) {
-		    $startY = 200;
-		}else{
-		    $startY = 400;
-		}
-		$lineWidth = imagesx($bg) - $startX - $startY;
-		foreach ($lineArr as $k => $v) {
-		    imagettftext($bg, $fontSize, 0, $startX, ($startY + ($lineHeight * $k)), $textcolor, $fontFamily, $v);
-		}
+    	//生成带水印的图片
+    	require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
+		$image = \think\Image::open('./upload/background/1.jpg');
+		//定义位置
 		$fileName = 'upload/love/'.date('YmdHis').rand(10000,100000).'.jpg';
+		$path="./".$fileName;
+		//width 0-300  height 0-400  文字倾斜角度：0-90
+		$wz=array($widthW,$heightW);//水印位置
+		$str = $content;
+		$image->crop('640','960')->text($str, $fontFamily, $fontSize, '#000000',$wz,20)->text('wj测试', $fontFamily, $fontSize, '#000000',9,-25)->save($path);
 
-		$data['img'] = $fileName;
-		$data['add_time'] = time();
-		//预览不用记录数据表
-		// $l = new L();
-  //   	$l->loveAdd($data);
-		$localUrl = './'.$fileName;
-		imagejpeg($bg, $localUrl, 90);
+		
 		echo(json_encode(WSTReturn('success',1,$fileName)));die;
     }
 

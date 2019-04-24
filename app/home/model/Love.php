@@ -11,7 +11,7 @@ class Love extends Base
         $where['isshow']   = 1;
     	$res = Db::name('xp')->where($where)->order(SO)->select();
         foreach ($res as $k => $v) {
-            $res[$k]['img'] = WEBURL.'upload/love/'.$v['img'];
+            $res[$k]['img'] = WEBURL.$v['img'];
         }
     	return $res;
     }

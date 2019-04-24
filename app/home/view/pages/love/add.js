@@ -278,13 +278,17 @@ Page({
         console.log(res.data)
         that.setData({
           love: res.data,
+          myLoveShow:true,
+        })
+      }else{
+        wx.showToast({
+         title: res.msg,
+         icon: 'none',
+         duration: 2000
         })
       }
     }).catch((error) => {
       console.log(error)
-    })
-    this.setData({
-      myLoveShow:true,
     })
   },
   getStrLength: function(str) {
@@ -304,7 +308,7 @@ Page({
         myLoveShow: false,
       })
     })
-  }
+  },
 
   //确定选中
   tpConfirm:function(){
@@ -314,7 +318,7 @@ Page({
       loveCatId: this.data.loveCatId,
       toUser: this.data.toName,
       fromUser: this.data.fromName,
-      text: loveTetx,
+      text: this.data.loveTetx,
     }
     app.util.request(app.api.Love_addImg, 'POST',obj).then((res) => {　
       console.log('确定成功')
@@ -326,8 +330,8 @@ Page({
        icon: 'success',
        duration: 1000
       })
-
+      this.onLoad();
     })
-  }
+  },
 
 })
