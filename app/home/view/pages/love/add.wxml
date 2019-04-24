@@ -13,6 +13,7 @@
         ></textarea>
 
         <view class='login_btn1' bindtap='background'>{{backgroundText}}</view>
+        <view class='login_btn1' bindtap='setup'>{{setUpText}}</view>
     </view>
     <view class='login_btn' bindtap='lookMyLove'>预览</view> 
 </view>
@@ -56,3 +57,18 @@
       <image style="width: 100%" src="{{webViewUrl}}{{love}}" mode='aspectFill'></image>
     </view>
   </modal>
+
+
+<view class='toast-box' hidden='{{!setUpShow}}'>
+    <picker class='login_btn1' style="{{setUpStyle}}" bindchange="bindPickerChange" value="{{setUpArrIndex}}" range="{{setUpArr}}">
+    <view class="picker">
+      {{setUpArr[setUpArrIndex]}}
+    </view>
+  </picker>
+
+  <picker hidden='{{!setUpShowSub}}' class='login_btn1' style="{{setUpSubStyle}}" bindchange="bindPickerChangeSub" value="{{setUpSubArrIndex}}" range="{{setUpSubArr}}">
+    <view class="picker">
+      {{setUpSubArr[setUpSubArrIndex]}}
+    </view>
+  </picker>
+</view>

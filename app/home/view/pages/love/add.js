@@ -5,7 +5,6 @@ Page({
     backShow:false,
     indexShow:true,
     multiIndex:[0,0],
-    // multiArray:[['热门推荐','官方分类','个人分类'],[]],
     result:[
       {
             "backGroundDefault_id": "0",　　//值为模拟 加密数据
@@ -27,7 +26,15 @@ Page({
     backgroundImgTrue:true,
     myLoveShow: false,
     backgroundText:'请选择一张您喜欢的背景图哦',
+    setUpText:'高级设置',
     loveCatId:0,
+    setUpShow:false,
+    setUpArr:['请选择文字摆放位置','系统摆放','自定义摆放'],
+    setUpArrIndex:0,
+    setUpStyle:'width: 80%;margin:  0 auto;margin-top: 2rem;',
+    setUpSubArr:['左上角','上居中','右上角','左居中','居中','右居中','左下角','下居中','右下角'],
+    setUpSubArrIndex:0,
+    setUpShowSub:false,
   },
   onShow: function() {
     var that = this;
@@ -331,6 +338,22 @@ Page({
        duration: 1000
       })
       this.onLoad();
+    })
+  },
+
+  setup:function(){
+    this.setData({
+      indexShow: false,
+      setUpShow:true
+    })
+  },
+
+  bindPickerChange(e) {
+    this.setData({
+      setUpArrIndex: e.detail.value,
+      setUpStyle:'width: 40%;margin-top: 2rem;margin-left:1rem;margin-right:1rem;float:left',
+      setUpShowSub:true,
+      setUpSubStyle:'width: 40%;margin-top: 2rem;float:right;margin-right:1rem;',
     })
   },
 

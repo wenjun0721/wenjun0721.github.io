@@ -49,7 +49,13 @@ class Love extends Base
 		// $heightW = $inputDate['heightW'];
 		$widthW = 10;
 		$heightW = 10;
+		//width 0-300  height 0-400  文字倾斜角度：0-90
+		$wz=array($widthW,$heightW);//水印位置
+		// 字体
 		$fontFamily = './upload/font/zt0.ttf';
+		//背景图
+		$backGroundImg = str_replace("http://www.tplm.com/","./",$inputDate['backgroundImg']);
+
 		foreach ($kk as $k => $v) {
 		    $len = mb_strlen($v,'utf-8');
 		    
@@ -73,12 +79,10 @@ class Love extends Base
 		}
     	//生成带水印的图片
     	require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
-		$image = \think\Image::open('./upload/background/1.jpg');
-		//定义位置
+		$image = \think\Image::open($backGroundImg);
+		//生成图片位置
 		$fileName = 'upload/love/'.date('YmdHis').rand(10000,100000).'.jpg';
 		$path="./".$fileName;
-		//width 0-300  height 0-400  文字倾斜角度：0-90
-		$wz=array($widthW,$heightW);//水印位置
 		$str = $content;
 		$image->crop('640','960')->text($str, $fontFamily, $fontSize, '#000000',$wz,20)->text('wj测试', $fontFamily, $fontSize, '#000000',9,-25)->save($path);
 
