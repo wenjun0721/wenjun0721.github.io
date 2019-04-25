@@ -210,3 +210,16 @@ flex-shrink: 0;
   width: 640px;
   height: 400px; 
 }
+
+.login_btn2 {
+  background:#FFC0CB;
+  color:#fff;
+  font-size:30rpx;
+  border-radius:20rpx;
+  text-align:center;
+  height:66rpx;
+  line-height:66rpx;
+  margin-top:38rpx;
+}
+
+

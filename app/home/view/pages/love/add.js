@@ -35,6 +35,17 @@ Page({
     setUpSubArr:['左上角','上居中','右上角','左居中','居中','右居中','左下角','下居中','右下角'],
     setUpSubArrIndex:0,
     setUpShowSub:false,
+    setUpUserSelf:false,
+    setUpType:0,
+    setUpFontType:0,
+    setUpFontArrIndex:0,
+    setUpFontStyle:'width: 80%;margin:  0 auto;margin-top: 2rem;',
+    setUpFontArr:['请选择您喜欢的字体','楷体','方正北魏楷书简体','方正行楷','方正行楷繁体','方正行楷简体','方正黄草','方正瘦金书简体','方正硬笔行书简体','徐静蕾'],
+    fontW:28,
+    fontStype:66,
+    fontX:0,
+    setUpFontColorArr:['黑色','白色','粉红色','灰色','天蓝色','碧绿色','淡紫色','浅灰蓝色','淡黄色','乌贼墨棕','孔雀蓝','土耳其玉色'],
+    setUpFontColorArrIndex:0
   },
   onShow: function() {
     var that = this;
@@ -258,7 +269,26 @@ Page({
   listenerInput: function (e) {
     let role = e.currentTarget.dataset.role;
     let val = e.detail.value;
-    var len = this.getStrLength(val);
+    if (role == 'widthW') {  //自定义宽度
+      if (val*1 > 300*1) {
+        val = 300
+      }
+    }
+    if (role == 'heightW') {  //自定义高度
+      if (val*1 > 400*1) {
+        val = 400
+      }
+    }
+    if (role == 'fontW') {  //字体大小
+      if (val*1 > 36*1) {
+        val = 36
+      }
+    }
+    if (role == 'fontX') {  //字体倾斜度
+      if (val*1 > 90*1) {
+        val = 90
+      }
+    }
     let obj = [];
     obj[role] = val;
     this.setData({ [role] : val});
@@ -269,8 +299,14 @@ Page({
     let fromName = that.data.fromName;
     let loveTetx = that.data.loveTetx;
     let backgroundImg = that.data.backgroundImg;
-    let loveCatId = that.data.loveCatId;
-
+    let fontW = that.data.fontW;
+    let setUpFontType = that.data.setUpFontType;
+    let fontX = that.data.fontX;
+    let setUpArrIndex = that.data.setUpArrIndex;
+    let setUpSubArrIndex = that.data.setUpSubArrIndex;
+    let widthW = that.data.widthW;
+    let heightW = that.data.heightW;
+    let setUpFontColorArrIndex = that.data.setUpFontColorArrIndex;
     //生成图片
     let obj = {
       userId: wx.getStorageSync('userId'),
@@ -278,7 +314,14 @@ Page({
       fromName: fromName,
       loveTetx: loveTetx,
       backgroundImg: backgroundImg,
-      loveCatId: loveCatId
+      fontW: fontW,
+      setUpFontType: setUpFontType,
+      fontX: fontX,
+      setUpArrIndex: setUpArrIndex,
+      setUpSubArrIndex: setUpSubArrIndex,
+      widthW: widthW,
+      heightW: heightW,
+      setUpFontColorArrIndex: setUpFontColorArrIndex,
     }
     app.util.request(app.api.Love_add, 'POST', obj).then((res) => {
       if (res.status && res.status == 1) {
@@ -298,9 +341,9 @@ Page({
       console.log(error)
     })
   },
-  getStrLength: function(str) {
-      return str.replace(/[\u0391-\uFFE5]/g,"aa").length;   //先把中文替换成两个字节的英文，在计算长度
-  },
+  // getStrLength: function(str) {
+  //     return str.replace(/[\u0391-\uFFE5]/g,"aa").length;   //先把中文替换成两个字节的英文，在计算长度
+  // },
 
 
   //取消预览
@@ -344,17 +387,93 @@ Page({
   setup:function(){
     this.setData({
       indexShow: false,
-      setUpShow:true
+      setUpShow:true,
     })
   },
 
   bindPickerChange(e) {
+    if (e.detail.value == 1) {
+      this.setData({
+        setUpArrIndex: e.detail.value,
+        setUpStyle:'width: 42%;margin-left:1rem;margin-right:1rem;float:left',
+        setUpShowSub:true,
+        setUpSubStyle:'width: 42%;float:right;margin-right:1rem;',
+        setUpUserSelf:false,
+        setUpType:1,
+        fontStype:0
+      })
+    }else if (e.detail.value == 2) {
+      this.setData({
+          setUpArrIndex: e.detail.value,
+          setUpStyle:'width: 80%;margin:  0 auto;margin-top: 2rem;',
+          setUpShowSub:false,
+          setUpSubStyle:'',
+          setUpUserSelf:true,
+          setUpType:2,
+          fontStype:66
+        })  
+    }else{
+        this.setData({
+          setUpArrIndex: e.detail.value,
+          setUpStyle:'width: 80%;margin:  0 auto;margin-top: 2rem;',
+          setUpShowSub:false,
+          setUpSubStyle:'',
+          setUpUserSelf:false,
+          setUpType:0,
+          fontStype:66
+        })
+    }
+    
+  },
+
+  bindPickerChangeSub:function(e){
     this.setData({
-      setUpArrIndex: e.detail.value,
-      setUpStyle:'width: 40%;margin-top: 2rem;margin-left:1rem;margin-right:1rem;float:left',
-      setUpShowSub:true,
-      setUpSubStyle:'width: 40%;margin-top: 2rem;float:right;margin-right:1rem;',
+      setUpSubArrIndex:e.detail.value,
     })
   },
+
+  bindPickerFontChange:function(e){
+    this.setData({
+      setUpFontArrIndex:e.detail.value,
+      setUpFontType:e.detail.value,
+    })
+  },
+
+  bindPickerFontColorChange:function(e){
+    this.setData({
+      setUpFontColorArrIndex:e.detail.value,
+    })
+  },
+
+  //定义规则，防止以后忘记
+  // setUpFontType = 0 用默认字体 zt0.ttf  ，大于0 就代表用对应的字体
+  // fontW 字体大小，默认为28
+  // fontX 字体倾斜度，默认为0
+  // setUpArrIndex = 0 随机排序，等于1就是系统排序，取值为setUpSubArrIndex 等于2时，就是自定义排序 取值为widthW，heightW
+
+  reset:function(){
+    this.setData({
+      setUpFontArrIndex:0,
+      setUpFontType:0,
+      fontW:28,
+      fontX:0,
+      setUpArrIndex:0,
+      setUpSubArrIndex:0,
+      widthW:'',
+      heightW:'',
+      setUpUserSelf:false,
+      setUpShowSub:false,
+      setUpStyle:'width: 80%;margin:  0 auto;margin-top: 2rem;',
+      fontStype:66,
+      setUpFontColorArrIndex:0
+    })
+  },
+  submit:function(){
+    this.setData({
+      indexShow: true,
+      setUpShow:false,
+    })
+  }
+
 
 })

@@ -59,16 +59,94 @@
   </modal>
 
 
+
+
+<!-- 高级设置 start  -->
+
+<!-- 字体选择 start  -->
 <view class='toast-box' hidden='{{!setUpShow}}'>
-    <picker class='login_btn1' style="{{setUpStyle}}" bindchange="bindPickerChange" value="{{setUpArrIndex}}" range="{{setUpArr}}">
+    <picker class='login_btn1' style="{{setUpFontStyle}}" bindchange="bindPickerFontChange" value="{{setUpFontArrIndex}}" range="{{setUpFontArr}}">
+      <view class="picker">
+        {{setUpFontArr[setUpFontArrIndex]}}
+      </view>
+    </picker>
+</view>
+<!-- 字体选择 end  -->
+
+<!-- 字体颜色 start  -->
+<view class='toast-box' hidden='{{!setUpShow}}'>
+    <picker class='login_btn1' style="{{setUpFontStyle}}" bindchange="bindPickerFontColorChange" value="{{setUpFontColorArrIndex}}" range="{{setUpFontColorArr}}">
+      <view class="picker">
+        {{setUpFontColorArr[setUpFontColorArrIndex]}}
+      </view>
+    </picker>
+</view>
+<!-- 字体颜色 end  -->
+
+<!-- 字体 start  -->
+<view class='toast-box' style="height: {{fontStype}}rpx" hidden='{{!setUpShow}}'>
+  <view style="position: relative;">
+    <!-- 字体大小 start  -->
+    <view class='login_btn2' style="width: 20%;position: absolute;left: 10%">字体大小</view> <input style="width: 16%;position: absolute;left: 32%;margin-top: 38rpx;padding: 1%;border-radius: 10%;text-align: center;" type='number' data-role="fontW" maxlength="2" value="{{fontW}}" bindinput="listenerInput" placeholder="0 ~ 36 "
+        ></input>
+    <!-- 字体大小 end  -->
+    <!-- 字体倾斜度 start  -->
+    <view class='login_btn2' style="width: 20%;position: absolute;left: 52%">字体倾斜度</view> <input style="width: 16%;position: absolute;left: 74%;margin-top: 38rpx;padding: 1%;border-radius: 10%;text-align: center;" type='number' data-role="fontX" maxlength="2" value="{{fontX}}" bindinput="listenerInput" placeholder="0 ~ 90 "
+            ></input>
+    <!-- 字体倾斜度 end  -->
+  </view>
+  
+</view>
+<!-- 字体 end  -->
+
+
+
+
+<view class='toast-box' hidden='{{!setUpShow}}'>
+  <!-- 摆放位置-分类 start  -->
+<view class='toast-box'>
+  <picker class='login_btn1' style="{{setUpStyle}}" bindchange="bindPickerChange" value="{{setUpArrIndex}}" range="{{setUpArr}}">
     <view class="picker">
       {{setUpArr[setUpArrIndex]}}
     </view>
   </picker>
+</view>
+<!-- 摆放位置-分类 end  -->
 
+<!-- 摆放位置-系统分类 start  -->
+<view class='toast-box' hidden='{{!setUpShowSub}}'>
   <picker hidden='{{!setUpShowSub}}' class='login_btn1' style="{{setUpSubStyle}}" bindchange="bindPickerChangeSub" value="{{setUpSubArrIndex}}" range="{{setUpSubArr}}">
     <view class="picker">
       {{setUpSubArr[setUpSubArrIndex]}}
     </view>
   </picker>
 </view>
+<!-- 摆放位置-系统分类 end  -->
+
+<!-- 摆放位置-自定义位置 start  -->
+<view class='toast-box' hidden='{{!setUpUserSelf}}'>
+  <view style="position: relative;">
+    <view class='login_btn2' style="width: 20%;position: absolute;left: 5%">宽度位置</view> <input style="width: 20%;position: absolute;left: 27%;margin-top: 38rpx;padding: 1%;border-radius: 10%" type='number' data-role="widthW" maxlength="3" value="{{widthW}}" bindinput="listenerInput" placeholder="0 ~ 300 "
+        ></input>
+    <view class='login_btn2' style="width: 20%;position: absolute;left: 52%">高度位置</view> <input style="width: 20%;position: absolute;left: 74%;margin-top: 38rpx;padding: 1%;border-radius: 10%" type='number' data-role="heightW" maxlength="3" value="{{heightW}}" bindinput="listenerInput" placeholder="0 ~ 400"
+        ></input>    
+  </view>
+  
+</view>
+<!-- 摆放位置-自定义位置 end  -->
+<!-- 摆放位置 end  -->
+
+
+<!-- 确定或者重置 start  -->
+<view class='toast-box' style="margin-top: 15%" hidden='{{!setUpShow}}'>
+  <view >
+    <view class='login_btn2' bindtap='reset' style="width: 42%;margin-top: 2rem;margin-left:1rem;margin-right:1rem;float:left">重置</view> 
+    <view class='login_btn2' bindtap='submit' style="width: 42%;margin-top: 2rem;float:right;margin-right:1rem;">确定选择</view>
+  </view>
+  
+</view>
+<!-- 确定或者重置 end  -->
+
+</view>
+
+<!-- 高级设置 end  -->

@@ -35,6 +35,11 @@ class Love extends Base
     const WATER_SOUTHWEST = 7; //常量，标识左下角水印
     const WATER_SOUTH     = 8; //常量，标识下居中水印
     const WATER_SOUTHEAST = 9; //常量，标识右下角水印
+    定义规则，防止以后忘记
+    setUpFontType = 0 用默认字体 zt0.ttf  ，大于0 就代表用对应的字体
+    fontW 字体大小，默认为28
+    fontX 字体倾斜度，默认为0
+    setUpArrIndex = 0 随机排序，等于1就是系统排序，取值为setUpSubArrIndex 等于2时，就是自定义排序 取值为widthW，heightW
     */
   	public function add()
     {
@@ -43,16 +48,28 @@ class Love extends Base
 		$data['fromUser'] = $inputDate['fromName'];
 		$data['text'] = $inputDate['loveTetx'];
 		$kk  = explode("\n", $data['text']);
-		$limit = 18;
-		$fontSize = 30;
-		// $widthW = $inputDate['widthW'];
-		// $heightW = $inputDate['heightW'];
-		$widthW = 10;
-		$heightW = 10;
-		//width 0-300  height 0-400  文字倾斜角度：0-90
-		$wz=array($widthW,$heightW);//水印位置
-		// 字体
-		$fontFamily = './upload/font/zt0.ttf';
+		$fontSize = $inputDate['fontW']; //字体大小
+        $limit = 48 - $inputDate['fontW']; //每一行的字数
+
+        // 字体
+        $fontFamily = './upload/font/zt'.$inputDate['setUpFontType'].'.ttf';
+        //字体颜色
+        $setUpFontColorArr = ['#000000','#FFFFFF','#FFC0CB','#C0C0C0','#F0FFFF','#00C957','#DA70D6','#B0E0E6','#F5DEB3','#5E2612','#33A1C9','#00C78C'];
+        $fontColor = $setUpFontColorArr[$inputDate['setUpFontColorArrIndex']];
+        //倾斜度 文字倾斜角度：0-90
+        $fontX = $inputDate['fontX'];
+        //字体摆放位置 //width 0-300  height 0-400  
+        if ($inputDate['setUpArrIndex'] == 0) {
+            $inputDate['widthW'] = rand(50,150);
+            $inputDate['heightW'] = rand(100,300);
+            $wz=array($inputDate['widthW'],$inputDate['heightW']);//水印位置
+        }else if ($inputDate['setUpArrIndex'] == 1) {
+            $wz=$inputDate['setUpSubArrIndex']*1 + 1;//水印位置
+        }else{
+            $wz=array($inputDate['widthW'],$inputDate['heightW']);//水印位置
+        }
+
+		
 		//背景图
 		$backGroundImg = str_replace("http://www.tplm.com/","./",$inputDate['backgroundImg']);
 
@@ -84,9 +101,10 @@ class Love extends Base
 		$fileName = 'upload/love/'.date('YmdHis').rand(10000,100000).'.jpg';
 		$path="./".$fileName;
 		$str = $content;
-		$image->crop('640','960')->text($str, $fontFamily, $fontSize, '#000000',$wz,20)->text('wj测试', $fontFamily, $fontSize, '#000000',9,-25)->save($path);
-
-		
+        if ($image->width() != 640 || $image->height() != 960) {
+            $image->crop('640','960');
+        }
+		$image->text($str, $fontFamily, $fontSize, $fontColor,$wz,20,$fontX)->text('wj测试', $fontFamily, 24, '#000000',9,-25)->save($path);
 		echo(json_encode(WSTReturn('success',1,$fileName)));die;
     }
 
