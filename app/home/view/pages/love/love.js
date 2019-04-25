@@ -3,6 +3,8 @@ const app =  getApp().globalData;
 Page({
   data: {
     webViewUrl:"http://www.tplm.com/",
+    // setUpArr:['请选择相册','相册1','相册2'],
+    // setUpArrIndex:0,
   },
   onShow: function() {
     wx.showToast({
@@ -19,11 +21,8 @@ Page({
     let obj = {
       userId: userId, //系统的
     }
-
     app.util.request(app.api.Love, 'POST', obj).then((res) => {
-      
       if (res.status && res.status == 1) {
-        console.log(res.data)
         that.setData({
           loves: res.data,
         })
@@ -33,10 +32,10 @@ Page({
     })
 
     //播放音乐
-    const innerAudioContext = app.BMGMUSIC
-    innerAudioContext.autoplay = true
-    innerAudioContext.src = 'http://www.tplm.com/upload/video/renxi.mp3'
-    innerAudioContext.play();
+    // const innerAudioContext = app.BMGMUSIC
+    // innerAudioContext.autoplay = true
+    // innerAudioContext.src = 'http://www.tplm.com/upload/video/renxi.mp3'
+    // innerAudioContext.play();
   },
 
   onLoad: function () {

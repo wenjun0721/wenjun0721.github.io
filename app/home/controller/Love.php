@@ -44,8 +44,8 @@ class Love extends Base
   	public function add()
     {
     	$inputDate =input();
-    	$data['toUser'] = $inputDate['toName'];
-		$data['fromUser'] = $inputDate['fromName'];
+    	$data['toUser'] = isset($inputDate['toName'])?$inputDate['toName']:'';
+		$data['fromUser'] = isset($inputDate['fromName'])?$inputDate['fromName']:'';
 		$data['text'] = $inputDate['loveTetx'];
 		$kk  = explode("\n", $data['text']);
 		$fontSize = $inputDate['fontW']; //字体大小
@@ -86,6 +86,7 @@ class Love extends Base
 		    }
 		}
 		$arr = implode("\n", $kk);
+
 		$content = $data['toUser'].':'."\n"."\n";
 		$content .=$arr;
 		$content .= "\n"."\n"."-------".$data['fromUser'].'。';
@@ -98,7 +99,13 @@ class Love extends Base
     	require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
 		$image = \think\Image::open($backGroundImg);
 		//生成图片位置
-		$fileName = 'upload/love/'.date('YmdHis').rand(10000,100000).'.jpg';
+        $file = date('Ymd');
+        $file_path = './upload/love/'.$file;
+        if(!file_exists($file_path))
+        {
+            mkdir ($file_path,0777,true);
+        }
+		$fileName = 'upload/love/'.$file.'/'.date('YmdHis').rand(10000,100000).'.jpg';
 		$path="./".$fileName;
 		$str = $content;
         if ($image->width() != 640 || $image->height() != 960) {

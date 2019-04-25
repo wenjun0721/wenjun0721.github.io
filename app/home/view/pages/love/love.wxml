@@ -1,7 +1,19 @@
-<swiper class="swiper"  autoplay="true" interval="5000" duration="1000">  
-      <block wx:for="{{loves}}" wx:for-index="index">  
-        <swiper-item>  
-          <image src="{{item.img}}" class="slide-image" mode="aspectFill"/>  
-        </swiper-item>  
-      </block>  
-    </swiper>
+<!-- <view class='toast-box'>
+<view class='toast-title flex flex-ac flex-zBetween'>
+<picker bindchange="bindPickerFontChange" value="{{setUpArrIndex}}" range="{{setUpArr}}">
+<view class='bg picker' style="margin-left:3.85rem">{{setUpArr[setUpArrIndex]}}</view>
+<image class='imagexiala' src='../../assets/images/xiala.png'></image>
+</picker> 
+</view>
+</view> 
+ -->
+<view class='flex' style="position: fixed;width: 20px;height: 20px;background: #000;z-index: 99;right: 0">
+	
+</view>
+<swiper class="swiper"  autoplay="true" interval="5000" duration="1000">
+  <block wx:for="{{loves}}" wx:for-index="index">  
+    <swiper-item>  
+      <image src="{{item.img}}" class="slide-image" mode="aspectFill"/>  
+    </swiper-item>  
+  </block>  
+</swiper>
