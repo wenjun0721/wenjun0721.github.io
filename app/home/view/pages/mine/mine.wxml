@@ -30,12 +30,12 @@
             <view class="page-items-others"></view>
             <view class="page-items-ft">></view>
         </view>
-        <view class="page__bd-items page-flex">
+        <view class="page__bd-items page-flex" bindtap="tomyShare">
             <view class="page-items-lt">
                 <image src="../../assets/images/mines/booklist.png" />
             </view>
-            <view class="page-items-md">我的书单·书评</view>
-            <view class="page-items-others">写书评</view>
+            <view class="page-items-md">我的锦集</view>
+            <view class="page-items-others"></view>
             <view class="page-items-ft">></view>
         </view>
         <view class="page__bd-items page-flex">

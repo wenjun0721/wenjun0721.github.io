@@ -15,6 +15,10 @@ Page({
   
   },
 
-
+  tomyShare:function(e) {
+    wx.navigateTo({
+      url:'sharer/sharer'
+    })
+  },
 
 })

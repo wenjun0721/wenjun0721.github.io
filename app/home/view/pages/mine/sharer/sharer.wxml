@@ -1,0 +1,38 @@
+
+<view class='flex' style="position: fixed;z-index: 99;right: 1rem;bottom: 5rem">
+	<image style="width: 3rem;height: 2.8rem;" src='../../../assets/images/logo.png'></image>
+</view>
+
+<view class='toast-box'>
+	<view class='cat-products flex flex-zLeftRight'>
+        <block wx:for="{{sharerList}}" >
+          <view class="block-card flex" style="{{index%2!=0?'margin-rigth:0':''}}" >
+            <view class='card'>
+            	<view class='card-body'>
+	                <image bindtap="doubleTap" data-index='{{index}}' src='{{item.bgImg}}' mode='aspectFill'></image>
+	            </view>
+	            <view style="border-top: 2rpx solid #ccc;font-size: 14px;line-height: 28px">{{item.name}}</view>
+            </view>
+            
+          </view>
+        </block>
+    </view>
+</view>
+
+<view class="zan-dialog zan-dialog--show">
+  <view class="zan-dialog__mask" bindtap="toggleDialog" />
+  <view class="zan-dialog__container">
+    <view style='padding:100rpx;'>
+		   <view class="drawer_title">弹窗标题</view>  
+		  <view class="drawer_content">  
+		    <view class="top grid">  
+		      <label class="title col-0">标题</label>  
+		      <input class="input_base input_h30 col-1" name="rName" value="可自行定义内容"></input>  
+		    </view>  
+		    
+		  </view>  
+		  <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
+
+    </view>
+  </view>
+</view>

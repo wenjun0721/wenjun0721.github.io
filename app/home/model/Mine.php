@@ -2,7 +2,7 @@
 namespace app\home\model;
 use think\Db;
 use think\Session;
-class Looklove extends Base
+class Mine extends Base
 {
     public function index()
     {
@@ -34,16 +34,14 @@ class Looklove extends Base
     	$where['userId'] = input('userId/d',0);
     	$where['isok']   = 1;
     	$res = Db::name('sharer')->where($where)->order(SO_SORT_COMMON)->select();
-    	if ($res) {
-    		$addArr = ['id'=>'0','name'=>'个人最新'];
-    		array_unshift($res, $addArr);
-    	}
-    	$arr = [];
     	foreach ($res as $k => $v) {
-    		$arr[$k]['name'] = $v['name'];
-    		$arr[$k]['id'] = $v['id'];
-    	}
-    	$rs['arr'] = $arr;
-    	return $rs;
+            $img = Db::name('sharer_img')->where(['sharerId'=>$v['id']])->order('sort asc')->value('img');
+            if ($img) {
+                $res[$k]['bgImg'] = WEBURL.$img;
+            }else{
+                $res[$k]['bgImg'] = WEBURL.'upload/common/logo.png';
+            }
+        }
+    	return $res;
     }
 }

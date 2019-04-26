@@ -38,7 +38,7 @@ class Love extends Base
     	$res = Db::name('background')->where($where)->order($SO)->select();
         $img = [];
         foreach ($res as $k => $v) {
-            $img[$k] = WEBURL.'upload/background/'.$v['img'];
+            $img[$k] = WEBURL.$v['img'];
         }
         $res['imgs'] = $img;
     	return $res;

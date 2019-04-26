@@ -10,10 +10,12 @@ use think\Session;
 class Base extends Controller {
 	public function __construct(){
 		Session::set('userId','1');
-		define('SO','is_recom desc,sort desc,click desc,add_time desc,id desc');
-		define('SO_BACKGROUND','is_recom desc,sort desc,useclick desc,downclick desc,add_time desc,id desc');
-		define('SO_BACKGROUND_CAT','is_recom desc,sort desc,add_time desc,catId desc');
+		define('SO','is_recom desc,sort asc,click desc,add_time desc,id desc');
+		define('SO_BACKGROUND','is_recom desc,sort asc,useclick desc,downclick desc,add_time desc,id desc');
+		define('SO_BACKGROUND_CAT','is_recom desc,sort asc,add_time desc,catId desc');
 		define('SO_BACKGROUND_NEW','add_time desc,id desc');
+		define('SO_ADDTIME_COMMON','add_time desc,id desc');
+		define('SO_SORT_COMMON','sort asc,add_time desc,id desc');
 		define('WEBURL','http://www.tplm.com/');
 	}
     protected function fetch($template = '', $vars = [], $replace = [], $config = [])

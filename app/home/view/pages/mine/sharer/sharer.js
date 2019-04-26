@@ -5,6 +5,7 @@ Page({
     webViewUrl:"http://www.tplm.com/",
     sharerId:0,
     current:0,
+    showDialog: false
   },
   onShow: function() {
     wx.showToast({
@@ -16,8 +17,8 @@ Page({
       wx.hideToast()
     }, 500);
 
-    this.getxp();
-    this.music();
+    // this.getxp();
+    // this.music();
     this.getsharerCat();
   },
 
@@ -64,16 +65,11 @@ Page({
     let obj = {
       userId: userId,
     }
-    app.util.request(app.api.LookLoveSharerCat, 'POST', obj).then((res) => {
+    app.util.request(app.api.MineSharerCat, 'POST', obj).then((res) => {
+      console.log(res)
       if (res.status && res.status == 1) {
-        var sharerList = res.data.arr;
-        var sharerArr = sharerList.map(item => {
-          return item.name;
-        })
         that.setData({
-          sharerArr: sharerArr,
-          sharerList: sharerList,
-          sharerIndex:0,
+          sharerList: res.data,
         })
       }
     }).catch((error) => {
@@ -101,5 +97,11 @@ Page({
     setTimeout(function () {
       wx.hideToast()
     }, 500);
+  },
+
+  toggleDialog() {
+    this.setData({
+      showDialog: !this.data.showDialog,
+    })
   }
 })

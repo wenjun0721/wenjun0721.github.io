@@ -7,10 +7,13 @@
 </view>
 </view> 
  -->
-<view class='flex' style="position: fixed;width: 20px;height: 20px;background: #000;z-index: 99;right: 0">
-	
+<view class='flex' style="position: fixed;z-index: 99;right: 1rem;bottom: 5rem">
+	<picker bindchange="bindPickerChange" value="{{sharerIndex}}" range="{{sharerArr}}">
+		<image style="width: 3rem;height: 2.8rem;" src='../../assets/images/logo.png'></image>
+	</picker> 
 </view>
-<swiper class="swiper"  autoplay="true" interval="5000" duration="1000">
+ 
+<swiper class="swiper"  autoplay="true" interval="5000" duration="1000" circular="true" current ="{{current}}">
   <block wx:for="{{loves}}" wx:for-index="index">  
     <swiper-item>  
       <image src="{{item.img}}" class="slide-image" mode="aspectFill"/>  

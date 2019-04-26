@@ -1,0 +1,195 @@
+
+.cat-products{
+margin: 0 1rem;
+flex-wrap: wrap;
+}
+.cat-products .block-card{
+margin-top:1rem;
+flex-grow: 0;
+flex-shrink: 1;
+border:2rpx solid #ccc;
+flex-basis: 47%;
+border-radius: 5%;
+margin-right: 2%
+}
+.cat-products .block-card .card{
+text-align: center;
+/*margin: 0 0.5rem;*/
+width: 100%;
+}
+.cat-products .card-body{
+height: 9rem;
+width: 100%;
+border-radius:0.5rem;
+}
+.cat-products .card-body image{
+width: 100%;
+height: 100%;
+/*border-radius:0.5rem;*/
+border-top-left-radius:0.5rem;
+border-top-right-radius:0.5rem;
+}
+.cat-products .card-footer{
+padding: 0.5rem;
+}
+.cat-products .card-footer p{
+font-size:9pt;
+color: #333333;
+margin-bottom: 0.5rem;
+overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+height: 25pt;
+}
+.cat-products .card-footer h3{
+font-size: 12pt;
+color: #ff464f;
+}
+.cat-products .card-footer text{
+margin-left: 0.3rem;
+text-decoration:line-through;
+}
+.cat-products .card-footer span,.cat-products .card-footer text{
+font-size:9pt;
+color: #cccccc;
+flex-shrink: 0;
+}
+
+
+/*///*/
+.zan-dialog__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0);/*//设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4);*/
+  display: none;
+}
+
+.zan-dialog__container {
+  position: fixed;
+  bottom: 400rpx;
+  width: 650rpx;/*//弹窗布局宽*/
+  height: 350rpx;/*//弹窗布局高，与下面弹出距离transform有关*/
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(300%);/*//弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度*/
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  box-shadow: 0px 3px 3px 2px gainsboro;/*//弹框的悬浮阴影效果，如不需要可注释该行*/
+}
+
+.zan-dialog--show .zan-dialog__container {
+  transform: translateY(0);
+}
+
+.zan-dialog--show .zan-dialog__mask {
+  display: block;
+}
+.btn {  
+  width: 80%;  
+  padding: 20rpx 0;  
+  border-radius: 10rpx;  
+  text-align: center;  
+  margin: 40rpx 10%;  
+  background: #000;  
+  color: #fff;  
+}  
+  
+/*mask*/  
+.drawer_screen {  
+  width: 100%;  
+  height: 100%;  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  z-index: 1000;  
+  background: #000;  
+  opacity: 0.5;  
+  overflow: hidden;  
+}  
+  
+/*content*/  
+.drawer_box {  
+  width: 650rpx;  
+  overflow: hidden;  
+  position: fixed;  
+  top: 50%;  
+  left: 0;  
+  z-index: 1001;  
+  background: #FAFAFA;  
+  margin: -150px 50rpx 0 50rpx;  
+  border-radius: 3px;  
+}  
+  
+.drawer_title{  
+  padding:15px;  
+  font: 20px "microsoft yahei";  
+  text-align: center;  
+}  
+.drawer_content {  
+  height: 210px;  
+  overflow-y: scroll; /*超出父盒子高度可滚动*/  
+}  
+  
+.btn_ok{  
+  padding: 10px;  
+  font: 20px "microsoft yahei";  
+  text-align: center;  
+  border-top: 1px solid #E8E8EA;  
+  color: #3CC51F;  
+}  
+  
+.top{  
+    padding-top:8px;  
+}  
+.bottom {  
+    padding-bottom:8px;  
+}  
+.title {  
+    height: 30px;  
+    line-height: 30px;  
+    width: 160rpx;  
+    text-align: center;  
+    display: inline-block;  
+    font: 300 28rpx/30px "microsoft yahei";  
+}  
+  
+.input_base {  
+    border: 2rpx solid #ccc;  
+    padding-left: 10rpx;  
+    margin-right: 50rpx;  
+}  
+.input_h30{  
+    height: 30px;  
+    line-height: 30px;  
+}  
+.input_h60{  
+    height: 60px;  
+}  
+.input_view{  
+    font: 12px "microsoft yahei";  
+    background: #fff;  
+    color:#000;  
+    line-height: 30px;  
+}  
+  
+input {  
+    font: 12px "microsoft yahei";  
+    background: #fff;  
+    color:#000 ;  
+}  
+radio{  
+    margin-right: 20px;  
+}  
+.grid { display: -webkit-box; display: box; }  
+.col-0 {-webkit-box-flex:0;box-flex:0;}  
+.col-1 {-webkit-box-flex:1;box-flex:1;}  
+.fl { float: left;}  
+.fr { float: right;}
+
+
