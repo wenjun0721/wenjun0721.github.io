@@ -44,4 +44,47 @@ class Mine extends Base
         }
     	return $res;
     }
+
+    public function sharerCatAdd()
+    {
+        $userId = input('userId/d',0);
+        $id = input('id/d',0);
+        $name = input('name');
+        if (empty(trim($name))) {
+            return json_encode(WSTReturn('无效的锦集名称！'));
+        }
+        $data['userId'] = $userId;
+        $data['name'] = $name;
+        if ($id) {
+            $res = Db::name('sharer')->where(['id'=>$id])->update($data);
+            $tips = '修改';
+        }else{
+            $data['add_time'] = time();
+            $res = Db::name('sharer')->insert($data);
+            $tips = '添加';
+        }
+        
+        if ($res) {
+            return json_encode(WSTReturn($tips.'成功',1));
+        }else{
+            return json_encode(WSTReturn($tips.'失败'));
+        }
+    }
+
+    public function sharerCatDel()
+    {
+        $userId = input('userId/d',0);
+        $id = input('id/d',0);
+        if (empty($id)) {
+            return json_encode(WSTReturn('无效的锦集！'));
+        }
+        $where['userId'] = $userId;
+        $where['id'] = $id;
+        $res = Db::name('sharer')->where($where)->delete();
+        if ($res) {
+            return json_encode(WSTReturn('删除成功',1));
+        }else{
+            return json_encode(WSTReturn('删除失败'));
+        }
+    }
 }

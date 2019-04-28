@@ -3,9 +3,11 @@ const app =  getApp().globalData;
 Page({
   data: {
     webViewUrl:"http://www.tplm.com/",
-    sharerId:0,
-    current:0,
-    showDialog: false
+    showModal: false,
+    sharerName: '新增锦集',
+    delModal:false,
+    xpModal:false,
+    indexShow:true
   },
   onShow: function() {
     wx.showToast({
@@ -16,49 +18,13 @@ Page({
     setTimeout(function () {
       wx.hideToast()
     }, 500);
-
-    // this.getxp();
-    // this.music();
     this.getsharerCat();
+    app.BMGMUSIC.stop();//关闭音乐的
   },
 
   onLoad: function () {
     
   },
-
-
-  getxp:function(){
-    var that = this;
-    let userId = wx.getStorageSync('userId');
-    let obj = {
-      userId: userId, //系统的
-      sharerId:that.data.sharerId
-    }
-    app.util.request(app.api.LookLove, 'POST', obj).then((res) => {
-      if (res.status && res.status == 1) {
-        that.setData({
-          loves: res.data,
-        })
-      }else{
-        wx.showToast({
-         title: res.msg,
-         icon: 'none',
-         duration: 2000
-        })
-      }
-    }).catch((error) => {
-      console.log(error)
-    })
-  },
-
-  music:function(){
-    //播放音乐
-    // const innerAudioContext = app.BMGMUSIC
-    // innerAudioContext.autoplay = true
-    // innerAudioContext.src = 'http://www.tplm.com/upload/video/renxi.mp3'
-    // innerAudioContext.play();
-  },
-
   getsharerCat:function(){
     var that = this;
     let userId = wx.getStorageSync('userId');
@@ -77,31 +43,117 @@ Page({
     })
   },
 
-
-  bindPickerChange:function(e){
-    var sharerList =this.data.sharerList;
-    var select_key = e.detail.value;
+  //监听输入内容并且赋值
+  listenerInput: function (e) {
+    let role = e.currentTarget.dataset.role;
+    let val = e.detail.value;
+    this.setData({ [role] : val});
+  },
+ 
+  showModal:function(e) {
+    let name = e.currentTarget.dataset.name;
+    let id = e.currentTarget.dataset.id;
+    if (typeof(name) == 'undefined') {
+      var kn = '';
+      var ki = 0;
+      var tips = '新增锦集';
+      var del = false;
+    }else{
+      var tips = '修改锦集';
+      var kn = name;
+      var ki = id;
+      var del = true;
+    }
     this.setData({
-      setUpArrIndex: select_key,
-      sharerId:sharerList[select_key]['id'],
-      current:0,
+      showModal:true,
+      name:kn,
+      id:ki,
+      sharerName:tips,
+      delModal:del
     })
-    app.BMGMUSIC.stop();
-    this.getxp();
-    this.music();
-    wx.showToast({
-      title: '加载中',
-      icon: 'loading',
-      duration: 500
+  },
+  hideModal:function() {
+    this.setData({
+      showModal:false,
     })
-    setTimeout(function () {
-      wx.hideToast()
-    }, 500);
   },
 
-  toggleDialog() {
-    this.setData({
-      showDialog: !this.data.showDialog,
+  saveSharer:function(){
+    var that = this;
+    let userId = wx.getStorageSync('userId');
+    let obj = {
+      userId: userId,
+      name:that.data.name,
+      id:that.data.id
+    }
+    app.util.request(app.api.MineAddSharerCat, 'POST', obj).then((res) => {
+      if (res.status && res.status == 1) {
+        wx.showToast({
+         title: res.msg,
+         icon: 'success',
+         duration: 2000,
+         success:function(){
+          that.setData({
+            showModal:false,
+            name:'',
+            delModal:false
+          })
+          that.onShow();
+         }
+        });
+        
+      }else{
+        wx.showToast({
+         title: res.msg,
+         icon: 'none',
+         duration: 2000
+        })
+      }
+    }).catch((error) => {
+      console.log(error)
     })
-  }
+  },
+
+  delModal:function(){
+    var that = this;
+    let userId = wx.getStorageSync('userId');
+    let obj = {
+      userId: userId,
+      id:that.data.id
+    }
+    app.util.request(app.api.MineDelSharerCat, 'POST', obj).then((res) => {
+      if (res.status && res.status == 1) {
+        wx.showToast({
+         title: res.msg,
+         icon: 'success',
+         duration: 2000,
+         success:function(){
+          that.setData({
+            showModal:false,
+            name:'',
+            delModal:false
+          })
+          that.onShow();
+         }
+        });
+        
+      }else{
+        wx.showToast({
+         title: res.msg,
+         icon: 'none',
+         duration: 2000
+        })
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+
+  xpModal:function(e){
+    wx.navigateTo({
+      url: './sharerimg?sharerId=' + e.currentTarget.dataset.sharerid
+    })
+  },
+
+
 })

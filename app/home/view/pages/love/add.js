@@ -64,7 +64,7 @@ Page({
     }, 500);
     
     this.initDate();
-    app.BMGMUSIC.stop()
+    app.BMGMUSIC.stop();//关闭音乐的
   },
 
   onLoad: function () {

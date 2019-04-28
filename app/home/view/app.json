@@ -12,6 +12,7 @@
     "pages/bookdesk/bookdesk",
     "pages/mine/mine",
     "pages/mine/news/news",
+    "pages/mine/sharer/sharerimg",
     "pages/logs/logs"
   ],
   "window": {

@@ -1,17 +1,17 @@
 
-<view class='flex' style="position: fixed;z-index: 99;right: 1rem;bottom: 5rem">
-	<image style="width: 3rem;height: 2.8rem;" src='../../../assets/images/logo.png'></image>
+<view style="position: fixed;z-index: 99;right: 1rem;bottom: 5rem" bindtap='showModal' hidden='{{!indexShow}}'>
+	<image  style="width: 3rem;height: 2.8rem;" src='../../../assets/images/logo.png'></image>
 </view>
 
-<view class='toast-box'>
+<view hidden='{{!indexShow}}'>
 	<view class='cat-products flex flex-zLeftRight'>
         <block wx:for="{{sharerList}}" >
           <view class="block-card flex" style="{{index%2!=0?'margin-rigth:0':''}}" >
             <view class='card'>
-            	<view class='card-body'>
-	                <image bindtap="doubleTap" data-index='{{index}}' src='{{item.bgImg}}' mode='aspectFill'></image>
+            	<view class='card-body' data-sharerid="{{item.id}}" bindtap='xpModal'>
+	                <image class="image" data-index='{{index}}' src='{{item.bgImg}}' mode='aspectFill'></image>
 	            </view>
-	            <view style="border-top: 2rpx solid #ccc;font-size: 14px;line-height: 28px">{{item.name}}</view>
+	            <view bindtap='showModal' data-name="{{item.name}}" data-id="{{item.id}}" style="border-top: 2rpx solid #ccc;font-size: 14px;line-height: 28px">{{item.name}}</view>
             </view>
             
           </view>
@@ -19,20 +19,31 @@
     </view>
 </view>
 
-<view class="zan-dialog zan-dialog--show">
-  <view class="zan-dialog__mask" bindtap="toggleDialog" />
-  <view class="zan-dialog__container">
-    <view style='padding:100rpx;'>
-		   <view class="drawer_title">弹窗标题</view>  
-		  <view class="drawer_content">  
-		    <view class="top grid">  
-		      <label class="title col-0">标题</label>  
-		      <input class="input_base input_h30 col-1" name="rName" value="可自行定义内容"></input>  
-		    </view>  
-		    
-		  </view>  
-		  <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
-
+<!--添加弹窗 start-->
+  <view class='toast-box' hidden='{{!showModal}}'>
+    <view class='toastbg' ></view>
+    <view class='showToast'>
+      <view class='toast-title flex flex-ac flex-zBetween'>
+      	<text hidden='{{!delModal}}' class='button1' style='margin-left: 1rem;color: red' bindtap='delModal'>删除</text>
+      	<block wx:if="{{!delModal}}">
+      		<text style="margin-left: 7.5rem;">{{sharerName}}</text>
+      	</block>
+      	<block wx:else>
+      		<text style="margin-left: 5.5rem;">{{sharerName}}</text>
+      	</block>
+        <text class='button1' style='margin-left: 4.5rem;color: red' bindtap='hideModal'>取消</text>
+      </view>
+      <view class='toast-main'>
+        <view class='toast-input'>
+          <text>锦集名称：</text>
+          <input type="text" placeholder="请填写锦集名称"  data-role="name" value="{{name}}" bindinput="listenerInput" />
+        </view>
+      </view>
+      <view class='toast-button'>
+        <view class='button2'>
+          <button bindtap='saveSharer'>保存</button>
+        </view>
+      </view>
     </view>
   </view>
-</view>
+  <!--弹窗 end-->

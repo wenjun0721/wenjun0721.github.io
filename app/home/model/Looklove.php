@@ -13,19 +13,13 @@ class Looklove extends Base
     	if ($sharerId == 0) {
     		$xp = Db::name('xp')->where($where)->order(SO_ADDTIME_COMMON)->limit(30)->select();
     	}else{
-    		$sharerValue = Db::name('sharer')->where(['id'=>$sharerId,'isok'=>1])->value('sharerValue');
-    		if ($sharerValue) {
-    			$where['id'] = ['in',$sharerValue];
-    			$xp =Db::name('xp')->where($where)->select();
-    			print_r(Db::name('xp')->getlastsql());exit;
-    		}else{
-    			$xp = [];
-    		}
+            $sharerWhere['sharerId']=$sharerId;
+            $sharerWhere['isok']   = 1;
+    		$xp = Db::name('sharer_img')->where($sharerWhere)->select();
     	}
     	foreach ($xp as $k => $v) {
             $xp[$k]['img'] = WEBURL.$v['img'];
         }
-
     	return $xp;
     }
 

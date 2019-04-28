@@ -10,5 +10,7 @@ module.exports = {
   Love_backGround : domainUrl + "Love/backGround",
   Love_backGround_cat : domainUrl + "Love/backGround_cat",
   MineSharerCat: domainUrl + "Mine/sharerCat",
+  MineAddSharerCat: domainUrl + "Mine/sharerCatAdd",
+  MineDelSharerCat: domainUrl + "Mine/sharerCatDel",
   
 }

@@ -80,7 +80,7 @@ flex-shrink: 0;
   opacity: 1;
   width: 90%;
   margin-left: 5%;
-  margin-top: 42%;
+  margin-top: 35%;
 }
 
 .toast-title {
@@ -176,120 +176,31 @@ flex-shrink: 0;
     margin: 1rem;
 }
 
-.picker {
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-}
 
-.flex{
-  display: flex;
-}
-.address_addList{
-  padding:20rpx 30rpx;
-  border-bottom: 1px solid #eee;
-  align-items: center;
-}
-.address_addList_left{
-  color:#333;
-  font-size: 30rpx;
-  width: 166rpx;
-}
-.address_addList_input{
-  color:#333;
-  font-size: 30rpx;
-  flex:1
-}
-.addressTag{
-  color:#999;
-  font-size: 26rpx;
-  border:1px solid #999;
-  border-radius: 10rpx;
-  margin-right: 10rpx;
-  padding:0rpx 8rpx;
-}
-.addressTagActive{
-  color:#FF4747;
-  font-size: 26rpx;
-  border:1px solid #FF4747;
-  border-radius: 10rpx;
-  margin-right: 10rpx;
-  padding:0rpx 8rpx;
-}
 
-.address_add{
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 98rpx;
-  text-align: center;
-  line-height: 98rpx;
-  background: #E31C0C;
-  font-size: 32rpx;
+.card1 {
+
+    margin: 1rem 1.5rem 0;
+    background-color: #ffffff;
+    box-shadow: 0rem 0rem 0.33rem 0.17rem rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    border: none;
+}
+.cat-products .card-body .imgae1{
+    width: 100%;
+    height: 100%;
+}
+.del{
+  position:fixed;
+  z-index:99;
+  right:1rem;
+  bottom:1rem;
+  border:1px solid #e6a2c1;
+  width:80%;
+  text-align:center;
+  background:#eab6ce;
   color:#fff;
-}
-
-.areaSelectBg{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, .6);
-  z-index: 102;
-}
-.areaSelectBody{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 500rpx;
-  background: #fff;
-  z-index: 103;
-}
-.areaSelectBody_title{
-  line-height: 60rpx;
-  height: 60rpx;
-  text-align: center;
-  font-size:30rpx;
-  border-bottom: 1px solid #f1f1f1;
-}
-.areaSelectBody_parent{
-  display: flex;
-  border-bottom: 1px solid #f1f1f1;
-}
-.areaSelectBody_parent_list{
-  overflow:hidden; 
-  text-overflow:ellipsis;
-  display:-webkit-box; 
-  -webkit-box-orient:vertical;
-  -webkit-line-clamp:1; 
-  width:20%;
-  font-size: 28rpx;
-  line-height: 60rpx;
-  height: 60rpx;
-  padding:0 10rpx;
-  box-sizing: border-box;
-}
-.areaSelectBody_selectArea{
-  height: 360rpx;
-}
-.areaSelectBody_selectArea_list{
-  font-size: 26rpx;
-  line-height: 60rpx;
-  padding:0 10rpx;
-}
-.redText{
-  color:#E31C0C;
-}
-
-
-
-.box-right{
-  width: 240rpx;
-  height: 80rpx;
-    flex-shrink: 0;
-}
-.box-right button{
-  width: 100rpx;
-  float: left;
+  border-radius:0.5rem;
+  padding:0.3rem;
+  left:8%;
 }
