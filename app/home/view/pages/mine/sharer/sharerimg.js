@@ -94,8 +94,9 @@ Page({
     this.setData({
       changeText:'完成',
       changeBtn:'Ok',
-      changeImgBtn:'checkImg',
       delModal:true,
+      moveTrue:false,
+      changeImgBtn:'checkimg'
     })
   },
 
@@ -103,10 +104,31 @@ Page({
     this.setData({
       changeText:'管理',
       changeBtn:'Run',
-      changeImgBtn:'previewImage',
       delModal:false,
+      moveTrue:true
+      changeImgBtn:'previewImage'
     })
   },
+
+  checkimg:function () {
+    this.setData({
+      selectindex:(this.data.lookindex)*1+1,
+    })
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   //长按
   _longtap:function(e){
