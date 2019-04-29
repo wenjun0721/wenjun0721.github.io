@@ -34,6 +34,9 @@ class Mine extends Base
     	$where['userId'] = input('userId/d',0);
     	$where['isok']   = 1;
     	$res = Db::name('sharer')->where($where)->order(SO_SORT_COMMON)->select();
+        if (empty($res)) {
+            return json_encode(WSTReturn('点击右下图标即可创建锦集哦！'));
+        }
     	foreach ($res as $k => $v) {
             $img = Db::name('sharer_img')->where(['sharerId'=>$v['id']])->order('sort asc')->value('img');
             if ($img) {
@@ -42,7 +45,7 @@ class Mine extends Base
                 $res[$k]['bgImg'] = WEBURL.'upload/common/logo.png';
             }
         }
-    	return $res;
+    	return json_encode(WSTReturn('success',1,$res));
     }
 
     public function sharerCatAdd()
@@ -80,7 +83,7 @@ class Mine extends Base
         }
         $where['userId'] = $userId;
         $where['id'] = $id;
-        $res = Db::name('sharer')->where($where)->delete();
+        $res = Db::name('sharer')->where($where)->update(['isok'=>0,'del_time'=>time()]);
         if ($res) {
             return json_encode(WSTReturn('删除成功',1));
         }else{

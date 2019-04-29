@@ -15,7 +15,7 @@ class Looklove extends Base
     	}else{
             $sharerWhere['sharerId']=$sharerId;
             $sharerWhere['isok']   = 1;
-    		$xp = Db::name('sharer_img')->where($sharerWhere)->select();
+    		$xp = Db::name('sharer_img')->where($sharerWhere)->order(SO_SORT_COMMON)->limit(30)->select();
     	}
     	foreach ($xp as $k => $v) {
             $xp[$k]['img'] = WEBURL.$v['img'];

@@ -15,9 +15,9 @@ Page({
       icon: 'loading',
       duration: 500
     })
-    setTimeout(function () {
-      wx.hideToast()
-    }, 500);
+    // setTimeout(function () {
+    //   wx.hideToast()
+    // }, 500);
     this.getsharerCat();
     app.BMGMUSIC.stop();//关闭音乐的
   },
@@ -32,10 +32,18 @@ Page({
       userId: userId,
     }
     app.util.request(app.api.MineSharerCat, 'POST', obj).then((res) => {
-      console.log(res)
       if (res.status && res.status == 1) {
         that.setData({
           sharerList: res.data,
+        })
+      }else{
+        wx.showToast({
+         title: res.msg,
+         icon: 'none',
+         duration: 2000
+        })
+        that.setData({
+          sharerList: [],
         })
       }
     }).catch((error) => {
@@ -121,32 +129,43 @@ Page({
       userId: userId,
       id:that.data.id
     }
-    app.util.request(app.api.MineDelSharerCat, 'POST', obj).then((res) => {
-      if (res.status && res.status == 1) {
-        wx.showToast({
-         title: res.msg,
-         icon: 'success',
-         duration: 2000,
-         success:function(){
-          that.setData({
-            showModal:false,
-            name:'',
-            delModal:false
+    wx.showModal({
+        title: '确定删除该锦集？',
+        content: '',
+        success: function (res) {
+          if (res.cancel) {
+            //点击取消,默认隐藏弹框
+          } else {
+            app.util.request(app.api.MineDelSharerCat, 'POST', obj).then((res) => {
+            if (res.status && res.status == 1) {
+              wx.showToast({
+               title: res.msg,
+               icon: 'success',
+               duration: 2000,
+               success:function(){
+                that.setData({
+                  showModal:false,
+                  name:'',
+                  delModal:false
+                })
+                that.onShow();
+               }
+              });
+              
+            }else{
+              wx.showToast({
+               title: res.msg,
+               icon: 'none',
+               duration: 2000
+              })
+            }
+          }).catch((error) => {
+            console.log(error)
           })
-          that.onShow();
-         }
-        });
-        
-      }else{
-        wx.showToast({
-         title: res.msg,
-         icon: 'none',
-         duration: 2000
-        })
+        }
       }
-    }).catch((error) => {
-      console.log(error)
     })
+    
   },
 
   xpModal:function(e){

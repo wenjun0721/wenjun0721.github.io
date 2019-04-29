@@ -16,7 +16,8 @@ class Mine extends Base
     public function sharerCat(){
     	$m = new M();
     	$res = $m->sharerCat();
-    	echo(json_encode(WSTReturn('success',1,$res)));die;
+        return $res;
+    	// echo(json_encode(WSTReturn('success',1,$res)));die;
     }
 
     public function sharerCatAdd(){

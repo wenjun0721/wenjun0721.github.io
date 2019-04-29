@@ -30,12 +30,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "个人中心",
 					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "拖动图片",
+					"pathName": "pages/mine/sharer/sharerimg",
+					"query": "sharerId=1",
 					"scene": null
 				}
 			]

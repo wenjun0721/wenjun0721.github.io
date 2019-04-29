@@ -5,7 +5,7 @@
 
 <view hidden='{{!indexShow}}'>
 	<view class='cat-products flex flex-zLeftRight'>
-        <block wx:for="{{sharerList}}" >
+        <block wx:if="{{sharerList}}" wx:for="{{sharerList}}" wx:key="sharerList">
           <view class="block-card flex" style="{{index%2!=0?'margin-rigth:0':''}}" >
             <view class='card'>
             	<view class='card-body' data-sharerid="{{item.id}}" bindtap='xpModal'>
