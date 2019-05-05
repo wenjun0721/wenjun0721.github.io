@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2019-04-29 20:10:09
+Date: 2019-05-05 19:09:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -81,6 +81,7 @@ CREATE TABLE `lm_sharer` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userId` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL COMMENT '锦集名称',
+  `videoId` int(11) DEFAULT '1' COMMENT '背景音乐ID',
   `isSharer` tinyint(1) DEFAULT '0' COMMENT '是否分享过',
   `sharerCode` varchar(255) DEFAULT NULL COMMENT '分享二维码',
   `sharerClick` int(11) DEFAULT '0' COMMENT '被查看数',
@@ -92,13 +93,13 @@ CREATE TABLE `lm_sharer` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `userId` (`userId`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_sharer
 -- ----------------------------
-INSERT INTO `lm_sharer` VALUES ('1', '1', '测试1', '0', null, '0', '0', '100', '1', '1583286215', null);
-INSERT INTO `lm_sharer` VALUES ('2', '1', '测试创建', '0', null, '0', '0', '100', '1', '1556504080', null);
+INSERT INTO `lm_sharer` VALUES ('1', '1', '测试1', '1', '0', null, '0', '0', '100', '1', '1583286215', null);
+INSERT INTO `lm_sharer` VALUES ('22', '1', '搜索', '1', '0', null, '0', '0', '100', '1', '1557048129', null);
 
 -- ----------------------------
 -- Table structure for lm_sharer_img
@@ -108,6 +109,7 @@ CREATE TABLE `lm_sharer_img` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `sharerId` int(11) DEFAULT '0' COMMENT '分享锦集ID',
   `userId` int(11) DEFAULT NULL,
+  `xpId` int(11) DEFAULT '0' COMMENT '相片对应的ID',
   `img` varchar(255) DEFAULT NULL,
   `sort` int(11) DEFAULT '100',
   `isshow` tinyint(1) DEFAULT '1' COMMENT '是否显示',
@@ -115,17 +117,21 @@ CREATE TABLE `lm_sharer_img` (
   `isok` tinyint(1) DEFAULT '1' COMMENT '是否被删除/无效',
   `add_time` int(11) DEFAULT NULL,
   `del_time` int(11) DEFAULT NULL COMMENT '删除时间',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `userId` (`userId`),
+  KEY `sharerId` (`sharerId`),
+  KEY `xpId` (`xpId`)
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_sharer_img
 -- ----------------------------
-INSERT INTO `lm_sharer_img` VALUES ('1', '1', '1', 'upload/love/2019042516594949842.jpg', '100', '1', '0', '1', '1583256892', null);
-INSERT INTO `lm_sharer_img` VALUES ('2', '1', '1', 'upload/love/2019041717534098169.jpg', '100', '1', '0', '1', null, null);
-INSERT INTO `lm_sharer_img` VALUES ('3', '1', '1', 'upload/love/2019041717492378989.jpg', '100', '1', '0', '1', null, null);
-INSERT INTO `lm_sharer_img` VALUES ('4', '1', '1', 'upload/love/2019041717562219374.jpg', '100', '1', '0', '1', null, null);
-INSERT INTO `lm_sharer_img` VALUES ('5', '1', '1', 'upload/love/2019042418001368071.jpg', '100', '1', '0', '1', null, null);
+INSERT INTO `lm_sharer_img` VALUES ('1', '1', '1', '93', 'upload/love/2019042516594949842.jpg', '1', '1', '0', '1', '1583256892', '0');
+INSERT INTO `lm_sharer_img` VALUES ('2', '1', '1', '81', 'upload/love/2019041717534098169.jpg', '5', '1', '0', '1', null, '0');
+INSERT INTO `lm_sharer_img` VALUES ('3', '1', '1', '78', 'upload/love/2019041717492378989.jpg', '3', '1', '0', '1', null, '0');
+INSERT INTO `lm_sharer_img` VALUES ('4', '1', '1', '85', 'upload/love/2019041717562219374.jpg', '4', '1', '0', '1', null, '0');
+INSERT INTO `lm_sharer_img` VALUES ('5', '1', '1', '89', 'upload/love/2019042418001368071.jpg', '2', '1', '0', '1', null, null);
 
 -- ----------------------------
 -- Table structure for lm_user
@@ -148,6 +154,32 @@ CREATE TABLE `lm_user` (
 INSERT INTO `lm_user` VALUES ('1', '句号。', '广东茂名', '1', '123', '456', '1567852367');
 
 -- ----------------------------
+-- Table structure for lm_video
+-- ----------------------------
+DROP TABLE IF EXISTS `lm_video`;
+CREATE TABLE `lm_video` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `video` varchar(255) DEFAULT NULL,
+  `video_name` varchar(255) DEFAULT NULL COMMENT '用于显示名称',
+  `userId` int(11) DEFAULT '0' COMMENT '用户ID',
+  `isok` tinyint(1) DEFAULT '1' COMMENT '是否被删除/无效',
+  `sort` int(11) DEFAULT '100',
+  `is_recom` tinyint(1) DEFAULT '0' COMMENT '是否推荐',
+  `add_time` int(11) DEFAULT NULL,
+  `del_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `userId` (`userId`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of lm_video
+-- ----------------------------
+INSERT INTO `lm_video` VALUES ('1', 'wenjun.mp3', '官方默认', '0', '1', '99', '0', '1523686210', null);
+INSERT INTO `lm_video` VALUES ('2', 'phh.mp3', '我上传的', '1', '1', '100', '0', '1538268210', null);
+INSERT INTO `lm_video` VALUES ('3', 'zwj.mp3', '官方测试', '0', '1', '100', '0', '1583982156', null);
+
+-- ----------------------------
 -- Table structure for lm_xp
 -- ----------------------------
 DROP TABLE IF EXISTS `lm_xp`;
@@ -167,7 +199,9 @@ CREATE TABLE `lm_xp` (
   `sharerCatId` int(11) DEFAULT '0' COMMENT '属于哪个锦集，0代表没有在锦集里面',
   `add_time` int(11) DEFAULT NULL,
   `del_time` int(11) DEFAULT NULL COMMENT '删除时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `userId` (`userId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -177,6 +211,6 @@ INSERT INTO `lm_xp` VALUES ('78', '1', '夏日', '冬阳', '你是夏日风雨,\
 INSERT INTO `lm_xp` VALUES ('81', '1', '心晴', '心安', '爱无非是,\r\n初见你心晴，\r\n久见你心安。', 'upload/love/2019041717534098169.jpg', '0', '0', '50', '1', '1', '0', '0', '1555494820', null);
 INSERT INTO `lm_xp` VALUES ('85', '1', '背影', '决心', '知道不该打扰你,\r\n但每次偷看你背影，\r\n都不忍再下决心。', 'upload/love/2019041717562219374.jpg', '0', '0', '50', '1', '1', '0', '0', '1555494982', null);
 INSERT INTO `lm_xp` VALUES ('89', '1', '测试的', '写给你的', '致最爱的您！！！', 'upload/love/2019042418001368071.jpg', '0', '0', '50', '1', '1', '0', '0', '1556100015', null);
-INSERT INTO `lm_xp` VALUES ('90', '0', '测试2', '开心', '每一天', 'upload/love/2019042418053888860.jpg', '0', '0', '50', '1', '1', '0', '0', '1556100341', null);
-INSERT INTO `lm_xp` VALUES ('92', '0', '测试一下', '我自己写的', '给自己加油，不要后悔太多！', 'upload/love/2019042515373776577.jpg', '0', '0', '50', '1', '1', '0', '0', '1556177874', null);
+INSERT INTO `lm_xp` VALUES ('90', '1', '测试2', '开心', '每一天', 'upload/love/2019042418053888860.jpg', '0', '0', '50', '1', '1', '0', '0', '1556100341', null);
+INSERT INTO `lm_xp` VALUES ('92', '1', '测试一下', '我自己写的', '给自己加油，不要后悔太多！', 'upload/love/2019042515373776577.jpg', '0', '0', '50', '1', '1', '0', '0', '1556177874', null);
 INSERT INTO `lm_xp` VALUES ('93', '1', '小鱼儿', '花无缺', '爱无非是，\n初见你心情，\n久见你心安！', 'upload/love/2019042516594949842.jpg', '0', '0', '50', '1', '1', '0', '0', '1556182790', null);
