@@ -19,7 +19,7 @@ Page({
     //   wx.hideToast()
     // }, 500);
     this.getsharerCat();
-    app.BMGMUSIC.stop();//关闭音乐的
+    // app.BMGMUSIC.stop();//关闭音乐的
   },
 
   onLoad: function () {
@@ -106,7 +106,7 @@ Page({
             name:'',
             delModal:false
           })
-          that.onShow();
+          that.getsharerCat();
          }
         });
         
@@ -148,7 +148,7 @@ Page({
                   name:'',
                   delModal:false
                 })
-                that.onShow();
+                that.getsharerCat();
                }
               });
               
@@ -170,9 +170,13 @@ Page({
 
   xpModal:function(e){
     wx.navigateTo({
-      url: './sharerimg?sharerId=' + e.currentTarget.dataset.sharerid
+      url: './sharerimg?sharerId=' + e.currentTarget.dataset.sharerid +'&index='+e.currentTarget.dataset.index
     })
   },
-
+  hideXpModal:function(){
+    wx.switchTab({
+      url: '/pages/mine/mine',
+    })
+  },
 
 })

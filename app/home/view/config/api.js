@@ -12,5 +12,9 @@ module.exports = {
   MineSharerCat: domainUrl + "Mine/sharerCat",
   MineAddSharerCat: domainUrl + "Mine/sharerCatAdd",
   MineDelSharerCat: domainUrl + "Mine/sharerCatDel",
-  
+  MineSharerImgMove: domainUrl + "Mine/sharerImgMove",
+  MineSharerImgDel: domainUrl + "Mine/sharerImgDel",
+  MineVideoList: domainUrl + "Mine/sharerVideoList",
+  MineAllXp: domainUrl + "Mine/allXp",
+  MineSharerImgadd:domainUrl + "Mine/sharerImgadd",
 }

@@ -29,4 +29,35 @@ class Mine extends Base
         $m = new M();
         return $m->sharerCatDel();
     }
+
+    public function sharerImgMove(){
+        $m = new M();
+        $res = $m->sharerImgMove();
+        echo(json_encode(WSTReturn('success',1,$res)));die;
+    }
+
+    public function sharerImgDel(){
+        $m = new M();
+        return $m->sharerImgDel();
+    }
+
+    public function allXp(){
+        $m = new M();
+        $res = $m->allXp();
+        if (empty($res)) {
+            echo(json_encode(WSTReturn('没有相片可选择啦，请先去添加哦，么么哒')));die;
+        }
+        echo(json_encode(WSTReturn('success',1,$res)));die;
+    }
+
+    public function sharerImgadd(){
+        $m = new M();
+        return $m->sharerImgadd();
+    }
+
+    public function sharerVideoList(){
+        $m = new M();
+        $res = $m->sharerVideoList();
+        echo(json_encode(WSTReturn('success',1,$res)));die;
+    }
 }

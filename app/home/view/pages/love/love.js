@@ -5,6 +5,7 @@ Page({
     webViewUrl:"http://www.tplm.com/",
     sharerId:0,
     current:0,
+    sharerIndex:0
   },
   onShow: function() {
     wx.showToast({
@@ -12,17 +13,23 @@ Page({
       icon: 'loading',
       duration: 500
     })
-    setTimeout(function () {
-      wx.hideToast()
-    }, 500);
+    // setTimeout(function () {
+    //   wx.hideToast()
+    // }, 500);
 
     this.getxp();
     this.music();
     this.getsharerCat();
   },
 
-  onLoad: function () {
-    
+  onLoad: function (options) {
+    console.log(options)
+    if (options.sharerId) {
+      this.setData({
+        sharerId:options.sharerId,
+        sharerIndex:options.sharerIndex
+      })
+    }
   },
 
 
@@ -54,7 +61,7 @@ Page({
     //播放音乐
     // const innerAudioContext = app.BMGMUSIC
     // innerAudioContext.autoplay = true
-    // innerAudioContext.src = 'http://www.tplm.com/upload/video/renxi.mp3'
+    // innerAudioContext.src = 'http://www.tplm.com/upload/video/wenjun.mp3'
     // innerAudioContext.play();
   },
 
@@ -73,7 +80,7 @@ Page({
         that.setData({
           sharerArr: sharerArr,
           sharerList: sharerList,
-          sharerIndex:0,
+          sharerIndex:that.data.sharerIndex,
         })
       }
     }).catch((error) => {
@@ -98,8 +105,5 @@ Page({
       icon: 'loading',
       duration: 500
     })
-    setTimeout(function () {
-      wx.hideToast()
-    }, 500);
   }
 })

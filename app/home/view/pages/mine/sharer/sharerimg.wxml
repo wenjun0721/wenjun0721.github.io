@@ -1,25 +1,6 @@
-
-<!--   <view class='card1'>
-  	<view class='toast-title flex flex-ac flex-zBetween'>
-	    <view class='button1' style="color: #a7bdcd" bindtap='hideXpModal'>返回</view>
-	    <view class='button1' style="color: #e787ba;margin-left: 12.5rem" bindtap='{{changeBtn}}'>{{changeText}}</view>
-	</view>
-	<view class='cat-products flex flex-zLeftRight'>
-        <block wx:if="{{sharerImgList}}" wx:for="{{sharerImgList}}" wx:key="sharerImgList">
-          <view class="block-card flex" style="flex-basis:22%">
-            <view class='card'>
-            	<view class='card-body' style="height: 5rem">
-	                <image class="imgae1" bindtap='{{changeImgBtn}}' data-index='{{index}}' data-src='{{item.img}}' src='{{item.img}}' mode='aspectFill'></image>
-	            </view>
-            </view>
-          </view>
-        </block>
-    </view>
+<view class='flex' style="position: fixed;z-index: 99;right: 0.5rem;bottom: 4.5rem" bindtap='showModal'>
+    <image style="width: 3rem;height: 2.8rem;" src='../../../assets/images/logo.png'></image>
 </view>
-
-<view class="del" bindtap='delModal' hidden="{{!delModal}}">
-  <text>删除</text>
-</view> -->
 
   <view class='card1'>
     <view class='toast-title flex flex-ac flex-zBetween'>
@@ -51,9 +32,14 @@
     <view class='cat-products flex flex-zLeftRight'>
         <block wx:if="{{sharerImgList}}" wx:for="{{sharerImgList}}" wx:key="sharerImgList">
           <view class="block-card flex" style="flex-basis:22%">
-            <view class='card'>
+            <view class='card' wx:if="{{item.select}}" style="border:2rpx solid #FF0000">
               <view class='card-body' style="height: 5rem">
-                  <image class="imgae1" bindtap='{{changeImgBtn}}' data-index='{{index}}' data-src='{{item.img}}' src='{{item.img}}' mode='aspectFill'></image>
+                  <image class="imgae1" bindtap='{{changeImgBtn}}' data-index='{{index}}' data-id='{{item.id}}' data-src='{{item.img}}' src='{{item.img}}' mode='aspectFill'></image>
+              </view>
+            </view>
+            <view class='card' wx:else style="border:2rpx solid #fff">
+              <view class='card-body' style="height: 5rem">
+                  <image class="imgae1" bindtap='{{changeImgBtn}}' data-index='{{index}}' data-id='{{item.id}}' data-src='{{item.img}}' src='{{item.img}}' mode='aspectFill'></image>
               </view>
             </view>
           </view>
@@ -62,7 +48,42 @@
 </block>
 
 </view>
-
-<view class="del" bindtap='delModal' hidden="{{!delModal}}">
-  <text>删除</text>
+<block wx:if="{{!yu}}">
+  <view class="del1" bindtap='loveShow' hidden='{{!delShow}}'>
+    <text>预览回忆</text>
+  </view>
+</block>
+<block wx:else>
+  <view class="del1" style="background: #ccc;border:1px solid #ccc;" hidden='{{!delShow}}'>
+    <text>预览回忆</text>
+  </view>
+</block>
+<view class="del" bindtap='{{buttomModal}}' hidden='{{!delShow}}'>
+  <text>{{buttomModalText}}</text>
 </view>
+<view class="del2" bindtap='{{buttomModal}}' hidden='{{delShow}}'>
+  <text>{{buttomModalText}}</text>
+</view>
+
+<!--添加弹窗 start-->
+  <view class='toast-box' hidden='{{!showModal}}'>
+    <view class='toastbg' ></view>
+    <view class='showToast'>
+      <view class='toast-title flex flex-ac flex-zBetween'>
+        <text style="margin-left: 7rem;">锦集背景音乐</text>
+        <text class='button1' style='margin-left: 4rem;color: red' bindtap='hideModal'>取消</text>
+      </view>
+      <view class='toast-main'>
+        <view class='toast-input'>
+          请填写锦集名称1
+        </view>
+      </view>
+      <view class='toast-button'>
+        <view class='button2'>
+          <button bindtap='saveSharer'>保存</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--弹窗 end-->
+

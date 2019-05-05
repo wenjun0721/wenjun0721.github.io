@@ -13,7 +13,14 @@ Page({
     y:0,
     disabled: true,
     elements:[],
-    moveTrue:true
+    moveTrue:true,
+    selectIds:[],
+    buttomModal:'addSharerImg',
+    buttomModalText:'添加相片',
+    delShow:true,
+    yu:false,
+    videoIndex:0,
+    showModal:false,
   },
   onShow: function() {
     wx.showToast({
@@ -29,8 +36,10 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(options)
     this.setData({
-      sharerId:options.sharerId
+      sharerId:options.sharerId,
+      index:options.index,
     })
   },
   xpModal:function(e){
@@ -64,6 +73,10 @@ Page({
 
 
       }else{
+         that.setData({
+          sharerImgList: [],
+          yu:true
+        })
         wx.showToast({
          title: res.msg,
          icon: 'none',
@@ -96,32 +109,137 @@ Page({
       changeBtn:'Ok',
       delModal:true,
       moveTrue:false,
-      changeImgBtn:'checkimg'
+      changeImgBtn:'checkimg',
+      buttomModal:'delSharerImg',
+      buttomModalText:'删除',
+      delShow:false,
     })
   },
-
   Ok:function(){
     this.setData({
       changeText:'管理',
       changeBtn:'Run',
       delModal:false,
-      moveTrue:true
-      changeImgBtn:'previewImage'
+      moveTrue:true,
+      changeImgBtn:'previewImage',
+      buttomModal:'addSharerImg',
+      buttomModalText:'添加相片',
+      delShow:true
     })
   },
 
-  checkimg:function () {
+  checkimg:function (e) {
+    var index = e.currentTarget.dataset.index;
+    var id = e.currentTarget.dataset.id;
+    let selectIds = this.data.selectIds;
+    let sharerImgList = this.data.sharerImgList;
+    let isSelect = sharerImgList[index].select;
+    if (isSelect == false) {
+      sharerImgList[index].select = true;
+      selectIds.push(id);
+    } else {
+      sharerImgList[index].select = false;
+      selectIds = app.util.arrayDelete(selectIds, id);
+    };
     this.setData({
-      selectindex:(this.data.lookindex)*1+1,
+      sharerImgList:sharerImgList,
     })
   },
 
+  delSharerImg:function(){
+    const that = this;
+    let selectIds = this.data.selectIds || [];
+    if (selectIds.length == 0) {
+      wx.showToast({
+        title: '请点击选中要删除的图片',
+        icon: 'none'
+      })
+    } else {
+      wx.showModal({
+        title: '确定删除选中的图片吗？',
+        content: '',
+        success: function (res) {
+          if (res.cancel) {
+            //点击取消,默认隐藏弹框
+          } else {
+            let obj = {
+              userId: wx.getStorageSync('userId'),
+              Ids: selectIds.join(',')
+            }
+            app.util.request(app.api.MineSharerImgDel, 'GET', obj).then((res) => {
+              if (res.status && res.status == 1) {
+                wx.showToast({
+                  title: '删除成功',
+                });
+                that.setData({
+                  changeText:'管理',
+                  changeBtn:'Run',
+                  delModal:false,
+                  moveTrue:true,
+                  changeImgBtn:'previewImage',
+                  selectIds:[],
+                  buttomModal:'addSharerImg',
+                  buttomModalText:'添加相片',
+                  delShow:true
+                })
+                that.xpModal()
+              } else {
+                wx.showToast({
+                  title: res.msg,
+                  icon: 'none'
+                })
+              }
+            })
+          }
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    }
+  },
 
+  addSharerImg:function(){
+    wx.navigateTo({
+      url: './sharerimgadd?sharerId=' +this.data.sharerId
+    })
+  },
+  loveShow:function(){
+    var sharerIndex = (this.data.index)*1 + 1;
+    wx.reLaunch({
+      url: '/pages/love/love?sharerId='+this.data.sharerId+'&sharerIndex='+sharerIndex
+    })
+  },
 
+  videoList:function(){
+    var that = this;
+    let userId = wx.getStorageSync('userId');
+    let obj = {
+      userId: userId,
+    }
+    app.util.request(app.api.MineVideoList, 'POST', obj).then((res) => {
+      var videoArr = res.data.arr.map(item => {
+        return item.video_name;
+      })
+      that.setData({
+        videoList: res.data.arr,
+        videoArr,
+      })
+      
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  showModal:function(){
+    this.setData({
+      showModal:true,
+    })
+  },
 
-
-
-
+  hideModal:function(){
+    this.setData({
+      showModal:false,
+    })
+  },
 
 
 
@@ -185,6 +303,17 @@ Page({
         })
       }
     }
+
+    //移动后修改数据库
+    let obj = {
+      data:this.data.sharerImgList,
+    }
+    app.util.request(app.api.MineSharerImgMove, 'POST', obj).then((res) => {
+      
+    }).catch((error) => {
+      console.log(error)
+    })
+
     this.setData({
       hidden: true,
       flag: false

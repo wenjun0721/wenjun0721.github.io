@@ -18,7 +18,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "浪漫日记",
+    "navigationBarTitleText": "日记",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -37,13 +37,13 @@
         "pagePath": "pages/love/add",
         "iconPath": "assets/icons/lingdu.png",
         "selectedIconPath": "assets/icons/lingdu_sel.png",
-        "text": "编译爱情"
+        "text": "编译回忆"
       },
       {
         "pagePath": "pages/love/love",
         "iconPath": "assets/icons/lingdu.png",
         "selectedIconPath": "assets/icons/lingdu_sel.png",
-        "text": "爱情之旅"
+        "text": "回忆之旅"
       },
       
       {

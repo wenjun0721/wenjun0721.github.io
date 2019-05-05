@@ -61,10 +61,34 @@ function request(url, method = "POST", data = {}, ) {
     })
   }
 
+//删除数组中的某个元素 返回新元素
 
+var arrayDelete = function (arr, obj) {
+  let newArr = arr;
+  if (typeof (obj) == "object") {
+    obj.map(function (val, index) {
+      let parent = val;
+      let parentIndex = index;
+      newArr.map(function (val, index) {
+        if (parent == val) {
+          newArr.splice(index, 1);
+        }
+      })
+    });
+  } else {
+    newArr.map(function (val, index) {
+      if (obj == val) {
+        newArr.splice(index, 1);
+      }
+    })
+  }
+
+  return newArr;
+}
 
 module.exports = {
   formatTime: formatTime,
   request: request,
+  arrayDelete: arrayDelete,
 }
 

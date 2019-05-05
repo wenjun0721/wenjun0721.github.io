@@ -16,6 +16,7 @@ class Base extends Controller {
 		define('SO_BACKGROUND_NEW','add_time desc,id desc');
 		define('SO_ADDTIME_COMMON','add_time desc,id desc');
 		define('SO_SORT_COMMON','sort asc,add_time desc,id desc');
+		define('SO_RECOM_COMMON','is_recom desc,sort asc,add_time desc,id desc');
 		define('WEBURL','http://www.tplm.com/');
 	}
     protected function fetch($template = '', $vars = [], $replace = [], $config = [])

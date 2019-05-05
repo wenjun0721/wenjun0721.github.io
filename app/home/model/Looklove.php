@@ -19,6 +19,7 @@ class Looklove extends Base
     	}
     	foreach ($xp as $k => $v) {
             $xp[$k]['img'] = WEBURL.$v['img'];
+            $xp[$k]['select'] = false;
         }
     	return $xp;
     }

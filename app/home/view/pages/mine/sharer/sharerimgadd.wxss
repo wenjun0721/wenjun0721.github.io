@@ -196,36 +196,6 @@ flex-shrink: 0;
   right:1rem;
   bottom:1rem;
   border:1px solid #e6a2c1;
-  width:40%;
-  text-align:center;
-  background:#eab6ce;
-  color:#fff;
-  border-radius:0.5rem;
-  padding:0.3rem;
-  left:53%;
-}
-
-.del1{
-  position:fixed;
-  z-index:99;
-  right:1rem;
-  bottom:1rem;
-  border:1px solid #e6a2c1;
-  width:40%;
-  text-align:center;
-  background:#eab6ce;
-  color:#fff;
-  border-radius:0.5rem;
-  padding:0.3rem;
-  left:3%;
-}
-
-.del2{
-  position:fixed;
-  z-index:99;
-  right:1rem;
-  bottom:1rem;
-  border:1px solid #e6a2c1;
   width:80%;
   text-align:center;
   background:#eab6ce;

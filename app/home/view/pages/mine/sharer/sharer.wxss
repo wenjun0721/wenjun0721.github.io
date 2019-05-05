@@ -1,16 +1,17 @@
 
 .cat-products{
-margin: 0 1rem;
+/*margin: 0 0.3rem;*/
 flex-wrap: wrap;
 }
 .cat-products .block-card{
-margin-top:1rem;
+/*margin-top:0.25rem;*/
 flex-grow: 0;
 flex-shrink: 1;
 border:2rpx solid #ccc;
 flex-basis: 47%;
-border-radius: 5%;
-margin-right: 2%
+border-radius: 2%;
+/*margin-right: 2%;*/
+margin-bottom: 0.3rem
 }
 .cat-products .block-card .card{
 text-align: center;
@@ -18,7 +19,7 @@ text-align: center;
 width: 100%;
 }
 .cat-products .card-body{
-height: 9rem;
+height: 15rem;
 width: 100%;
 border-radius:0.5rem;
 }
@@ -26,8 +27,8 @@ border-radius:0.5rem;
 width: 100%;
 height: 100%;
 /*border-radius:0.5rem;*/
-border-top-left-radius:0.5rem;
-border-top-right-radius:0.5rem;
+border-top-left-radius:0.25rem;
+border-top-right-radius:0.25rem;
 }
 .cat-products .card-footer{
 padding: 0.5rem;

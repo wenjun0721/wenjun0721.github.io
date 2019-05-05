@@ -4,11 +4,14 @@
 </view>
 
 <view hidden='{{!indexShow}}'>
+  <view class='toast-title flex flex-ac flex-zBetween' >
+      <view class='button1' style="color: #a7bdcd;" bindtap='hideXpModal'>返回</view>
+   </view>
 	<view class='cat-products flex flex-zLeftRight'>
         <block wx:if="{{sharerList}}" wx:for="{{sharerList}}" wx:key="sharerList">
-          <view class="block-card flex" style="{{index%2!=0?'margin-rigth:0':''}}" >
+          <view class="block-card flex" style="{{index%2!=0?'':'margin-right:2%;margin-left: 1.5%'}}" >
             <view class='card'>
-            	<view class='card-body' data-sharerid="{{item.id}}" bindtap='xpModal'>
+            	<view class='card-body' data-sharerid="{{item.id}}" data-index='{{index}}' bindtap='xpModal'>
 	                <image class="image" data-index='{{index}}' src='{{item.bgImg}}' mode='aspectFill'></image>
 	            </view>
 	            <view bindtap='showModal' data-name="{{item.name}}" data-id="{{item.id}}" style="border-top: 2rpx solid #ccc;font-size: 14px;line-height: 28px">{{item.name}}</view>
