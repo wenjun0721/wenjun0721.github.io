@@ -73,11 +73,11 @@
         <text style="margin-left: 7rem;">锦集背景音乐</text>
         <text class='button1' style='margin-left: 4rem;color: red' bindtap='hideModal'>取消</text>
       </view>
+      <picker bindchange="bindPickerVideoChange" value="{{videoArrIndex}}" range="{{videoArr}}">
       <view class='toast-main'>
-        <view class='toast-input'>
-          请填写锦集名称1
-        </view>
+          {{videoArr[videoArrIndex]}}
       </view>
+      </picker>
       <view class='toast-button'>
         <view class='button2'>
           <button bindtap='saveSharer'>保存</button>

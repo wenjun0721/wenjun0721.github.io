@@ -215,21 +215,26 @@ Page({
     let userId = wx.getStorageSync('userId');
     let obj = {
       userId: userId,
+      sharerId:that.data.sharerId,
     }
     app.util.request(app.api.MineVideoList, 'POST', obj).then((res) => {
       var videoArr = res.data.arr.map(item => {
         return item.video_name;
       })
+      var video = res.data.arr[res.data.index]['video'];
       that.setData({
         videoList: res.data.arr,
         videoArr,
+        videoArrIndex:res.data.index,
+        video:video
       })
-      
+      this.music();
     }).catch((error) => {
       console.log(error)
     })
   },
   showModal:function(){
+    this.videoList();
     this.setData({
       showModal:true,
     })
@@ -239,11 +244,39 @@ Page({
     this.setData({
       showModal:false,
     })
+    app.BMGMUSIC.stop();//关闭音乐的
   },
 
+  bindPickerVideoChange:function(e){
+    app.BMGMUSIC.stop();//关闭音乐的
+    var select_key = e.detail.value;
+    var that = this;
+    var videoList = that.data.videoList;
+    let userId = wx.getStorageSync('userId');
+    let obj = {
+      userId: userId,
+      sharerId:that.data.sharerId,
+      videoId:videoList[select_key]['id'],
+    }
+    app.util.request(app.api.MineVideoChange, 'POST', obj).then((res) => {
+      that.setData({
+        videoArrIndex:select_key,
+        video:videoList[select_key]['video'],
+      })
+      this.music();
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
 
-
-
+  music:function(){
+    //播放音乐
+    var video = this.data.video
+    const innerAudioContext = app.BMGMUSIC
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = app.webViewUrl+video
+    innerAudioContext.play();
+  },
 
 
 

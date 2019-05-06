@@ -60,4 +60,9 @@ class Mine extends Base
         $res = $m->sharerVideoList();
         echo(json_encode(WSTReturn('success',1,$res)));die;
     }
+
+    public function sharervideochange(){
+        $m = new M();
+        return $m->sharervideochange();
+    }
 }

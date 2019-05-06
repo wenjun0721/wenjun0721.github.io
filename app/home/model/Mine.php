@@ -189,12 +189,38 @@ class Mine extends Base
         }else{
             $res = Db::name('video')->where(['userId'=>0,'isok'=>1])->order(SO_RECOM_COMMON)->select();
         }
+
+        //判断锦集是否有背景音乐了
+        $sharerId = input('sharerId/d',0);
+        $videoId = Db::name('sharer')->where(['id'=>$sharerId])->value('videoId');
         $arr = [];
+        $index = 0; 
         foreach ($res as $k => $v) {
             $arr[$k]['video_name'] = $v['video_name'];
             $arr[$k]['id'] = $v['id'];
+            $arr[$k]['video'] = $v['video'];
+            if (!empty($videoId) && $v['id'] == $videoId) {
+               $index = $k; 
+            }
         }
         $rs['arr'] = $arr;
+        $rs['index'] = $index;
         return $rs;
+    }
+
+    public function sharervideochange()
+    {
+        $userId = input('userId/d',0);
+        $sharerId = input('sharerId/d',0);
+        $videoId = input('videoId/d',1);
+        $where['userId'] = $userId;
+        $where['isok'] = 1;
+        $where['id']   = $sharerId;
+        $k = Db::name('sharer')->where($where)->update(['videoId'=>$videoId]);
+        if ($k) {
+            return json_encode(WSTReturn('更换成功',1));
+        }else{
+            return json_encode(WSTReturn('更换失败'));
+        }
     }
 }

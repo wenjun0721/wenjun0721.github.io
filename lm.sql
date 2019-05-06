@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2019-05-05 19:09:45
+Date: 2019-05-06 20:25:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -98,8 +98,8 @@ CREATE TABLE `lm_sharer` (
 -- ----------------------------
 -- Records of lm_sharer
 -- ----------------------------
-INSERT INTO `lm_sharer` VALUES ('1', '1', '测试1', '1', '0', null, '0', '0', '100', '1', '1583286215', null);
-INSERT INTO `lm_sharer` VALUES ('22', '1', '搜索', '1', '0', null, '0', '0', '100', '1', '1557048129', null);
+INSERT INTO `lm_sharer` VALUES ('1', '1', '测试1', '3', '0', null, '0', '0', '100', '1', '1583286215', null);
+INSERT INTO `lm_sharer` VALUES ('22', '1', '搜索', '3', '0', null, '0', '0', '100', '1', '1557048129', null);
 
 -- ----------------------------
 -- Table structure for lm_sharer_img
@@ -175,9 +175,9 @@ CREATE TABLE `lm_video` (
 -- ----------------------------
 -- Records of lm_video
 -- ----------------------------
-INSERT INTO `lm_video` VALUES ('1', 'wenjun.mp3', '官方默认', '0', '1', '99', '0', '1523686210', null);
-INSERT INTO `lm_video` VALUES ('2', 'phh.mp3', '我上传的', '1', '1', '100', '0', '1538268210', null);
-INSERT INTO `lm_video` VALUES ('3', 'zwj.mp3', '官方测试', '0', '1', '100', '0', '1583982156', null);
+INSERT INTO `lm_video` VALUES ('1', 'upload/video/wenjun.mp3', '官方默认', '0', '1', '99', '0', '1523686210', null);
+INSERT INTO `lm_video` VALUES ('2', 'upload/video/phh.mp3', '我上传的', '1', '1', '100', '0', '1538268210', null);
+INSERT INTO `lm_video` VALUES ('3', 'upload/video/zwj.mp3', '官方测试', '0', '1', '100', '0', '1583982156', null);
 
 -- ----------------------------
 -- Table structure for lm_xp
