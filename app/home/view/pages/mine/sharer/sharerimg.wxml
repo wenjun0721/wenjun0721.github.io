@@ -1,4 +1,4 @@
-<view class='flex' style="position: fixed;z-index: 99;right: 0.5rem;bottom: 4.5rem" bindtap='showModal'>
+<view class='flex' style="position: fixed;z-index: 99;right: 0.5rem;bottom: 5.5rem" bindtap='showModal'>
     <image style="width: 3rem;height: 2.8rem;" src='../../../assets/images/logo.png'></image>
 </view>
 

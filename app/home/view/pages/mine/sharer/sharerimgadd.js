@@ -6,7 +6,6 @@ Page({
     changeText:'管理',
     changeBtn:'Run',
     changeImgBtn:'checkimg',
-    selectIds:[],
     buttomModal:'addSharerImg',
     buttomModalText:'确定添加'
   },
@@ -22,7 +21,8 @@ Page({
 
   onLoad: function (options) {
     this.setData({
-      sharerId:options.sharerId
+      sharerId:options.sharerId,
+      index:options.index,
     })
   },
   getUserXp:function(e){
@@ -36,6 +36,7 @@ Page({
       if (res.status && res.status == 1) {
         that.setData({
           userImgList: res.data,
+          selectIds:[],
         })
       }else{
          that.setData({
@@ -53,8 +54,9 @@ Page({
   },
 
   hideXpModal:function(){
+    var index = (this.data.index)*1;
     wx.navigateTo({
-      url: './sharerimg?sharerId=' +this.data.sharerId
+      url: './sharerimg?sharerId=' +this.data.sharerId+'&index='+index
     })
   },
   checkimg:function (e) {

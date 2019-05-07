@@ -36,7 +36,6 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(options)
     this.setData({
       sharerId:options.sharerId,
       index:options.index,
@@ -51,11 +50,11 @@ Page({
     }
     app.util.request(app.api.LookLove, 'POST', obj).then((res) => {
       if (res.status && res.status == 1) {
-        var sharerImgArr = res.data.map(item => {
+        var sharerImgArr = res.data.xp.map(item => {
           return item.img;
         })
         that.setData({
-          sharerImgList: res.data,
+          sharerImgList: res.data.xp,
           sharerImgArr,
         })
         //移动的代码 不知道怎么意思，搞懂告诉我一下
@@ -73,7 +72,7 @@ Page({
 
 
       }else{
-         that.setData({
+        that.setData({
           sharerImgList: [],
           yu:true
         })
@@ -199,12 +198,13 @@ Page({
   },
 
   addSharerImg:function(){
+    var index = (this.data.index)*1;
     wx.navigateTo({
-      url: './sharerimgadd?sharerId=' +this.data.sharerId
+      url: './sharerimgadd?sharerId=' +this.data.sharerId+'&index='+index
     })
   },
   loveShow:function(){
-    var sharerIndex = (this.data.index)*1 + 1;
+    var sharerIndex = (this.data.index)*1+ 1;
     wx.reLaunch({
       url: '/pages/love/love?sharerId='+this.data.sharerId+'&sharerIndex='+sharerIndex
     })
@@ -267,6 +267,7 @@ Page({
     var video = this.data.video
     const innerAudioContext = app.BMGMUSIC
     innerAudioContext.autoplay = true
+    innerAudioContext.loop = true
     innerAudioContext.src = app.webViewUrl+video
     innerAudioContext.play();
   },

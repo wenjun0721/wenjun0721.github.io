@@ -1,0 +1,18 @@
+<view class='flex' style="position: fixed;z-index: 99;right: 5%;bottom: 0.3rem;">
+	<image style="width: 2rem;height: 2rem;" src='../../assets/icons/mine.png'></image>
+</view>
+ 
+ <view class='flex' style="position: fixed;z-index: 99;left: 5%;bottom: 0.3rem;">
+	<image style="width: 2rem;height: 2rem;" src='../../assets/icons/lingdu_sel.png'></image>
+</view>
+
+ <view class='flex' style="position: fixed;z-index: 99;left: 43%;bottom: 0.3rem;" bindtap='sc'>
+	<image style="width: 2rem;height: 2rem;" src='../../assets/images/collect{{co}}.png'></image>
+</view>
+<swiper class="swiper"  autoplay="true" interval="5000" duration="1000" circular="true" current ="{{current}}">
+  <block wx:for="{{loves}}" wx:for-index="index" wx:key="{{loves}}">  
+    <swiper-item>  
+      <image src="{{item.img}}" class="slide-image" mode="aspectFill"/>  
+    </swiper-item>  
+  </block>  
+</swiper>

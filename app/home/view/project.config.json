@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -43,7 +43,7 @@
 					"id": 1,
 					"name": "拖动图片",
 					"pathName": "pages/mine/sharer/sharerimg",
-					"query": "sharerId=1&index=1",
+					"query": "sharerId=1&index=0",
 					"scene": null
 				},
 				{
@@ -52,6 +52,13 @@
 					"pathName": "pages/mine/sharer/sharerimgadd",
 					"query": "sharerId=1",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/other/other",
+					"query": "",
+					"scene": 1001
 				}
 			]
 		}

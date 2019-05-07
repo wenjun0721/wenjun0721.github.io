@@ -4,6 +4,7 @@
     "pages/leader/leader",
     "pages/love/add",
     "pages/love/love",
+    "pages/other/other",
     "pages/leader/stories/stories",
     "pages/leader/authors/authors",
     "pages/stack/stack",
@@ -13,6 +14,8 @@
     "pages/mine/mine",
     "pages/mine/news/news",
     "pages/mine/sharer/sharerimg",
+    "pages/mine/sharer/sharer",
+    "pages/mine/sharer/sharerimgadd",
     "pages/logs/logs"
   ],
   "window": {
@@ -45,7 +48,12 @@
         "selectedIconPath": "assets/icons/lingdu_sel.png",
         "text": "回忆之旅"
       },
-      
+      {
+        "pagePath": "pages/other/other",
+        "iconPath": "assets/icons/lingdu.png",
+        "selectedIconPath": "assets/icons/lingdu_sel.png",
+        "text": "我的收藏"
+      },
       {
         "pagePath": "pages/mine/mine",
         "iconPath": "assets/icons/mine.png",

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2019-05-06 20:25:49
+Date: 2019-05-07 18:16:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,6 +74,31 @@ INSERT INTO `lm_background_cat` VALUES ('2', '0', '甜甜蜜蜜', '100', '0', '1
 INSERT INTO `lm_background_cat` VALUES ('3', '1', '爱的味道', '100', '0', '1', '1', '1528730158', null);
 
 -- ----------------------------
+-- Table structure for lm_collection
+-- ----------------------------
+DROP TABLE IF EXISTS `lm_collection`;
+CREATE TABLE `lm_collection` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sharerId` int(11) DEFAULT NULL COMMENT '相册ID',
+  `userId` int(11) DEFAULT NULL COMMENT '哪个用户收藏',
+  `isshow` tinyint(1) DEFAULT '1' COMMENT '分享的用户是否还给查看',
+  `isok` tinyint(1) DEFAULT '1' COMMENT '是否被删除/无效',
+  `sort` int(11) DEFAULT '100' COMMENT '排序',
+  `add_time` int(11) DEFAULT NULL,
+  `del_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `userId` (`userId`),
+  KEY `sharerId` (`sharerId`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of lm_collection
+-- ----------------------------
+INSERT INTO `lm_collection` VALUES ('1', '1', '1', '1', '1', '100', '1583256981', '1557217154');
+INSERT INTO `lm_collection` VALUES ('2', '22', '1', '1', '0', '100', '1599256028', '1557224128');
+
+-- ----------------------------
 -- Table structure for lm_sharer
 -- ----------------------------
 DROP TABLE IF EXISTS `lm_sharer`;
@@ -82,6 +107,7 @@ CREATE TABLE `lm_sharer` (
   `userId` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL COMMENT '锦集名称',
   `videoId` int(11) DEFAULT '1' COMMENT '背景音乐ID',
+  `isshow` tinyint(1) DEFAULT '1' COMMENT '是否能被查看',
   `isSharer` tinyint(1) DEFAULT '0' COMMENT '是否分享过',
   `sharerCode` varchar(255) DEFAULT NULL COMMENT '分享二维码',
   `sharerClick` int(11) DEFAULT '0' COMMENT '被查看数',
@@ -93,13 +119,13 @@ CREATE TABLE `lm_sharer` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `userId` (`userId`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_sharer
 -- ----------------------------
-INSERT INTO `lm_sharer` VALUES ('1', '1', '测试1', '3', '0', null, '0', '0', '100', '1', '1583286215', null);
-INSERT INTO `lm_sharer` VALUES ('22', '1', '搜索', '3', '0', null, '0', '0', '100', '1', '1557048129', null);
+INSERT INTO `lm_sharer` VALUES ('1', '1', '测试1', '2', '1', '0', null, '0', '0', '100', '1', '1583286215', null);
+INSERT INTO `lm_sharer` VALUES ('22', '1', '搜索', '3', '1', '0', null, '0', '0', '100', '1', '1557048129', null);
 
 -- ----------------------------
 -- Table structure for lm_sharer_img
@@ -122,16 +148,20 @@ CREATE TABLE `lm_sharer_img` (
   KEY `userId` (`userId`),
   KEY `sharerId` (`sharerId`),
   KEY `xpId` (`xpId`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_sharer_img
 -- ----------------------------
 INSERT INTO `lm_sharer_img` VALUES ('1', '1', '1', '93', 'upload/love/2019042516594949842.jpg', '1', '1', '0', '1', '1583256892', '0');
-INSERT INTO `lm_sharer_img` VALUES ('2', '1', '1', '81', 'upload/love/2019041717534098169.jpg', '5', '1', '0', '1', null, '0');
-INSERT INTO `lm_sharer_img` VALUES ('3', '1', '1', '78', 'upload/love/2019041717492378989.jpg', '3', '1', '0', '1', null, '0');
-INSERT INTO `lm_sharer_img` VALUES ('4', '1', '1', '85', 'upload/love/2019041717562219374.jpg', '4', '1', '0', '1', null, '0');
-INSERT INTO `lm_sharer_img` VALUES ('5', '1', '1', '89', 'upload/love/2019042418001368071.jpg', '2', '1', '0', '1', null, null);
+INSERT INTO `lm_sharer_img` VALUES ('2', '1', '1', '81', 'upload/love/2019041717534098169.jpg', '4', '1', '0', '1', null, '0');
+INSERT INTO `lm_sharer_img` VALUES ('3', '1', '1', '78', 'upload/love/2019041717492378989.jpg', '2', '1', '0', '1', null, '0');
+INSERT INTO `lm_sharer_img` VALUES ('4', '1', '1', '85', 'upload/love/2019041717562219374.jpg', '5', '1', '0', '1', null, '0');
+INSERT INTO `lm_sharer_img` VALUES ('5', '1', '1', '89', 'upload/love/2019042418001368071.jpg', '3', '1', '0', '1', null, null);
+INSERT INTO `lm_sharer_img` VALUES ('43', '22', '1', '81', 'upload/love/2019041717534098169.jpg', '4', '1', '0', '1', '1557199221', null);
+INSERT INTO `lm_sharer_img` VALUES ('44', '22', '1', '85', 'upload/love/2019041717562219374.jpg', '3', '1', '0', '1', '1557199222', null);
+INSERT INTO `lm_sharer_img` VALUES ('45', '22', '1', '89', 'upload/love/2019042418001368071.jpg', '1', '1', '0', '1', '1557199223', null);
+INSERT INTO `lm_sharer_img` VALUES ('46', '22', '1', '92', 'upload/love/2019042515373776577.jpg', '2', '1', '0', '1', '1557199224', null);
 
 -- ----------------------------
 -- Table structure for lm_user

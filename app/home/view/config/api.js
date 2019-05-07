@@ -18,4 +18,8 @@ module.exports = {
   MineVideoChange: domainUrl + "Mine/sharerVideoChange",
   MineAllXp: domainUrl + "Mine/allXp",
   MineSharerImgadd:domainUrl + "Mine/sharerImgadd",
+  Collect:domainUrl + "Collect/collect",
+  CollectDel:domainUrl + "Collect/collectDel",
+  CollectRead:domainUrl + "Collect/collectRead",
+  CollectOne:domainUrl + "Collect/collectOne",
 }

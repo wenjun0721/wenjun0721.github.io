@@ -1,7 +1,10 @@
-// pages/mine/mine.js
+const app =  getApp().globalData;
 Page({
   data: {
   
+  },
+  onShow: function() {
+    app.BMGMUSIC.stop();//关闭音乐的
   },
   /* 
    *  跳转到我的消息页面
@@ -12,7 +15,7 @@ Page({
     })
   },
   onLoad: function (options) {
-  
+    
   },
 
   tomyShare:function(e) {

@@ -12,16 +12,22 @@ class Looklove extends Base
     	$sharerId = input('sharerId/d',0);
     	if ($sharerId == 0) {
     		$xp = Db::name('xp')->where($where)->order(SO_ADDTIME_COMMON)->limit(30)->select();
+            $video = 'upload/video/wenjun.mp3';
     	}else{
             $sharerWhere['sharerId']=$sharerId;
             $sharerWhere['isok']   = 1;
     		$xp = Db::name('sharer_img')->where($sharerWhere)->order(SO_SORT_COMMON)->limit(30)->select();
+            //获取音乐ID
+            $videoId = Db::name('sharer')->where(['id'=>$sharerId,'isok'=>1])->value('videoId');
+            $video   = Db::name('video')->where(['id'=>$videoId,'isok'=>1])->value('video');
     	}
     	foreach ($xp as $k => $v) {
             $xp[$k]['img'] = WEBURL.$v['img'];
             $xp[$k]['select'] = false;
         }
-    	return $xp;
+        $rs['xp'] = $xp;
+        $rs['video'] = $video;
+    	return $rs;
     }
 
     public function sharerCat()
@@ -29,10 +35,10 @@ class Looklove extends Base
     	$where['userId'] = input('userId/d',0);
     	$where['isok']   = 1;
     	$res = Db::name('sharer')->where($where)->order(SO_SORT_COMMON)->select();
-    	if ($res) {
-    		$addArr = ['id'=>'0','name'=>'个人最新'];
-    		array_unshift($res, $addArr);
-    	}
+    	
+		$addArr = ['id'=>'0','name'=>'个人最新'];
+		array_unshift($res, $addArr);
+
     	$arr = [];
     	foreach ($res as $k => $v) {
     		$arr[$k]['name'] = $v['name'];

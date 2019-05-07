@@ -1,12 +1,3 @@
-<!-- <view class='toast-box'>
-<view class='toast-title flex flex-ac flex-zBetween'>
-<picker bindchange="bindPickerFontChange" value="{{setUpArrIndex}}" range="{{setUpArr}}">
-<view class='bg picker' style="margin-left:3.85rem">{{setUpArr[setUpArrIndex]}}</view>
-<image class='imagexiala' src='../../assets/images/xiala.png'></image>
-</picker> 
-</view>
-</view> 
- -->
 <view class='flex' style="position: fixed;z-index: 99;right: 0.5rem;bottom: 1.5rem">
 	<picker bindchange="bindPickerChange" value="{{sharerIndex}}" range="{{sharerArr}}">
 		<image style="width: 3rem;height: 2.8rem;" src='../../assets/images/logo.png'></image>
@@ -14,7 +5,7 @@
 </view>
  
 <swiper class="swiper"  autoplay="true" interval="5000" duration="1000" circular="true" current ="{{current}}">
-  <block wx:for="{{loves}}" wx:for-index="index">  
+  <block wx:for="{{loves}}" wx:for-index="index" wx:key="{{loves}}">  
     <swiper-item>  
       <image src="{{item.img}}" class="slide-image" mode="aspectFill"/>  
     </swiper-item>  
