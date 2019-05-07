@@ -222,11 +222,13 @@ Page({
         return item.video_name;
       })
       var video = res.data.arr[res.data.index]['video'];
+      var sessionVideoId = res.data.arr[res.data.index]['id'];
       that.setData({
         videoList: res.data.arr,
         videoArr,
         videoArrIndex:res.data.index,
-        video:video
+        video:video,
+        sessionVideoId:sessionVideoId,
       })
       this.music();
     }).catch((error) => {
@@ -252,21 +254,12 @@ Page({
     var select_key = e.detail.value;
     var that = this;
     var videoList = that.data.videoList;
-    let userId = wx.getStorageSync('userId');
-    let obj = {
-      userId: userId,
-      sharerId:that.data.sharerId,
+    that.setData({
+      videoArrIndex:select_key,
+      video:videoList[select_key]['video'],
       videoId:videoList[select_key]['id'],
-    }
-    app.util.request(app.api.MineVideoChange, 'POST', obj).then((res) => {
-      that.setData({
-        videoArrIndex:select_key,
-        video:videoList[select_key]['video'],
-      })
-      this.music();
-    }).catch((error) => {
-      console.log(error)
     })
+    this.music();
   },
 
   music:function(){
@@ -278,6 +271,32 @@ Page({
     innerAudioContext.play();
   },
 
+  saveSharerVideo:function(){
+    app.BMGMUSIC.stop();//关闭音乐的
+    var that = this
+    var videoId = that.data.videoId;
+    var sessionVideoId = that.data.sessionVideoId;
+    if (typeof(videoId) != 'undefined' && sessionVideoId != videoId) {
+      let userId = wx.getStorageSync('userId');
+      let obj = {
+        userId: userId,
+        sharerId:that.data.sharerId,
+        videoId:that.data.videoId,
+      }
+      app.util.request(app.api.MineVideoChange, 'POST', obj).then((res) => {
+        that.setData({
+          showModal:false,
+        })
+      }).catch((error) => {
+        console.log(error)
+      })
+    }else{
+      that.setData({
+        showModal:false,
+      })
+    }
+
+  },
 
 
 

@@ -80,7 +80,7 @@
       </picker>
       <view class='toast-button'>
         <view class='button2'>
-          <button bindtap='saveSharer'>保存</button>
+          <button bindtap='saveSharerVideo'>保存</button>
         </view>
       </view>
     </view>
