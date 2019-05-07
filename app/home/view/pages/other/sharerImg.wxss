@@ -42,3 +42,11 @@
   height: 72rpx;
   margin-top: 0.2rem;
 }
+
+.del2{
+  border:1px solid #e6a2c1;
+  width:80%;
+  background:#eab6ce;
+  color:#fff;
+  border-radius:0.5rem;
+}

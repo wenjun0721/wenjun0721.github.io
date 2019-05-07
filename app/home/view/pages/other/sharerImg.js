@@ -20,6 +20,7 @@ Page({
     if (options.sharerId) {
       this.setData({
         sharerId:options.sharerId,
+        sharerUser:options.sharerUser,
       })
     }
   },
@@ -32,12 +33,14 @@ Page({
       sharerId:that.data.sharerId
     }
     app.util.request(app.api.CollectRead, 'POST', obj).then((res) => {
+      console.log(res)
       if (res.status && res.status == 1) {
         that.setData({
           loves: res.data.xp,
           video: res.data.video,
           current:0,
           co: res.data.co,
+          sharerUserId: res.data.sharerUserId,
         })
         this.music();
       }else{
@@ -87,6 +90,24 @@ Page({
       
     })
   },
+
+  sy:function(){
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
+  },
+
+  zy:function(){
+    var sharerUserId = this.data.sharerUserId;
+    wx.navigateTo({
+      url: './sharerUser?sharerUserId=' +sharerUserId,
+    })
+  },
+  fh:function(){
+    wx.navigateBack({
+      delta: 1
+    })
+  }
 
 
 })

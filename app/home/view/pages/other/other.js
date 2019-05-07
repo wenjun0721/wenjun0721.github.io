@@ -156,7 +156,7 @@ Page({
   detailShare:function(e){
     var sharerid = e.currentTarget.dataset.sharerid;
     wx.navigateTo({
-      url: './sharerImg?sharerId=' +sharerid,
+      url: './sharerImg?sharerId=' +sharerid+'&sharerUser=0',
     })
   },
 

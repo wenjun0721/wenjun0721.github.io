@@ -1,14 +1,22 @@
-<view class='flex' style="position: fixed;z-index: 99;right: 5%;bottom: 0.3rem;">
+<block wx:if="{{sharerUser != 1}}">
+<view class='flex' style="position: fixed;z-index: 99;right: 5%;bottom: 0.3rem;" bindtap='zy'>
 	<image style="width: 2rem;height: 2rem;" src='../../assets/icons/mine.png'></image>
 </view>
  
- <view class='flex' style="position: fixed;z-index: 99;left: 5%;bottom: 0.3rem;">
+ <view class='flex' style="position: fixed;z-index: 99;left: 5%;bottom: 0.3rem;" bindtap='sy'>
 	<image style="width: 2rem;height: 2rem;" src='../../assets/icons/lingdu_sel.png'></image>
 </view>
 
- <view class='flex' style="position: fixed;z-index: 99;left: 43%;bottom: 0.3rem;" bindtap='sc'>
+ <view class='flex' style="position: fixed;z-index: 99;left: 45%;bottom: 0.3rem;" bindtap='sc'>
 	<image style="width: 2rem;height: 2rem;" src='../../assets/images/collect{{co}}.png'></image>
 </view>
+</block>
+<block wx:else>
+	<view class='del2' style="position: fixed;z-index: 99;left: 9%;bottom: 0.15rem;text-align: center;" bindtap='fh'>
+		返回上一页
+	</view>
+</block>
+
 <swiper class="swiper"  autoplay="true" interval="5000" duration="1000" circular="true" current ="{{current}}">
   <block wx:for="{{loves}}" wx:for-index="index" wx:key="{{loves}}">  
     <swiper-item>  

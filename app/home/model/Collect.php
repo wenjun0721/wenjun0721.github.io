@@ -39,14 +39,16 @@ class Collect extends Base
             return json_encode(WSTReturn('亲，您没有收藏任何的锦集呢,去"每天100分"那挑选哦，么么哒！'));
         }
     	foreach ($res as $k => $v) {
-            $img = Db::name('sharer_img')->where(['sharerId'=>$v['sharerId'],'isshow'=>1])->order('sort asc,id desc')->value('img');
+            $img = Db::name('sharer_img')->where(['sharerId'=>$v['sharerId'],'isshow'=>1])->order('sort asc,id desc')->limit(1)->value('img');
             if ($img) {
                 $res[$k]['bgImg'] = WEBURL.$img;
             }else{
-                $res[$k]['bgImg'] = WEBURL.'upload/common/logo.png';
+                // $res[$k]['bgImg'] = WEBURL.'upload/common/logo.png';
+                unset($res[$k]);
             }
              $res[$k]['select'] = false;
         }
+        $res = array_values($res);
     	return json_encode(WSTReturn('success',1,$res));
     }
 
@@ -71,6 +73,7 @@ class Collect extends Base
     {
         $sharerId = input('sharerId/d',0);
         $where['isshow']   = 1;
+        $where['isSharer'] = 1;
         $where['id']   = $sharerId;
 
         $sharerWhere['sharerId']=$sharerId;
@@ -85,7 +88,8 @@ class Collect extends Base
             return json_encode(WSTReturn('此锦集已被该主人删除了哦！可以点击右下角按钮查看她的主页哦'));
         }
         //获取音乐ID
-        $videoId = Db::name('sharer')->where(['id'=>$sharerId])->value('videoId');
+        $videoId = $sharer['videoId'];
+        $sharerUserId  = $sharer['userId'];
         $video   = Db::name('video')->where(['id'=>$videoId])->value('video');
         foreach ($xp as $k => $v) {
             $xp[$k]['img'] = WEBURL.$v['img'];
@@ -95,6 +99,7 @@ class Collect extends Base
         $co = empty($co)?1:0;
         $rs['xp'] = $xp;
         $rs['video'] = $video;
+        $rs['sharerUserId'] = $sharerUserId;
         $rs['co'] = $co;
         echo(json_encode(WSTReturn('success',1,$rs)));die;
     }
@@ -115,6 +120,32 @@ class Collect extends Base
             return json_encode(WSTReturn('收藏成功',1,-1));
         }
         
+    }
+
+    public function sharerUserList()
+    {
+        $sharerUserId = input('sharerUserId/d',0);
+        $where['isshow']   = 1;
+        $where['isSharer'] = 1;
+        $where['userId']   = $sharerUserId;
+        
+        //判断锦集是否有分享锦集
+        $sharerUserList = Db::name('sharer')->where($where)->select();
+        if (empty($sharerUserList)) {
+            return json_encode(WSTReturn('他/她没有分享过锦集哦'));
+        }
+
+        foreach ($sharerUserList as $k => $v) {
+            $img = Db::name('sharer_img')->where(['sharerId'=>$v['id'],'isshow'=>1])->order('sort asc,id desc')->limit(1)->value('img');
+            if ($img) {
+                $sharerUserList[$k]['bgImg'] = WEBURL.$img;
+            }else{
+                // $sharerUserList[$k]['bgImg'] = WEBURL.'upload/common/logo.png';
+                unset($sharerUserList[$k]);
+            }
+        }
+        $sharerUserList = array_values($sharerUserList);
+        echo(json_encode(WSTReturn('success',1,$sharerUserList)));die;
     }
     
 }

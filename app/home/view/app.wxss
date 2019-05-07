@@ -30,3 +30,6 @@
     display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
     /* flex:1; */
 }
+view{
+  font-family: '楷体';
+}

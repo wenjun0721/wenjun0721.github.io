@@ -22,4 +22,5 @@ module.exports = {
   CollectDel:domainUrl + "Collect/collectDel",
   CollectRead:domainUrl + "Collect/collectRead",
   CollectOne:domainUrl + "Collect/collectOne",
+  SharerUserList:domainUrl + "Collect/sharerUserList",
 }

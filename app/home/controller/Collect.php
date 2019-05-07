@@ -30,4 +30,8 @@ class Collect extends Base
         $m = new M();
         return $m->collectOne();
     }
+    public function sharerUserList(){
+        $m = new M();
+        return $m->sharerUserList();
+    }
 }
