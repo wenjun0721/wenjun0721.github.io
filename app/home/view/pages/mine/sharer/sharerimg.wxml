@@ -50,15 +50,15 @@
 </view>
 <block wx:if="{{!yu}}">
   <view class="del1" bindtap='loveShow' hidden='{{!delShow}}'>
-    <text>预览回忆</text>
+    <text>预览锦集</text>
   </view>
 </block>
 <block wx:else>
   <view class="del1" style="background: #ccc;border:1px solid #ccc;" hidden='{{!delShow}}'>
-    <text>预览回忆</text>
+    <text>预览锦集</text>
   </view>
 </block>
-<view class="del" bindtap='{{buttomModal}}' hidden='{{!delShow}}'>
+<view class="del" style="{{addStyle}}" bindtap='{{buttomModal}}' hidden='{{!delShow}}'>
   <text>{{buttomModalText}}</text>
 </view>
 <view class="del2" bindtap='{{buttomModal}}' hidden='{{delShow}}'>

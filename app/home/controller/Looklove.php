@@ -8,7 +8,12 @@ class Looklove extends Base
     	$l = new L();
     	$res = $l->index();
     	if (empty($res['xp'])) {
-    		echo(json_encode(WSTReturn('该锦集暂无内容，请先去添加哦，么么哒')));die;
+            if (input('sharerId') == 0) {
+                $tips = '亲，暂无最新内容，请点击右下角的图标或者编译回忆添加哦，么么哒';
+            }else{
+                $tips = '亲，该锦集暂无内容，请去个人中心那里添加哦，么么哒';
+            }
+    		echo(json_encode(WSTReturn($tips)));die;
     	}
     	echo(json_encode(WSTReturn('success',1,$res)));die;
     }

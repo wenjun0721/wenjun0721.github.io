@@ -9,9 +9,10 @@ class Looklove extends Base
     	$where['userId'] = input('userId/d',0);
     	$where['isok']   = 1;
     	$where['isshow']   = 1;
+        $where['sharerCatId']   = 0;
     	$sharerId = input('sharerId/d',0);
     	if ($sharerId == 0) {
-    		$xp = Db::name('xp')->where($where)->order(SO_ADDTIME_COMMON)->limit(30)->select();
+    		$xp = Db::name('xp')->where($where)->order(SO_ADDTIME_COMMON)->select();
             $video = 'upload/video/wenjun.mp3';
     	}else{
             $sharerWhere['sharerId']=$sharerId;
@@ -26,6 +27,7 @@ class Looklove extends Base
             $xp[$k]['select'] = false;
         }
         $rs['xp'] = $xp;
+        $rs['countXp'] = count($xp);
         $rs['video'] = $video;
     	return $rs;
     }

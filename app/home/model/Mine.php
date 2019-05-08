@@ -38,7 +38,7 @@ class Mine extends Base
             return json_encode(WSTReturn('点击右下图标即可创建锦集哦！'));
         }
     	foreach ($res as $k => $v) {
-            $img = Db::name('sharer_img')->where(['sharerId'=>$v['id'],'isok'=>1])->order('sort asc')->value('img');
+            $img = Db::name('sharer_img')->where(['sharerId'=>$v['id'],'isok'=>1])->order(SO_SORT_COMMON)->value('img');
             if ($img) {
                 $res[$k]['bgImg'] = WEBURL.$img;
             }else{
@@ -126,22 +126,27 @@ class Mine extends Base
         if (empty($userId)) {
             return json_encode(WSTReturn('亲，请关闭小程序，重新进入'));
         }
+        //改变逻辑，就是添加了锦集的图片不再出现。否则显示下面这段
+        // $where['userId'] = $userId;
+        // $where['isok']   = 1;
+        // $where['isshow']   = 1;
+        // $sharerId = input('sharerId/d',0);
+        // $sharerWhere['sharerId']=$sharerId;
+        // $sharerWhere['isok']   = 1;
+        // $sharerWhere['userId'] = $userId;
+        // $sharer_img = Db::name('sharer_img')->where($sharerWhere)->select();
+        // $sharer_ids = '';
+        // foreach ($sharer_img as $k => $v) {
+        //     $sharer_ids .= $v['xpId'].',';
+        // }
+        // if (!empty($sharer_ids)) {
+        //     $sharer_ids = rtrim($sharer_ids,',');
+        //     $where['id']   = ['not in',$sharer_ids];
+        // }
         $where['userId'] = $userId;
         $where['isok']   = 1;
         $where['isshow']   = 1;
-        $sharerId = input('sharerId/d',0);
-        $sharerWhere['sharerId']=$sharerId;
-        $sharerWhere['isok']   = 1;
-        $sharerWhere['userId'] = $userId;
-        $sharer_img = Db::name('sharer_img')->where($sharerWhere)->select();
-        $sharer_ids = '';
-        foreach ($sharer_img as $k => $v) {
-            $sharer_ids .= $v['xpId'].',';
-        }
-        if (!empty($sharer_ids)) {
-            $sharer_ids = rtrim($sharer_ids,',');
-            $where['id']   = ['not in',$sharer_ids];
-        }
+        $where['sharerCatId']   = 0;
         $xp = Db::name('xp')->where($where)->order(SO_ADDTIME_COMMON)->select();
         foreach ($xp as $k => $v) {
             $xp[$k]['img'] = WEBURL.$v['img'];
@@ -172,9 +177,10 @@ class Mine extends Base
         }
         $k = Db::name('sharer_img')->insertAll($data);
         if ($k) {
-            return json_encode(WSTReturn('删除成功',1));
+            Db::name('xp')->where($where)->update(['sharerCatId'=>$sharerId]);
+            return json_encode(WSTReturn('添加成功',1));
         }else{
-            return json_encode(WSTReturn('删除失败'));
+            return json_encode(WSTReturn('添加失败'));
         }
     }
 

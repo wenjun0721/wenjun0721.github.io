@@ -111,7 +111,7 @@ class Love extends Base
         if ($image->width() != 640 || $image->height() != 960) {
             $image->crop('640','960');
         }
-		$image->text($str, $fontFamily, $fontSize, $fontColor,$wz,20,$fontX)->text('wj测试', $fontFamily, 24, '#000000',9,-25)->save($path);
+		$image->text($str, $fontFamily, $fontSize, $fontColor,$wz,20,$fontX)->text('点点回忆', $fontFamily, 24, '#000000',9,-25)->save($path);
 		echo(json_encode(WSTReturn('success',1,$fileName)));die;
     }
 

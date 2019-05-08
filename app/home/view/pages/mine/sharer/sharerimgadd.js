@@ -23,6 +23,8 @@ Page({
     this.setData({
       sharerId:options.sharerId,
       index:options.index,
+      countXp:options.countXp,
+      limitCountXP:options.limitCountXP,
     })
   },
   getUserXp:function(e){
@@ -72,6 +74,16 @@ Page({
       userImgList[index].select = false;
       selectIds = app.util.arrayDelete(selectIds, id);
     };
+    var countXp = this.data.countXp;
+    var limitCountXP = this.data.limitCountXP;
+    if( countXp*1+selectIds.length > limitCountXP){
+      userImgList[index].select = false;
+      selectIds = app.util.arrayDelete(selectIds, id);
+      wx.showToast({
+        title: '一个锦集最多'+this.data.limitCountXP+'张相片哦，请删除一些再添加',
+        icon: 'none'
+      })
+    }
     this.setData({
       userImgList:userImgList,
     })
@@ -100,6 +112,9 @@ Page({
             }
             app.util.request(app.api.MineSharerImgadd, 'POST', obj).then((res) => {
               if (res.status && res.status == 1) {
+                that.setData({
+                  countXp:that.data.countXp*1 + that.data.selectIds.length,
+                })
                 wx.showToast({
                   title: '添加成功',
                 });
@@ -118,7 +133,16 @@ Page({
       })
     }
   },
-
+  _longtap:function(e){
+    var index = e.currentTarget.dataset.lindex;
+    var uploadedImages = this.data.userImgList.map(item => {
+      return item.img;
+    })
+    wx.previewImage({
+      current: uploadedImages[index], //当前图片地址
+      urls: uploadedImages, //所有要预览的图片的地址集合 数组形式
+    })
+  },
 
 })
 

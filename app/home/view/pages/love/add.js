@@ -68,9 +68,8 @@ Page({
   },
 
   onLoad: function () {
-    
     wx.setNavigationBarTitle({
-      title: '背景图管理'
+      title: '编译回忆'
     })
     var xiaoquList = this.data.result;
     var xiaoquArr = xiaoquList.map(item => {　　　　// 此方法将校区名称区分到一个新数组中
@@ -100,25 +99,6 @@ Page({
 
   //双击事件
   doubleTap:function(e){
-    // var curTime = e.timeStamp  
-    // var lastTime = e.currentTarget.dataset.time 
-    // if (curTime - lastTime > 0) {  
-    //   if (curTime - lastTime < 300) {  
-    //     console.log("挺快的双击，用了：" + (curTime - lastTime));
-    //     var src = e.currentTarget.dataset.src;
-    //     var index = e.currentTarget.dataset.index;
-    //     var uploadedImages = this.data.imageList;
-    //     wx.previewImage({
-    //       current: uploadedImages[index], //当前图片地址
-    //       urls: uploadedImages, //所有要预览的图片的地址集合 数组形式
-    //     })  
-    //   } 
-    // } 
-    // //单击/长按都是选中
-    // this.setData({  
-    //   lastTapTime: curTime,
-    //   selectindex:(e.currentTarget.dataset.index)*1+1,
-    // })
     var index = e.currentTarget.dataset.index;
     var uploadedImages = this.data.imageList;
     this.setData({  
@@ -151,7 +131,7 @@ Page({
     var src = this.data.lookImage;
     var index = this.data.index;
     var uploadedImages = this.data.uploadedImages;
-    console.log(uploadedImages)
+    // console.log(uploadedImages)
     wx.previewImage({
       current: uploadedImages[index], //当前图片地址
       urls: uploadedImages, //所有要预览的图片的地址集合 数组形式
@@ -174,7 +154,7 @@ Page({
       }
       app.util.request(app.api.Love_backGround, 'POST', obj).then((res) => {
         if (res.status && res.status == 1) {
-          console.log(res.data)
+          // console.log(res.data)
           that.setData({
             backGround: res.data,
             imageList: res.data.imgs,
@@ -188,7 +168,7 @@ Page({
 
   //改变分类，获取2级分类
   bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -225,9 +205,9 @@ Page({
         value: xiaoqu_id, 
         userId: wx.getStorageSync('userId')
       }
-      console.log(xiaoqu_id)
+      // console.log(xiaoqu_id)
       app.util.request(app.api.Love_backGround_cat, 'POST',obj).then((res) => {　
-        console.log(res.data.arr)
+        // console.log(res.data.arr)
         var classList = res.data.arr;
         var classArr = classList.map(item => {
           return item.catName;
@@ -248,7 +228,7 @@ Page({
 
 
   bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value,)
+    // console.log('picker发送选择改变，携带值为', e.detail.value,)
     var column = e.detail.value[0];
     var classList =this.data.classList;
     var select_key = e.detail.value[1];
@@ -307,6 +287,22 @@ Page({
     let widthW = that.data.widthW;
     let heightW = that.data.heightW;
     let setUpFontColorArrIndex = that.data.setUpFontColorArrIndex;
+    if (typeof(backgroundImg) == 'undefined' || backgroundImg == '') {
+      wx.showToast({
+       title: '亲，请选择背景图哦，么么哒',
+       icon: 'none',
+       duration: 2000
+      })
+      return false
+    }
+    if (typeof(loveTetx) == 'undefined' || loveTetx == '') {
+      wx.showToast({
+       title: '亲，请填写你想说的话哦，么么哒',
+       icon: 'none',
+       duration: 2000
+      })
+      return false
+    }
     //生成图片
     let obj = {
       userId: wx.getStorageSync('userId'),
@@ -325,7 +321,6 @@ Page({
     }
     app.util.request(app.api.Love_add, 'POST', obj).then((res) => {
       if (res.status && res.status == 1) {
-        console.log(res.data)
         that.setData({
           love: res.data,
           myLoveShow:true,
@@ -353,10 +348,10 @@ Page({
       love: love
     }
     app.util.request(app.api.Love_delImg, 'POST',obj).then((res) => {　
-      console.log('取消成功')
       this.setData({
         myLoveShow: false,
       })
+      this.onShow()
     })
   },
 
@@ -364,6 +359,7 @@ Page({
   tpConfirm:function(){
     let love = this.data.love;
     let obj = {
+      userId: wx.getStorageSync('userId'),
       img: this.data.love,
       loveCatId: this.data.loveCatId,
       toUser: this.data.toName,
@@ -371,16 +367,20 @@ Page({
       text: this.data.loveTetx,
     }
     app.util.request(app.api.Love_addImg, 'POST',obj).then((res) => {　
-      console.log('确定成功')
       this.setData({
         myLoveShow: false,
+        toName:'',
+        fromName:'',
+        backgroundImg:'',
+        loveTetx:'',
+        backgroundText:'请选择一张您喜欢的背景图哦',
       })
       wx.showToast({
        title: '确定成功',
        icon: 'success',
        duration: 1000
       })
-      this.onLoad();
+      this.reset();
     })
   },
 

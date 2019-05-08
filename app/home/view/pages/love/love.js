@@ -5,6 +5,7 @@ Page({
     webViewUrl:"http://www.tplm.com/",
     sharerId:0,
     sharerIndex:0,
+    sharerName:'我的锦集'
   },
   onShow: function(options) {
     wx.showToast({
@@ -98,6 +99,7 @@ Page({
       sharerId:sharerList[select_key]['id'],
       current:0,
       sharerIndex:select_key,
+      sharerName:sharerList[select_key]['name'],
     })
     this.getxp();
     wx.showToast({
@@ -105,5 +107,20 @@ Page({
       icon: 'loading',
       duration: 500
     })
+  },
+
+  /**
+   * 用户点击右上角分享s
+   */
+  onShareAppMessage: function () {
+    var that = this;
+    var sharerId = that.data.sharerId;
+    var sharerName =this.data.sharerName;
+    var title = '我分享了的：'+sharerName+'，为我打call一下哦，么么哒。'
+    return {
+      title: title,
+      path: '/pages/other/sharerImg?sharerId=' + sharerId+'&sharerUser=0'
+    }
   }
+
 })

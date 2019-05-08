@@ -21,6 +21,8 @@ Page({
     yu:false,
     videoIndex:0,
     showModal:false,
+    countXp:0,
+    limitCountXP:30,
   },
   onShow: function() {
     wx.showToast({
@@ -53,10 +55,22 @@ Page({
         var sharerImgArr = res.data.xp.map(item => {
           return item.img;
         })
-        that.setData({
-          sharerImgList: res.data.xp,
-          sharerImgArr,
-        })
+        if (res.data.countXp >= that.data.limitCountXP) {
+          that.setData({
+            sharerImgList: res.data.xp,
+            sharerImgArr,
+            countXp:res.data.countXp,
+            addStyle:'background: #ccc;border:1px solid #ccc;',
+          })
+        }else{
+          that.setData({
+            sharerImgList: res.data.xp,
+            sharerImgArr,
+            countXp:res.data.countXp,
+            addStyle:'',
+          })
+        }
+        
         //移动的代码 不知道怎么意思，搞懂告诉我一下
         var query = wx.createSelectorQuery();
         var nodesRef = query.selectAll(".item");
@@ -74,6 +88,7 @@ Page({
       }else{
         that.setData({
           sharerImgList: [],
+          addStyle:'',
           yu:true
         })
         wx.showToast({
@@ -198,10 +213,19 @@ Page({
   },
 
   addSharerImg:function(){
-    var index = (this.data.index)*1;
-    wx.navigateTo({
-      url: './sharerimgadd?sharerId=' +this.data.sharerId+'&index='+index
-    })
+    var countXp = this.data.countXp;
+    if (countXp >= this.data.limitCountXP) {
+      wx.showToast({
+        title: '一个锦集最多'+this.data.limitCountXP+'张相片哦，请删除一些再添加',
+        icon: 'none'
+      })
+    }else{
+      var index = (this.data.index)*1;
+      wx.navigateTo({
+        url: './sharerimgadd?sharerId=' +this.data.sharerId+'&index='+index+'&countXp='+this.data.countXp+'&limitCountXP='+this.data.limitCountXP
+      })
+    }
+    
   },
   loveShow:function(){
     var sharerIndex = (this.data.index)*1+ 1;

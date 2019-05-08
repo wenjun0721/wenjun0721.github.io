@@ -11,12 +11,12 @@
         <block wx:if="{{userImgList}}" wx:for="{{userImgList}}" wx:key="userImgList">
           <view class="block-card flex" style="flex-basis:22%">
             <view class='card' wx:if="{{item.select}}" style="border:2rpx solid #FF0000">
-              <view class='card-body' style="height: 5rem">
+              <view class='card-body' style="height: 5rem" data-lindex='{{index}}' bindlongpress='_longtap'>
                   <image class="imgae1" bindtap='{{changeImgBtn}}' data-index='{{index}}' data-id='{{item.id}}' src='{{item.img}}' mode='aspectFill'></image>
               </view>
             </view>
             <view class='card' wx:else style="border:2rpx solid #fff">
-              <view class='card-body' style="height: 5rem">
+              <view class='card-body' style="height: 5rem" data-lindex='{{index}}' bindlongpress='_longtap'>
                   <image class="imgae1" bindtap='{{changeImgBtn}}' data-index='{{index}}' data-id='{{item.id}}' src='{{item.img}}' mode='aspectFill'></image>
               </view>
             </view>
