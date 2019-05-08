@@ -116,7 +116,14 @@ class Collect extends Base
             $res = Db::name('collection')->where($where)->update(['isok'=>0,'del_time'=>time()]);
             return json_encode(WSTReturn('取消收藏',1,1));
         }else{
-            $res = Db::name('collection')->where($where)->update(['isok'=>1,'del_time'=>'']);
+            //先看看是否已经收藏了的，有收藏的话，就直接修改，没有的话就添加
+            $res = Db::name('collection')->where($where)->count();
+            if (empty($res)) {
+                $where['add_time'] = time();
+                $res = Db::name('collection')->insert($where);
+            }else{
+                $res = Db::name('collection')->where($where)->update(['isok'=>1,'del_time'=>'']);
+            }
             return json_encode(WSTReturn('收藏成功',1,-1));
         }
         

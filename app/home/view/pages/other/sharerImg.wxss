@@ -45,7 +45,7 @@
 
 .del2{
   border:1px solid #e6a2c1;
-  width:80%;
+  width:50%;
   background:#eab6ce;
   color:#fff;
   border-radius:0.5rem;
