@@ -4,31 +4,6 @@ use think\Db;
 use think\Session;
 class Collect extends Base
 {
-    // public function index()
-    // {
-    // 	$where['userId'] = input('userId/d',0);
-    // 	$where['isok']   = 1;
-    // 	$where['isshow']   = 1;
-    // 	$sharerId = input('sharerId/d',0);
-    // 	if ($sharerId == 0) {
-    // 		$xp = Db::name('xp')->where($where)->order(SO_ADDTIME_COMMON)->limit(30)->select();
-    // 	}else{
-    // 		$sharerValue = Db::name('sharer')->where(['id'=>$sharerId,'isok'=>1])->value('sharerValue');
-    // 		if ($sharerValue) {
-    // 			$where['id'] = ['in',$sharerValue];
-    // 			$xp =Db::name('xp')->where($where)->select();
-    // 			print_r(Db::name('xp')->getlastsql());exit;
-    // 		}else{
-    // 			$xp = [];
-    // 		}
-    // 	}
-    // 	foreach ($xp as $k => $v) {
-    //         $xp[$k]['img'] = WEBURL.$v['img'];
-    //     }
-
-    // 	return $xp;
-    // }
-
     public function collect()
     {
     	$where['userId'] = input('userId/d',0);
@@ -36,19 +11,22 @@ class Collect extends Base
         $where['isshow']   = 1;
     	$res = Db::name('collection')->where($where)->order(SO_ADDTIME_COMMON)->select();
         if (empty($res)) {
-            return json_encode(WSTReturn('亲，您没有收藏任何的锦集呢,去"每天100分"那挑选哦，么么哒！'));
+            return json_encode(WSTReturn('亲，您没有收藏任何的锦集呢,可以去"每天100分"挑选哦，么么哒！'));
         }
     	foreach ($res as $k => $v) {
             $img = Db::name('sharer_img')->where(['sharerId'=>$v['sharerId'],'isshow'=>1])->order('sort asc,id desc')->limit(1)->value('img');
             if ($img) {
                 $res[$k]['bgImg'] = WEBURL.$img;
+                $res[$k]['select'] = false;
             }else{
                 // $res[$k]['bgImg'] = WEBURL.'upload/common/logo.png';
                 unset($res[$k]);
             }
-             $res[$k]['select'] = false;
         }
         $res = array_values($res);
+        if (empty($res)) {
+            return json_encode(WSTReturn('亲，您的收藏锦集可能被该主人删除,可以去"每天100分"挑选哦，么么哒！'));
+        }
     	return json_encode(WSTReturn('success',1,$res));
     }
 

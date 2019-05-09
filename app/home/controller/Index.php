@@ -9,4 +9,10 @@ class Index extends Base
     {
     	print_r(111);exit;
     }
+
+    public function indexLook()
+    {
+    	$m = new M();
+        return $m->sharerCatAdd();
+    }
 }

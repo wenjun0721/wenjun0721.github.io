@@ -116,10 +116,12 @@ Page({
     var that = this;
     var sharerId = that.data.sharerId;
     var sharerName =this.data.sharerName;
-    var title = '我分享了的：'+sharerName+'，为我打call一下哦，么么哒。'
+    var title = '爱分享'
+    var desc = '我分享了的：'+sharerName+'，为我打call一下哦，么么哒。'
     return {
       title: title,
-      path: '/pages/other/sharerImg?sharerId=' + sharerId+'&sharerUser=0'
+      desc: desc,
+      path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId')
     }
   }
 
