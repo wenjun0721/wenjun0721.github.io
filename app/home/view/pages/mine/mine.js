@@ -24,4 +24,10 @@ Page({
     })
   },
 
+  lookShare:function(e) {
+    wx.navigateTo({
+      url:'/pages/index/look?sharerId=0&sharerUserId='+wx.getStorageSync('userId')
+    })
+  },
+
 })

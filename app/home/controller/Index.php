@@ -3,6 +3,7 @@ namespace app\home\controller;
 use think\Loader;
 use think\Cache;
 use think\Controller;
+use app\home\model\Index as I;
 class Index extends Base
 {
     public function index()
@@ -12,7 +13,13 @@ class Index extends Base
 
     public function indexLook()
     {
-    	$m = new M();
-        return $m->sharerCatAdd();
+    	$i = new I();
+        return $i->indexLook();
+    }
+
+    public function indexSharerCat()
+    {
+    	$i = new I();
+        return $i->indexSharerCat();
     }
 }

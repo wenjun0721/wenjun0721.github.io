@@ -1,4 +1,4 @@
-<block wx:if="{{sharerUser != 1}}">
+<block wx:if="{{co != 2}}">
 <view class='flex' style="position: fixed;z-index: 99;right: 5%;bottom: 0.3rem;" bindtap='zy'>
 	<image style="width: 2rem;height: 2rem;" src='../../assets/icons/mine.png'></image>
 </view>
@@ -10,14 +10,27 @@
  <view class='flex' style="position: fixed;z-index: 99;left: 45%;bottom: 0.3rem;" bindtap='sc'>
 	<image style="width: 2rem;height: 2rem;" src='../../assets/images/collect{{co}}.png'></image>
 </view>
+
+<!-- <view class='flex' style="position: fixed;z-index: 99;right: 0.5rem;bottom: 4.5rem">
+	<picker bindchange="bindPickerChange" value="{{sharerIndex}}" range="{{sharerArr}}">
+		<image style="width: 3rem;height: 2.8rem;" src='../../assets/images/logo.png'></image>
+	</picker> 
+</view> -->
 </block>
 <block wx:else>
-	<view class='del2' style="position: fixed;z-index: 99;left: 3%;bottom: 0.35rem;text-align: center;" bindtap='fh'>
-		返回上一页
+	<view class='flex' style="position: fixed;z-index: 99;right: 5%;bottom: 0.3rem;" bindtap='zy'>
+		<image style="width: 2rem;height: 2rem;" src='../../assets/icons/mine.png'></image>
 	</view>
-	<view class='flex' style="position: fixed;z-index: 99;right: 5%;bottom: 0.3rem;" bindtap='sc'>
-		<image style="width: 2rem;height: 2rem;" src='../../assets/images/collect{{co}}.png'></image>
+	 
+	 <view class='flex' style="position: fixed;z-index: 99;left: 5%;bottom: 0.3rem;" bindtap='sy'>
+		<image style="width: 2rem;height: 2rem;" src='../../assets/icons/lingdu_sel.png'></image>
 	</view>
+
+	<!-- <view class='flex' style="position: fixed;z-index: 99;right: 0.5rem;bottom: 4.5rem" hidden='{{!cartNum >0}}'>
+		<picker bindchange="bindPickerChange" value="{{sharerIndex}}" range="{{sharerArr}}">
+			<image style="width: 3rem;height: 2.8rem;" src='../../assets/images/logo.png'></image>
+		</picker> 
+	</view> -->
 </block>
 
 <swiper class="swiper"  autoplay="true" interval="5000" duration="1000" circular="true" current ="{{current}}">

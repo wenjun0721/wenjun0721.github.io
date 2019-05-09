@@ -4,7 +4,8 @@ Page({
   data: {
     sharerId:0,
     sharerIndex:0,
-    co:0
+    co:2,
+    cartNum:0,
   },
   onShow: function(options) {
     wx.showToast({
@@ -13,6 +14,7 @@ Page({
       duration: 500
     })
     this.getxp();
+    // this.getsharerCat();
   },
 
   onLoad: function (options) {
@@ -32,7 +34,6 @@ Page({
       sharerUserId:that.data.sharerUserId
     }
     app.util.request(app.api.IndexLook, 'POST', obj).then((res) => {
-      console.log(res)
       if (res.status && res.status == 1) {
         that.setData({
           loves: res.data.xp,
@@ -99,14 +100,53 @@ Page({
   zy:function(){
     var sharerUserId = this.data.sharerUserId;
     wx.navigateTo({
-      url: './sharerUser?sharerUserId=' +sharerUserId,
+      url: '../other/sharerUser?sharerUserId=' +sharerUserId,
     })
   },
   fh:function(){
     wx.navigateBack({
       delta: 1
     })
-  }
+  },
 
+  getsharerCat:function(){
+    var that = this;
+    let sharerUserId = that.data.sharerUserId;
+    let obj = {
+      sharerUserId: sharerUserId,
+    }
+    app.util.request(app.api.IndexSharerCat, 'POST', obj).then((res) => {
+      if (res.status && res.status == 1) {
+        var sharerList = res.data.arr;
+        var cartNum = res.data.cartNum;
+        var sharerArr = sharerList.map(item => {
+          return item.name;
+        })
+        that.setData({
+          sharerArr: sharerArr,
+          sharerList: sharerList,
+          sharerIndex:that.data.sharerIndex,
+          cartNum: cartNum,
+        })
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  bindPickerChange:function(e){
+    var sharerList =this.data.sharerList;
+    var select_key = e.detail.value;
+    this.setData({
+      sharerId:sharerList[select_key]['id'],
+      current:0,
+      sharerIndex:select_key
+    })
+    this.getxp();
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 500
+    })
+  },
 
 })

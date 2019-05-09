@@ -10,7 +10,7 @@ class Index extends Base
         $sharerId = input('sharerId/d',0);
         $sharerUserId = input('sharerUserId/d',0);
         if ($sharerId == 0) {
-            $xp = Db::name('xp')->where(['userId'=>$sharerUserId,'isok'=>])->order(SO_ADDTIME_COMMON)->limit(20)->select();
+            $xp = Db::name('xp')->where(['userId'=>$sharerUserId,'isok'=>1])->order(SO_ADDTIME_COMMON)->limit(20)->select();
             if (empty($xp)) {
                 return json_encode(WSTReturn('该主人没有更多的相片了哦！可以点击右下角按钮查看她的主页哦'));
             }
@@ -21,7 +21,7 @@ class Index extends Base
             $videoList = Db::name('video')->where(['userId'=>0,'isok'=>1])->order(SO_SORT_COMMON)->select();
             $max   = count($videoList);
             $videoId = rand(0,($max-1));
-            $video   = $videoList[$videoId];
+            $video   = $videoList[$videoId]['video'];
             $co = 2;
             $rs['xp'] = $xp;
             $rs['video'] = $video;
@@ -61,6 +61,24 @@ class Index extends Base
         echo(json_encode(WSTReturn('success',1,$rs)));die;
     }
 
-    
+    public function indexSharerCat()
+    {
+        $where['userId'] = input('sharerUserId/d',0);
+        $where['isSharer']   = 1;
+        $where['isshow']   = 1;
+        $res = Db::name('sharer')->where($where)->order(SO_SORT_COMMON)->select();
+        $cartNum = count($res);
+        $addArr = ['id'=>'0','name'=>'个人最新'];
+        array_unshift($res, $addArr);
+
+        $arr = [];
+        foreach ($res as $k => $v) {
+            $arr[$k]['name'] = $v['name'];
+            $arr[$k]['id'] = $v['id'];
+        }
+        $rs['arr'] = $arr;
+        $rs['cartNum'] = $cartNum;
+        echo(json_encode(WSTReturn('success',1,$rs)));die;
+    }
     
 }
