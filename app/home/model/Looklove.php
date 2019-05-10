@@ -13,7 +13,10 @@ class Looklove extends Base
     	$sharerId = input('sharerId/d',0);
     	if ($sharerId == 0) {
     		$xp = Db::name('xp')->where($where)->order(SO_ADDTIME_COMMON)->select();
-            $video = 'upload/video/wenjun.mp3';
+            $videoList = Db::name('video')->where(['userId'=>0,'isok'=>1])->order(SO_SORT_COMMON)->select();
+            $max   = count($videoList);
+            $videoId = rand(0,($max-1));
+            $video   = $videoList[$videoId]['video'];
     	}else{
             $sharerWhere['sharerId']=$sharerId;
             $sharerWhere['isok']   = 1;
@@ -48,5 +51,26 @@ class Looklove extends Base
     	}
     	$rs['arr'] = $arr;
     	return $rs;
+    }
+
+    public function sharer(){
+        $sharerId = input('sharerId/d',0);
+        //先判断该锦集是否被分享过，如果已被分享，不需要理会
+        $res = Db::name('sharer')->where(['id'=>$sharerId])->find();
+        //判断是否被分享过，但是有被删除了，如果删除了，重新开放
+        if ($res['isSharer'] == 1 && $res['isshow'] == 1) {
+            return 1;exit;
+        }
+        //修改可以被查看状态
+        Db::name('sharer')->where(['id'=>$sharerId])->update(['isSharer'=>1,'isshow'=>1]);
+        // 判断是否有了二维码，如果有，不需要理会
+        // if (empty($res['sharerCode'])) {
+        //     $c = new \app\home\controller\Code();
+        //     $data['sharerId'] = $sharerId;
+        //     $data['sharerUserId'] = $res['userId'];
+        //     $res = $c->qrcode($data);
+        // }
+
+        return 1;exit;
     }
 }

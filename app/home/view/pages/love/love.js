@@ -116,12 +116,23 @@ Page({
     var that = this;
     var sharerId = that.data.sharerId;
     var sharerName =this.data.sharerName;
-    var title = '爱分享'
-    var desc = '我分享了的：'+sharerName+'，为我打call一下哦，么么哒。'
+    var title = '我分享了的：'+sharerName+'，为我打call一下哦，么么哒。'
     return {
       title: title,
-      desc: desc,
-      path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId')
+      path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId'),
+      success: (res) => {
+        //修改数据库
+        if (sharerId != 0) {
+          app.util.request(app.api.LookLoveSharer, 'POST', {'sharerId':sharerId}).then((rs) => {
+            console.log("转发成功");
+          }).catch((error) => {
+            console.log(error)
+          })
+        }
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
     }
   }
 

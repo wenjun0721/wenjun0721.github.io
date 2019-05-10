@@ -4,6 +4,7 @@ var webUrl = "http://www.tplm.com/home/"
 module.exports = {
   LookLove: domainUrl + "LookLove/index",
   LookLoveSharerCat: domainUrl + "LookLove/sharerCat",
+  LookLoveSharer: domainUrl + "LookLove/sharer",
   Love_add: domainUrl + "Love/add",
   Love_delImg: domainUrl + "Love/delImg",
   Love_addImg: domainUrl + "Love/addImg",

@@ -26,4 +26,10 @@ class Looklove extends Base
     	}
     	echo(json_encode(WSTReturn('success',1,$res)));die;
     }
+
+    public function sharer(){
+        $l = new L();
+        $res = $l->sharer();
+        echo(json_encode(WSTReturn('success',1,$res)));die;
+    }
 }
