@@ -4,31 +4,6 @@ use think\Db;
 use think\Session;
 class Mine extends Base
 {
-    // public function index()
-    // {
-    // 	$where['userId'] = input('userId/d',0);
-    // 	$where['isok']   = 1;
-    // 	$where['isshow']   = 1;
-    // 	$sharerId = input('sharerId/d',0);
-    // 	if ($sharerId == 0) {
-    // 		$xp = Db::name('xp')->where($where)->order(SO_ADDTIME_COMMON)->limit(30)->select();
-    // 	}else{
-    // 		$sharerValue = Db::name('sharer')->where(['id'=>$sharerId,'isok'=>1])->value('sharerValue');
-    // 		if ($sharerValue) {
-    // 			$where['id'] = ['in',$sharerValue];
-    // 			$xp =Db::name('xp')->where($where)->select();
-    // 			print_r(Db::name('xp')->getlastsql());exit;
-    // 		}else{
-    // 			$xp = [];
-    // 		}
-    // 	}
-    // 	foreach ($xp as $k => $v) {
-    //         $xp[$k]['img'] = WEBURL.$v['img'];
-    //     }
-
-    // 	return $xp;
-    // }
-
     public function sharerCat()
     {
     	$where['userId'] = input('userId/d',0);
@@ -84,6 +59,8 @@ class Mine extends Base
         $where['userId'] = $userId;
         $where['id'] = $id;
         $res = Db::name('sharer')->where($where)->update(['isok'=>0,'del_time'=>time()]);
+        $res = Db::name('sharer_img')->where(['sharerId'=>$id])->update(['isok'=>0,'del_time'=>time()]);
+        $res = Db::name('xp')->where(['sharerCatId'=>$id])->update(['sharerCatId'=>0]);
         if ($res) {
             return json_encode(WSTReturn('删除成功',1));
         }else{
@@ -113,6 +90,10 @@ class Mine extends Base
         $where['userId'] = $userId;
         $where['id'] = ['in',$ids];
         $res = Db::name('sharer_img')->where($where)->update(['isok'=>0,'del_time'=>time()]);
+        $rs  = Db::name('sharer_img')->where($where)->select();
+        foreach ($rs as $k => $v) {
+            Db::name('xp')->where(['id'=>$v['xpId']])->update(['sharerCatId'=>0]);
+        }
         if ($res) {
             return json_encode(WSTReturn('删除成功',1));
         }else{
@@ -228,5 +209,94 @@ class Mine extends Base
         }else{
             return json_encode(WSTReturn('更换失败'));
         }
+    }
+
+    public function sharerOne()
+    {
+        $where['userId'] = input('userId/d',0);
+        $where['isSharer']   = 1;
+        $where['isshow']   = 1;
+        $res = Db::name('sharer')->where($where)->order(['sort asc,sharer_time desc,id desc'])->select();
+        if (empty($res)) {
+            return json_encode(WSTReturn('亲，您分享过任何的锦集呢,可以去‘我的锦集’那里进行分享哦，么么哒！'));
+        }
+        foreach ($res as $k => $v) {
+            $img = Db::name('sharer_img')->where(['sharerId'=>$v['id'],'isshow'=>1])->order('sort asc,id desc')->limit(1)->value('img');
+            if ($img) {
+                $res[$k]['bgImg'] = WEBURL.$img;
+                $res[$k]['select'] = false;
+            }
+        }
+        return json_encode(WSTReturn('success',1,$res));
+    }
+
+    public function sharerOneRead()
+    {
+        $sharerId = input('sharerId/d',0);
+        $where['isshow']   = 1;
+        $where['isSharer'] = 1;
+        $where['id']   = $sharerId;
+
+        $sharerWhere['sharerId']=$sharerId;
+        $sharerWhere['isshow']   = 1;
+        //判断锦集是否能被查看
+        $sharer = Db::name('sharer')->where($where)->find();
+        $xp = Db::name('sharer_img')->where($sharerWhere)->order(SO_SORT_COMMON)->limit(30)->select();
+        //获取音乐ID
+        $videoId = $sharer['videoId'];
+        $video   = Db::name('video')->where(['id'=>$videoId])->value('video');
+        foreach ($xp as $k => $v) {
+            $xp[$k]['img'] = WEBURL.$v['img'];
+        }
+        $rs['xp'] = $xp;
+        $rs['video'] = $video;
+        echo(json_encode(WSTReturn('success',1,$rs)));die;
+    }
+
+    public function sharerOneDel()
+    {
+        $userId = input('userId/d',0);
+        $ids = input('Ids','');
+        if (empty($ids)) {
+            return json_encode(WSTReturn('请选择要删除的分享'));
+        }
+        $where['userId']   = $userId;
+        $where['id'] = ['in',$ids];
+        Db::name('sharer')->where($where)->update(['isshow'=>0,'sharer_time'=>'']);
+        $sharerwhere['userId']   = $userId;
+        $sharerwhere['sharerId'] = ['in',$ids];
+        Db::name('sharer_img')->where($sharerwhere)->update(['isshow'=>0]);
+        
+        return json_encode(WSTReturn('success',1));
+    }
+
+    public function sharerHB(){
+        $sharerId = input('sharerId/d',0);
+        //先判断该锦集是否已經生成過二維碼了，如果有，直接合成
+        $res = Db::name('sharer')->where(['id'=>$sharerId])->find();
+        $c = new \app\home\controller\Code();
+        if (empty($res['sharerCode'])) {
+            $data['sharerId'] = $sharerId;
+            $data['sharerUserId'] = $res['userId'];
+            $sharerCode = $c->qrcode($data);
+            $res['sharerCode'] = $sharerCode;
+            Db::name('sharer')->where(['id'=>$sharerId])->update(['sharerCode'=>$sharerCode]);
+        }
+        //合成小程序海报
+        $dataCode['sharerId'] = $sharerId;
+        $dataCode['sharerUserId'] = $res['userId'];
+        $dataCode['sharerCode'] = $res['sharerCode'];
+        $dataCode['backGroundImg'] = input('src');
+        $filename = $c->getCodeGoodsImg($dataCode);
+        return json_encode(WSTReturn('success',1,$filename));
+    }
+
+    
+
+    public function ce(){
+        $c = new \app\home\controller\Code();
+        $sharerCode = ROOT_PATH .'upload/index/1.jpg';
+        $res = $c->thumb($sharerCode);
+        return json_encode(WSTReturn('success',1,$res));
     }
 }

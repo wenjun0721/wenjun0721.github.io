@@ -1,0 +1,19 @@
+
+<view class='del2' style="position: fixed;z-index: 99;left: 10%;bottom: 0.35rem;text-align: center;width: 80%">
+	长按图片生成海报，分享朋友圈
+</view>
+
+
+<swiper class="swiper"  autoplay="true" interval="5000" duration="1000" circular="true" current ="{{current}}">
+  <block wx:for="{{loves}}" wx:for-index="index" wx:key="{{loves}}">  
+    <swiper-item>  
+      <image bindlongpress='haibo' data-src='{{item.img}}' src="{{item.img}}" class="slide-image" mode="aspectFill"/>  
+    </swiper-item>  
+  </block>  
+</swiper>
+
+<modal class="cat-products" hidden="{{!modalHidden}}" no-cancel="true" confirm-text="保存本地" bindconfirm="modalConfirm">
+    <view class='card-body' style="text-align: center;">
+      <image style="width: 50%" src="{{lookImage}}" mode='aspectFill'></image>
+    </view>
+ </modal>

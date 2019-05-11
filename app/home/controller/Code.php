@@ -7,7 +7,6 @@ use think\Controller;
 class Code extends Controller {
 	public $appId = 'wx22c25fe332a7c5ee';
     public $secret ='d223c831b0bd61464fe16720317995bc';
-    require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
     /**
      * 域名
      */
@@ -64,7 +63,6 @@ class Code extends Controller {
 
 
     public function qrcode($data){
-    	return 123;exit;
         $dir = iconv("UTF-8", "GBK", ROOT_PATH .'upload/qrcode/'.$data['sharerUserId'].'/'.date('Ymd'));
         if (!file_exists($dir)){
             mkdir ($dir,0777,true);
@@ -93,12 +91,7 @@ class Code extends Controller {
         // 保存二维码
         try{
             $res = file_put_contents($fiel,$this->postCurl($url,$post_data));
-   //          $image = \think\Image::open($fiel);
-			// $image->thumb(160,160,1);
-			// @unlink($fiel)
-			// $image->save($fiel);
-            $data['code'] = $fiel;
-            return $this->getCodeGoodsImg($data);
+            return $this->thumb($fiel);
         }catch (Exception $e) {
 
         }
@@ -127,26 +120,35 @@ class Code extends Controller {
     }
 
 
+    public function thumb($file){
+        require ROOT_PATH.'/vendor/topthink/think-image/src/Image.php';
+        $image = \think\Image::open($file);
+        $image->thumb(160,160,1);
+        @unlink($file);
+        $image->save($file);
+        return $file;
+    }
+    
     /** 
         * 小程序海报
     **/
     public function getCodeGoodsImg($data){
-    	$code = $data['code'];//二维码
-    	$backGroundImg = $data['backGroundImg'];//海报背景
+        require ROOT_PATH.'/vendor/topthink/think-image/src/Image.php';
+        $code = $data['sharerCode'];//二维码
+        $backGroundImg = $data['backGroundImg'];//海报背景
         $backGroundImg = $backGroundImg?$backGroundImg:ROOT_PATH .'upload/background/5.jpg';
-        $dir = ROOT_PATH .'upload/sharerCode/'.$data['sharerUserId'].'/'.date('Ymd'));
+        $dir = ROOT_PATH .'upload/sharerCode/'.$data['sharerUserId'].'/'.date('Ymd');
         if (!file_exists($dir)){
             mkdir ($dir,0777,true);
         }
         $filename = $dir.DS. $data['sharerId'].'.png';
 
         //生成带水印的图片
-    	// require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
-		$image = \think\Image::open($backGroundImg);
-		$image->water($code,7);
-		$image->save($filename);
+        require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
+        $image = \think\Image::open($backGroundImg);
+        $image->water($code,7);
+        $image->save($filename);
         return $filename;
     }
-    
 
 }

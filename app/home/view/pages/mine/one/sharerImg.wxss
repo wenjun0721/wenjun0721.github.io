@@ -1,0 +1,52 @@
+.start {
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+.start image {
+  width: 750rpx;
+  height: 1060rpx; 
+}
+.swiper {
+  height: 1108rpx; 
+  width: 100%;
+}
+.swiper image {
+  height: 100%;
+  width: 100%;
+}
+
+.toast-title {
+  background-color: #fff;
+  border-radius: 16rpx;
+  width: 85%;
+  border: 1rpx solid #ccc;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.toast-title text {
+  font-size: 14px;
+  color: #333;
+}
+.bg {
+    padding: 0;
+    font-size: 24rpx;
+    float: left;
+    background: none;
+    margin:0 0 0 5rem;
+    line-height: 88rpx;
+}
+.imagexiala{
+  width: 54rpx;
+  height: 72rpx;
+  margin-top: 0.2rem;
+}
+
+.del2{
+  border:1px solid #e6a2c1;
+  width:50%;
+  background:#eab6ce;
+  color:#fff;
+  border-radius:0.5rem;
+}

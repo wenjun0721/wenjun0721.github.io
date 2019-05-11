@@ -22,8 +22,11 @@ class Looklove extends Base
             $sharerWhere['isok']   = 1;
     		$xp = Db::name('sharer_img')->where($sharerWhere)->order(SO_SORT_COMMON)->limit(30)->select();
             //获取音乐ID
-            $videoId = Db::name('sharer')->where(['id'=>$sharerId,'isok'=>1])->value('videoId');
+            // $videoId = Db::name('sharer')->where(['id'=>$sharerId,'isok'=>1])->value('videoId');
+            $sharer = Db::name('sharer')->where(['id'=>$sharerId,'isok'=>1])->find();
+            $videoId = $sharer['videoId'];
             $video   = Db::name('video')->where(['id'=>$videoId,'isok'=>1])->value('video');
+            $rs['sharerName'] = $sharer['name'];
     	}
     	foreach ($xp as $k => $v) {
             $xp[$k]['img'] = WEBURL.$v['img'];
@@ -62,7 +65,9 @@ class Looklove extends Base
             return 1;exit;
         }
         //修改可以被查看状态
-        Db::name('sharer')->where(['id'=>$sharerId])->update(['isSharer'=>1,'isshow'=>1]);
+        Db::name('sharer')->where(['id'=>$sharerId])->update(['isSharer'=>1,'isshow'=>1,'sharer_time'=>time()]);
+        //修改相片状态为可看
+        Db::name('sharer_img')->where(['sharerId'=>$sharerId])->update(['isshow'=>1]);
         // 判断是否有了二维码，如果有，不需要理会
         // if (empty($res['sharerCode'])) {
         //     $c = new \app\home\controller\Code();

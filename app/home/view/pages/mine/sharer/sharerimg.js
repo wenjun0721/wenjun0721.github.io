@@ -60,6 +60,7 @@ Page({
             sharerImgList: res.data.xp,
             sharerImgArr,
             countXp:res.data.countXp,
+            sharerName:res.data.sharerName,
             addStyle:'background: #ccc;border:1px solid #ccc;',
           })
         }else{
@@ -67,6 +68,7 @@ Page({
             sharerImgList: res.data.xp,
             sharerImgArr,
             countXp:res.data.countXp,
+            sharerName:res.data.sharerName,
             addStyle:'',
           })
         }
@@ -322,7 +324,32 @@ Page({
     }
 
   },
-
+  /**
+   * 用户点击右上角分享s
+   */
+  onShareAppMessage: function () {
+    var that = this;
+    var sharerId = that.data.sharerId;
+    var sharerName =that.data.sharerName;
+    var title = '我分享的锦集：'+sharerName+'，为我打call一下哦，么么哒。'
+    return {
+      title: title,
+      path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId'),
+      success: (res) => {
+        //修改数据库
+        if (sharerId != 0) {
+          app.util.request(app.api.LookLoveSharer, 'POST', {'sharerId':sharerId}).then((rs) => {
+            console.log("转发成功");
+          }).catch((error) => {
+            console.log(error)
+          })
+        }
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
+  },
 
 
   //长按

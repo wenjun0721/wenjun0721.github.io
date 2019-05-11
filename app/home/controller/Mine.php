@@ -65,4 +65,29 @@ class Mine extends Base
         $m = new M();
         return $m->sharervideochange();
     }
+
+    public function sharerOne(){
+        $m = new M();
+        return $m->sharerOne();
+    }
+
+    public function sharerOneRead(){
+        $m = new M();
+        return $m->sharerOneRead();
+    }
+
+    public function sharerOneDel(){
+        $m = new M();
+        return $m->sharerOneDel();
+    }
+
+    public function sharerHB(){
+        $m = new M();
+        return $m->sharerHB();
+    }
+
+    public function ce(){
+        $m = new M();
+        return $m->ce();
+    }
 }

@@ -115,8 +115,8 @@ Page({
   onShareAppMessage: function () {
     var that = this;
     var sharerId = that.data.sharerId;
-    var sharerName =this.data.sharerName;
-    var title = '我分享了的：'+sharerName+'，为我打call一下哦，么么哒。'
+    var sharerName =that.data.sharerName;
+    var title = '我分享的锦集：'+sharerName+'，为我打call一下哦，么么哒。'
     return {
       title: title,
       path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId'),

@@ -26,4 +26,9 @@ module.exports = {
   SharerUserList:domainUrl + "Collect/sharerUserList",
   IndexLook:domainUrl + "Index/indexLook",
   IndexSharerCat:domainUrl + "Index/indexSharerCat",
+  MineSharerOne:domainUrl + "Mine/sharerOne",
+  MineSharerOneRead:domainUrl + "Mine/sharerOneRead",
+  MineSharerOneDel:domainUrl + "Mine/sharerOneDel",
+  MineSharerHb:domainUrl + "Mine/sharerHB",
+  Minece:domainUrl + "Mine/ce",
 }
