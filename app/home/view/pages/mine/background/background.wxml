@@ -1,0 +1,53 @@
+
+
+  <view class='card1'>
+   <view class='toast-title flex flex-ac flex-zBetween'>
+    <view class='button1' bindtap='hideXpModal'>返回</view>
+    <picker bindchange="bindPickerChange" value="{{multiIndex}}" range="{{multiArray}}">
+      <view class='bg picker'>{{multiArray[multiIndex]}}</view>
+      <image class='imagexiala' src='../../../assets/images/xiala.png'></image>
+    </picker>
+    <view class='button1' style="color: #e787ba;margin-left: 4rem" bindtap='{{changeBtn}}'>{{changeText}}</view>
+  </view>
+<block wx:if="{{moveTrue}}">   
+  <movable-area style="width: 100%; height: 100%">
+  <view class='cat-products flex flex-zLeftRight'>
+        <block wx:if="{{sharerImgList}}" wx:for="{{sharerImgList}}" wx:key="sharerImgList">
+          <view class="block-card flex" style="flex-basis:22%">
+            <view class='card'>
+                <view class='card-body item' style="height: 5rem">
+                <image class="imgae1" bindtap='{{changeImgBtn}}' data-index='{{index}}' data-src='{{item.img}}' src='{{item.img}}' mode='aspectFill'></image>
+              </view>
+            </view>
+          </view>
+        </block>
+    </view>
+    </movable-area>
+</block>
+
+<block wx:else>
+    <view class='cat-products flex flex-zLeftRight'>
+        <block wx:if="{{sharerImgList}}" wx:for="{{sharerImgList}}" wx:key="sharerImgList">
+          <view class="block-card flex" style="flex-basis:22%">
+            <view class='card' wx:if="{{item.select}}" style="border:2rpx solid #FF0000">
+              <view class='card-body' style="height: 5rem">
+                  <image class="imgae1" bindtap='{{changeImgBtn}}' data-index='{{index}}' data-id='{{item.id}}' data-src='{{item.img}}' src='{{item.img}}' mode='aspectFill'></image>
+              </view>
+            </view>
+            <view class='card' wx:else style="border:2rpx solid #fff">
+              <view class='card-body' style="height: 5rem">
+                  <image class="imgae1" bindtap='{{changeImgBtn}}' data-index='{{index}}' data-id='{{item.id}}' data-src='{{item.img}}' src='{{item.img}}' mode='aspectFill'></image>
+              </view>
+            </view>
+          </view>
+        </block>
+    </view>
+</block>
+
+</view>
+
+<view class="del2" bindtap='{{buttomModal}}' hidden='{{delShow}}'>
+  <text>{{buttomModalText}}</text>
+</view>
+
+

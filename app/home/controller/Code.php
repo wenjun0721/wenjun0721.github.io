@@ -4,16 +4,14 @@ namespace app\home\controller;
  * 小程序二维码控制器
  */
 use think\Controller;
+use think\Cache;
 class Code extends Controller {
 	public $appId = 'wx22c25fe332a7c5ee';
     public $secret ='d223c831b0bd61464fe16720317995bc';
-    /**
-     * 域名
-     */
-    public function domain(){
-    	return url('/','','',true);
-    }
 
+    public function __construct(){
+        require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
+    }
     /**
      * http访问
      * @param $url 访问网址
@@ -70,6 +68,7 @@ class Code extends Controller {
         // 页面
         $postdata['path']="/pages/index/index";
         $fiel = $dir.DS. $data['sharerId'].'.png';
+        @unlink($fiel);
         //获取access_token
         $access_token = $this->getToken();
         //获取二维码
@@ -121,7 +120,6 @@ class Code extends Controller {
 
 
     public function thumb($file){
-        require ROOT_PATH.'/vendor/topthink/think-image/src/Image.php';
         $image = \think\Image::open($file);
         $image->thumb(160,160,1);
         @unlink($file);
@@ -133,22 +131,23 @@ class Code extends Controller {
         * 小程序海报
     **/
     public function getCodeGoodsImg($data){
-        require ROOT_PATH.'/vendor/topthink/think-image/src/Image.php';
         $code = $data['sharerCode'];//二维码
         $backGroundImg = $data['backGroundImg'];//海报背景
-        $backGroundImg = $backGroundImg?$backGroundImg:ROOT_PATH .'upload/background/5.jpg';
-        $dir = ROOT_PATH .'upload/sharerCode/'.$data['sharerUserId'].'/'.date('Ymd');
+        $backGroundImg = $backGroundImg?$backGroundImg:WEBURL .'upload/background/5.jpg';
+        $backGroundImg = str_replace(WEBURL,"./",$backGroundImg);
+        $is = 'upload/sharerCode/'.$data['sharerUserId'].'/'.date('Ymd');
+        $dir = ROOT_PATH .$is;
         if (!file_exists($dir)){
             mkdir ($dir,0777,true);
         }
         $filename = $dir.DS. $data['sharerId'].'.png';
+        @unlink($filename);
 
         //生成带水印的图片
-        require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
         $image = \think\Image::open($backGroundImg);
         $image->water($code,7);
         $image->save($filename);
-        return $filename;
+        return WEBURL.$is.'/'. $data['sharerId'].'.png';
     }
 
 }

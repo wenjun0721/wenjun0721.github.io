@@ -14,6 +14,6 @@
 
 <modal class="cat-products" hidden="{{!modalHidden}}" no-cancel="true" confirm-text="保存本地" bindconfirm="modalConfirm">
     <view class='card-body' style="text-align: center;">
-      <image style="width: 50%" src="{{lookImage}}" mode='aspectFill'></image>
+      <image style="width: 58%" src="{{lookImage}}" mode='aspectFill'></image>
     </view>
  </modal>

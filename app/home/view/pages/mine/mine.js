@@ -22,9 +22,22 @@ Page({
     // })
   },
 
+  tomyXp:function(e) {
+    wx.navigateTo({
+      url:'xp/xp'
+    })
+  },
+
+
   tomyShare:function(e) {
     wx.navigateTo({
       url:'sharer/sharer'
+    })
+  },
+
+  tomyBackground:function(e) {
+    wx.navigateTo({
+      url:'background/background'
     })
   },
 

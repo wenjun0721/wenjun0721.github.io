@@ -30,5 +30,9 @@ module.exports = {
   MineSharerOneRead:domainUrl + "Mine/sharerOneRead",
   MineSharerOneDel:domainUrl + "Mine/sharerOneDel",
   MineSharerHb:domainUrl + "Mine/sharerHB",
-  Minece:domainUrl + "Mine/ce",
+  Minece:domainUrl + "Mine/ce",  //测试连接
+  MineUserXp:domainUrl + "Mine/userXp",
+  MineUserXpDel:domainUrl + "Mine/userDelXp",
+  MineUserBC:domainUrl + "Mine/userBC",
+  MineUserBX:domainUrl + "Mine/userBX",
 }

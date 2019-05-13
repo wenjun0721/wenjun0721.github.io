@@ -16,6 +16,10 @@
     "pages/mine/sharer/sharerimg",
     "pages/mine/sharer/sharer",
     "pages/mine/sharer/sharerimgadd",
+    "pages/mine/xp/xp",
+    "pages/mine/background/background",
+    "pages/mine/one/other",
+    "pages/mine/one/sharerimg",
     "pages/logs/logs"
   ],
   "window": {

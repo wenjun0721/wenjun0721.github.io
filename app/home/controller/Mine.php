@@ -86,8 +86,28 @@ class Mine extends Base
         return $m->sharerHB();
     }
 
-    public function ce(){
+    // public function ce(){
+    //     $m = new M();
+    //     return $m->ce();
+    // }
+
+    public function userXp(){
         $m = new M();
-        return $m->ce();
+        return $m->userXp();
+    }
+
+    public function userDelXp(){
+        $m = new M();
+        return $m->userDelXp();
+    }
+
+    public function userBC(){
+        $m = new M();
+        return $m->userBC();
+    }
+
+    public function userBX(){
+        $m = new M();
+        return $m->userBX();
     }
 }

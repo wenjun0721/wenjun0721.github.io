@@ -1,0 +1,273 @@
+
+.cat-products{
+margin: 0 1rem;
+flex-wrap: wrap;
+}
+.cat-products .block-card{
+/*margin-top:1rem;*/
+flex-grow: 0;
+flex-shrink: 1;
+border:2rpx solid #ccc;
+flex-basis: 47%;
+border-radius: 5%;
+margin-right: 2%;
+margin-bottom: 0.3rem;
+}
+.cat-products .block-card .card{
+text-align: center;
+/*margin: 0 0.5rem;*/
+width: 100%;
+}
+.cat-products .card-body{
+height: 9rem;
+width: 100%;
+border-radius:0.5rem;
+}
+.cat-products .card-body .image{
+width: 100%;
+height: 100%;
+/*border-radius:0.5rem;*/
+border-top-left-radius:0.5rem;
+border-top-right-radius:0.5rem;
+}
+.cat-products .card-footer{
+padding: 0.5rem;
+}
+.cat-products .card-footer p{
+font-size:9pt;
+color: #333333;
+margin-bottom: 0.5rem;
+overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+height: 25pt;
+}
+.cat-products .card-footer h3{
+font-size: 12pt;
+color: #ff464f;
+}
+.cat-products .card-footer text{
+margin-left: 0.3rem;
+text-decoration:line-through;
+}
+.cat-products .card-footer span,.cat-products .card-footer text{
+font-size:9pt;
+color: #cccccc;
+flex-shrink: 0;
+}
+
+
+.toast-box {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index:1;
+}
+
+.toastbg {
+  opacity: 0.2;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.showToast {
+  position: absolute;
+  opacity: 1;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 35%;
+}
+
+.toast-title {
+  background-color: #fff;
+  /*padding-top: 2vh;
+  padding-bottom: 2vh;*/
+  border-top-right-radius: 16rpx;
+  border-top-left-radius: 16rpx;
+  text-align: center;
+}
+
+.toast-title text {
+  font-size: 14px;
+  color: #333;
+}
+
+.toast-main {
+  background-color: white;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.toast-input {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-content: center;
+}
+
+.toast-input:first-child {
+  border-top: 1px solid #eee;
+}
+
+.toast-input li {
+  display: inline-block;
+  font-size: 9px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  border: solid 1px #00abe4;
+  background-color: #fff;
+  margin-right: 0.5rem;
+  color: #00abe4;
+}
+
+.toast-input li.active {
+  background-color: #00abe4;
+  color: #fff;
+}
+
+.toast-input input {
+  text-align: left;
+  font-size: 12px;
+  color: #333;
+  flex: 1;
+}
+
+.toast-input text {
+  width: 4rem;
+  text-align: left;
+  margin-right: 0.5rem;
+  font-size: 12px;
+  color: #333;
+  line-height: 24px;
+}
+
+.toast-button {
+  display: flex;
+}
+
+.button2 {
+  width: 100%;
+  background: #fff;
+  border-radius:0 0 16rpx 16rpx;
+
+}
+
+.button1 {
+    padding: 0;
+    font-size: 11px;
+    color: #ff464f;
+    background: none;
+    margin:0 0 0 1rem
+}
+
+.button2 button {
+    flex: 1;
+    border-radius: 50px;
+    text-align: center;
+    background-color: #00abe4;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 0.3rem 1rem;
+    margin: 1rem;
+}
+
+
+
+.card1 {
+
+    margin: 1rem 1.5rem 0;
+    background-color: #ffffff;
+    box-shadow: 0rem 0rem 0.33rem 0.17rem rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    border: none;
+}
+.cat-products .card-body .imgae1{
+    width: 100%;
+    height: 100%;
+}
+.del{
+  position:fixed;
+  z-index:99;
+  right:1rem;
+  bottom:1rem;
+  border:1px solid #e6a2c1;
+  width:40%;
+  text-align:center;
+  background:#eab6ce;
+  color:#fff;
+  border-radius:0.5rem;
+  padding:0.3rem;
+  left:53%;
+}
+
+.del1{
+  position:fixed;
+  z-index:99;
+  right:1rem;
+  bottom:1rem;
+  border:1px solid #e6a2c1;
+  width:40%;
+  text-align:center;
+  background:#eab6ce;
+  color:#fff;
+  border-radius:0.5rem;
+  padding:0.3rem;
+  left:3%;
+}
+
+.del2{
+  position:fixed;
+  z-index:99;
+  right:1rem;
+  bottom:1rem;
+  border:1px solid #e6a2c1;
+  width:80%;
+  text-align:center;
+  background:#eab6ce;
+  color:#fff;
+  border-radius:0.5rem;
+  padding:0.3rem;
+  left:8%;
+}
+.toast-title {
+  background-color: #fff;
+  border-radius: 16rpx;
+/*  width: 85%;
+  border: 1rpx solid #ccc;*/
+
+  margin: 0 auto;
+  text-align: center;
+}
+
+.toast-title text {
+  font-size: 14px;
+  color: #333;
+}
+
+.button1 {
+    padding: 0;
+    font-size: 24rpx;
+    color: #ccc;
+    background: none;
+    margin:0 0 0 0.5rem;
+    line-height: 88rpx;
+}
+.bg {
+    padding: 0;
+    font-size: 24rpx;
+    float: left;
+    background: none;
+    margin:0 0 0 5rem;
+    line-height: 88rpx;
+}
+.imagexiala{
+  width: 54rpx;
+  height: 72rpx;
+  margin-top: 0.2rem;
+}

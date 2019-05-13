@@ -293,10 +293,74 @@ class Mine extends Base
 
     
 
-    public function ce(){
-        $c = new \app\home\controller\Code();
-        $sharerCode = ROOT_PATH .'upload/index/1.jpg';
-        $res = $c->thumb($sharerCode);
+    // public function ce(){
+    //     $c = new \app\home\controller\Code();
+    //     $sharerCode = ROOT_PATH .'upload/index/1.jpg';
+    //     $res = $c->thumb($sharerCode);
+    //     return json_encode(WSTReturn('success',1,$res));
+    // }
+
+    public function userXp(){
+        $userId = input('userId/d',0);  
+        $where['userId']   = $userId;
+        $where['isshow']   = 1;
+        $where['isok']   = 1;
+        $res = Db::name('xp')->where($where)->order(SO_SORT_COMMON)->select();
+        if (empty($res)) {
+            return json_encode(WSTReturn('亲，你没有任何的相片哦'));
+        }else{
+            foreach ($res as $k => $v) {
+                $res[$k]['img'] = WEBURL.$v['img'];
+                $res[$k]['select'] = false;
+            }
+            return json_encode(WSTReturn('success',1,$res));
+        }
+    }
+
+    public function userDelXp()
+    {
+        $userId = input('userId/d',0);
+        $ids = input('Ids','');
+        if (empty($ids)) {
+            return json_encode(WSTReturn('请选择要删除的图片'));
+        }
+        $where['userId']   = $userId;
+        $where['id'] = ['in',$ids];
+        Db::name('xp')->where($where)->update(['isok'=>0,'isshow'=>0,'del_time'=>time()]);
+        return json_encode(WSTReturn('success',1));
+    }
+
+    public function userBC(){
+        $userId = input('userId/d',0);  
+        $where['userId']   = $userId;
+        $where['isshow']   = 1;
+        $where['isok']   = 1;
+        $res = Db::name('background_cat')->where($where)->order('add_time desc, catId desc')->select();
+        $addArr = ['catId'=>'0','catName'=>'我的锦集'];
+        array_unshift($res, $addArr);
         return json_encode(WSTReturn('success',1,$res));
+    }
+
+    public function userBX(){
+        $userId = input('userId/d',0);  
+        $catId = input('catId/d',0);  
+        $where['userId']   = $userId;
+        $where['isok']   = 1;
+        $where['catId']   = $catId;
+        $res = Db::name('background')->where($where)->order(SO_SORT_COMMON)->select();
+        if (empty($res)) {
+            if ($catId == 0) {
+                $tips = '亲，你没有上传过任何的背景图哦';
+            }else{
+                $tips = '亲，此分类没有任何的背景图哦';
+            }
+            return json_encode(WSTReturn($tips));
+        }else{
+            foreach ($res as $k => $v) {
+                $res[$k]['img'] = WEBURL.$v['img'];
+                $res[$k]['select'] = false;
+            }
+            return json_encode(WSTReturn('success',1,$res));
+        }
     }
 }

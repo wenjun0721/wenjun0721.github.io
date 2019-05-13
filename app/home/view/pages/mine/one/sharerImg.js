@@ -67,7 +67,7 @@ Page({
     app.util.request(app.api.MineSharerHb, 'POST', {'src':src,'sharerId':sharerId}).then((rs) => {
       that.setData({
         modalHidden: true,
-        lookImage: rs,
+        lookImage: rs.data,
       })
     }).catch((error) => {
       console.log(error)
