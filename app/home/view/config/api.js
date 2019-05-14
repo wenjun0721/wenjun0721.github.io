@@ -35,4 +35,8 @@ module.exports = {
   MineUserXpDel:domainUrl + "Mine/userDelXp",
   MineUserBC:domainUrl + "Mine/userBC",
   MineUserBX:domainUrl + "Mine/userBX",
+  MineUserBCDel:domainUrl + "Mine/userBCDel",
+  MineUserAddBC:domainUrl + "Mine/userAddBC",
+  MineUserDelBC:domainUrl + "Mine/userDelBC",
+  MineUserBM:domainUrl + "Mine/userBM",
 }

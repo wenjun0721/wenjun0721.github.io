@@ -5,6 +5,8 @@
     "pages/love/add",
     "pages/love/love",
     "pages/other/other",
+    "pages/other/sharerImg",
+    "pages/other/sharerUser",
     "pages/leader/stories/stories",
     "pages/leader/authors/authors",
     "pages/stack/stack",
@@ -19,7 +21,7 @@
     "pages/mine/xp/xp",
     "pages/mine/background/background",
     "pages/mine/one/other",
-    "pages/mine/one/sharerimg",
+    "pages/mine/one/sharerImg",
     "pages/logs/logs"
   ],
   "window": {
@@ -36,26 +38,26 @@
     "list": [
       {
         "pagePath": "pages/leader/leader",
-        "iconPath": "assets/index/index_n.png",
-        "selectedIconPath": "assets/index/index.png",
+        "iconPath": "assets/index/index_n1.png",
+        "selectedIconPath": "assets/index/index_n.png",
         "text": "每天100分"
       },
       {
         "pagePath": "pages/love/add",
-        "iconPath": "assets/index/add_n.png",
-        "selectedIconPath": "assets/index/add.png",
+        "iconPath": "assets/index/add_n1.png",
+        "selectedIconPath": "assets/index/add_n.png",
         "text": "编译回忆"
       },
       {
         "pagePath": "pages/love/love",
-        "iconPath": "assets/index/look_n.png",
-        "selectedIconPath": "assets/index/look.png",
+        "iconPath": "assets/index/look_n1.png",
+        "selectedIconPath": "assets/index/look_n.png",
         "text": "回忆之旅"
       },
       {
         "pagePath": "pages/other/other",
-        "iconPath": "assets/index/sc_n.png",
-        "selectedIconPath": "assets/index/sc.png",
+        "iconPath": "assets/index/sc_n1.png",
+        "selectedIconPath": "assets/index/sc_n.png",
         "text": "我的收藏"
       },
       {

@@ -174,7 +174,8 @@ flex-shrink: 0;
     color: #ffffff;
     font-size: 12px;
     padding: 0.3rem 1rem;
-    margin: 1rem;
+    margin: 0.5rem;
+    display: inline-block;
 }
 
 

@@ -10,6 +10,8 @@ Page({
     selectIds:[],
     buttomModal:'addSharerImg',
     buttomModalText:'添加相片',
+    sharerName:'新增分类',
+    changeBCBtn:'showModal'
   },
   onShow: function() {
     wx.showToast({
@@ -39,10 +41,12 @@ Page({
         that.setData({
           sharerImgList: res.data,
           sharerImgArr,
+          selectIds:[],
         })
       }else{
         that.setData({
           sharerImgList: [],
+          selectIds:[],
         })
         wx.showToast({
          title: res.msg,
@@ -80,6 +84,9 @@ Page({
       buttomModal:'delSharerImg',
       buttomModalText:'删除',
       delShow:false,
+      addStyle:'width:43%;left:2%',
+      addStyle1:'width:43%;left:50%',
+      addModal:true
     })
   },
   Ok:function(){
@@ -91,12 +98,13 @@ Page({
       changeImgBtn:'previewImage',
       buttomModal:'addSharerImg',
       buttomModalText:'添加相片',
-      delShow:false
+      delShow:false,
+      addStyle:'',
+      addModal:false
     })
   },
 
   checkimg:function (e) {
-    console.log(e)
     var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id;
     let selectIds = this.data.selectIds;
@@ -119,12 +127,12 @@ Page({
     let selectIds = this.data.selectIds || [];
     if (selectIds.length == 0) {
       wx.showToast({
-        title: '请点击选中要删除的图片',
+        title: '请点击选中要删除的背景图',
         icon: 'none'
       })
     } else {
       wx.showModal({
-        title: '确定删除选中的图片吗？',
+        title: '确定删除选中的背景图吗？',
         content: '',
         success: function (res) {
           if (res.cancel) {
@@ -134,7 +142,7 @@ Page({
               userId: wx.getStorageSync('userId'),
               Ids: selectIds.join(',')
             }
-            app.util.request(app.api.MineUserXpDel, 'GET', obj).then((res) => {
+            app.util.request(app.api.MineUserBCDel, 'GET', obj).then((res) => {
               if (res.status && res.status == 1) {
                 wx.showToast({
                   title: '删除成功',
@@ -203,6 +211,192 @@ Page({
       catId: multiList[multiIndex]['catId']
     })
     this.xpModal();
+  },
+
+  showModal:function(e) {
+    var multiList = this.data.multiList
+    var multiIndex = this.data.multiIndex
+    if (multiIndex == 0) {
+      var delModal = false;
+      var buttonStyle = 'width:80%;margin-left:10%;margin-top:5%';
+      var catName = ''
+    }else{
+      var delModal = true;
+      var buttonStyle = 'width:44%';
+      var catName = multiList[multiIndex]['catName']
+    }
+    this.setData({
+      showModal:true,
+      showModalName:catName,
+      delModal:delModal,
+      buttonStyle:buttonStyle
+    })
+  },
+  //监听输入内容并且赋值
+  listenerInput: function (e) {
+    let role = e.currentTarget.dataset.role;
+    let val = e.detail.value;
+    this.setData({ [role] : val});
+  },
+  hideModal:function() {
+    this.setData({
+      showModal:false,
+    })
+  },
+  save:function(){
+    var that = this;
+    let userId = wx.getStorageSync('userId');
+    let obj = {
+      userId: userId, //系统的
+      showModalName:that.data.showModalName
+    }
+    app.util.request(app.api.MineUserAddBC, 'POST', obj).then((res) => {
+      if (res.status && res.status == 1) {
+        wx.showToast({
+          title: res.msg,
+        });
+        that.setData({
+          showModal:false,
+        })
+        that.userBC();
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        });
+      }
+      
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+
+  update:function(){
+    var that = this;
+    let userId = wx.getStorageSync('userId');
+    let obj = {
+      userId: userId, //系统的
+      showModalName:that.data.showModalName,
+      catId:that.data.catId
+    }
+    app.util.request(app.api.MineUserAddBC, 'POST', obj).then((res) => {
+      if (res.status && res.status == 1) {
+        wx.showToast({
+          title: res.msg,
+        });
+        that.setData({
+          showModal:false,
+        })
+        that.userBC();
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        });
+      }
+      
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+
+  delModal:function(){
+    var that = this;
+    let userId = wx.getStorageSync('userId');
+    let obj = {
+      userId: userId, //系统的
+      catId:that.data.catId
+    }
+    wx.showModal({
+        title: '确定删除该分类吗？',
+        content: '',
+        success: function (res) {
+          app.util.request(app.api.MineUserDelBC, 'POST', obj).then((res) => {
+          if (res.status && res.status == 1) {
+            wx.showToast({
+              title: res.msg,
+            });
+            that.setData({
+              showModal:false,
+            })
+            that.userBC();
+          }else{
+            wx.showToast({
+              title: res.msg,
+              icon: 'none'
+            });
+          }
+          
+        }).catch((error) => {
+          console.log(error)
+        })
+        }
+    })
+  },
+
+  moveBC:function(){
+    const that = this;
+    let selectIds = this.data.selectIds || [];
+    if (selectIds.length == 0) {
+      wx.showToast({
+        title: '请点击选中要移动的背景图',
+        icon: 'none'
+      })
+    } else {
+      that.setData({
+        catModal:true,
+        moveCatIndex:0,
+        moveCatArr:that.data.multiArray
+      })
+    }
+  },
+  hideCatModal:function() {
+    this.setData({
+      catModal:false,
+    })
+  },
+
+  saveCat:function(e){
+    const that = this;
+    var moveCatIndex = that.data.moveCatIndex
+    var moveValList = that.data.multiList
+    var multiIndex = that.data.multiIndex
+    if (moveCatIndex == multiIndex) {
+      wx.showToast({
+        title: '亲，请选择移动至的分类',
+        icon: 'none'
+      })
+    } else {
+      var moveCatId = moveValList[moveCatIndex]['catId']
+      let selectIds = that.data.selectIds || [];
+      let obj = {
+        userId: wx.getStorageSync('userId'),
+        Ids: selectIds.join(','),
+        moveCatId:moveCatId
+      }
+      app.util.request(app.api.MineUserBM, 'POST', obj).then((res) => {
+        if (res.status && res.status == 1) {
+          wx.showToast({
+            title: '移动成功',
+          });
+          that.setData({
+            catModal:false,
+          })
+          that.xpModal()
+        } else {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none'
+          })
+        }
+      })  
+    }
+  },
+  bindPickerCatChange:function(e){
+    var moveCatIndex = e.detail.value
+    this.setData({
+      moveCatIndex: moveCatIndex,
+    })
   }
 
 })

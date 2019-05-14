@@ -110,4 +110,24 @@ class Mine extends Base
         $m = new M();
         return $m->userBX();
     }
+
+    public function userBCDel(){
+        $m = new M();
+        return $m->userBCDel();
+    }
+
+    public function userAddBC(){
+        $m = new M();
+        return $m->userAddBC();
+    }
+
+    public function userDelBC(){
+        $m = new M();
+        return $m->userDelBC();
+    }
+
+    public function userBM(){
+        $m = new M();
+        return $m->userBM();
+    }
 }

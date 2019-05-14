@@ -336,7 +336,7 @@ class Mine extends Base
         $where['isshow']   = 1;
         $where['isok']   = 1;
         $res = Db::name('background_cat')->where($where)->order('add_time desc, catId desc')->select();
-        $addArr = ['catId'=>'0','catName'=>'我的锦集'];
+        $addArr = ['catId'=>'0','catName'=>'默认分类'];
         array_unshift($res, $addArr);
         return json_encode(WSTReturn('success',1,$res));
     }
@@ -346,6 +346,8 @@ class Mine extends Base
         $catId = input('catId/d',0);  
         $where['userId']   = $userId;
         $where['isok']   = 1;
+        $where['isshow']   = 1;
+        $where['ischeck']   = 1;
         $where['catId']   = $catId;
         $res = Db::name('background')->where($where)->order(SO_SORT_COMMON)->select();
         if (empty($res)) {
@@ -362,5 +364,81 @@ class Mine extends Base
             }
             return json_encode(WSTReturn('success',1,$res));
         }
+    }
+
+    public function userBCDel()
+    {
+        $userId = input('userId/d',0);
+        $ids = input('Ids','');
+        if (empty($ids)) {
+            return json_encode(WSTReturn('请选择要删除的背景图'));
+        }
+        $where['userId']   = $userId;
+        $where['id'] = ['in',$ids];
+        Db::name('background')->where($where)->update(['isok'=>0,'isshow'=>0,'ischeck'=>0,'del_time'=>time()]);
+        return json_encode(WSTReturn('success',1));
+    }
+
+    public function userAddBC()
+    {
+        $userId = input('userId/d',0);
+        $catId  = input('catId/d',0);
+        $showModalName = input('showModalName');
+        if (empty(trim($showModalName)) || trim($showModalName) == '默认分类') {
+            return json_encode(WSTReturn('无效的分类名称！'));
+        }
+        //先查询是否有相同的名称
+        $catNameCount = Db::name('background_cat')->where(['userId'=>$userId,'catName'=>$showModalName])->count();
+        if ($catNameCount) {
+            return json_encode(WSTReturn('亲，已存在该分类名称！'));
+        }
+        $data['catName'] = trim($showModalName);
+        $data['userId'] = $userId;
+        if ($catId) {
+            $res = Db::name('background_cat')->where(['catId'=>$catId])->update($data);
+            $tips = '修改';
+        }else{
+            $data['add_time'] = time();
+            $res = Db::name('background_cat')->insert($data);
+            $tips = '新增';
+        }
+        
+        if ($res) {
+            return json_encode(WSTReturn($tips.'成功',1));
+        }else{
+            return json_encode(WSTReturn($tips.'失败'));
+        }
+    }
+
+    public function userDelBC()
+    {
+        $userId = input('userId/d',0);
+        $catId  = input('catId/d',0);
+        if (empty($catId)) {
+            return json_encode(WSTReturn('无效的分类！'));
+        }
+        $where['userId'] = $userId;
+        $where['catId'] = $catId;
+        $res = Db::name('background_cat')->where($where)->delete();
+        if ($res) {
+            Db::name('background')->where(['catId'=>$catId])->update(['catId'=>0]);
+            return json_encode(WSTReturn('删除成功',1));
+        }else{
+            return json_encode(WSTReturn('删除失败'));
+        }
+    }
+
+    public function userBM()
+    {
+        $userId = input('userId/d',0);
+        $catId = input('moveCatId/d',0);
+        $ids = input('Ids','');
+        if (empty($ids)) {
+            return json_encode(WSTReturn('请选择要移动的背景图'));
+        }
+        $where['userId']   = $userId;
+        $where['id'] = ['in',$ids];
+        Db::name('background')->where($where)->update(['catId'=>$catId]);
+        return json_encode(WSTReturn('success',1));
     }
 }
