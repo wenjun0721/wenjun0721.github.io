@@ -97,15 +97,29 @@ Page({
   },
 
 
-  //双击事件
+  // //改变逻辑 原逻辑 5-15
+  // doubleTap:function(e){
+  //   var index = e.currentTarget.dataset.index;
+  //   var uploadedImages = this.data.imageList;
+  //   this.setData({  
+  //     modalHidden: true,
+  //     lookImage: uploadedImages[index],
+  //     lookindex: index,
+  //     uploadedImages:uploadedImages,
+  //   })
+  // },
+
+  //改变逻辑 5-15
   doubleTap:function(e){
     var index = e.currentTarget.dataset.index;
     var uploadedImages = this.data.imageList;
-    this.setData({  
-      modalHidden: true,
-      lookImage: uploadedImages[index],
-      lookindex: index,
-      uploadedImages:uploadedImages,
+    this.setData({
+      backShow: false,
+      indexShow:true,
+      modalHidden: false,
+      backgroundImg: uploadedImages[index],
+      selectindex:index*1+1,
+      backgroundText:'已选择您喜欢的背景图，再次点击可更改哦',
     })
   },
 

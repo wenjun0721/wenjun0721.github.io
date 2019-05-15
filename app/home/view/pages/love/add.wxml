@@ -3,7 +3,7 @@
 <view class='editBox' hidden='{{!indexShow}}'>
     <view class='edit_list' >
 
-        <input type='text' data-role="toName" maxlength="5" value="{{toName}}" bindinput="listenerInput" placeholder="她的笔名（可空,最多5字哦）"
+        <input style="margin-top: 0" type='text' data-role="toName" maxlength="5" value="{{toName}}" bindinput="listenerInput" placeholder="她的笔名（可空,最多5字哦）"
         ></input>
 
         <input type='text' data-role="fromName" maxlength="5" value="{{fromName}}" bindinput="listenerInput" placeholder="您的笔名（可空,最多5字哦）"
@@ -13,9 +13,10 @@
         ></textarea>
 
         <view class='login_btn1' bindtap='background'>{{backgroundText}}</view>
-        <view class='login_btn1' bindtap='setup'>{{setUpText}}</view>
     </view>
-    <view class='login_btn' bindtap='lookMyLove'>预览</view> 
+    <view class='login_btn' style="margin-right: 8%;background: #40E0D0;" bindtap='lookMyLove'>预览</view> 
+    <view class='login_btn' style="background: #FFC0CB;" bindtap='setup'>{{setUpText}}</view>
+    
 </view>
 
 <view class='toast-box' hidden='{{!backShow}}'>
