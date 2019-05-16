@@ -1,0 +1,16 @@
+
+<view style="height: 100%;padding-top: 0.5rem;background: #ecf1f4;min-height: 100vh">
+  <block wx:for="{{musicList}}" wx:key="index">
+    <view class='card1'>
+      <view class='toast-title flex flex-ac flex-zBetween'>
+        <view class='button1'>{{item.video_name}}</view>
+
+        <image wx:if="{{item.select}}" bindtap='Btn' data-index='{{index}}' style="right: 3.5rem" src='../../../assets/images/stop.png' mode='aspectFill'></image>
+
+        <image wx:else bindtap='Btn' data-index='{{index}}' style="right: 3.5rem" src='../../../assets/images/music.png' mode='aspectFill'></image>
+
+        <image src='../../../assets/images/del.png' mode='aspectFill'></image>
+      </view>
+    </view>
+  </block>
+</view>

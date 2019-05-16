@@ -1,0 +1,27 @@
+
+
+  <view class='card1'>
+   <view class='toast-title flex flex-ac flex-zBetween'>
+    <view class='button1' bindtap='hideXpModal'>返回</view>
+  </view>
+
+    <view class='cat-products flex flex-zLeftRight'>
+       
+          <view class="block-card flex">
+            <view class='card'>
+              <view class='card-body' >
+                  <image class="imgae1" src='{{images}}' mode='aspectFill'></image>
+              </view>
+            </view>
+          </view>
+        
+    </view>
+    <view class='toast-title flex flex-ac flex-zBetween'>
+      <text class="wj" bindtap='upfile'>上传图片</text>
+      <text class="wj1" bindtap='baocun'>确定上传</text>
+    </view>
+</view>
+
+
+
+

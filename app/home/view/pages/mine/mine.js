@@ -41,6 +41,12 @@ Page({
     })
   },
 
+  tomyMusic:function(e) {
+    wx.navigateTo({
+      url:'music/music'
+    })
+  },
+
   // lookShare:function(e) {
   //   wx.navigateTo({
   //     url:'/pages/index/look?sharerId=0&sharerUserId='+wx.getStorageSync('userId')

@@ -42,4 +42,5 @@ module.exports = {
   MindeUpFile:domainUrl + "Mine/userUpFile",
   MineDelBN:domainUrl + "Mine/userDelBN",
   MineSaveB:domainUrl + "Mine/userSaveB",
+  MineMyMusic:domainUrl + "Mine/userMyMusic",
 }

@@ -164,4 +164,9 @@ class Mine extends Base
         $m = new M();
         return $m->userSaveB();
     }
+
+    public function userMyMusic(){
+        $m = new M();
+        return $m->userMyMusic();
+    }
 }

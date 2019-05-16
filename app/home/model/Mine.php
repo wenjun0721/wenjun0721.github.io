@@ -453,4 +453,18 @@ class Mine extends Base
         Db::name('background')->insert($data);
         return json_encode(WSTReturn('上传成功',1));
     }
+
+    public function userMyMusic()
+    {
+        $where['userId'] = input('userId/d',0);
+        $where['isok']   = 1;
+        $res = Db::name('video')->where($where)->order(SO_ADDTIME_COMMON)->select();
+        if (empty($res)) {
+            return json_encode(WSTReturn('暂无内容，点击右下角图标可以添加音乐'));
+        }
+        foreach ($res as $k => $v) {
+            $res[$k]['select'] = false;
+        }
+        return json_encode(WSTReturn('',1,$res));
+    }
 }
