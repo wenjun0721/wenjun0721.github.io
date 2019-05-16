@@ -365,7 +365,7 @@ Page({
       this.setData({
         myLoveShow: false,
       })
-      this.onShow()
+      // this.onShow()
     })
   },
 

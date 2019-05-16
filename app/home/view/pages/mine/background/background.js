@@ -175,8 +175,8 @@ Page({
   },
 
   addSharerImg:function(){
-      wx.reLaunch({
-        url: '/pages/love/add'
+      wx.navigateTo({
+        url: './upfile'
       })
   },
   

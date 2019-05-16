@@ -17,7 +17,6 @@ class Mine extends Base
     	$m = new M();
     	$res = $m->sharerCat();
         return $res;
-    	// echo(json_encode(WSTReturn('success',1,$res)));die;
     }
 
     public function sharerCatAdd(){
@@ -129,5 +128,40 @@ class Mine extends Base
     public function userBM(){
         $m = new M();
         return $m->userBM();
+    }
+
+    public function userUpFile(){
+        require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
+        if ($_FILES['file']['type'] != 'image/png' && $_FILES['file']['type'] != 'image/gif' &&$_FILES['file']['type'] != 'image/x-ms-bmp' &&$_FILES['file']['type'] != 'image/jpeg') {
+            echo(json_encode(WSTReturn('只允许上传jpg,gif,png,bmp类型的文件')));die;
+        }
+        if ($_FILES['file']['size']*1 > '5097152') {
+            echo(json_encode(WSTReturn('文件大小超出5M')));die;
+        }
+        $ds = 'upload/background/'.input('userId/d','z').'/'.date('Ymd');
+        $dir = iconv("UTF-8", "GBK", './'.$ds);
+        if (!file_exists($dir)){
+            mkdir ($dir,0777,true);
+        }
+        // 页面
+        $fileName = $ds.'/'. time().rand(10000,100000).'.png';
+        $image = \think\Image::open($_FILES['file']['tmp_name']);
+        if ($image->width() != 640 || $image->height() != 960) {
+            $image->thumb('640','960',1);
+        }
+        $path="./".$fileName;
+        $image->save($path);
+        return json_encode(WSTReturn('success',1,WEBURL.$fileName));
+    }
+
+    public function userDelBN(){
+        $img = input('images');
+        $img = str_replace(WEBURL,"./",$img);
+        @unlink('./'.$img);
+    }
+
+    public function userSaveB(){
+        $m = new M();
+        return $m->userSaveB();
     }
 }

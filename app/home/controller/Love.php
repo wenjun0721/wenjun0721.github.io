@@ -108,8 +108,11 @@ class Love extends Base
 		$fileName = 'upload/love/'.$file.'/'.date('YmdHis').rand(10000,100000).'.jpg';
 		$path="./".$fileName;
 		$str = $content;
-        if ($image->width() != 640 || $image->height() != 960) {
-            $image->crop('640','960');
+        // if ($image->width() != 640 || $image->height() != 960) {
+        //     $image->crop('640','960');
+        // }
+        if ($image->width() != 640) {
+            $image->thumb('640','960',1);
         }
 		$image->text($str, $fontFamily, $fontSize, $fontColor,$wz,20,$fontX)->text('点点回忆', $fontFamily, 24, '#000000',9,-25)->save($path);
 		echo(json_encode(WSTReturn('success',1,$fileName)));die;

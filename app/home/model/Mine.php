@@ -441,4 +441,16 @@ class Mine extends Base
         Db::name('background')->where($where)->update(['catId'=>$catId]);
         return json_encode(WSTReturn('success',1));
     }
+
+    public function userSaveB()
+    {
+        $userId = input('userId/d',0);
+        $img = input('images');
+        $img = str_replace(WEBURL,"",$img);
+        $data['userId'] = $userId;
+        $data['img'] = $img;
+        $data['add_time'] = time();
+        Db::name('background')->insert($data);
+        return json_encode(WSTReturn('上传成功',1));
+    }
 }
