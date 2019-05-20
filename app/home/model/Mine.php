@@ -467,4 +467,31 @@ class Mine extends Base
         }
         return json_encode(WSTReturn('',1,$res));
     }
+
+    public function userMyMusicDel()
+    {
+        $userId = input('userId/d',0);
+        $id = input('id','');
+        if (empty($id)) {
+            return json_encode(WSTReturn('请关闭小程序重新进入'));
+        }
+        $where['userId']   = $userId;
+        $where['id'] = $id;
+        Db::name('video')->where($where)->update(['isok'=>0,'del_time'=>time()]);
+        return json_encode(WSTReturn('success',1));
+    }
+
+    public function userSaveVideo()
+    {
+        $userId = input('userId/d',0);
+        $video = input('videoSc');
+        $video_name = input('video_namesc');
+        
+        $data['userId'] = $userId;
+        $data['video'] = $video;
+        $data['video_name'] = $video_name;
+        $data['add_time'] = time();
+        Db::name('video')->insert($data);
+        return json_encode(WSTReturn('上传成功',1));
+    }
 }

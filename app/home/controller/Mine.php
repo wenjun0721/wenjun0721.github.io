@@ -169,4 +169,38 @@ class Mine extends Base
         $m = new M();
         return $m->userMyMusic();
     }
+
+    public function userMyMusicDel(){
+        $m = new M();
+        return $m->userMyMusicDel();
+    }
+
+    public function userUpVideoFile(){
+        if ($_FILES['file']['type'] != 'video/mp4') {
+            echo(json_encode(WSTReturn('只允许上传mp4类型的文件')));die;
+        }
+        if ($_FILES['file']['size']*1 > '5097152') {
+            echo(json_encode(WSTReturn('文件大小超出5M')));die;
+        }
+        $ds = 'upload/video/'.input('userId/d','z').'/'.date('Ymd');
+        $dir = iconv("UTF-8", "GBK", './'.$ds);
+        if (!file_exists($dir)){
+            mkdir ($dir,0777,true);
+        }
+        // 页面
+        $fileName = $ds.'/'. time().rand(10000,100000).'.mp4';
+        $path="./".$fileName;
+        move_uploaded_file($_FILES["file"]["tmp_name"],$path);
+        return json_encode(WSTReturn('上传成功',1,$fileName));
+    }
+
+    public function userSaveVideo(){
+        $m = new M();
+        return $m->userSaveVideo();
+    }
+
+    public function userVideoDel(){
+        $videoSc = input('videoSc');
+        @unlink('./'.$videoSc);
+    }
 }
