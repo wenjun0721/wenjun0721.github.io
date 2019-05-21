@@ -24,7 +24,9 @@ Page({
   },
 
   onLoad: function () {
-    
+    wx.setNavigationBarTitle({
+      title: '我的背景图'
+    })
   },
   xpModal:function(e){
     var that = this;

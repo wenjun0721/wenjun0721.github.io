@@ -22,4 +22,16 @@ class Index extends Base
     	$i = new I();
         return $i->indexSharerCat();
     }
+
+    public function sharerLsit()
+    {
+        $i = new I();
+        return $i->sharerLsit();
+    }
+
+    public function sharerLove()
+    {
+        $i = new I();
+        return $i->sharerLove();
+    }
 }

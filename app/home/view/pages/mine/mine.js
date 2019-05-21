@@ -15,6 +15,9 @@ Page({
     })
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '个人中心'
+    })
     // app.util.request(app.api.Minece, 'POST').then((rs) => {
     //   console.log(rs)
     // }).catch((error) => {

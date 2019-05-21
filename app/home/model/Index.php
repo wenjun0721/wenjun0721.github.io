@@ -43,6 +43,9 @@ class Index extends Base
             if (empty($xp)) {
                 return json_encode(WSTReturn('此锦集已被该主人删除了哦！可以点击右下角按钮查看她的主页哦'));
             }
+            //修改查看次数
+            $sharerClick = $sharer['sharerClick']+1;
+            Db::name('sharer')->where($where)->update(['sharerClick'=>$sharerClick]);
             //获取音乐ID
             $videoId = $sharer['videoId'];
             $sharerUserId  = $sharer['userId'];
@@ -79,6 +82,32 @@ class Index extends Base
         $rs['arr'] = $arr;
         $rs['cartNum'] = $cartNum;
         echo(json_encode(WSTReturn('success',1,$rs)));die;
+    }
+
+    public function sharerLsit()
+    {
+        $page = input('page/d',0);
+        $where['isshow']   = 1;
+        $where['isSharer'] = 1;
+        //判断锦集是否能被查看
+        $data = Db::name('sharer')->where($where)->order('sort asc , sharerClick desc, sharerLove desc, id desc')
+                      ->paginate()->toArray();
+        foreach ($data['data'] as $k => $v) {
+            $data['data'][$k]['sharerImg'] = WEBURL.$v['sharerImg'];
+            $userInfo = Db::name('users')->where(['userId'=>$v['userId']])->find();
+            $data['data'][$k]['userImg'] = $userInfo['userImg'];
+            $data['data'][$k]['userName'] = $userInfo['userName'];
+            $data['data'][$k]['userAddress'] = $userInfo['userAddress'];
+        }
+        echo(json_encode(WSTReturn('success',1,$data)));die;
+    }
+
+    public function sharerLove()
+    {
+        //修改点赞次数
+        $where['id'] = input('id');
+        Db::name('sharer')->where($where)->setInc('sharerLove');
+        echo(json_encode(WSTReturn('success',1)));die;
     }
     
 }

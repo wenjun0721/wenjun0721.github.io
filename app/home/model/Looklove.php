@@ -64,17 +64,14 @@ class Looklove extends Base
         if ($res['isSharer'] == 1 && $res['isshow'] == 1) {
             return 1;exit;
         }
-        //修改可以被查看状态
-        Db::name('sharer')->where(['id'=>$sharerId])->update(['isSharer'=>1,'isshow'=>1,'sharer_time'=>time()]);
+        
         //修改相片状态为可看
         Db::name('sharer_img')->where(['sharerId'=>$sharerId])->update(['isshow'=>1]);
-        // 判断是否有了二维码，如果有，不需要理会
-        // if (empty($res['sharerCode'])) {
-        //     $c = new \app\home\controller\Code();
-        //     $data['sharerId'] = $sharerId;
-        //     $data['sharerUserId'] = $res['userId'];
-        //     $res = $c->qrcode($data);
-        // }
+        //修改封面图
+        $sharerImg = Db::name('sharer_img')->where(['sharerId'=>$sharerId])->order(SO_SORT_COMMON)->limit(1)->value('img');
+        //修改可以被查看状态
+        Db::name('sharer')->where(['id'=>$sharerId])->update(['isSharer'=>1,'isshow'=>1,'sharer_time'=>time(),'sharerImg'=>$sharerImg]);
+        
 
         return 1;exit;
     }

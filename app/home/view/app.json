@@ -28,7 +28,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "日记",
+    "navigationBarTitleText": "点点爱分享",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

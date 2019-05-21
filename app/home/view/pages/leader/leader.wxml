@@ -1,27 +1,26 @@
 <view class="container">
     <view class="page__hd">
-        <view class="page__hd-pagetitle center">领读</view>
+        <view class="page__hd-pagetitle center">每天100分</view>
     </view>
-        <scroll-view class="page__bd" wx:for="{{authors}}" wx:key="{{index}}" scroll-y="true">
+        <scroll-view class="page__bd" wx:for="{{lists}}" wx:key="{{index}}" scroll-y="true">
             <navigator url="authors/authors" hover-class="none">
             <view class="page__bd-head">
                 <view class="head-img">
-                    <image class="pic" src="{{item.headImg}}" mode="aspectFill" />
+                    <image class="pic" src="{{item.userImg}}" mode="aspectFill" />
                 </view>
                 <view class="artic-author page-flex">{{item.userName}}</view>
             </view>
             </navigator>
-            <navigator url="stories/stories?id={{index}}">
+            <navigator url="../index/look?sharerId={{item.id}}">
             <view class="page__bd-banner center">
-                <image class="bannerImg" src="{{item.bannerImg}}" alt="" mode="aspectFill" />
+                <image class="bannerImg" src="{{item.sharerImg}}" alt="" mode="aspectFill" />
             </view>
             <view class="page__bd-middle">
-                <view class="artic-title">{{item.articTitle}}</view>
-                <view class="artic-content">{{item.articContent}}</view>
+                <view class="artic-title">来自 {{item.userAddress}} 的分享</view>
             </view>
             <view class="page__bd-foot">
-                <view class="foot-lt clickTimes fl page-flex">{{item.clickTimes}}次点击</view>
-                <view class="foot-rt thumbUp">{{item.thumbUp}}
+                <view class="foot-lt clickTimes fl page-flex">{{item.sharerClick}} 次点击</view>
+                <view class="foot-rt thumbUp">{{item.sharerLove}}
                     <view class="finger">
                         <image src="../../assets/images/pointer.png" mode="aspectFill" />
                     </view>

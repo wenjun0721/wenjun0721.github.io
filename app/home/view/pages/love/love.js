@@ -18,6 +18,9 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '编译回忆'
+    })
     if (options.sharerId) {
       this.setData({
         sharerId:options.sharerId,

@@ -1,7 +1,7 @@
 const app = getApp().globalData;
 Page({
   data: {
-    webViewUrl:"http://www.tplm.com/",
+    webViewUrl:app.webViewUrl,
     backShow:false,
     indexShow:true,
     multiIndex:[0,0],
@@ -39,7 +39,7 @@ Page({
     setUpType:0,
     setUpFontType:0,
     setUpFontArrIndex:0,
-    setUpFontStyle:'width: 80%;margin:  0 auto;margin-top: 2rem;',
+    setUpFontStyle:'width: 80%;margin:  0 auto;margin-top: 1rem;',
     setUpFontArr:['请选择您喜欢的字体','楷体','方正北魏楷书简体','方正行楷','方正行楷繁体','方正行楷简体','方正黄草','方正瘦金书简体','方正硬笔行书简体','徐静蕾'],
     fontW:28,
     fontStype:66,

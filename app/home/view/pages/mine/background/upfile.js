@@ -16,6 +16,9 @@ Page({
   },
 
   onLoad: function () {
+    wx.setNavigationBarTitle({
+      title: '上传背景图'
+    })
     this.upfile();
   },
   

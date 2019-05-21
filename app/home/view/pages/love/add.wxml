@@ -1,6 +1,6 @@
 
 
-<view class='editBox' hidden='{{!indexShow}}'>
+<view class='editBox' hidden='{{!indexShow}}' style="background: url('{{webViewUrl}}upload/index/add.png');background-size:100%">
     <view class='edit_list' >
 
         <input style="margin-top: 0" type='text' data-role="toName" maxlength="5" value="{{toName}}" bindinput="listenerInput" placeholder="她的笔名（可空,最多5字哦）"
@@ -63,10 +63,10 @@
 
 
 <!-- 高级设置 start  -->
-
+<view style="background: url('{{webViewUrl}}upload/index/add.png');height: 100vh;background-size:100%">
 <!-- 字体选择 start  -->
-<view class='toast-box' hidden='{{!setUpShow}}'>
-    <picker class='login_btn1' style="{{setUpFontStyle}}" bindchange="bindPickerFontChange" value="{{setUpFontArrIndex}}" range="{{setUpFontArr}}">
+<view class='toast-box' hidden='{{!setUpShow}}' style="padding-top: 2rem">
+    <picker class='login_btn1' style="width: 80%;margin:  0 auto;" bindchange="bindPickerFontChange" value="{{setUpFontArrIndex}}" range="{{setUpFontArr}}">
       <view class="picker">
         {{setUpFontArr[setUpFontArrIndex]}}
       </view>
@@ -78,7 +78,7 @@
 <view class='toast-box' hidden='{{!setUpShow}}'>
     <picker class='login_btn1' style="{{setUpFontStyle}}" bindchange="bindPickerFontColorChange" value="{{setUpFontColorArrIndex}}" range="{{setUpFontColorArr}}">
       <view class="picker">
-        {{setUpFontColorArr[setUpFontColorArrIndex]}}
+        字体颜色:{{setUpFontColorArr[setUpFontColorArrIndex]}}
       </view>
     </picker>
 </view>
@@ -141,13 +141,13 @@
 <!-- 确定或者重置 start  -->
 <view class='toast-box' style="margin-top: 15%" hidden='{{!setUpShow}}'>
   <view >
-    <view class='login_btn2' bindtap='reset' style="width: 42%;margin-top: 2rem;margin-left:1rem;margin-right:1rem;float:left">重置</view> 
-    <view class='login_btn2' bindtap='submit' style="width: 42%;margin-top: 2rem;float:right;margin-right:1rem;">确定选择</view>
+    <view class='login_btn2' bindtap='reset' style="width: 42%;margin-left:1rem;margin-right:1rem;float:left">重置</view> 
+    <view class='login_btn2' bindtap='submit' style="width: 42%;float:right;margin-right:1rem;">确定选择</view>
   </view>
   
 </view>
 <!-- 确定或者重置 end  -->
 
 </view>
-
+</view>
 <!-- 高级设置 end  -->

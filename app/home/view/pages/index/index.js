@@ -12,7 +12,7 @@ Page({
       });
       if(this.data.time == 0) {  
         wx.switchTab({
-          url:'../mine/mine',
+          url:'../leader/leader',
           complete:function(res) {
           }
         })

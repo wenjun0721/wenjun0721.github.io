@@ -149,4 +149,17 @@ Page({
     })
   },
 
+  love:function(){
+    var id = this.data.sharerId;
+    let obj = {
+      id: id,
+    }
+    app.util.request(app.api.IndexSharerLove, 'POST',obj).then((res) => {
+      wx.showToast({
+        title: '感谢你的点赞，么么哒',
+        duration: 500
+      })
+    })
+  }
+
 })

@@ -47,4 +47,6 @@ module.exports = {
   MindeUpVideoFile:domainUrl + "Mine/userUpVideoFile",
   MindeSaveVideo:domainUrl + "Mine/userSaveVideo",
   MineUserVideoDel:domainUrl + "Mine/userVideoDel",
+  IndexSharerLsit:domainUrl + "Index/sharerLsit",
+  IndexSharerLove:domainUrl + "Index/sharerLove",
 }

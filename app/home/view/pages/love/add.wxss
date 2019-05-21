@@ -1,8 +1,6 @@
 .editBox{
   padding:0 60rpx;
   padding-top:30rpx;
-  background: url('http://www.tplm.com/upload/index/add.png');
-  background-size: 100%;
   height: 100vh
 }
 .login_btn{
@@ -44,8 +42,8 @@ input{
 	border-radius: 3%;
 	padding-left: 3%;
 	margin-top: 5%;
-  height: 2rem;
-  line-height: 2rem
+  height: 1rem;
+  line-height: 1rem
 }
 textarea{
 	border: 1px solid #ccc;

@@ -1,43 +1,36 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp().globalData;
 
 Page({
   data: {
-    authors: [],
-    id: ''
+    lists: [],
+    page:0
   },
   onShow: function() {
+    this.setData({
+      lists: [],
+      page: 0
+    })
     wx.showToast({
       title: '加载中',
       icon: 'loading',
       duration: 500
     })
-    setTimeout(function () {
-      wx.hideToast()
-    }, 500);
+    
+    app.BMGMUSIC.stop();//关闭音乐的
+    this.sharerLsit();
+
   },
   onLoad: function () {
-    var that = this;
-    wx.request({
-      url: 'https://www.easy-mock.com/mock/5a23a9a2ff38a436c591b6fa/getArticInfo',
-      success: function (res) {
-        console.log(res.data.data.index);
-        console.log(res.data.data.articleInfo);
-        
-        that.setData({
-          authors: res.data.data.index,
-          id: res.data.data.articleInfo
-        })
-      }
-    })
+    
   },
  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
     
-      },
+  },
        /**
    * 页面上拉触底事件的处理函数
    */
@@ -45,4 +38,39 @@ Page({
    
   },
 
+  sharerLsit:function(){
+    console.log(123)
+    const that = this
+    let page = that.data.page;
+    let lists = that.data.lists;
+    page++;
+    let obj = {
+      page: page,
+    }
+    app.util.request(app.api.IndexSharerLsit, 'POST',obj).then((res) => {
+      let rows = res.data.data || [];
+      if (rows.length>0) {
+        that.setData({
+          lists: lists.concat(rows),
+          page: page
+        })
+      }else{
+        wx.showToast({
+          title: '没有更多的内容啦',
+          icon: 'none',
+          duration: 1000
+        })
+      }
+      
+    })
+  },
+
+  onReachBottom: function () {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 1000
+    })
+    this.sharerLsit();
+  },
 })
