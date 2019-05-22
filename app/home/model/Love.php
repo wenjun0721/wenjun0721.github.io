@@ -57,11 +57,7 @@ class Love extends Base
             $addArr = ['catId'=>'0','catName'=>'官方最新'];
         }
         $res = Db::name('background_cat')->where($where)->order(SO_BACKGROUND_CAT)->select();
-        if (count($res)>0) {
-            array_unshift($res, $addArr);
-        }else{
-            $res = $addArr;
-        }
+        array_unshift($res, $addArr);
         $arr = [];
         $arrIndex = [];
         foreach ($res as $k => $v) {

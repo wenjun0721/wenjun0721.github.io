@@ -2,7 +2,7 @@ const app =  getApp().globalData;
 
 Page({
   data: {
-    webViewUrl:"http://www.tplm.com/",
+    webViewUrl:app.webViewUrl,
     showModal: false,
     sharerName: '新增锦集',
     delModal:false,

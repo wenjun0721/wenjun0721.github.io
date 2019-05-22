@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index/look",
     "pages/leader/leader",
     "pages/love/add",
     "pages/love/love",

@@ -2,7 +2,7 @@ const app =  getApp().globalData;
 
 Page({
   data: {
-    webViewUrl:"http://www.tplm.com/",
+    webViewUrl:app.webViewUrl,
     changeText:'管理',
     changeBtn:'Run',
     changeImgBtn:'previewImage',

@@ -2,7 +2,7 @@ const app =  getApp().globalData;
 
 Page({
   data: {
-    webViewUrl:"http://www.tplm.com/",
+    webViewUrl:app.webViewUrl,
     sharerId:0,
     sharerIndex:0,
     co:0

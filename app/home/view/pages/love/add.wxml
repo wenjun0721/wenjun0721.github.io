@@ -63,9 +63,9 @@
 
 
 <!-- 高级设置 start  -->
-<view style="background: url('{{webViewUrl}}upload/index/add.png');height: 100vh;background-size:100%">
+<view hidden='{{!setUpShow}}' style="background: url('{{webViewUrl}}upload/index/add.png');height: 100vh;background-size:100%">
 <!-- 字体选择 start  -->
-<view class='toast-box' hidden='{{!setUpShow}}' style="padding-top: 2rem">
+<view class='toast-box' style="padding-top: 2rem">
     <picker class='login_btn1' style="width: 80%;margin:  0 auto;" bindchange="bindPickerFontChange" value="{{setUpFontArrIndex}}" range="{{setUpFontArr}}">
       <view class="picker">
         {{setUpFontArr[setUpFontArrIndex]}}

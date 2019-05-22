@@ -71,7 +71,7 @@ class Love extends Base
 
 		
 		//背景图
-		$backGroundImg = str_replace("http://www.tplm.com/","./",$inputDate['backgroundImg']);
+		$backGroundImg = str_replace(WEBURL,"./",$inputDate['backgroundImg']);
 
 		foreach ($kk as $k => $v) {
 		    $len = mb_strlen($v,'utf-8');
