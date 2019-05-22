@@ -494,4 +494,18 @@ class Mine extends Base
         Db::name('video')->insert($data);
         return json_encode(WSTReturn('上传成功',1));
     }
+
+    public function userInfo()
+    {
+        $userId = input('userId/d',0);
+        if (empty($userId)) {
+            return json_encode(WSTReturn('请关闭小程序重新进入'));
+        }
+        $where['userId']   = $userId;
+        $where['isok']     = 1;
+        $rs['userInfo']=Db::name('users')->where($where)->find();
+        $rs['lookShare'] = Db::name('sharer')->where(['userId'=>$userId,'isshow'=>1,'isSharer'=>1])->count();
+        $rs['tomyShare'] = Db::name('sharer')->where(['userId'=>$userId,'isok'=>1])->count();
+        return json_encode(WSTReturn('success',1,$rs));
+    }
 }

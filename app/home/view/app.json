@@ -23,6 +23,7 @@
     "pages/mine/background/upfile",
     "pages/mine/one/other",
     "pages/mine/one/sharerImg",
+    "pages/login",
     "pages/logs/logs"
   ],
   "window": {

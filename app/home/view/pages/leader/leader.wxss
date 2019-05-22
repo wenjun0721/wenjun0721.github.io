@@ -40,12 +40,12 @@
     color:#444;
   }
   .page__bd-banner {
-   
+    width: 98%;
+    margin: 0 auto;
   }
   .page__bd-banner image {
     margin-top: -46rpx;
-    width: 688rpx;
-    height: 302rpx;
+    margin-left: 1%;
     border-radius: 15rpx;
   }
   .page__bd-middle {

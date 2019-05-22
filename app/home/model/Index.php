@@ -93,7 +93,8 @@ class Index extends Base
         $data = Db::name('sharer')->where($where)->order('sort asc , sharerClick desc, sharerLove desc, id desc')
                       ->paginate()->toArray();
         foreach ($data['data'] as $k => $v) {
-            $data['data'][$k]['sharerImg'] = WEBURL.$v['sharerImg'];
+            // $data['data'][$k]['sharerImg'] = WEBURL.$v['sharerImg'];
+            $data['data'][$k]['sharerImg'] = Db::name('sharer_img')->where(['sharerId'=>$v['id'],'isshow'=>1])->order(SO_SORT_COMMON)->limit(3)->select();
             $userInfo = Db::name('users')->where(['userId'=>$v['userId']])->find();
             $data['data'][$k]['userImg'] = $userInfo['userImg'];
             $data['data'][$k]['userName'] = $userInfo['userName'];
@@ -108,6 +109,34 @@ class Index extends Base
         $where['id'] = input('id');
         Db::name('sharer')->where($where)->setInc('sharerLove');
         echo(json_encode(WSTReturn('success',1)));die;
+    }
+
+    public function getUserInfoData($res)
+    {
+        $user =Db::name('users')
+            ->where(['isok'=>1,'unionId'=>$res['unionId']])
+            ->find();
+        $rs = array();
+        $userId = '';
+        if(empty($user)){
+            $data['userName'] = $res['nickName'];
+            $data['userImg']  = $res['avatarUrl'];
+            $data['openId']   = $res['openId'];
+            $data['unionId']  = $res['unionId'];
+            $data['gender']   = $res['gender'];
+            $data['userAddress']  = $res['province'].$res['city'];
+            $data['gender']  = $res['gender'];
+            $data['add_time']  = time();
+            $userId = Db::name('users')->insertGetId($data);
+            
+        }else{
+            $userId = $user['userId'];
+        }
+
+        $rs['openid'] = $res['openId'];
+        $rs['unionId'] = $res['unionId'];
+        $rs['userId'] = $userId;
+        return $rs;
     }
     
 }

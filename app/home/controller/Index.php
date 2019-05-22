@@ -34,4 +34,19 @@ class Index extends Base
         $i = new I();
         return $i->sharerLove();
     }
+
+    public function getOpenId(){
+        $data = input('get.');
+        $rs=array();
+        if($data){
+            $res = $this->getUserInfo($data);
+            if ($res['status'] == 1) {
+                $i = new I();
+                $rs = $i->getUserInfoData($res['rs']);
+            }else{
+                $rs = $res;
+            }
+        }
+        return json_encode(WSTReturn('success',1,$rs));
+    }
 }

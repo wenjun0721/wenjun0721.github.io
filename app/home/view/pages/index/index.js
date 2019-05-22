@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     time:1,
-    webViewUrl:"http://www.tplm.com/",
+    webViewUrl:app.webViewUrl,
   },
   onLoad: function () {
     var count = setInterval(()=>{   

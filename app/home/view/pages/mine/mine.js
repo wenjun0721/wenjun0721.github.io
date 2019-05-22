@@ -5,6 +5,7 @@ Page({
   },
   onShow: function() {
     app.BMGMUSIC.stop();//关闭音乐的
+    this.userInfo()
   },
   /* 
    *  跳转到我的消息页面
@@ -50,15 +51,23 @@ Page({
     })
   },
 
-  // lookShare:function(e) {
-  //   wx.navigateTo({
-  //     url:'/pages/index/look?sharerId=0&sharerUserId='+wx.getStorageSync('userId')
-  //   })
-  // },
-
   lookShare:function(e) {
     wx.navigateTo({
       url:'one/other'
+    })
+  },
+
+  userInfo:function(){
+    var that = this;
+    let obj = {
+      userId: wx.getStorageSync('userId')
+    }
+    app.util.request(app.api.MineUserInfo, 'POST',obj).then((res) => {
+      that.setData({
+        userInfo:res.data.userInfo,
+        lookShare:res.data.lookShare,
+        tomyShare:res.data.tomyShare
+      })
     })
   },
 

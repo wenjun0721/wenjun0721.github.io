@@ -49,4 +49,6 @@ module.exports = {
   MineUserVideoDel:domainUrl + "Mine/userVideoDel",
   IndexSharerLsit:domainUrl + "Index/sharerLsit",
   IndexSharerLove:domainUrl + "Index/sharerLove",
+  MineUserInfo:domainUrl + "Mine/userInfo",
+  IndexgetOpenId:domainUrl + "Index/getOpenId",
 }

@@ -5,7 +5,8 @@ const app = getApp().globalData;
 Page({
   data: {
     lists: [],
-    page:0
+    page:0,
+    webViewUrl:app.webViewUrl
   },
   onShow: function() {
     this.setData({
@@ -39,7 +40,7 @@ Page({
   },
 
   sharerLsit:function(){
-    console.log(123)
+    
     const that = this
     let page = that.data.page;
     let lists = that.data.lists;
@@ -49,6 +50,7 @@ Page({
     }
     app.util.request(app.api.IndexSharerLsit, 'POST',obj).then((res) => {
       let rows = res.data.data || [];
+      console.log(rows)
       if (rows.length>0) {
         that.setData({
           lists: lists.concat(rows),

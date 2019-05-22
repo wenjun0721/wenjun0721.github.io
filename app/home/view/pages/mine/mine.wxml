@@ -1,24 +1,24 @@
 <!--pages/mine/mine.wxml-->
 <view class="container">
     <view class="page__hd">
-        <view class="page__hd-tp">编辑</view>
+        <!-- <view class="page__hd-tp">编辑</view> -->
         <view class="page__hd-md center">
-            <image src="../../assets/images/headImage.jpg" />
+            <image src="{{userInfo.userImg}}" />
         </view>
-        <view class="page-username center">文君</view>
+        <view class="page-username center">{{userInfo.userName}}</view>
         <view class="page__hd-bt page-flex">
-            <view class="page-bt-lt">
-                <view class="page-lt-readingtimes">5小时52分钟</view>
-                <view class="page-lt-readingtime">读书时长</view>
+            <view class="page-bt-lt" bindtap="lookShare">
+                <view class="page-lt-readingtimes">{{lookShare}}</view>
+                <view class="page-lt-readingtime">我的分享</view>
             </view>
             <view class="cline">|</view>
             <view class="page-bt-rt">
-                <view class="page-rt-lt ">
-                    <view class="page-rt-numbers">5</view>
-                    <view class="page-rt-items">蜗牛壳</view>
+                <view class="page-rt-lt " bindtap="tomyShare">
+                    <view class="page-rt-numbers">{{tomyShare}}</view>
+                    <view class="page-rt-items">我的锦集</view>
                 </view>
             </view>
-            <view class="page-rg">></view>
+            <!-- <view class="page-rg">></view> -->
         </view>
     </view>
     <view class="page__bd">
@@ -62,7 +62,7 @@
             <view class="page-items-others"></view>
             <view class="page-items-ft">></view>
         </view>
-        <view class="page__bd-items page-flex">
+        <!-- <view class="page__bd-items page-flex">
             <view class="page-items-lt">
                 <image src="../../assets/images/mines/update.png" />
             </view>
@@ -77,6 +77,6 @@
             <view class="page-items-md">设置</view>
             <view class="page-items-others"></view>
             <view class="page-items-ft">></view>
-        </view>
+        </view> -->
     </view>
 </view>

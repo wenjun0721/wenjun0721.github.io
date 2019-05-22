@@ -203,4 +203,9 @@ class Mine extends Base
         $videoSc = input('videoSc');
         @unlink('./'.$videoSc);
     }
+
+    public function userInfo(){
+        $m = new M();
+        return $m->userInfo();
+    }
 }

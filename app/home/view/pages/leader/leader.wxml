@@ -3,18 +3,20 @@
         <view class="page__hd-pagetitle center">每天100分</view>
     </view>
         <scroll-view class="page__bd" wx:for="{{lists}}" wx:key="{{index}}" scroll-y="true">
-            <navigator url="authors/authors" hover-class="none">
             <view class="page__bd-head">
                 <view class="head-img">
                     <image class="pic" src="{{item.userImg}}" mode="aspectFill" />
                 </view>
                 <view class="artic-author page-flex">{{item.userName}}</view>
             </view>
-            </navigator>
             <navigator url="../index/look?sharerId={{item.id}}">
+                
             <view class="page__bd-banner center">
-                <image class="bannerImg" src="{{item.sharerImg}}" alt="" mode="aspectFill" />
+                <block wx:for="{{item.sharerImg}}" wx:key="{{itemIndex}}" wx:for-index="idx" wx:for-item="itemImg">
+                    <image style="{{idx == 0?'margin-left:0':''}}" class="bannerImg" src="{{webViewUrl}}{{itemImg.img}}" alt="" mode="aspectFill" />
+                </block>
             </view>
+            
             <view class="page__bd-middle">
                 <view class="artic-title">来自 {{item.userAddress}} 的分享</view>
             </view>

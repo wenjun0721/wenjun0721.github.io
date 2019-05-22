@@ -16,25 +16,25 @@ class Code extends Controller {
      * http访问
      * @param $url 访问网址
      */
-    private function http($url,$data = null){
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 500);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_URL, $url);
-        if($data){
-            curl_setopt($curl,CURLOPT_POST,1);
-            curl_setopt($curl,CURLOPT_POSTFIELDS,$data);//如果要处理的数据，请在处理后再传进来 ，例如http_build_query这里不要加
-        }
-        $res = curl_exec($curl);
-        if(!$res){
-            $error = curl_errno($curl);
-            echo $error;
-        }
-        curl_close($curl);
-        return $res;
-    }
+    // private function http($url,$data = null){
+    //     $curl = curl_init();
+    //     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    //     curl_setopt($curl, CURLOPT_TIMEOUT, 500);
+    //     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    //     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    //     curl_setopt($curl, CURLOPT_URL, $url);
+    //     if($data){
+    //         curl_setopt($curl,CURLOPT_POST,1);
+    //         curl_setopt($curl,CURLOPT_POSTFIELDS,$data);//如果要处理的数据，请在处理后再传进来 ，例如http_build_query这里不要加
+    //     }
+    //     $res = curl_exec($curl);
+    //     if(!$res){
+    //         $error = curl_errno($curl);
+    //         echo $error;
+    //     }
+    //     curl_close($curl);
+    //     return $res;
+    // }
 
     /**
      * 获取访问令牌

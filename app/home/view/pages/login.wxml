@@ -1,0 +1,9 @@
+<!--pages/start/index.wxml-->
+<view class="container" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:280rpx 0;box-sizing:border-box;">
+  <view class="remind-box" wx:if="{{remind}}">
+  </view>
+  <block wx:else>
+  <image src='/assets/images/indexlogo.png' style='width:50%;' mode='widthFix'></image>
+    <button open-type="getUserInfo" bindgetuserinfo="Logins" lang="zh_CN" style='width: 30%;background-color: #FFC0CB;box-shadow: 0rem 0rem 0.31rem 0.16rem rgba(0, 0, 0, 0.1);color:#fff;margin-top:5rem;'>授权登录</button>
+  </block>
+</view>
