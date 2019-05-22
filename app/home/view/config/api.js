@@ -1,5 +1,5 @@
-var domainUrl = "http://im2.huwing.cn/home/"
-var webViewUrl = "http://im2.huwing.cn/"
+var domainUrl = "https://im2.huwing.cn/home/"
+var webViewUrl = "https://im2.huwing.cn/"
 module.exports = {
   webViewUrl: webViewUrl,
   LookLove: domainUrl + "LookLove/index",

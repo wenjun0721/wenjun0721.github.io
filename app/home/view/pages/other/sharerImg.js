@@ -93,7 +93,7 @@ Page({
 
   sy:function(){
     wx.reLaunch({
-      url: '/pages/index/index',
+      url: '/pages/leader/leader',
     })
   },
 

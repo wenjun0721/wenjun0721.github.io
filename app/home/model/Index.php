@@ -9,6 +9,7 @@ class Index extends Base
     {
         $sharerId = input('sharerId/d',0);
         $sharerUserId = input('sharerUserId/d',0);
+        $userId = input('userId/d',0);
         if ($sharerId == 0) {
             $xp = Db::name('xp')->where(['userId'=>$sharerUserId,'isok'=>1])->order(SO_ADDTIME_COMMON)->limit(20)->select();
             if (empty($xp)) {
@@ -54,7 +55,7 @@ class Index extends Base
                 $xp[$k]['img'] = WEBURL.$v['img'];
             }
             //判断是否已经收藏了
-            $co = Db::name('collection')->where(['sharerId'=>$sharerId,'isok'=>1])->count();
+            $co = Db::name('collection')->where(['sharerId'=>$sharerId,'isok'=>1,'userId'=>$userId])->count();
             $co = empty($co)?1:0;
             $rs['xp'] = $xp;
             $rs['video'] = $video;

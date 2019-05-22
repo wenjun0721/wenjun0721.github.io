@@ -31,7 +31,8 @@ Page({
     var that = this;
     let obj = {
       sharerId:that.data.sharerId,
-      sharerUserId:that.data.sharerUserId
+      sharerUserId:that.data.sharerUserId,
+      userId:wx.getStorageSync('userId')
     }
     app.util.request(app.api.IndexLook, 'POST', obj).then((res) => {
       if (res.status && res.status == 1) {
@@ -93,7 +94,7 @@ Page({
 
   sy:function(){
     wx.reLaunch({
-      url: '/pages/index/index',
+      url: '/pages/leader/leader',
     })
   },
 

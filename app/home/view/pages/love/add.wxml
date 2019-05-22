@@ -55,7 +55,7 @@
   
 <modal class="cat-products" title="确定提交？" hidden="{{!myLoveShow}}" bindconfirm="tpConfirm" bindcancel="tpCandel">
     <view class='start' style="text-align: center;" >
-      <image style="width: 100%" src="{{webViewUrl}}{{love}}" mode='aspectFill'></image>
+      <image src="{{webViewUrl}}{{love}}" mode='aspectFill'></image>
     </view>
   </modal>
 

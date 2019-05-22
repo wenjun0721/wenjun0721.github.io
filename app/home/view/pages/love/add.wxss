@@ -42,17 +42,18 @@ input{
 	border-radius: 3%;
 	padding-left: 3%;
 	margin-top: 5%;
-  height: 1rem;
-  line-height: 1rem
+  height: 2rem;
+  line-height: 2rem
 }
 textarea{
 	border: 1px solid #ccc;
 	border-radius: 3%;
-	/*padding: 3%;*/
+	padding-top: 2%;
 	margin-top: 5%;
-	font-size: 30rpx;
+  padding-left: 3%;
+	font-size: 24rpx;
   height: 100px;
-  width: 100%
+  width: 97%
 }
 
 .login_btn1{
@@ -211,8 +212,8 @@ flex-shrink: 0;
   height: 100%;
 }
 .start image {
-  width: 640px;
-  height: 400px; 
+  width: 75%;
+  height: 310px; 
 }
 
 .login_btn2 {

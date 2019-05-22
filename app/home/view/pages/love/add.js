@@ -338,6 +338,7 @@ Page({
         that.setData({
           love: res.data,
           myLoveShow:true,
+          indexShow:false
         })
       }else{
         wx.showToast({
@@ -364,6 +365,7 @@ Page({
     app.util.request(app.api.Love_delImg, 'POST',obj).then((res) => {　
       this.setData({
         myLoveShow: false,
+        indexShow:true
       })
       // this.onShow()
     })
@@ -383,6 +385,7 @@ Page({
     app.util.request(app.api.Love_addImg, 'POST',obj).then((res) => {　
       this.setData({
         myLoveShow: false,
+        indexShow:true,
         toName:'',
         fromName:'',
         backgroundImg:'',
@@ -390,7 +393,7 @@ Page({
         backgroundText:'请选择一张您喜欢的背景图哦',
       })
       wx.showToast({
-       title: '确定成功',
+       title: '确定成功,可在回忆之旅看看效果哦',
        icon: 'success',
        duration: 1000
       })
