@@ -132,7 +132,7 @@ class Mine extends Base
 
     public function userUpFile(){
         require(ROOT_PATH.'/vendor/topthink/think-image/src/Image.php');
-        if ($_FILES['file']['type'] != 'image/png' && $_FILES['file']['type'] != 'image/gif' &&$_FILES['file']['type'] != 'image/x-ms-bmp' &&$_FILES['file']['type'] != 'image/jpeg') {
+        if ($_FILES['file']['type'] != 'image/png' && $_FILES['file']['type'] != 'image/gif' &&$_FILES['file']['type'] != 'image/x-ms-bmp' &&$_FILES['file']['type'] != 'image/jpeg' &&$_FILES['file']['type'] != 'image/jpg') {
             echo(json_encode(WSTReturn('只允许上传jpg,gif,png,bmp类型的文件')));die;
         }
         if ($_FILES['file']['size']*1 > '5097152') {
