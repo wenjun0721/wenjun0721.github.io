@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2019-05-21 19:28:38
+Date: 2019-05-22 16:45:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -90,12 +90,13 @@ CREATE TABLE `lm_collection` (
   UNIQUE KEY `id` (`id`),
   KEY `userId` (`userId`),
   KEY `sharerId` (`sharerId`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_collection
 -- ----------------------------
 INSERT INTO `lm_collection` VALUES ('6', '24', '1', '1', '1', '100', '1523587129', '0');
+INSERT INTO `lm_collection` VALUES ('7', '25', '1', '1', '0', '100', '1558492430', '1558492431');
 
 -- ----------------------------
 -- Table structure for lm_sharer
@@ -125,8 +126,8 @@ CREATE TABLE `lm_sharer` (
 -- ----------------------------
 -- Records of lm_sharer
 -- ----------------------------
-INSERT INTO `lm_sharer` VALUES ('24', '1', '测试锦集', '1', '1', '1', 'D:\\phpStudy\\WWW\\lm2\\upload/qrcode/1/20190513\\24.png', '6', '13', 'upload/love/2019042516594949842.jpg', '0', '100', '1', '1557298900', null);
-INSERT INTO `lm_sharer` VALUES ('25', '1', '测试锦集2', '1', '1', '1', null, '5', '3', 'upload/love/2019042515373776577.jpg', '0', '100', '1', '1557299388', null);
+INSERT INTO `lm_sharer` VALUES ('24', '1', '测试锦集', '1', '1', '1', 'D:\\phpStudy\\WWW\\lm2\\upload/qrcode/1/20190513\\24.png', '7', '13', 'upload/love/2019042516594949842.jpg', '0', '100', '1', '1557298900', null);
+INSERT INTO `lm_sharer` VALUES ('25', '1', '测试锦集2', '1', '1', '1', null, '7', '5', 'upload/love/2019042515373776577.jpg', '0', '100', '1', '1557299388', null);
 
 -- ----------------------------
 -- Table structure for lm_sharer_img
@@ -172,17 +173,21 @@ CREATE TABLE `lm_users` (
   `userName` varchar(255) DEFAULT NULL,
   `userAddress` varchar(255) DEFAULT NULL,
   `userImg` varchar(255) DEFAULT NULL,
-  `sex` varchar(255) DEFAULT NULL,
+  `gender` tinyint(1) DEFAULT '0' COMMENT '性别',
   `openId` varchar(255) DEFAULT NULL,
   `unionId` varchar(255) DEFAULT NULL,
+  `isok` tinyint(1) DEFAULT '1' COMMENT '是否有效',
   `add_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`userId`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `del_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`userId`),
+  UNIQUE KEY `userId` (`userId`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_users
 -- ----------------------------
-INSERT INTO `lm_users` VALUES ('1', '句号。', '广东茂名', 'http://thirdwx.qlogo.cn/mmopen/vi_32/b1wvblgVe3A3uM0ANtZw2tQHiaFGdQDMVEWxQe3SIEK0ZPCxsbbbKhbF3p4LdbsWaem2D0InibXXiaRp6KM0k4H5A/132', '1', '123', '456', '1567852367');
+INSERT INTO `lm_users` VALUES ('1', '句号。', '广东茂名', 'http://thirdwx.qlogo.cn/mmopen/vi_32/b1wvblgVe3A3uM0ANtZw2tQHiaFGdQDMVEWxQe3SIEK0ZPCxsbbbKhbF3p4LdbsWaem2D0InibXXiaRp6KM0k4H5A/132', '1', '123', '456', '1', '1567852367', null);
+INSERT INTO `lm_users` VALUES ('2', '句号。', '广东茂名', 'https://wx.qlogo.cn/mmopen/vi_32/ia1g5dpwhiaiciaQ82DkCV5wdxPaGdYx8FsZ5YAb2YYDI2zQibV0OVayNibHwzCSNiakJD9jIHDnomsSibA40ictN0kfdJA/132', '1', 'oEpE75BHswej1ZtMrUcK3pGN69Ro', '', '1', '1558513031', null);
 
 -- ----------------------------
 -- Table structure for lm_video
@@ -206,10 +211,10 @@ CREATE TABLE `lm_video` (
 -- ----------------------------
 -- Records of lm_video
 -- ----------------------------
-INSERT INTO `lm_video` VALUES ('1', 'upload/video/wenjun.mp3', '官方默认', '1', '1', '99', '0', '1523686210', null);
-INSERT INTO `lm_video` VALUES ('2', 'upload/video/phh.mp3', '我上传的', '1', '1', '100', '0', '1538268210', '1558349264');
-INSERT INTO `lm_video` VALUES ('3', 'upload/video/zwj.mp3', '官方测试', '1', '1', '100', '0', '1583982156', '1558349340');
-INSERT INTO `lm_video` VALUES ('4', 'upload/video/1/20190520/155835381136513.mp4', 'aa', '1', '0', '100', '0', '1558353815', '1558353856');
+INSERT INTO `lm_video` VALUES ('1', 'upload/video/wenjun.mp3', '官方默认', '0', '1', '99', '0', '1523686210', null);
+INSERT INTO `lm_video` VALUES ('2', 'upload/video/phh.mp3', '我上传的', '1', '1', '100', '0', '1538268210', '0');
+INSERT INTO `lm_video` VALUES ('3', 'upload/video/zwj.mp3', '官方测试', '0', '1', '100', '0', '1583982156', '0');
+INSERT INTO `lm_video` VALUES ('4', 'upload/video/1/20190520/155835381136513.mp4', 'aa', '1', '0', '100', '0', '1558353815', null);
 
 -- ----------------------------
 -- Table structure for lm_xp

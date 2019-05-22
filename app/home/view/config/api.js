@@ -1,6 +1,6 @@
-var domain = "http://www.tplm.com/home/";
-var domainUrl = "http://www.tplm.com/home/"
-var webUrl = "http://www.tplm.com/home/"
+var domain = "http://www.tplm.com//home/";
+var domainUrl = "http://www.tplm.com//home/"
+var webUrl = "http://www.tplm.com//home/"
 module.exports = {
   LookLove: domainUrl + "LookLove/index",
   LookLoveSharerCat: domainUrl + "LookLove/sharerCat",

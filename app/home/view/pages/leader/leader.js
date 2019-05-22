@@ -50,7 +50,6 @@ Page({
     }
     app.util.request(app.api.IndexSharerLsit, 'POST',obj).then((res) => {
       let rows = res.data.data || [];
-      console.log(rows)
       if (rows.length>0) {
         that.setData({
           lists: lists.concat(rows),

@@ -8,6 +8,9 @@ use think\Controller;
 use think\Log;
 use think\Session;
 class Base extends Controller {
+    public $appId = 'wx22c25fe332a7c5ee';
+    public $secret ='d223c831b0bd61464fe16720317995bc';
+    public $grant_type = 'authorization_code';
 	public function __construct(){
 		Session::set('userId','1');
 		define('SO','is_recom desc,sort asc,click desc,add_time desc,id desc');
@@ -18,9 +21,6 @@ class Base extends Controller {
 		define('SO_SORT_COMMON','sort asc,add_time desc,id desc');
 		define('SO_RECOM_COMMON','is_recom desc,sort asc,add_time desc,id desc');
 		define('WEBURL','http://www.tplm.com/');
-		public $appId = 'wx22c25fe332a7c5ee';
-	    public $secret ='d223c831b0bd61464fe16720317995bc';
-	    public $grant_type = 'authorization_code';
 	}
     protected function fetch($template = '', $vars = [], $replace = [], $config = [])
     {
@@ -37,15 +37,14 @@ class Base extends Controller {
         $datas=array(
             'appid'=>$this->appId,
             'secret'=>$this->secret,
-            'js_code'=>$this->DefineStrReplace($data['code']);
+            'js_code'=>$this->DefineStrReplace($data['code']),
             'grant_type'=>$this->grant_type
         );
         $encryptedData= urldecode($data['encryptedData']);
         $iv = $this->DefineStrReplace($data['iv']);
         $rs = json_decode($this->http($url,$datas),true);
-        // dump($rs);die;
         $rs = $this->DecryptData($rs['session_key'],$encryptedData,$iv);
-        if(isset($rs['openId']) && isset($rs['unionId'])){
+        if(isset($rs['openId'])){
             $rv['status'] = 1;
             $rv['rs'] = $rs;
             $rv['msg'] = '获取openid成功';

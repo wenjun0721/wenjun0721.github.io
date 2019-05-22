@@ -114,7 +114,7 @@ class Index extends Base
     public function getUserInfoData($res)
     {
         $user =Db::name('users')
-            ->where(['isok'=>1,'unionId'=>$res['unionId']])
+            ->where(['isok'=>1,'openId'=>$res['openId']])
             ->find();
         $rs = array();
         $userId = '';
@@ -122,10 +122,9 @@ class Index extends Base
             $data['userName'] = $res['nickName'];
             $data['userImg']  = $res['avatarUrl'];
             $data['openId']   = $res['openId'];
-            $data['unionId']  = $res['unionId'];
+            $data['unionId']  = isset($res['unionId'])?$res['unionId']:'';
             $data['gender']   = $res['gender'];
             $data['userAddress']  = $res['province'].$res['city'];
-            $data['gender']  = $res['gender'];
             $data['add_time']  = time();
             $userId = Db::name('users')->insertGetId($data);
             
@@ -134,7 +133,6 @@ class Index extends Base
         }
 
         $rs['openid'] = $res['openId'];
-        $rs['unionId'] = $res['unionId'];
         $rs['userId'] = $userId;
         return $rs;
     }

@@ -25,13 +25,11 @@ Page({
   Logins: function (e){
     var encryptedData = encodeURIComponent(e.detail.encryptedData);//一定要把加密串转成URI编码
     var iv = e.detail.iv;
-    //请求自己的服务器
-    console.log("请求自己的服务器")
     Login(e.detail.code, encryptedData, iv);
   }
 });
 
-function Login() {
+function Login(code, encryptedData, iv) {
   wx.showLoading({
     title: '正在登录...',
   })
@@ -47,7 +45,6 @@ function Login() {
         };
         //发起网络请求
         app.util.request(app.api.IndexgetOpenId, 'GET', obj).then((res) => {
-         
           if (res.data.status != -1) {
             try {
               wx.setStorageSync('openId', res.data.openid);

@@ -7,14 +7,6 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    
-    // 登录
-    // wx.login({
-    //   success: res => {
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //   }
-    // })
-    // 获取用户信息
     //发起网络请求
     let openId = wx.getStorageSync('openId');
     wx.getSetting({
@@ -23,7 +15,6 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              console.log(res)
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
 
@@ -41,6 +32,14 @@ App({
         }
       }
     })
+
+     //判断本地是否有openId
+    if (!openId) {
+      //如果没有直接跳到登录页面 登录成功后把openId储存到本地
+      wx.reLaunch({
+        url: '/pages/login',
+      });
+    }
   },
   globalData: {
     userInfo: null,
