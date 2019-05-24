@@ -31,6 +31,12 @@ class Mine extends Base
         if (empty(trim($name))) {
             return json_encode(WSTReturn('无效的锦集名称！'));
         }
+        //判断是否已经存在该锦集名称
+        $rs = $res = Db::name('sharer')->where(['userId'=>$userId,'name'=>$name])->count();
+        if ($rs) {
+            return json_encode(WSTReturn('已存在锦集名称！'));
+        }
+
         $data['userId'] = $userId;
         $data['name'] = $name;
         if ($id) {
@@ -38,12 +44,26 @@ class Mine extends Base
             $tips = '修改';
         }else{
             $data['add_time'] = time();
-            $res = Db::name('sharer')->insert($data);
+            $res = Db::name('sharer')->insertGetId($data);
             $tips = '添加';
         }
-        
+        //添加5张
+        $loveMine = input('loveMine/d',0);
+        if ($loveMine) {
+            $loveCatId = input('loveCatId/d',0);
+            $xpImg = Db::name('xp')->where(['userId'=>$userId,'loveCatId'=>$loveCatId,'isok'=>1,'isshow'=>1])->limit(5)->order(SO_SORT_COMMON)->select();
+            $_insert = [];
+            foreach ($xpImg as $k => $v) {
+                $_insert[$k]['xpId'] = $v['id'];
+                $_insert[$k]['sharerId'] = $res;
+                $_insert[$k]['userId'] = $v['userId'];
+                $_insert[$k]['img'] = $v['img'];
+                $_insert[$k]['add_time'] = time();
+            }
+            Db::name('sharer_img')->insertAll($_insert);
+        }
         if ($res) {
-            return json_encode(WSTReturn($tips.'成功',1));
+            return json_encode(WSTReturn($tips.'成功',1,$res));
         }else{
             return json_encode(WSTReturn($tips.'失败'));
         }

@@ -5,6 +5,7 @@
     "pages/leader/leader",
     "pages/love/add",
     "pages/love/love",
+    "pages/love/mine",
     "pages/other/other",
     "pages/other/sharerImg",
     "pages/other/sharerUser",
@@ -52,10 +53,10 @@
         "text": "编译回忆"
       },
       {
-        "pagePath": "pages/love/love",
+        "pagePath": "pages/love/mine",
         "iconPath": "assets/index/look_n1.png",
         "selectedIconPath": "assets/index/look_n.png",
-        "text": "回忆之旅"
+        "text": "我的回忆"
       },
       {
         "pagePath": "pages/other/other",

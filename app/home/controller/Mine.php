@@ -53,7 +53,7 @@ class Mine extends Base
         $m = new M();
         return $m->sharerImgadd();
     }
-
+    
     public function sharerVideoList(){
         $m = new M();
         $res = $m->sharerVideoList();

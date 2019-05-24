@@ -1,9 +1,13 @@
-var domainUrl = "https://im2.huwing.cn/home/"
-var webViewUrl = "https://im2.huwing.cn/"
+var domainUrl = "http://www.tplm.com/home/"
+var webViewUrl = "http://www.tplm.com/"
+// var domainUrl = "https://im2.huwing.cn/home/"
+// var webViewUrl = "https://im2.huwing.cn/"
 module.exports = {
   webViewUrl: webViewUrl,
   LookLove: domainUrl + "LookLove/index",
+  LookLoveMine: domainUrl + "LookLove/mine",
   LookLoveSharerCat: domainUrl + "LookLove/sharerCat",
+  LookLoveCat: domainUrl + "LookLove/loveCat",
   LookLoveSharer: domainUrl + "LookLove/sharer",
   Love_add: domainUrl + "Love/add",
   Love_delImg: domainUrl + "Love/delImg",

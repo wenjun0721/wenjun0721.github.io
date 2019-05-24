@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2019-05-22 16:45:24
+Date: 2019-05-24 19:41:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,9 +43,9 @@ CREATE TABLE `lm_background` (
 -- ----------------------------
 -- Records of lm_background
 -- ----------------------------
-INSERT INTO `lm_background` VALUES ('1', 'upload/background/1.jpg', '甜蜜', '0', '0', '0', '101', '1', '1', '1', '0', '1', null, '1523486289', null);
-INSERT INTO `lm_background` VALUES ('2', 'upload/background/2.jpg', '回忆', '0', '0', '1', '100', '1', '1', '1', '10', '1', null, '1568315237', null);
-INSERT INTO `lm_background` VALUES ('3', 'upload/background/3.jpg', '爱', '0', '0', '0', '100', '1', '1', '1', '0', '1', null, '1523698752', null);
+INSERT INTO `lm_background` VALUES ('1', 'upload/background/1.jpg', '甜蜜', '0', '0', '0', '101', '1', '1', '0', '0', '1', null, '1523486289', null);
+INSERT INTO `lm_background` VALUES ('2', 'upload/background/2.jpg', '回忆', '0', '0', '1', '100', '1', '1', '0', '10', '1', null, '1568315237', null);
+INSERT INTO `lm_background` VALUES ('3', 'upload/background/3.jpg', '爱', '0', '0', '0', '100', '1', '1', '0', '0', '1', null, '1523698752', null);
 
 -- ----------------------------
 -- Table structure for lm_background_cat
@@ -72,6 +72,31 @@ CREATE TABLE `lm_background_cat` (
 INSERT INTO `lm_background_cat` VALUES ('1', '0', '粉色回忆', '100', '0', '1', '1', '1523568712', null);
 INSERT INTO `lm_background_cat` VALUES ('2', '0', '甜甜蜜蜜', '100', '0', '1', '1', '1523675892', null);
 INSERT INTO `lm_background_cat` VALUES ('10', '1', '我的努力', '100', '0', '1', '1', '1557793524', null);
+
+-- ----------------------------
+-- Table structure for lm_cat
+-- ----------------------------
+DROP TABLE IF EXISTS `lm_cat`;
+CREATE TABLE `lm_cat` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT '0',
+  `name` varchar(255) DEFAULT NULL,
+  `is_recom` tinyint(1) DEFAULT '0' COMMENT '是否推荐',
+  `isok` tinyint(1) DEFAULT '1' COMMENT '是否被删除/无效',
+  `sort` varchar(255) DEFAULT '100',
+  `isshow` tinyint(1) DEFAULT '1' COMMENT '是否能被查看',
+  `add_time` int(11) DEFAULT NULL,
+  `del_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `userId` (`userId`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of lm_cat
+-- ----------------------------
+INSERT INTO `lm_cat` VALUES ('1', '2', '相册1', '0', '1', '100', '1', '1523589632', null);
 
 -- ----------------------------
 -- Table structure for lm_collection
@@ -121,13 +146,19 @@ CREATE TABLE `lm_sharer` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `userId` (`userId`)
-) ENGINE=MyISAM AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_sharer
 -- ----------------------------
-INSERT INTO `lm_sharer` VALUES ('24', '1', '测试锦集', '1', '1', '1', 'D:\\phpStudy\\WWW\\lm2\\upload/qrcode/1/20190513\\24.png', '7', '13', 'upload/love/2019042516594949842.jpg', '0', '100', '1', '1557298900', null);
+INSERT INTO `lm_sharer` VALUES ('24', '1', '测试锦集', '1', '1', '1', 'D:\\phpStudy\\WWW\\lm2\\upload/qrcode/1/20190513\\24.png', '10', '13', 'upload/love/2019042516594949842.jpg', '0', '100', '1', '1557298900', null);
 INSERT INTO `lm_sharer` VALUES ('25', '1', '测试锦集2', '1', '1', '1', null, '7', '5', 'upload/love/2019042515373776577.jpg', '0', '100', '1', '1557299388', null);
+INSERT INTO `lm_sharer` VALUES ('81', '2', '测试', '1', '1', '0', null, '0', '0', null, '0', '100', '1', '1558523949', null);
+INSERT INTO `lm_sharer` VALUES ('86', '2', '524', '1', '1', '0', null, '0', '0', null, '0', '100', '1', '1558689244', null);
+INSERT INTO `lm_sharer` VALUES ('89', '2', '555', '1', '1', '0', null, '0', '0', null, '0', '100', '1', '1558692819', null);
+INSERT INTO `lm_sharer` VALUES ('90', '2', '测试123', '1', '1', '0', null, '0', '0', null, '0', '100', '1', '1558694343', null);
+INSERT INTO `lm_sharer` VALUES ('91', '2', '1111', '1', '1', '0', null, '0', '0', null, '0', '100', '1', '1558694456', null);
+INSERT INTO `lm_sharer` VALUES ('92', '2', '锦集2', '3', '1', '0', null, '0', '0', null, '0', '100', '1', '1558694927', null);
 
 -- ----------------------------
 -- Table structure for lm_sharer_img
@@ -150,19 +181,35 @@ CREATE TABLE `lm_sharer_img` (
   KEY `userId` (`userId`),
   KEY `sharerId` (`sharerId`),
   KEY `xpId` (`xpId`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_sharer_img
 -- ----------------------------
 INSERT INTO `lm_sharer_img` VALUES ('59', '25', '1', '90', 'upload/love/2019042418053888860.jpg', '3', '1', '0', '1', '1557299397', null);
 INSERT INTO `lm_sharer_img` VALUES ('60', '25', '1', '92', 'upload/love/2019042515373776577.jpg', '2', '1', '0', '1', '1557299398', null);
+INSERT INTO `lm_sharer_img` VALUES ('61', '90', '2', '106', 'upload/love/20190524/2019052416130487429.jpg', '5', '1', '0', '1', '1558694343', null);
+INSERT INTO `lm_sharer_img` VALUES ('62', '90', '2', '101', 'upload/love/20190524/2019052415265980236.jpg', '4', '1', '0', '1', '1558694343', null);
+INSERT INTO `lm_sharer_img` VALUES ('63', '90', '2', '100', 'upload/love/20190524/2019052415264488360.jpg', '3', '1', '0', '1', '1558694343', null);
 INSERT INTO `lm_sharer_img` VALUES ('53', '24', '1', '78', 'upload/love/2019041717492378989.jpg', '5', '1', '0', '1', '1557298916', null);
 INSERT INTO `lm_sharer_img` VALUES ('54', '24', '1', '81', 'upload/love/2019041717534098169.jpg', '4', '1', '0', '1', '1557298917', null);
 INSERT INTO `lm_sharer_img` VALUES ('55', '24', '1', '85', 'upload/love/2019041717562219374.jpg', '3', '1', '0', '1', '1557298918', null);
 INSERT INTO `lm_sharer_img` VALUES ('56', '24', '1', '93', 'upload/love/2019042516594949842.jpg', '1', '1', '0', '1', '1557298919', null);
 INSERT INTO `lm_sharer_img` VALUES ('57', '24', '1', '94', 'upload/love/20190508/2019050814504624727.jpg', '2', '1', '0', '1', '1557298920', null);
 INSERT INTO `lm_sharer_img` VALUES ('58', '25', '1', '89', 'upload/love/2019042418001368071.jpg', '1', '1', '0', '1', '1557299396', null);
+INSERT INTO `lm_sharer_img` VALUES ('64', '90', '2', '99', 'upload/love/20190522/2019052219002196823.jpg', '2', '1', '0', '1', '1558694343', null);
+INSERT INTO `lm_sharer_img` VALUES ('65', '90', '2', '98', 'upload/love/20190508/2019050816052173325.jpg', '1', '1', '0', '1', '1558694343', null);
+INSERT INTO `lm_sharer_img` VALUES ('66', '92', '2', '106', 'upload/love/20190524/2019052416130487429.jpg', '5', '1', '0', '1', '1558694927', null);
+INSERT INTO `lm_sharer_img` VALUES ('67', '92', '2', '101', 'upload/love/20190524/2019052415265980236.jpg', '4', '1', '0', '1', '1558694927', null);
+INSERT INTO `lm_sharer_img` VALUES ('68', '92', '2', '100', 'upload/love/20190524/2019052415264488360.jpg', '1', '1', '0', '1', '1558694927', null);
+INSERT INTO `lm_sharer_img` VALUES ('69', '92', '2', '99', 'upload/love/20190522/2019052219002196823.jpg', '3', '1', '0', '1', '1558694927', null);
+INSERT INTO `lm_sharer_img` VALUES ('70', '92', '2', '98', 'upload/love/20190508/2019050816052173325.jpg', '2', '1', '0', '1', '1558694927', null);
+INSERT INTO `lm_sharer_img` VALUES ('71', '92', '2', '103', 'upload/love/20190524/2019052415453312853.jpg', '100', '1', '0', '0', '1558697648', '1558697926');
+INSERT INTO `lm_sharer_img` VALUES ('72', '92', '2', '95', 'upload/love/20190508/2019050815204110812.jpg', '100', '1', '0', '1', '1558697744', null);
+INSERT INTO `lm_sharer_img` VALUES ('73', '92', '2', '104', 'upload/love/20190524/2019052416121872941.jpg', '100', '1', '0', '1', '1558697780', null);
+INSERT INTO `lm_sharer_img` VALUES ('74', '92', '2', '96', 'upload/love/20190508/2019050815390185081.jpg', '100', '1', '0', '1', '1558697878', null);
+INSERT INTO `lm_sharer_img` VALUES ('75', '92', '2', '102', 'upload/love/20190524/2019052415304163753.jpg', '100', '1', '0', '1', '1558697890', null);
+INSERT INTO `lm_sharer_img` VALUES ('76', '92', '2', '97', 'upload/love/20190508/2019050815531041992.jpg', '100', '1', '0', '0', '1558697940', '1558697949');
 
 -- ----------------------------
 -- Table structure for lm_users
@@ -239,7 +286,7 @@ CREATE TABLE `lm_xp` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `userId` (`userId`)
-) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lm_xp
@@ -252,7 +299,15 @@ INSERT INTO `lm_xp` VALUES ('90', '1', '测试2', '开心', '每一天', 'upload
 INSERT INTO `lm_xp` VALUES ('92', '1', '测试一下', '我自己写的', '给自己加油，不要后悔太多！', 'upload/love/2019042515373776577.jpg', '0', '0', '50', '1', '1', '0', '25', '1556177874', '0');
 INSERT INTO `lm_xp` VALUES ('93', '1', '小鱼儿', '花无缺', '爱无非是，\n初见你心情，\n久见你心安！', 'upload/love/2019042516594949842.jpg', '0', '0', '50', '1', '1', '0', '24', '1556182790', null);
 INSERT INTO `lm_xp` VALUES ('94', '1', '测试', '测试1', '5月7号了啊', 'upload/love/20190508/2019050814504624727.jpg', '0', '0', '100', '1', '1', '0', '24', '1557298253', null);
-INSERT INTO `lm_xp` VALUES ('95', '1', '测试2', '测试3', '15点19分钟38秒', 'upload/love/20190508/2019050815204110812.jpg', '0', '0', '100', '1', '1', '0', '0', '1557300043', null);
-INSERT INTO `lm_xp` VALUES ('96', '1', '测试3', null, '加油努力', 'upload/love/20190508/2019050815390185081.jpg', '0', '0', '100', '1', '1', '0', '0', '1557301145', null);
-INSERT INTO `lm_xp` VALUES ('97', '1', '测试添加1', '测试添加2', '搜索啊啊是的', 'upload/love/20190508/2019050815531041992.jpg', '0', '0', '100', '1', '1', '0', '0', '1557302456', null);
-INSERT INTO `lm_xp` VALUES ('98', '1', 'wj', 'zwj', '测试的', 'upload/love/20190508/2019050816052173325.jpg', '0', '0', '100', '1', '1', '0', '0', '1557302723', null);
+INSERT INTO `lm_xp` VALUES ('95', '2', '测试2', '测试3', '15点19分钟38秒', 'upload/love/20190508/2019050815204110812.jpg', '0', '0', '100', '1', '1', '0', '92', '1557300043', null);
+INSERT INTO `lm_xp` VALUES ('96', '2', '测试3', null, '加油努力', 'upload/love/20190508/2019050815390185081.jpg', '0', '0', '100', '1', '1', '0', '92', '1557301145', null);
+INSERT INTO `lm_xp` VALUES ('97', '2', '测试添加1', '测试添加2', '搜索啊啊是的', 'upload/love/20190508/2019050815531041992.jpg', '0', '0', '100', '1', '1', '0', '0', '1557302456', null);
+INSERT INTO `lm_xp` VALUES ('98', '2', 'wj', 'zwj', '测试的', 'upload/love/20190508/2019050816052173325.jpg', '0', '0', '100', '1', '1', '0', '0', '1557302723', null);
+INSERT INTO `lm_xp` VALUES ('99', '2', '测试', '123', '123', 'upload/love/20190522/2019052219002196823.jpg', '0', '0', '100', '1', '1', '0', '0', '1558522822', null);
+INSERT INTO `lm_xp` VALUES ('100', '2', '测试', '2', '123456', 'upload/love/20190524/2019052415264488360.jpg', '0', '0', '100', '1', '1', '0', '0', '1558682806', null);
+INSERT INTO `lm_xp` VALUES ('101', '2', '阿萨德', '阿萨德', '阿诗丹顿艾斯德斯 阿萨德啊阿萨德 阿萨德', 'upload/love/20190524/2019052415265980236.jpg', '0', '0', '100', '1', '1', '0', '0', '1558682830', null);
+INSERT INTO `lm_xp` VALUES ('102', '2', '阿萨德', null, '阿诗丹顿阿萨德阿萨德', 'upload/love/20190524/2019052415304163753.jpg', '0', '0', '100', '1', '1', '1', '92', '1558683050', null);
+INSERT INTO `lm_xp` VALUES ('103', '2', '啊的', '萨顶顶', '撒倒萨大飒飒的大师', 'upload/love/20190524/2019052415453312853.jpg', '0', '0', '100', '1', '1', '1', '0', '1558683934', null);
+INSERT INTO `lm_xp` VALUES ('104', '2', 'asd ', 'asd', 'asd', 'upload/love/20190524/2019052416121872941.jpg', '0', '0', '100', '1', '1', '1', '92', '1558685539', null);
+INSERT INTO `lm_xp` VALUES ('105', '2', 'csad', 'ads', 'asd', 'upload/love/20190524/2019052416124092640.jpg', '0', '0', '100', '1', '1', '1', '0', '1558685563', null);
+INSERT INTO `lm_xp` VALUES ('106', '2', 'asd', 'ads', 'asd', 'upload/love/20190524/2019052416130487429.jpg', '0', '0', '100', '1', '1', '0', '0', '1558685585', null);

@@ -1,0 +1,40 @@
+<view class="container">
+    <view class="page__hd">
+    	<picker bindchange="bindPickerChange" value="{{sharerIndex}}" range="{{sharerArr}}">
+	        <view class="page__hd-pagetitle center">{{sharerArr[sharerIndex]}}</view>
+	    </picker>
+    </view>
+        <scroll-view class="page__bd" scroll-y="true">
+            <view class="page__bd-banner">
+                <block wx:for="{{loves}}" wx:key="{{loves}}">
+                    <image bindtap='previewImage' data-index='{{index}}' data-src='{{item.img}}' style="{{((index+1)%3) == 0?'margin-right:0':''}}" class="bannerImg" src="{{item.img}}" alt="" mode="aspectFill" />
+                </block>
+            </view>
+    </scroll-view>
+</view>
+<view class='flex' style="position: fixed;z-index: 99;width: 80%;bottom: 1rem;padding: 1%;display: block;left: 9%;text-align: center;">
+	<button hidden="{{!hiddenModal}}" bindtap='sharer'>制作锦集，分享好友</button>
+</view>
+
+<!--添加弹窗 start-->
+  <view class='toast-box' hidden='{{!showModal}}'>
+    <view class='toastbg' ></view>
+    <view class='showToast'>
+      <view class='toast-title flex flex-ac flex-zBetween'>
+      	<text style="margin-left: 7.5rem;">新增锦集</text>
+        <text class='button1' style='margin-left: 4.5rem;color: red' bindtap='hideModal'>取消</text>
+      </view>
+      <view class='toast-main'>
+        <view class='toast-input'>
+          <text>锦集名称：</text>
+          <input type="text" placeholder="请填写锦集名称"  data-role="name" value="{{name}}" bindinput="listenerInput" />
+        </view>
+      </view>
+      <view class='toast-button'>
+        <view class='button2'>
+          <button bindtap='saveSharer'>保存并且制作锦集</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--弹窗 end-->

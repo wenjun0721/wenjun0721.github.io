@@ -393,8 +393,8 @@ Page({
         backgroundText:'请选择一张您喜欢的背景图哦',
       })
       wx.showToast({
-       title: '确定成功,可在回忆之旅看看效果哦',
-       icon: 'success',
+       title: '确定成功,已收藏在我的回忆中了哦',
+       icon: 'none',
        duration: 1000
       })
       this.reset();

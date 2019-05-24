@@ -27,9 +27,24 @@ class Looklove extends Base
     	echo(json_encode(WSTReturn('success',1,$res)));die;
     }
 
+    public function loveCat(){
+        $l = new L();
+        $res = $l->loveCat();
+        if (empty($res)) {
+            echo(json_encode(WSTReturn('暂无内容')));die;
+        }
+        echo(json_encode(WSTReturn('success',1,$res)));die;
+    }
+
     public function sharer(){
         $l = new L();
         $res = $l->sharer();
         echo(json_encode(WSTReturn('success',1,$res)));die;
+    }
+
+    public function mine(){
+        $l = new L();
+        $res = $l->mine();
+        return $res;
     }
 }

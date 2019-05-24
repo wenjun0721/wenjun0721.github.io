@@ -17,6 +17,7 @@ Page({
     selectIds:[],
     buttomModal:'addSharerImg',
     buttomModalText:'添加相片',
+    tipsText:'单击放大/长按移动',
     delShow:true,
     yu:false,
     videoIndex:0,
@@ -105,8 +106,8 @@ Page({
   },
 
   hideXpModal:function(){
-    wx.navigateTo({
-      url: './sharer',
+    wx.navigateBack({
+      delta: 1
     })
   },
 
@@ -129,6 +130,7 @@ Page({
       buttomModal:'delSharerImg',
       buttomModalText:'删除',
       delShow:false,
+      tipsText:'点击图片即可选中',
     })
   },
   Ok:function(){
@@ -140,7 +142,8 @@ Page({
       changeImgBtn:'previewImage',
       buttomModal:'addSharerImg',
       buttomModalText:'添加相片',
-      delShow:true
+      delShow:true,
+      tipsText:'单击放大/长按移动',
     })
   },
 

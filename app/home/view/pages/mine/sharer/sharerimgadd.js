@@ -15,8 +15,14 @@ Page({
       icon: 'loading',
       duration: 500
     })
+    this.setData({
+      loveCatId:0,
+      sharerIndex:0,
+      page:0,
+      userImgList: [],
+    })
     // app.BMGMUSIC.stop();//关闭音乐的
-    this.getUserXp();
+    this.getsharerCat();
   },
 
   onLoad: function (options) {
@@ -27,38 +33,90 @@ Page({
       limitCountXP:options.limitCountXP,
     })
   },
-  getUserXp:function(e){
+  // getUserXp:function(e){
+  //   var that = this;
+  //   let userId = wx.getStorageSync('userId');
+  //   let obj = {
+  //     userId: userId, //系统的
+  //     sharerId:that.data.sharerId,
+  //   }
+  //   app.util.request(app.api.MineAllXp, 'POST', obj).then((res) => {
+  //     if (res.status && res.status == 1) {
+  //       that.setData({
+  //         userImgList: res.data,
+  //         selectIds:[],
+  //       })
+  //     }else{
+  //        that.setData({
+  //         userImgList: [],
+  //       })
+  //       wx.showToast({
+  //        title: res.msg,
+  //        icon: 'none',
+  //        duration: 2000
+  //       })
+  //     }
+  //   }).catch((error) => {
+  //     console.log(error)
+  //   })
+  // },
+
+  // hideXpModal:function(){
+  //   var index = (this.data.index)*1;
+  //   wx.navigateTo({
+  //     url: './sharerimg?sharerId=' +this.data.sharerId+'&index='+index
+  //   })
+  // },
+  // 
+  getUserXp:function(){
     var that = this;
     let userId = wx.getStorageSync('userId');
+    let page = that.data.page;
+    let sharerId = that.data.sharerId;
+    let userImgList = that.data.userImgList;
+    page++;
     let obj = {
       userId: userId, //系统的
-      sharerId:that.data.sharerId,
+      loveCatId:that.data.loveCatId,
+      page:page,
+      pageSize:30,
+      sharerId:sharerId
     }
-    app.util.request(app.api.MineAllXp, 'POST', obj).then((res) => {
+    app.util.request(app.api.LookLoveMine, 'POST', obj).then((res) => {
       if (res.status && res.status == 1) {
-        that.setData({
-          userImgList: res.data,
-          selectIds:[],
-        })
+        let rows = res.data.data || [];
+        if (rows.length>0) {
+          var loves = userImgList.concat(rows);
+          that.setData({
+            userImgList: loves,
+            page: page,
+            selectIds:[],
+          })
+        }else{
+          wx.showToast({
+            title: '没有更多啦',
+            icon: 'none',
+            duration: 1000
+          })
+        }
+        
       }else{
-         that.setData({
-          userImgList: [],
-        })
         wx.showToast({
          title: res.msg,
          icon: 'none',
          duration: 2000
+        })
+        that.setData({
+          userImgList: [],
         })
       }
     }).catch((error) => {
       console.log(error)
     })
   },
-
   hideXpModal:function(){
-    var index = (this.data.index)*1;
-    wx.navigateTo({
-      url: './sharerimg?sharerId=' +this.data.sharerId+'&index='+index
+    wx.navigateBack({
+      delta: 1
     })
   },
   checkimg:function (e) {
@@ -114,6 +172,8 @@ Page({
               if (res.status && res.status == 1) {
                 that.setData({
                   countXp:that.data.countXp*1 + that.data.selectIds.length,
+                  userImgList:[],
+                  page:0
                 })
                 wx.showToast({
                   title: '添加成功',
@@ -144,5 +204,53 @@ Page({
     })
   },
 
+  getsharerCat:function(){
+    var that = this;
+    let userId = wx.getStorageSync('userId');
+    let obj = {
+      userId: userId,
+    }
+    app.util.request(app.api.LookLoveCat, 'POST', obj).then((res) => {
+      if (res.status && res.status == 1) {
+        var sharerList = res.data.arr;
+        var sharerArr = sharerList.map(item => {
+          return item.name;
+        })
+        that.setData({
+          sharerArr: sharerArr,
+          sharerList: sharerList,
+          sharerIndex:that.data.sharerIndex,
+        })
+        that.getUserXp();
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+
+  bindPickerChange:function(e){
+    var sharerList =this.data.sharerList;
+    var select_key = e.detail.value;
+    this.setData({
+      loveCatId:sharerList[select_key]['id'],
+      sharerIndex:select_key,
+      userImgList:[],
+      page:0
+    })
+    this.getUserXp();
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 500
+    })
+  },
+  onReachBottom: function () {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 1000
+    })
+    this.getUserXp();
+  },
 })
 

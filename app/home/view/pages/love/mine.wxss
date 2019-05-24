@@ -1,0 +1,212 @@
+/**index.wxss**/
+.page__hd {
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+    background: #ffffff;
+  }
+  .page__hd:before {
+    content: "";
+    position: absolute;
+    top: 80rpx;
+    left: 0;
+    right: 0;
+    border-top: 1rpx solid #F6F6F6;
+  }
+  .page__hd-pagetitle {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #444;
+  }
+  .page__bd {
+  }
+  .page__bd-head {
+    height: 128rpx;
+    margin-left: 30rpx;
+    display: flex;
+  }
+  .page__bd-head image {
+    width: 66rpx;
+    height: 66rpx;
+    line-height: 66rpx;
+    border-radius: 50%;
+  }
+  .artic-author {
+    display: inline-block;
+    margin-top: 8rpx;
+    /* margin-bottom: 40rpx; */
+    /* line-height: 28rpx; */
+    margin-left: 28rpx; 
+    font-size: 28rpx; 
+    color:#444;
+  }
+  .page__bd-banner {
+    width: 98%;
+    margin: 0 auto;
+  }
+  .page__bd-banner image {
+    width:32.5%;
+    height:10rem;
+    margin-buttom:1rem;
+    margin-right: 1%;
+    border-radius: 15rpx;
+  }
+  .page__bd-middle {
+    width: 688rpx;
+  }
+  .page__bd-middle .artic-title, .page__bd-middle .artic-content {
+    margin-left: 34rpx;
+  }
+  .page__bd-middle .artic-title, .page__bd-middle .artic-content {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box; 
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+  } 
+  .page__bd-middle .artic-title {
+    margin-top: 32rpx;
+    margin-bottom: 32rpx;
+    font-size: 44rpx;
+    color: #444;
+    font-weight: bold;
+   
+  }
+  .page__bd-middle .artic-content {
+    font-size: 32rpx;
+    color: #7F7F7F;
+    margin-bottom: 28rpx;
+  }
+  .page__bd-foot {
+    height: 92rpx;
+  }
+  .page__bd-foot .foot-lt, .page__bd-foot .foot-rt {
+    color: #C6C6C6;
+    font-size: 28rpx;
+  }
+  .page__bd-foot .foot-lt {
+    margin-left: 34rpx;  
+  }
+  .page__bd-foot .foot-rt {
+    text-align: right;
+    margin-right: 72rpx;
+  }
+  .foot-rt .finger {
+  
+  }
+  .finger image {
+    width: 28rpx;
+    height: 28rpx;
+    transform: translate(44rpx, -42rpx);
+  }
+  .page__bd-foot:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 18rpx;
+    border-top: 16rpx solid #F6F6F6;
+  }
+
+
+  button {
+    font-size:0.69rem;
+    color:#fff;
+    padding:2px 20px;
+    display:inline-block;
+    background-color:#FFC0CB;
+    border-radius:50px;
+    margin-left:0.5rem;
+    border:none;
+  }
+.toast-box {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index:1;
+}
+
+.toastbg {
+  opacity: 0.2;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.showToast {
+  position: absolute;
+  opacity: 1;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 42%;
+}
+
+.toast-title {
+  background-color: #fff;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  border-top-right-radius: 16rpx;
+  border-top-left-radius: 16rpx;
+  text-align: center;
+}
+
+.toast-title text {
+  font-size: 14px;
+  color: #333;
+}
+
+.toast-main {
+  background-color: white;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.toast-input {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-content: center;
+}
+.toast-input input {
+  text-align: left;
+  font-size: 12px;
+  color: #333;
+  flex: 1;
+}
+
+.toast-input text {
+  width: 4rem;
+  text-align: left;
+  margin-right: 0.5rem;
+  font-size: 12px;
+  color: #333;
+  line-height: 24px;
+}
+
+.toast-button {
+  display: flex;
+}
+
+.button2 {
+  width: 100%;
+  background: #fff;
+  text-align: center;
+  border-radius:0 0 16rpx 16rpx;
+
+}
+
+.button2 button {
+    flex: 1;
+    border-radius: 50px;
+    text-align: center;
+    background-color: #00abe4;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 0.3rem 1rem;
+    margin: 0.35rem;
+    margin-top: 0.65rem
+}
