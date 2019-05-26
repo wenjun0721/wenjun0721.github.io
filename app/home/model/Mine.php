@@ -321,13 +321,15 @@ class Mine extends Base
     // }
 
     public function userXp(){
-        $userId = input('userId/d',0);  
+        $userId = input('userId/d',0);
+        $catId = input('catId/d',0);   
         $where['userId']   = $userId;
         $where['isshow']   = 1;
         $where['isok']   = 1;
+        $where['loveCatId']   = $catId;
         $res = Db::name('xp')->where($where)->order(SO_SORT_COMMON)->select();
         if (empty($res)) {
-            return json_encode(WSTReturn('亲，你没有任何的相片哦'));
+            return json_encode(WSTReturn('亲，没有任何的相片哦'));
         }else{
             foreach ($res as $k => $v) {
                 $res[$k]['img'] = WEBURL.$v['img'];
@@ -342,7 +344,7 @@ class Mine extends Base
         $userId = input('userId/d',0);
         $ids = input('Ids','');
         if (empty($ids)) {
-            return json_encode(WSTReturn('请选择要删除的图片'));
+            return json_encode(WSTReturn('请选择要删除的回忆'));
         }
         $where['userId']   = $userId;
         $where['id'] = ['in',$ids];
@@ -357,6 +359,17 @@ class Mine extends Base
         $where['isok']   = 1;
         $res = Db::name('background_cat')->where($where)->order('add_time desc, catId desc')->select();
         $addArr = ['catId'=>'0','catName'=>'默认分类'];
+        array_unshift($res, $addArr);
+        return json_encode(WSTReturn('success',1,$res));
+    }
+
+    public function userLC(){
+        $userId = input('userId/d',0);  
+        $where['userId']   = $userId;
+        $where['isshow']   = 1;
+        $where['isok']   = 1;
+        $res = Db::name('cat')->where($where)->order(SO_SORT_COMMON)->select();
+        $addArr = ['id'=>'0','name'=>'个人最新'];
         array_unshift($res, $addArr);
         return json_encode(WSTReturn('success',1,$res));
     }
@@ -430,6 +443,37 @@ class Mine extends Base
         }
     }
 
+    public function userAddLC()
+    {
+        $userId = input('userId/d',0);
+        $id  = input('catId/d',0);
+        $showModalName = input('showModalName');
+        if (empty(trim($showModalName)) || trim($showModalName) == '个人最新') {
+            return json_encode(WSTReturn('无效的分类名称！'));
+        }
+        //先查询是否有相同的名称
+        $catNameCount = Db::name('cat')->where(['userId'=>$userId,'name'=>$showModalName])->count();
+        if ($catNameCount) {
+            return json_encode(WSTReturn('亲，已存在该分类名称！'));
+        }
+        $data['name'] = trim($showModalName);
+        $data['userId'] = $userId;
+        if ($id) {
+            $res = Db::name('cat')->where(['id'=>$id])->update($data);
+            $tips = '修改';
+        }else{
+            $data['add_time'] = time();
+            $res = Db::name('cat')->insert($data);
+            $tips = '新增';
+        }
+        
+        if ($res) {
+            return json_encode(WSTReturn($tips.'成功',1));
+        }else{
+            return json_encode(WSTReturn($tips.'失败'));
+        }
+    }
+
     public function userDelBC()
     {
         $userId = input('userId/d',0);
@@ -448,6 +492,24 @@ class Mine extends Base
         }
     }
 
+    public function userDelLC()
+    {
+        $userId = input('userId/d',0);
+        $id  = input('catId/d',0);
+        if (empty($id)) {
+            return json_encode(WSTReturn('无效的分类！'));
+        }
+        $where['userId'] = $userId;
+        $where['id'] = $id;
+        $res = Db::name('cat')->where($where)->delete();
+        if ($res) {
+            Db::name('xp')->where(['loveCatId'=>$id])->update(['loveCatId'=>0]);
+            return json_encode(WSTReturn('删除成功',1));
+        }else{
+            return json_encode(WSTReturn('删除失败'));
+        }
+    }
+
     public function userBM()
     {
         $userId = input('userId/d',0);
@@ -459,6 +521,20 @@ class Mine extends Base
         $where['userId']   = $userId;
         $where['id'] = ['in',$ids];
         Db::name('background')->where($where)->update(['catId'=>$catId]);
+        return json_encode(WSTReturn('success',1));
+    }
+
+    public function userLM()
+    {
+        $userId = input('userId/d',0);
+        $id = input('moveCatId/d',0);
+        $ids = input('Ids','');
+        if (empty($ids)) {
+            return json_encode(WSTReturn('请选择要移动的回忆'));
+        }
+        $where['userId']   = $userId;
+        $where['id'] = ['in',$ids];
+        Db::name('xp')->where($where)->update(['loveCatId'=>$id]);
         return json_encode(WSTReturn('success',1));
     }
 

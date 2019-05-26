@@ -158,6 +158,7 @@ Page({
     app.util.request(app.api.IndexSharerLove, 'POST',obj).then((res) => {
       wx.showToast({
         title: '感谢你的点赞，么么哒',
+        icon: 'none',
         duration: 500
       })
     })

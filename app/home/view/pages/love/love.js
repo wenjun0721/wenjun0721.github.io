@@ -120,23 +120,30 @@ Page({
     var sharerId = that.data.sharerId;
     var sharerName =that.data.sharerName;
     var title = '我分享的锦集：'+sharerName+'，为我打call一下哦，么么哒。'
-    return {
-      title: title,
-      path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId'),
-      success: (res) => {
-        //修改数据库
-        if (sharerId != 0) {
-          app.util.request(app.api.LookLoveSharer, 'POST', {'sharerId':sharerId}).then((rs) => {
-            console.log("转发成功");
-          }).catch((error) => {
-            console.log(error)
-          })
+    //修改数据库
+    if (sharerId != 0) {
+      app.util.request(app.api.LookLoveSharer, 'POST', {'sharerId':sharerId}).then((rs) => {
+        return {
+          title: title,
+          path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId'),
+          imageUrl:rs.data,
+          success: (res) => {
+            console.log("转发成功", res);
+          },
+          fail: (res) => {
+            console.log("转发失败", res);
+          }
         }
-      },
-      fail: (res) => {
-        console.log("转发失败", res);
-      }
+      }).catch((error) => {
+        console.log(error)
+      })
     }
+  },
+
+  fh:function(){
+    wx.navigateBack({
+      delta: 1
+    })
   }
 
 })

@@ -110,12 +110,12 @@ Page({
     let selectIds = this.data.selectIds || [];
     if (selectIds.length == 0) {
       wx.showToast({
-        title: '请点击选中要删除的锦集',
+        title: '请点击选中要删除的收藏',
         icon: 'none'
       })
     } else {
       wx.showModal({
-        title: '确定删除选中的锦集吗？',
+        title: '确定删除选中的收藏吗？',
         content: '',
         success: function (res) {
           if (res.cancel) {
@@ -154,6 +154,11 @@ Page({
     }
   },
 
+  fh:function(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 
   detailShare:function(e){
     var sharerid = e.currentTarget.dataset.sharerid;
@@ -197,10 +202,21 @@ Page({
 
   },
 
-  /**
+   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var title = '点点爱分享'
+    return {
+      title: title,
+      path: '/pages/leader/leader',
+      imageUrl:app.webViewUrl+'uupload/index/index.jpg',
+      success: (res) => {
+        console.log("转发成功");
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
   }
 })

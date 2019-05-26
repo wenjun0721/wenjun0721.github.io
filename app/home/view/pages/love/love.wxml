@@ -1,9 +1,11 @@
-<view class='flex' style="position: fixed;z-index: 99;right: 0.5rem;bottom: 1.5rem">
+<view class='flex' style="position: fixed;z-index: 99;right: 0.5rem;bottom: 1.5rem" hidden='true'>
 	<picker bindchange="bindPickerChange" value="{{sharerIndex}}" range="{{sharerArr}}">
 		<image style="width: 3rem;height: 2.8rem;" src='../../assets/images/logo.png'></image>
 	</picker> 
 </view>
- 
+ <view class='flex' style="position: fixed;z-index: 99;left:40%;bottom: 0" bindtap='fh'>
+	返回上一页
+</view>
 <swiper class="swiper"  autoplay="true" interval="5000" duration="1000" circular="true" current ="{{current}}">
   <block wx:for="{{loves}}" wx:for-index="index" wx:key="{{loves}}">  
     <swiper-item>  

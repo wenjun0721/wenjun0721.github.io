@@ -116,6 +116,23 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var title = '点点爱分享'
+    return {
+      title: title,
+      path: '/pages/leader/leader',
+      imageUrl:app.webViewUrl+'uupload/index/index.jpg',
+      success: (res) => {
+        console.log("转发成功");
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
+  },
 
+  fh:function(){
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

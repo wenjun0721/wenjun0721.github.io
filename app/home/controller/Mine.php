@@ -105,6 +105,11 @@ class Mine extends Base
         return $m->userBC();
     }
 
+    public function userLC(){
+        $m = new M();
+        return $m->userLC();
+    }
+
     public function userBX(){
         $m = new M();
         return $m->userBX();
@@ -120,14 +125,29 @@ class Mine extends Base
         return $m->userAddBC();
     }
 
+    public function userAddLC(){
+        $m = new M();
+        return $m->userAddLC();
+    }
+
     public function userDelBC(){
         $m = new M();
         return $m->userDelBC();
     }
 
+    public function userDelLC(){
+        $m = new M();
+        return $m->userDelLC();
+    }
+
     public function userBM(){
         $m = new M();
         return $m->userBM();
+    }
+
+    public function userLM(){
+        $m = new M();
+        return $m->userLM();
     }
 
     public function userUpFile(){

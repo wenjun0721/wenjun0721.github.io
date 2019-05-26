@@ -86,10 +86,14 @@ class Love extends Base
 		    }
 		}
 		$arr = implode("\n", $kk);
-
-		$content = $data['toUser'].':'."\n"."\n";
+        $content = '';
+        if ($data['toUser']) {
+            $content .= $data['toUser'].':'."\n"."\n";
+        }
 		$content .=$arr;
-		$content .= "\n"."\n"."-------".$data['fromUser'].'。';
+        if ($data['fromUser']) {
+            $content .= "\n"."\n"."-------".$data['fromUser'].'。';
+        }
 		$lineArr = explode("\n", $content);
 		$allnum =count($lineArr);
 		if ($allnum*1 >27) {
@@ -100,7 +104,7 @@ class Love extends Base
 		$image = \think\Image::open($backGroundImg);
 		//生成图片位置
         $file = date('Ymd');
-        $file_path = './upload/love/'.$file;
+        $file_path = './upload/love/'.$inputDate['userId'].'/'.$file;
         if(!file_exists($file_path))
         {
             mkdir ($file_path,0777,true);

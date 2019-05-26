@@ -86,8 +86,8 @@ flex-shrink: 0;
 
 .toast-title {
   background-color: #fff;
-  /*padding-top: 2vh;
-  padding-bottom: 2vh;*/
+  padding-top: 2vh;
+  padding-bottom: 2vh;
   border-top-right-radius: 16rpx;
   border-top-left-radius: 16rpx;
   text-align: center;
@@ -174,8 +174,7 @@ flex-shrink: 0;
     color: #ffffff;
     font-size: 12px;
     padding: 0.3rem 1rem;
-    margin: 0.5rem;
-    display: inline-block;
+    margin: 1rem;
 }
 
 
@@ -235,40 +234,4 @@ flex-shrink: 0;
   border-radius:0.5rem;
   padding:0.3rem;
   left:8%;
-}
-.toast-title {
-  background-color: #fff;
-  border-radius: 16rpx;
-/*  width: 85%;
-  border: 1rpx solid #ccc;*/
-
-  margin: 0 auto;
-  text-align: center;
-}
-
-.toast-title text {
-  font-size: 14px;
-  color: #333;
-}
-
-.button1 {
-    padding: 0;
-    font-size: 24rpx;
-    color: #ccc;
-    background: none;
-    margin:0 0 0 0.5rem;
-    line-height: 88rpx;
-}
-.bg {
-    padding: 0;
-    font-size: 24rpx;
-    float: left;
-    background: none;
-    margin:0 0 0 5rem;
-    line-height: 88rpx;
-}
-.imagexiala{
-  width: 54rpx;
-  height: 72rpx;
-  margin-top: 0.2rem;
 }

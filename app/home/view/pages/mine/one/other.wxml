@@ -1,8 +1,9 @@
 <!--pages/other/other.wxml-->
   <view class='card1'>
     <view class='toast-title flex flex-ac flex-zBetween'>
-      <view class='button1' style="color: #e787ba;margin-left: 7rem">我的分享</view>
-      <view class='button1' style="color: #e787ba;margin-left: 5rem" bindtap='{{changeBtn}}'>{{changeText}}</view>
+    <view class='button1' style="color: #ccc;margin-left: 1rem" bindtap='fh'>返回</view>
+      <view class='button1' style="color: #e787ba;margin-left: 4.5rem">我的分享</view>
+      <view class='button1' style="color: #e787ba;margin-left: 4.5rem" bindtap='{{changeBtn}}'>{{changeText}}</view>
    </view>
  
 <block wx:if="{{moveTrue}}">   

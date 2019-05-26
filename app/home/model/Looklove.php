@@ -62,18 +62,19 @@ class Looklove extends Base
         $res = Db::name('sharer')->where(['id'=>$sharerId])->find();
         //判断是否被分享过，但是有被删除了，如果删除了，重新开放
         if ($res['isSharer'] == 1 && $res['isshow'] == 1) {
-            return 1;exit;
+            return WEBURL.$res['sharerImg'];exit;
         }
         
         //修改相片状态为可看
         Db::name('sharer_img')->where(['sharerId'=>$sharerId])->update(['isshow'=>1]);
         //修改封面图
         $sharerImg = Db::name('sharer_img')->where(['sharerId'=>$sharerId])->order(SO_SORT_COMMON)->limit(1)->value('img');
+        $sharerImg = $sharerImg?$sharerImg:'upload/index/index.jpg';
         //修改可以被查看状态
         Db::name('sharer')->where(['id'=>$sharerId])->update(['isSharer'=>1,'isshow'=>1,'sharer_time'=>time(),'sharerImg'=>$sharerImg]);
         
 
-        return 1;exit;
+        return WEBURL.$sharerImg;exit;
     }
 
     public function loveCat()

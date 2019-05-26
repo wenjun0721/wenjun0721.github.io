@@ -41,8 +41,11 @@ module.exports = {
   MineUserBX:domainUrl + "Mine/userBX",
   MineUserBCDel:domainUrl + "Mine/userBCDel",
   MineUserAddBC:domainUrl + "Mine/userAddBC",
+  MineUserAddLC:domainUrl + "Mine/userAddLC",
   MineUserDelBC:domainUrl + "Mine/userDelBC",
+  MineUserDelLC:domainUrl + "Mine/userDelLC",
   MineUserBM:domainUrl + "Mine/userBM",
+  MineUserLM:domainUrl + "Mine/userLM",
   MindeUpFile:domainUrl + "Mine/userUpFile",
   MineDelBN:domainUrl + "Mine/userDelBN",
   MineSaveB:domainUrl + "Mine/userSaveB",
@@ -55,4 +58,5 @@ module.exports = {
   IndexSharerLove:domainUrl + "Index/sharerLove",
   MineUserInfo:domainUrl + "Mine/userInfo",
   IndexgetOpenId:domainUrl + "Index/getOpenId",
+  MineUserLC:domainUrl + "Mine/userLC",
 }

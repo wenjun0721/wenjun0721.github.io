@@ -161,5 +161,27 @@ Page({
     })
   },
 
+  fh:function(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 
+  /**
+   * 用户点击右上角分享s
+   */
+  onShareAppMessage: function () {
+    var that = this;
+    var title = '为我打call一下哦，么么哒。'
+    return {
+      title: title,
+      path: '/pages/other/sharerUser?sharerUserId='+wx.getStorageSync('userId'),
+      success: (res) => {
+        console.log("转发成功", res);
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
+  },
 })
