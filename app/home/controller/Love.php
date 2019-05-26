@@ -49,7 +49,7 @@ class Love extends Base
 		$data['text'] = $inputDate['loveTetx'];
 		$kk  = explode("\n", $data['text']);
 		$fontSize = $inputDate['fontW']; //字体大小
-        $limit = 48 - $inputDate['fontW']; //每一行的字数
+        $limit = 40 - $inputDate['fontW']; //每一行的字数
 
         // 字体
         $fontFamily = './upload/font/zt'.$inputDate['setUpFontType'].'.ttf';
@@ -109,7 +109,7 @@ class Love extends Base
         {
             mkdir ($file_path,0777,true);
         }
-		$fileName = 'upload/love/'.$file.'/'.date('YmdHis').rand(10000,100000).'.jpg';
+		$fileName = 'upload/love/'.$inputDate['userId'].'/'.$file.'/'.date('YmdHis').rand(10000,100000).'.jpg';
 		$path="./".$fileName;
 		$str = $content;
         // if ($image->width() != 640 || $image->height() != 960) {
