@@ -12,12 +12,19 @@
 </view>
 </block>
 <block wx:else>
-	<view class='del2' style="position: fixed;z-index: 99;left: 3%;bottom: 0.35rem;text-align: center;" bindtap='fh'>
-		返回上一页
+	<view class='flex' style="position: fixed;z-index: 99;left: 5%;bottom: 0.3rem;" bindtap='sy'>
+		<image style="width: 2rem;height: 2rem;" src='../../assets/index/index_n1.png'></image>
 	</view>
-	<view class='flex' style="position: fixed;z-index: 99;right: 5%;bottom: 0.3rem;" bindtap='sc'>
+
+	 <view class='flex' style="position: fixed;z-index: 99;left: 40%;bottom: 0.3rem;" bindtap='sc'>
 		<image style="width: 2rem;height: 2rem;" src='../../assets/images/collect{{co}}.png'></image>
 	</view>
+	<view class='del2' style="position: fixed;z-index: 99;right: 3%;bottom: 0.35rem;text-align: center;width: 30%" bindtap='fh'>
+		返回上一页
+	</view>
+	<!-- <view class='flex' style="position: fixed;z-index: 99;right: 5%;bottom: 0.3rem;" bindtap='sc'>
+		<image style="width: 2rem;height: 2rem;" src='../../assets/images/collect{{co}}.png'></image>
+	</view> -->
 </block>
 
 <swiper class="swiper"  autoplay="true" interval="5000" duration="1000" circular="true" current ="{{current}}">

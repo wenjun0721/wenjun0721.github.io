@@ -83,7 +83,7 @@ Page({
     return {
       title: title,
       path: '/pages/leader/leader',
-      imageUrl:app.webViewUrl+'uupload/index/index.jpg',
+      imageUrl:app.webViewUrl+'upload/index/index.jpg',
       success: (res) => {
         console.log("转发成功");
       },

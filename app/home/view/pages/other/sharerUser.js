@@ -119,8 +119,7 @@ Page({
     var title = '点点爱分享'
     return {
       title: title,
-      path: '/pages/leader/leader',
-      imageUrl:app.webViewUrl+'uupload/index/index.jpg',
+      path: '/pages/other/sharerUser?sharerUserId='+wx.getStorageSync('userId'),
       success: (res) => {
         console.log("转发成功");
       },

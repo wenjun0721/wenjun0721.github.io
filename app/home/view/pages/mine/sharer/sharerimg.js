@@ -338,20 +338,23 @@ Page({
     //修改数据库
     if (sharerId != 0) {
       app.util.request(app.api.LookLoveSharer, 'POST', {'sharerId':sharerId}).then((rs) => {
-        return {
-          title: title,
-          path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId'),
-          imageUrl:rs.data,
-          success: (res) => {
-            console.log("转发成功", res);
-          },
-          fail: (res) => {
-            console.log("转发失败", res);
-          }
-        }
+        
       }).catch((error) => {
         console.log(error)
       })
+    }
+    var sharerImgList = that.data.sharerImgList;
+    var sharerImgF = sharerImgList[0]['img'];
+    return {
+      title: title,
+      path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId'),
+      imageUrl:sharerImgF,
+      success: (res) => {
+        console.log("转发成功", res);
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
     }
   },
 

@@ -40,7 +40,7 @@ Page({
     setUpFontType:0,
     setUpFontArrIndex:0,
     setUpFontStyle:'width: 80%;margin:  0 auto;margin-top: 1rem;',
-    setUpFontArr:['请选择您喜欢的字体','楷体','方正北魏楷书简体','方正行楷','方正行楷繁体','方正行楷简体','方正黄草','方正瘦金书简体','方正硬笔行书简体','徐静蕾'],
+    setUpFontArr:['请选择您喜欢的字体','楷体','方正北魏楷书简体','方正行楷','方正行楷繁体','方正行楷简体','方正黄草','方正瘦金书简体','方正硬笔行书简体','方正徐静蕾体','方正黄草简体','方正流行体简体','方正启体简体','方正舒体简体','方正魏碑繁体','方正新舒体简体'],
     fontW:28,
     fontStype:66,
     fontX:0,
@@ -53,15 +53,20 @@ Page({
       backShow: false,
       indexShow:true,
       myLoveShow:false,
+      page:0,
+      imageList:[],
+      userId:0,
+      type:0,
+      catId:0
     })
     wx.showToast({
       title: '加载中',
       icon: 'loading',
       duration: 500
     })
-    setTimeout(function () {
-      wx.hideToast()
-    }, 500);
+    // setTimeout(function () {
+    //   wx.hideToast()
+    // }, 500);
     
     this.initDate();
     app.BMGMUSIC.stop();//关闭音乐的
@@ -154,25 +159,40 @@ Page({
 
 
   //userId 用户ID，type：0代表选择的分类，catId：分类ID
-  initDate:function(userId=0,type=0,catId=0){
+  initDate:function(){
       var that = this;
+      var catId  = that.data.catId;
+      var type   = that.data.type;
+      var userId = that.data.userId;
       if (catId == 0 && type != 0) {
         var is_new = 1;
       }else{
         var is_new = 0;
       }
+      let page = that.data.page;
+      let imageList = that.data.imageList;
+      page++;
       let obj = {
         userId: userId,
         is_new: is_new,
         catId: catId,
+        page: page,
       }
       app.util.request(app.api.Love_backGround, 'POST', obj).then((res) => {
         if (res.status && res.status == 1) {
-          // console.log(res.data)
-          that.setData({
-            backGround: res.data,
-            imageList: res.data.imgs,
-          })
+          if (res.data.imgs.length>0) {
+            that.setData({
+              backGround: res.data,
+              imageList: imageList.concat(res.data.imgs),
+              page:page
+            })
+          }else{
+            wx.showToast({
+              title: '没有更多啦',
+              icon: 'none',
+              duration: 1000
+            })
+          }
         }
       }).catch((error) => {
         console.log(error)
@@ -230,7 +250,10 @@ Page({
         that.setData({
           multiArray: [xiaoquArr, classArr],
           classArr,
-          classList
+          classList,
+          backgroundImg: '',
+          selectindex:0,
+          backgroundText:'请选择一张您喜欢的背景图哦',
         })
       })
       
@@ -246,15 +269,37 @@ Page({
     var column = e.detail.value[0];
     var classList =this.data.classList;
     var select_key = e.detail.value[1];
+    
     if (column == 0) {
+      this.setData({
+        page:0,
+        imageList:[],
+        catId:0,
+        type:0,
+        userId:0
+      })
      return this.initDate();
     }else if (column == 1) {
       var catId=classList[select_key]['catId'];
-      return this.initDate(0,column,catId);
+      this.setData({
+        page:0,
+        imageList:[],
+        catId:catId,
+        type:column,
+        userId:0
+      })
+      return this.initDate();
     }else{
       var catId=classList[select_key]['catId'];
       var userId = wx.getStorageSync('userId');
-      return this.initDate(userId,column,catId);
+      this.setData({
+        page:0,
+        imageList:[],
+        catId:catId,
+        type:column,
+        userId:userId
+      })
+      return this.initDate();
     }
   },
 
@@ -490,7 +535,16 @@ Page({
       indexShow: true,
       setUpShow:false,
     })
-  }
+  },
+
+  onReachBottom: function () {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 1000
+    })
+    this.initDate();
+  },
 
 
 })

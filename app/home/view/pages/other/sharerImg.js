@@ -107,6 +107,23 @@ Page({
     wx.navigateBack({
       delta: 1
     })
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    var title = '点点爱分享'
+    return {
+      title: title,
+      path: '/pages/index/look?sharerId='+this.data.sharerId,
+      success: (res) => {
+        console.log("转发成功");
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
   }
 
 

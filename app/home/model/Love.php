@@ -35,9 +35,10 @@ class Love extends Base
     	$where['isok']   = 1; //是否有效
         $where['isshow']   = 1; //是否显示
     	$where['ischeck']   = 1; //是否审核
-    	$res = Db::name('background')->where($where)->order($SO)->select();
+    	$res = Db::name('background')->where($where)->order($SO)->paginate(16)->toArray();
+
         $img = [];
-        foreach ($res as $k => $v) {
+        foreach ($res['data'] as $k => $v) {
             $img[$k] = WEBURL.$v['img'];
         }
         $res['imgs'] = $img;

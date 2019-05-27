@@ -49,7 +49,7 @@ class Love extends Base
 		$data['text'] = $inputDate['loveTetx'];
 		$kk  = explode("\n", $data['text']);
 		$fontSize = $inputDate['fontW']; //字体大小
-        $limit = 40 - $inputDate['fontW']; //每一行的字数
+        $limit = 48 - $inputDate['fontW']; //每一行的字数
 
         // 字体
         $fontFamily = './upload/font/zt'.$inputDate['setUpFontType'].'.ttf';
@@ -60,8 +60,8 @@ class Love extends Base
         $fontX = $inputDate['fontX'];
         //字体摆放位置 //width 0-300  height 0-400  
         if ($inputDate['setUpArrIndex'] == 0) {
-            $inputDate['widthW'] = rand(50,150);
-            $inputDate['heightW'] = rand(100,300);
+            $inputDate['widthW'] = rand(50,100);
+            $inputDate['heightW'] = rand(100,250);
             $wz=array($inputDate['widthW'],$inputDate['heightW']);//水印位置
         }else if ($inputDate['setUpArrIndex'] == 1) {
             $wz=$inputDate['setUpSubArrIndex']*1 + 1;//水印位置
@@ -118,7 +118,7 @@ class Love extends Base
         if ($image->width() != 640) {
             $image->thumb('640','960',1);
         }
-		$image->text($str, $fontFamily, $fontSize, $fontColor,$wz,20,$fontX)->text('点点回忆', $fontFamily, 24, '#000000',9,-25)->save($path);
+		$image->text($str, $fontFamily, $fontSize, $fontColor,$wz,20,$fontX)->text('点点回忆', $fontFamily, 24, $fontColor,9,-25)->save($path);
 		echo(json_encode(WSTReturn('success',1,$fileName)));die;
     }
 
