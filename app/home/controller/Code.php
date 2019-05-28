@@ -73,7 +73,7 @@ class Code extends Controller {
         $access_token = $this->getToken();
         //获取二维码
         //参数
-        $postdata['scene']= $data['sharerUserId'].".".$data['sharerId'];
+        $postdata['scene']= 'code'.'.'.$data['sharerUserId'].".".$data['sharerId'];
         // 宽度
         $postdata['width']=430;
         // 线条颜色

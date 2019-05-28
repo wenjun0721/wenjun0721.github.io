@@ -175,7 +175,8 @@ Page({
     var title = '为我打call一下哦，么么哒。'
     return {
       title: title,
-      path: '/pages/other/sharerUser?sharerUserId='+wx.getStorageSync('userId'),
+      // path: '/pages/other/sharerUser?sharerUserId='+wx.getStorageSync('userId'),
+      path: '/pages/index/index?scene=other.'+wx.getStorageSync('userId'),
       success: (res) => {
         console.log("转发成功", res);
       },

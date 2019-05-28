@@ -116,7 +116,8 @@ Page({
     var title = '点点爱分享'
     return {
       title: title,
-      path: '/pages/index/look?sharerId='+this.data.sharerId,
+      // path: '/pages/index/look?sharerId='+this.data.sharerId,
+      path: '/pages/index/index?scene=code.'+this.data.sharerUserId+'.'+this.data.sharerId,
       success: (res) => {
         console.log("转发成功");
       },

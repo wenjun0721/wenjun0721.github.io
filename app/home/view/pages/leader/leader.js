@@ -82,7 +82,7 @@ Page({
     var title = '点点爱分享'
     return {
       title: title,
-      path: '/pages/leader/leader',
+      path: '/pages/index/index',
       imageUrl:app.webViewUrl+'upload/index/index.jpg',
       success: (res) => {
         console.log("转发成功");

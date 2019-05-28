@@ -347,7 +347,8 @@ Page({
     var sharerImgF = sharerImgList[0]['img'];
     return {
       title: title,
-      path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId'),
+      // path: '/pages/index/look?sharerId=' + sharerId+'&sharerUserId='+wx.getStorageSync('userId'),
+      path: '/pages/index/index?scene=code.'+wx.getStorageSync('userId')+'.'+this.data.sharerId,
       imageUrl:sharerImgF,
       success: (res) => {
         console.log("转发成功", res);

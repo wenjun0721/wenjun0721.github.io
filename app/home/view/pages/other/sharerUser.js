@@ -119,7 +119,8 @@ Page({
     var title = '点点爱分享'
     return {
       title: title,
-      path: '/pages/other/sharerUser?sharerUserId='+wx.getStorageSync('userId'),
+      // path: '/pages/other/sharerUser?sharerUserId='+wx.getStorageSync('userId'),
+      path: '/pages/index/index?scene=other.'+this.data.sharerUserId,
       success: (res) => {
         console.log("转发成功");
       },
