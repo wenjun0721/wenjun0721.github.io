@@ -6,8 +6,27 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-   
+  onLoad: function (e) {
+    if (e.scene){
+      const scene = decodeURIComponent(e.scene)
+      var sceneArr = scene.split(".");
+      var type = sceneArr[0];
+      if (type == 'code') {
+        var sharerUserId = sceneArr[1];
+        var sharerId = sceneArr[2];
+        var url = "/pages/index/look?sharerId=" + sharerId+'&sharerUserId='+sharerUserId;
+      }
+      if (type == 'other') {
+        var sharerUserId = sceneArr[1];
+        var url = '/pages/other/sharerUser?sharerUserId='+sharerUserId;
+      }
+    }else{
+      var url = '/pages/index/index';
+    }
+    this.setData({
+      url: url,
+    })
+    console.log(url)
   },
 
   /**
@@ -25,15 +44,15 @@ Page({
   Logins: function (e){
     var encryptedData = encodeURIComponent(e.detail.encryptedData);//一定要把加密串转成URI编码
     var iv = e.detail.iv;
-    Login(e.detail.code, encryptedData, iv);
+    var url = this.data.url;
+    Login(e.detail.code, encryptedData, iv,url);
   }
 });
 
-function Login(code, encryptedData, iv) {
+function Login(code, encryptedData, iv,url) { 
   wx.showLoading({
     title: '正在登录...',
   })
-
   //获取openId
   wx.login({
     success: function (res) {
@@ -60,7 +79,8 @@ function Login(code, encryptedData, iv) {
             //登录成功  将opendId存入本地
             setTimeout(function () {
               wx.reLaunch({
-                url: '/pages/index/index'
+                // url: '/pages/index/index'
+                url: url
               })
             }, 1500)
           } else {

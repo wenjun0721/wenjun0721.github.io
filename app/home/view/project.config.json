@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -61,6 +61,20 @@
 					"pathName": "pages/other/other",
 					"query": "",
 					"scene": 1001
+				},
+				{
+					"id": -1,
+					"name": "授权登录",
+					"pathName": "pages/login",
+					"query": "sharerId=1",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "分享",
+					"pathName": "pages/index/index",
+					"query": "scene=code.2.93",
+					"scene": null
 				}
 			]
 		}

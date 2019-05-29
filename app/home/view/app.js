@@ -2,11 +2,16 @@
 var util = require("utils/util.js");
 var api = require("config/api.js");
 App({
-  onLaunch: function () {
+  onLaunch: function (e) {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
+    if (typeof(e.query.scene) != 'undefined') {
+      var url = '/pages/login?scene='+e.query.scene;
+    }else{
+      var url = '/pages/login';
+    }
     //发起网络请求
     let openId = wx.getStorageSync('openId');
     wx.getSetting({
@@ -27,19 +32,19 @@ App({
           })
         }else{
           wx.reLaunch({
-            url: '/pages/login',
+            url: url,
           });
         }
       }
     })
-
+    
      //判断本地是否有openId
-    if (!openId) {
-      //如果没有直接跳到登录页面 登录成功后把openId储存到本地
-      wx.reLaunch({
-        url: '/pages/login',
-      });
-    }
+    // if (!openId) {
+    //   //如果没有直接跳到登录页面 登录成功后把openId储存到本地
+    //   wx.reLaunch({
+    //     url: url,
+    //   });
+    // }
   },
   globalData: {
     userInfo: null,

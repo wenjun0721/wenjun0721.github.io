@@ -7,9 +7,6 @@ Page({
   },
   onLoad: function (e) {
     app.BMGMUSIC.stop();//关闭音乐的
-    console.log("=========================")
-    console.log(e)
-    console.log("=========================") 
     if (e.scene){
       const scene = decodeURIComponent(e.scene)
       var sceneArr = scene.split(".");

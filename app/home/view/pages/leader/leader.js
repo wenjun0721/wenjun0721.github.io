@@ -9,10 +9,10 @@ Page({
     webViewUrl:app.webViewUrl
   },
   onShow: function() {
-    this.setData({
-      lists: [],
-      page: 0
-    })
+    // this.setData({
+    //   lists: [],
+    //   page: 0
+    // })
     wx.showToast({
       title: '加载中',
       icon: 'loading',
