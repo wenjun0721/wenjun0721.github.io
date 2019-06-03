@@ -61,6 +61,7 @@ class Index extends Base
             $rs['video'] = $video;
             $rs['sharerUserId'] = $sharerUserId;
             $rs['co'] = $co;
+            $rs['v'] = VSSEION;
         }
         echo(json_encode(WSTReturn('success',1,$rs)));die;
     }
@@ -90,6 +91,9 @@ class Index extends Base
         $page = input('page/d',0);
         $where['isshow']   = 1;
         $where['isSharer'] = 1;
+        if (VSSEION == 0) {
+            $where['userId'] = 2;
+        }
         //判断锦集是否能被查看
         $data = Db::name('sharer')->where($where)->order('sort asc , sharerClick desc, sharerLove desc, id desc')
                       ->paginate()->toArray();
@@ -101,6 +105,7 @@ class Index extends Base
             $data['data'][$k]['userName'] = $userInfo['userName'];
             $data['data'][$k]['userAddress'] = $userInfo['userAddress'];
         }
+         $data['v'] = VSSEION;
         echo(json_encode(WSTReturn('success',1,$data)));die;
     }
 

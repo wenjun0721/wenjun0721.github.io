@@ -12,10 +12,10 @@
         <textarea type='text' data-role="loveTetx" maxlength="200" value="{{loveTetx}}" bindinput="listenerInput" placeholder="您想说的话，最多200字哦"
         ></textarea>
 
-        <view class='login_btn1' bindtap='background'>{{backgroundText}}</view>
+        <view wx:if="{{v}}" class='login_btn1' bindtap='background'>{{backgroundText}}</view>
     </view>
     <view class='login_btn' style="margin-right: 8%;background: #40E0D0;" bindtap='lookMyLove'>预览</view> 
-    <view class='login_btn' style="background: #FFC0CB;" bindtap='setup'>{{setUpText}}</view>
+    <view class='login_btn' wx:if="{{v}}" style="background: #FFC0CB;" bindtap='setup'>{{setUpText}}</view>
     
 </view>
 

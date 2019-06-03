@@ -27,7 +27,12 @@ class Collect extends Base
         if (empty($res)) {
             return json_encode(WSTReturn('亲，您的收藏锦集可能被该主人删除,可以去"每天100分"挑选哦，么么哒！'));
         }
-    	return json_encode(WSTReturn('success',1,$res));
+        if (VSSEION == 0) {
+            return json_encode(WSTReturn('亲，暂无收藏'));
+        }else{
+            return json_encode(WSTReturn('success',1,$res));
+        }
+    	
     }
 
     public function collectDel()

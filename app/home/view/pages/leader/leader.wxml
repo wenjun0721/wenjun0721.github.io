@@ -3,11 +3,17 @@
         <view class="page__hd-pagetitle center">每天100分</view>
     </view>
         <scroll-view class="page__bd" wx:for="{{lists}}" wx:key="{{index}}" scroll-y="true">
-            <view class="page__bd-head">
+            <view class="page__bd-head" wx:if="{{v}}">
                 <view class="head-img">
                     <image class="pic" src="{{item.userImg}}" mode="aspectFill" />
                 </view>
                 <view class="artic-author page-flex">{{item.userName}}</view>
+            </view>
+            <view class="page__bd-head" wx:else>
+                <view class="head-img">
+                    <image class="pic" src="../../assets/images/indexlogo.png" mode="aspectFill" />
+                </view>
+                <view class="artic-author page-flex">官方发布</view>
             </view>
             <navigator url="../index/look?sharerId={{item.id}}">
                 
@@ -17,7 +23,7 @@
                 </block>
             </view>
             
-            <view class="page__bd-middle">
+            <view class="page__bd-middle" wx:if="{{v}}">
                 <view class="artic-title">来自 {{item.userAddress}} 的分享</view>
             </view>
             <view class="page__bd-foot">

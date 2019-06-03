@@ -602,6 +602,7 @@ class Mine extends Base
         $rs['userInfo']=Db::name('users')->where($where)->find();
         $rs['lookShare'] = Db::name('sharer')->where(['userId'=>$userId,'isshow'=>1,'isSharer'=>1])->count();
         $rs['tomyShare'] = Db::name('sharer')->where(['userId'=>$userId,'isok'=>1])->count();
+        $rs['v'] = VSSEION;
         return json_encode(WSTReturn('success',1,$rs));
     }
 }

@@ -66,7 +66,8 @@ Page({
       that.setData({
         userInfo:res.data.userInfo,
         lookShare:res.data.lookShare,
-        tomyShare:res.data.tomyShare
+        tomyShare:res.data.tomyShare,
+        v:res.data.v
       })
     })
   },

@@ -26,7 +26,7 @@ Page({
 
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '编译回忆'
+      title: '我的回忆'
     })
   },
 
@@ -53,7 +53,8 @@ Page({
           that.setData({
             loves: lovesList,
             page: page,
-            lovesImgArr
+            lovesImgArr,
+            v:res.data.v
           })
         }else{
           wx.showToast({

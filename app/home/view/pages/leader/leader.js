@@ -53,7 +53,8 @@ Page({
       if (rows.length>0) {
         that.setData({
           lists: lists.concat(rows),
-          page: page
+          page: page,
+          v:res.data.v
         })
       }else{
         wx.showToast({

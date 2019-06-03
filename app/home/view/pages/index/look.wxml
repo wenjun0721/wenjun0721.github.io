@@ -1,3 +1,4 @@
+<block wx:if="{{v}}">
 <block wx:if="{{co != 2}}">
 <view class='flex' style="position: fixed;z-index: 99;right: 5%;bottom: 0.3rem;" bindtap='zy'>
 	<image style="width: 2rem;height: 2rem;" src='../../assets/index/other_n1.png'></image>
@@ -32,7 +33,7 @@
 		</picker> 
 	</view> -->
 </block>
-
+</block>
 <swiper class="swiper"  autoplay="true" interval="5000" duration="1000" circular="true" current ="{{current}}">
   <block wx:for="{{loves}}" wx:for-index="index" wx:key="{{loves}}">  
     <swiper-item bindtap='love'>  

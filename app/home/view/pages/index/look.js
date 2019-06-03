@@ -42,6 +42,7 @@ Page({
           current:0,
           co: res.data.co,
           sharerUserId: res.data.sharerUserId,
+          v:res.data.v
         })
         this.music();
       }else{
@@ -60,13 +61,17 @@ Page({
   },
 
   music:function(){
-    //播放音乐
-    var video = this.data.video
-    const innerAudioContext = app.BMGMUSIC
-    innerAudioContext.autoplay = true
-    innerAudioContext.loop = true
-    innerAudioContext.src = app.webViewUrl+video
-    innerAudioContext.play();
+    var v = this.data.v;
+    if (v != '0') {
+      //播放音乐
+      var video = this.data.video
+      const innerAudioContext = app.BMGMUSIC
+      innerAudioContext.autoplay = true
+      innerAudioContext.loop = true
+      innerAudioContext.src = app.webViewUrl+video
+      innerAudioContext.play();
+    }
+    
   },
  
   sc:function(){

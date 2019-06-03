@@ -42,6 +42,7 @@ class Love extends Base
             $img[$k] = WEBURL.$v['img'];
         }
         $res['imgs'] = $img;
+        $res['v'] = VSSEION;
     	return $res;
     }
 

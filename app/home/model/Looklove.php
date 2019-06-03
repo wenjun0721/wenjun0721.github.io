@@ -138,6 +138,7 @@ class Looklove extends Base
         if (empty($xp)) {
             return json_encode(WSTReturn('没有任何的相片哦！'));
         }else{
+            $xp['v'] = VSSEION;
             return json_encode(WSTReturn('success',1,$xp));
         }
     }

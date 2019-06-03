@@ -184,7 +184,8 @@ Page({
             that.setData({
               backGround: res.data,
               imageList: imageList.concat(res.data.imgs),
-              page:page
+              page:page,
+              v:res.data.v
             })
           }else{
             wx.showToast({
@@ -346,6 +347,10 @@ Page({
     let widthW = that.data.widthW;
     let heightW = that.data.heightW;
     let setUpFontColorArrIndex = that.data.setUpFontColorArrIndex;
+    let v = that.data.v;
+    if (v ==0) {
+      backgroundImg = app.webViewUrl+'upload/index/add.png';
+    }
     if (typeof(backgroundImg) == 'undefined' || backgroundImg == '') {
       wx.showToast({
        title: '亲，请选择背景图哦，么么哒',
